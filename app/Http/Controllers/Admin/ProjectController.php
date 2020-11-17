@@ -25,7 +25,7 @@ class ProjectController extends Controller
         $project->developer = $request->input('developer');
 
         $project->save();
-        return redirect('/project-register')->with('status','Project Saved Successfully!');
+        return redirect('/project-register')->with('status','Project Added Successfully!');
 
     }
 
@@ -46,7 +46,7 @@ class ProjectController extends Controller
 
         $project->update();
 
-        Session::flash('statuscode','success');
+        //Session::flash('statuscode','error');
         return redirect('/project-register')->with('status','Project Updated Successfully!');
 
     }
