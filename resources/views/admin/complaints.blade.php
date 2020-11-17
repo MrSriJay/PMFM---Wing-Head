@@ -1,7 +1,7 @@
 @extends('layouts.TableMaster')
 
 @section('title')
-    Projects | NBC
+    Complaints | NBC
 @endsection
 
 @section('content')
@@ -10,30 +10,26 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-primary" id="exampleModalLabel">Add Project</h5>
+        <h5 class="modal-title text-primary" id="exampleModalLabel">Add Complaint</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/save-projects" method="POST">
+      <form action="/save-complaint" method="POST">
           {{ csrf_field() }}
 
           <div class="modal-body">
               <div class="form-group py-3">
-                  <label for="recipient-name" class="col-form-label">Project Title:</label>
-                  <input type="text" name="projecttitle" class="form-control" id="recipient-name">
+                  <label for="recipient-name" class="col-form-label">System</label>
+                  <input type="text" name="system" class="form-control" id="recipient-name">
               </div>
               <div class="form-group py-3">
                   <label for="recipient-name" class="col-form-label">Description</label>
                   <textarea name="description" class="form-control" id="message-text"></textarea>
               </div>
               <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Client</label>
-                <input type="text" name="client" class="form-control" id="recipient-name">
-              </div>
-              <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Developer</label>
-                <input type="text" name="developer" class="form-control" id="recipient-name">
+                <label for="message-text" class="col-form-label">Date</label>
+                <input type="text" name="date" class="form-control" id="recipient-name">
               </div>
 
           </div>
@@ -42,7 +38,6 @@
               <button type="submit" class="btn btn-primary">SAVE</button>
           </div>
       </form>
-
     </div>
   </div>
 </div>
@@ -59,11 +54,11 @@
         </button>
       </div>
       
-      <form id="delete_project_Form" method="POST">
+      <form id="delete_complaint_form" method="POST">
         {{ csrf_field() }}
         {{ method_field("DELETE") }}
       <div class="modal-body">
-        <input type="hidden" id="delete_project_id"> 
+        <input type="hidden" id="delete_complaint_id"> 
         <h5>Are you sure you want to delete this project?</h5>
       </div>
       <div class="modal-footer">
@@ -80,10 +75,10 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary">
-          <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">ADD Project</button>
+          <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">ADD Complaint</button>
           <!--<a href="" class="btn btn-info float-right py-2">ADD</a>-->
-          <h4 class="card-title ">Project Details</h4>
-          <p class="card-category">Details of projects that are registered in the system</p>
+          <h4 class="card-title ">Complaints Details</h4>
+          <p class="card-category">Complaints of projects that are submitted by clients</p>
             
         </div>
         <style>
@@ -91,9 +86,7 @@
             width: 10% !important;
           }
         </style>
-        
         <div class="card-body">
-          
           @if (session('status'))
           <div class="alert alert-success py-2" role="alert">
           {{ session('status') }}
@@ -102,34 +95,32 @@
           <div class="table-responsive">
             <table id="datatable" class="table table-stripped">
               <thead class="text-primary">
-                <th class="w-10p">ProjectID</th>
-                <th class="w-10p">Project Title</th>
+                <th class="w-10p">ComplaintID</th>
+                <th class="w-10p">System</th>
                 <th class="w-10p">Description</th>
-                <th class="w-10p">Client</th>
-                <th class="w-10p">Developer</th>
+                <th class="w-10p">Date</th>
                 <th class="w-10p">EDIT</th>
                 <th class="w-10p">DELETE</th>
               </thead>
               <tbody>
-               @foreach ($project as $data)
+                  @foreach ($complaints as $data)
                 <tr>
-                 <td>{{ $data->id }}</td>
-                 <td>{{ $data->title }}</td>
-                 <td>
-                   <div style="height:80px; overflow: hidden;">
-                    {{ $data->description }}
-                   </div>
-                 </td>
-                 <td>{{ $data->client }}</td>
-                 <td>{{ $data->developer }}</td>
-                  <td>
-                    <a href="{{ url('project-register-edit/'.$data->id) }}" class="btn btn-info">EDIT</a>  
-                  </td>
-                  <td>
-                    <a href="javascript:void(0)" class="btn btn-danger deletebtn">DELETE</a> 
-                  </td> 
+                    <td>{{ $data->id }}</td>
+                    <td>{{ $data->system_name }}</td>
+                    <td>
+                      <div style="height:80px; overflow: hidden;">
+                        {{ $data->description }}
+                      </div>
+                    </td>
+                    <td>{{ $data->date }}</td>
+                    <td>
+                       <a href="{{ url('complaint-edit/'.$data->id) }}" class="btn btn-info">Edit</a>  
+                    </td>
+                    <td>
+                       <a href="javascript:void(0)" class="btn btn-danger deletebtn">DELETE</a> 
+                    </td> 
+                  @endforeach
                 </tr>
-                @endforeach
               </tbody>
             </table>
           </div>
@@ -156,9 +147,9 @@
 
           //console.log(data);
           
-          $('#delete_project_id').val(data[0]);
+          $('#delete_complaint_id').val(data[0]);
 
-          $('#delete_project_Form').attr('action', '/project-register-delete/'+data[0]);
+          $('#delete_complaint_form').attr('action', '/complaint-register-delete/'+data[0]);
 
           $('#deletemodalpop').modal('show');
 
