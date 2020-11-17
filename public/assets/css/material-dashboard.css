@@ -15053,8 +15053,14 @@ fieldset[disabled] .form-group.is-focused .togglebutton label {
   display: -webkit-flex;
   /* Safari */
   /* Safari 6.1+ */
+  
   display: flex;
 }
+.footer-bottom  {
+  position: fixed;
+  width:100%;
+  bottom: 0;
+}  
 
 .footer ul {
   margin-bottom: 0;
@@ -19751,6 +19757,26 @@ Copyright (c) 2015 Daniel Eden
   .sidebar .navbar-form {
     display: none !important;
   }
+
 }
 
 /*# sourceMappingURL=dashboard-free.css.map */
+
+
+
+
+/* MY CSS*/
+
+.container-middle{
+  height: 500%;
+  position: relative;
+  border: 3px solid green; 
+}
+
+.div-vertical-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);;
+}
