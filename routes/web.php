@@ -37,6 +37,11 @@ Route::get('/project-register', [App\Http\Controllers\Admin\ProjectController::c
 Route::post('/save-projects', [App\Http\Controllers\Admin\ProjectController::class, 'store']);
 Route::get('/project-register-edit/{id}', [App\Http\Controllers\Admin\ProjectController::class,'edit']);
 Route::put('/project-register-update/{id}', [App\Http\Controllers\Admin\ProjectController::class,'update']);
-Route::delete('project-register-delete/{id}', [App\Http\Controllers\Admin\ProjectController::class,'delete']);
+Route::delete('/project-register-delete/{id}', [App\Http\Controllers\Admin\ProjectController::class,'delete']);
 
+Route::get('/complaint-register', [App\Http\Controllers\Admin\ComplaintController::class,'index']);
+Route::post('/save-complaint', [App\Http\Controllers\Admin\ComplaintController::class,'store']);
+Route::get('/complaint-edit/{id}', [App\Http\Controllers\Admin\ComplaintController::class,'edit']);
+Route::put('/complaint-update/{id}', [App\Http\Controllers\Admin\ComplaintController::class,'update']);
+Route::delete('/complaint-register-delete/{id}', [App\Http\Controllers\Admin\ComplaintController::class,'delete']);
 });
