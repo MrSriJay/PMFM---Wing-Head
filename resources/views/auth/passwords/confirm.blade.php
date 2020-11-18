@@ -1,7 +1,7 @@
-@extends('layouts.app')
+@extends('layouts.main_layout')
 
 @section('content')
-<div class="container">
+<div id="content" class="container div-vertical-center">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
@@ -14,7 +14,7 @@
                         @csrf
 
                         <div class="form-group row">
-                            <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
+                            <span for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</span>
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
