@@ -27,11 +27,10 @@
                   <label for="recipient-name" class="col-form-label">Description</label>
                   <textarea name="description" class="form-control" id="message-text"></textarea>
               </div>
-              <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Date</label>
-                <input type="text" name="date" class="form-control" id="recipient-name">
+              <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker">
+                <label for="recipient-name" class="col-form-label">Date</label>
+                <input type="date" name="date" class="form-control" placeholder="Select date" id="recipient-name">
               </div>
-
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -155,6 +154,8 @@
 
       });
   });
+  $('.datepicker').datepicker();
+
 </script>
     
 @endsection

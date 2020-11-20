@@ -17,7 +17,7 @@ class CreateComplaintsTable extends Migration
             $table->id();
             $table->string('system_name');
             $table->longText('description');
-            $table->string('date');
+            $table->date('date');
             $table->timestamps();
         });
     }

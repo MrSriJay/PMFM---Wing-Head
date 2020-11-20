@@ -87,7 +87,7 @@
             
         </div>
         <style>
-          .w10-p{
+        .w10-p{
             width: 10% !important;
           }
         </style>
