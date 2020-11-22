@@ -21,19 +21,39 @@
           <div class="modal-body">
               <div class="form-group py-3">
                   <label for="recipient-name" class="col-form-label">Project Title:</label>
-                  <input type="text" name="projecttitle" class="form-control" id="recipient-name">
+                  <input type="text" name="projecttitle" class="form-control @error('projecttitle') is-invalid @enderror" name="projecttitle" required id="projecttitle">
+                  @error('projecttitle')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
               </div>
               <div class="form-group py-3">
                   <label for="recipient-name" class="col-form-label">Description</label>
-                  <textarea name="description" class="form-control" id="message-text"></textarea>
+                  <textarea name="description" class="form-control @error('description') is-invalid @enderror" name="description" required id="description"></textarea>
+                  @error('description')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                  @enderror
               </div>
               <div class="form-group py-3">
                 <label for="message-text" class="col-form-label">Client</label>
-                <input type="text" name="client" class="form-control" id="recipient-name">
+                <input type="text" name="client" class="form-control @error('client') is-invalid @enderror" name="client" required id="client">
+                @error('client')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
               <div class="form-group py-3">
                 <label for="message-text" class="col-form-label">Developer</label>
-                <input type="text" name="developer" class="form-control" id="recipient-name">
+                <input type="text" name="developer" class="form-control @error('developer') is-invalid @enderror" name="developer" required id="developer">
+                @error('developer')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
               </div>
 
           </div>
@@ -42,7 +62,7 @@
               <button type="submit" class="btn btn-primary">SAVE</button>
           </div>
       </form>
-
+     
     </div>
   </div>
 </div>

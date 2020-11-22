@@ -17,6 +17,10 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {
+        $data = request()->validate([
+            'projecttitle' => 'required'
+        ]);
+        
         $project = new Projects;
 
         $project->title = $request->input('projecttitle');
