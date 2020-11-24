@@ -6,6 +6,7 @@ use App\Models\Projects;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
@@ -16,17 +17,20 @@ class ProjectController extends Controller
     }
 
     public function store(Request $request)
-    {
-        $data = request()->validate([
-            'projecttitle' => 'required'
+    {        
+       
+        $request->validate([
+            'email' => 'required|email'
         ]);
-        
+
         $project = new Projects;
 
         $project->title = $request->input('projecttitle');
         $project->description = $request->input('description');
         $project->client = $request->input('client');
         $project->developer = $request->input('developer');
+        $project->contact_no = $request->input('contactno');
+        $project->email = $request->input('email');
 
         $project->save();
         return redirect('/project-register')->with('status','Project Added Successfully!');
@@ -47,6 +51,8 @@ class ProjectController extends Controller
         $project->description = $request->input('description');
         $project->client = $request->input('client');
         $project->developer = $request->input('developer');
+        $project->contact_no = $request->input('contactno');
+        $project->email = $request->input('email');
 
         $project->update();
 

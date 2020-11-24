@@ -21,7 +21,7 @@
           <div class="modal-body">
               <div class="form-group py-3">
                   <label for="recipient-name" class="col-form-label">Project Title:</label>
-                  <input type="text" name="projecttitle" class="form-control @error('projecttitle') is-invalid @enderror" name="projecttitle" required id="projecttitle">
+                  <input type="text" name="projecttitle" class="form-control @error('projecttitle') is-invalid @enderror" required id="projecttitle">
                   @error('projecttitle')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -30,7 +30,7 @@
               </div>
               <div class="form-group py-3">
                   <label for="recipient-name" class="col-form-label">Description</label>
-                  <textarea name="description" class="form-control @error('description') is-invalid @enderror" name="description" required id="description"></textarea>
+                  <textarea type="text" name="description" class="form-control @error('description') is-invalid @enderror" required id="description"></textarea>
                   @error('description')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -39,7 +39,7 @@
               </div>
               <div class="form-group py-3">
                 <label for="message-text" class="col-form-label">Client</label>
-                <input type="text" name="client" class="form-control @error('client') is-invalid @enderror" name="client" required id="client">
+                <input type="text" name="client" class="form-control @error('client') is-invalid @enderror" required id="client">
                 @error('client')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
@@ -48,8 +48,26 @@
               </div>
               <div class="form-group py-3">
                 <label for="message-text" class="col-form-label">Developer</label>
-                <input type="text" name="developer" class="form-control @error('developer') is-invalid @enderror" name="developer" required id="developer">
+                <input type="text" name="developer" class="form-control @error('developer') is-invalid @enderror" required id="developer">
                 @error('developer')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+              <div class="form-group py-3">
+                <label for="message-text" class="col-form-label">Contact Number</label>
+                <input type="text" name="contactno" class="form-control @error('contactno') is-invalid @enderror" required id="contactno">
+                @error('contactno')
+                  <span class="invalid-feedback" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+              <div class="form-group py-3">
+                <label for="message-text" class="col-form-label">Email</label>
+                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" required id="email">
+                @error('email')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
@@ -83,7 +101,7 @@
         {{ csrf_field() }}
         {{ method_field("DELETE") }}
       <div class="modal-body">
-        <input type="hidden" id="delete_project_id"> 
+        <input type="text" id="delete_project_id"> 
         <h5>Are you sure you want to delete this project?</h5>
       </div>
       <div class="modal-footer">
@@ -122,11 +140,13 @@
           <div class="table-responsive">
             <table id="datatable" class="table table-stripped">
               <thead class="text-primary">
-                <th class="w-10p">ProjectID</th>
+                <th class="w-10p">Project ID</th>
                 <th class="w-10p">Project Title</th>
                 <th class="w-10p">Description</th>
                 <th class="w-10p">Client</th>
                 <th class="w-10p">Developer</th>
+                <th class="w-10p">Contact No</th>
+                <th class="w-10p">Email</th>
                 <th class="w-10p">EDIT</th>
                 <th class="w-10p">DELETE</th>
               </thead>
@@ -142,6 +162,8 @@
                  </td>
                  <td>{{ $data->client }}</td>
                  <td>{{ $data->developer }}</td>
+                 <td>{{ $data->contact_no }}</td>
+                 <td>{{ $data->email }}</td>
                   <td>
                     <a href="{{ url('project-register-edit/'.$data->id) }}" class="btn btn-info">EDIT</a>  
                   </td>

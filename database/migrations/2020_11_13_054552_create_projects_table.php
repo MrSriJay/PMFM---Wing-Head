@@ -19,6 +19,8 @@ class CreateProjectsTable extends Migration
             $table->longText('description');
             $table->string('client');
             $table->string('developer');
+            $table->integer('contact_no');
+            $table->string('email');
             $table->timestamps();
         });
     }

@@ -523,7 +523,7 @@ The above copyright notice and this permission notice shall be included in all c
       });
     });
   </script>
-  <script>
+  <!--<script>
     <script src="{{asset('assets/js/sweetalert.js')}}"></script>
     <script>
     @if (session('status'))
@@ -535,7 +535,7 @@ The above copyright notice and this permission notice shall be included in all c
     });
     @endif
   </script>
-  </script>
+  </script>-->
   @yield('scripts')
 </body>
 
