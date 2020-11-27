@@ -23,7 +23,7 @@ Projects - Edit | PMFM
                     {{ method_field('PUT') }}
 
                         <div class="form-group py-4">
-                            <label for="recipient-name" class="col-form-label">Project Title</label>
+                            <label for="message-text" class="col-form-label">Project Title</label>
                             <input type="text" name ="projecttitle" class="form-control @error('projecttitle') is-invalid @enderror" required id="projecttitle" value="{{$project->title}}">
                             @error('projecttitle')
                             <span class="invalid-feedback" role="alert">
@@ -41,16 +41,16 @@ Projects - Edit | PMFM
                             @enderror
                         </div>
                         <div class="form-group py-4">
-                            <label for="recipient-name" class="col-form-label">Client</label>
-                            <input type="text" name ="client" class="form-control @error('client') is-invalid @enderror" required id="client" value="{{$project->client}}">
-                            @error('client')
+                            <label for="message-text" class="col-form-label">Clients</label>
+                            <textarea type="text" name ="clients" class="form-control @error('clients') is-invalid @enderror" required id="clients">{{$project->clients}}"</textarea>
+                            @error('clients')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
                         <div class="form-group py-4">
-                            <label for="recipient-name" class="col-form-label">Developer</label>
+                            <label for="message-text" class="col-form-label">Developer</label>
                             <input type="text" name ="developer" class="form-control @error('developer') is-invalid @enderror" required id="developer" value="{{$project->developer}}">
                             @error('developer')
                             <span class="invalid-feedback" role="alert">

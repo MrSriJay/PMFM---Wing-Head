@@ -38,9 +38,9 @@
                   @enderror
               </div>
               <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Client</label>
-                <input type="text" name="client" class="form-control @error('client') is-invalid @enderror" required id="client">
-                @error('client')
+                <label for="message-text" class="col-form-label">Clients</label>
+                <textarea type="text" name="clients" class="form-control @error('clients') is-invalid @enderror" required id="clients"></textarea>
+                @error('clients')
                   <span class="invalid-feedback" role="alert">
                       <strong>{{ $message }}</strong>
                   </span>
@@ -101,7 +101,7 @@
         {{ csrf_field() }}
         {{ method_field("DELETE") }}
       <div class="modal-body">
-        <input type="text" id="delete_project_id"> 
+        <input type="hidden" id="delete_project_id"> 
         <h5>Are you sure you want to delete this project?</h5>
       </div>
       <div class="modal-footer">
@@ -140,15 +140,15 @@
           <div class="table-responsive">
             <table id="datatable" class="table table-stripped">
               <thead class="text-primary">
-                <th class="w-10p">Project ID</th>
-                <th class="w-10p">Project Title</th>
-                <th class="w-10p">Description</th>
-                <th class="w-10p">Client</th>
-                <th class="w-10p">Developer</th>
-                <th class="w-10p">Contact No</th>
-                <th class="w-10p">Email</th>
-                <th class="w-10p">EDIT</th>
-                <th class="w-10p">DELETE</th>
+                <th style="text-align:center" class="w-10p">Project ID</th>
+                <th style="text-align:center" class="w-10p">Project Title</th>
+                <th style="text-align:center" class="w-10p">Description</th>
+                <th style="text-align:center" class="w-10p">Clients</th>
+                <th style="text-align:center" class="w-10p">Developer</th>
+                <th style="text-align:center" class="w-10p">Contact Number</th>
+                <th style="text-align:center" class="w-10p">Email</th>
+                <th style="text-align:center" class="w-10p">EDIT</th>
+                <th style="text-align:center" class="w-10p">DELETE</th>
               </thead>
               <tbody>
                @foreach ($project as $data)
@@ -156,12 +156,16 @@
                  <td>{{ $data->id }}</td>
                  <td>{{ $data->title }}</td>
                  <td>
-                   <div style="height:80px; overflow: hidden;">
+                   
                     {{ $data->description }}
-                   </div>
+                  
                  </td>
-                 <td>{{ $data->client }}</td>
-                 <td>{{ $data->developer }}</td>
+                 <td>
+                 
+                   {{ $data->clients }}
+                  
+                 </td>
+                 <td>{{ $data->developer }}</td> 
                  <td>{{ $data->contact_no }}</td>
                  <td>{{ $data->email }}</td>
                   <td>

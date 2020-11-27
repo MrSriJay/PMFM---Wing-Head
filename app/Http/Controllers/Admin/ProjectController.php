@@ -20,14 +20,15 @@ class ProjectController extends Controller
     {        
        
         $request->validate([
-            'email' => 'required|email'
+            'email' => 'required|email',
+            'contactno' => 'required|digits:10'
         ]);
 
         $project = new Projects;
 
         $project->title = $request->input('projecttitle');
         $project->description = $request->input('description');
-        $project->client = $request->input('client');
+        $project->clients = $request->input('clients');
         $project->developer = $request->input('developer');
         $project->contact_no = $request->input('contactno');
         $project->email = $request->input('email');
@@ -45,11 +46,16 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id)
     {
+        $request->validate([
+            'email' => 'required|email',
+            'contactno' => 'required|digits:10'
+        ]);
+        
         $project = Projects::findOrFail($id);
 
         $project->title = $request->input('projecttitle');
         $project->description = $request->input('description');
-        $project->client = $request->input('client');
+        $project->clients = $request->input('clients');
         $project->developer = $request->input('developer');
         $project->contact_no = $request->input('contactno');
         $project->email = $request->input('email');

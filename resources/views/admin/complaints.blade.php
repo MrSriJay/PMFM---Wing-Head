@@ -94,28 +94,28 @@
           <div class="table-responsive">
             <table id="datatable" class="table table-stripped">
               <thead class="text-primary">
-                <th class="w-10p">ComplaintID</th>
-                <th class="w-10p">System</th>
-                <th class="w-10p">Description</th>
-                <th class="w-10p">Date</th>
-                <th class="w-10p">EDIT</th>
-                <th class="w-10p">DELETE</th>
+                <th style="text-align:center" class="w-10p">ComplaintID</th>
+                <th style="text-align:center" class="w-10p">System</th>
+                <th style="text-align:center" class="w-10p">Description</th>
+                <th style="text-align:center" class="w-10p">Date</th>
+                <th style="text-align:center" class="w-10p">EDIT</th>
+                <th style="text-align:center" class="w-10p">DELETE</th>
               </thead>
               <tbody>
                   @foreach ($complaints as $data)
                 <tr>
-                    <td>{{ $data->id }}</td>
-                    <td>{{ $data->system_name }}</td>
-                    <td>
+                    <td style="text-align:center">{{ $data->id }}</td>
+                    <td style="text-align:center">{{ $data->system_name }}</td>
+                    <td style="text-align:center">
                       <div style="height:80px; overflow: hidden;">
                         {{ $data->description }}
                       </div>
                     </td>
-                    <td>{{ $data->date }}</td>
-                    <td>
+                    <td style="text-align:center">{{ $data->date }}</td>
+                    <td style="text-align:center">
                        <a href="{{ url('complaint-edit/'.$data->id) }}" class="btn btn-info">Edit</a>  
                     </td>
-                    <td>
+                    <td style="text-align:center">
                        <a href="javascript:void(0)" class="btn btn-danger deletebtn">DELETE</a> 
                     </td> 
                   @endforeach
