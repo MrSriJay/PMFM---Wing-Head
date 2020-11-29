@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\Validator;
 
 class ProjectController extends Controller
 {
+    public function create()
+    {
+        $project = Projects::all();
+        return view('admin.add-project');
+    }
     public function index()
     {
         $project = Projects::all();

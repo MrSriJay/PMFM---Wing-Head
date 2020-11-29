@@ -33,6 +33,7 @@ Route::get('/user-edit/{id}', [App\Http\Controllers\Admin\UserController::class,
 Route::put('/user-register-update/{id}', [App\Http\Controllers\Admin\UserController::class, 'registerupdate']);
 Route::delete('/user-delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'registerdelete']);
 
+Route::get('/project-form', [App\Http\Controllers\Admin\ProjectController::class, 'create']);
 Route::get('/project-register', [App\Http\Controllers\Admin\ProjectController::class, 'index']);
 Route::post('/save-projects', [App\Http\Controllers\Admin\ProjectController::class, 'store']);
 Route::get('/project-register-edit/{id}', [App\Http\Controllers\Admin\ProjectController::class,'edit']);

@@ -6,85 +6,6 @@
 
 @section('content')
     
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-primary" id="exampleModalLabel">Add Project</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="/save-projects" method="POST">
-          {{ csrf_field() }}
-
-          <div class="modal-body">
-              <div class="form-group py-3">
-                  <label for="recipient-name" class="col-form-label">Project Title:</label>
-                  <input type="text" name="projecttitle" class="form-control @error('projecttitle') is-invalid @enderror" required id="projecttitle">
-                  @error('projecttitle')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-              </div>
-              <div class="form-group py-3">
-                  <label for="recipient-name" class="col-form-label">Description</label>
-                  <textarea type="text" name="description" class="form-control @error('description') is-invalid @enderror" required id="description"></textarea>
-                  @error('description')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                  @enderror
-              </div>
-              <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Clients</label>
-                <textarea type="text" name="clients" class="form-control @error('clients') is-invalid @enderror" required id="clients"></textarea>
-                @error('clients')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Developer</label>
-                <input type="text" name="developer" class="form-control @error('developer') is-invalid @enderror" required id="developer">
-                @error('developer')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Contact Number</label>
-                <input type="text" name="contactno" class="form-control @error('contactno') is-invalid @enderror" required id="contactno">
-                @error('contactno')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-              <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Email</label>
-                <input type="text" name="email" class="form-control @error('email') is-invalid @enderror" required id="email">
-                @error('email')
-                  <span class="invalid-feedback" role="alert">
-                      <strong>{{ $message }}</strong>
-                  </span>
-                @enderror
-              </div>
-
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">SAVE</button>
-          </div>
-      </form>
-     
-    </div>
-  </div>
-</div>
-
 {{-- Delete Modal --}}
 <!-- Modal -->
 <div class="modal fade" id="deletemodalpop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -117,9 +38,8 @@
 <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header card-header-primary">
-          <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">ADD Project</button>
-          <!--<a href="" class="btn btn-info float-right py-2">ADD</a>-->
+        <div class="card-header card-header-primary"> 
+          <a href="project-form" class="btn btn-success float-right">ADD Complaint</a>
           <h4 class="card-title ">Project Details</h4>
           <p class="card-category">Details of projects that are registered in the system</p>
             

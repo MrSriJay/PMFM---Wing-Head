@@ -16,10 +16,12 @@ class ComplaintController extends Controller
 
     public function store(Request $request)
     {
+    
         $complaints = new Complaints; 
 
         $complaints->system_name = $request->input('system');
         $complaints->description = $request->input('description');
+        $complaints->images = $request->input('images');
         $complaints->date = $request->input('date');
 
         $complaints->save();
@@ -38,6 +40,7 @@ class ComplaintController extends Controller
         $complaints = Complaints::findOrFail($id);
         $complaints->system_name = $request->input('system');
         $complaints->description = $request->input('description');
+        $complaints->images = $request->input('images');
         $complaints->date = $request->input('date');
 
         $complaints->update(); 
@@ -52,4 +55,5 @@ class ComplaintController extends Controller
         return redirect('/complaint-register')->with('status','Complaint Deleted Successfully!');
 
     }
+
 }
