@@ -11,20 +11,19 @@ Add Projects | PMFM
     <div class="col-md-12">
         <div class="card">
             <div class="card-header card-header-primary">
-                <h4 class="card-title">Add a Project</h4>
-                <p class="card-category">Select and type on the text-boxes that you want to fill</p>
+                <!--<a href="" class="btn btn-info float-right py-2">ADD</a>-->
+                <h4 class="card-title" style="text-align:center">Add a New Project</h4>
+                <p class="card-category" style="text-align:center">Select and type on the text-boxes that you want to fill</p>
             </div>
             <div class="card-body">
                 <div class="col-md-6 py-3">
 
-                <form action="" method="POST">
+                <form action="/save-projects" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                    {{ method_field('PUT') }}
-
                         <div class="form-group py-4">
-                            <label for="message-text" class="col-form-label text-primary">Project Title</label>
-                            <input type="text" name ="projecttitle" class="form-control @error('projecttitle') is-invalid @enderror" required id="projecttitle" value="">
-                            @error('projecttitle')
+                            <label for="recipient-name" class="col-form-label text-primary">Project Title</label>
+                            <input type="text" name ="title" class="form-control" style="width:720pt" required value="">
+                            @error('title')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                             </span>
@@ -32,53 +31,65 @@ Add Projects | PMFM
                         </div>
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Description</label>
-                            <textarea name="description" class="form-control @error('description') is-invalid @enderror" required id="description" rows="6" cols="5"></textarea>
+                            <textarea name="description" class="form-control" style="width:720pt" required rows="6" cols="5"></textarea>
                             @error('description')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
+                        <div>
+                            <label for="recipient-name" class="col-form-label text-primary">Files</label>
+                            <input type="file" name="files" class="form-control" style="width:720pt" id="files">
+                            @error('files')
+                              <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                              </span>
+                            @enderror
+                        </div>
+                        <br>
                         <div class="form-group py-4">
-                            <label for="message-text" class="col-form-label text-primary">Clients</label>
-                            <textarea type="text" name ="clients" class="form-control @error('clients') is-invalid @enderror" required id="clients"></textarea>
+                            <label for="recipient-name" class="col-form-label text-primary">Developer(s)</label>
+                            <textarea type="text" name ="developers" class="form-control" style="width:720pt" required></textarea>
+                            @error('developers')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+                        <div class="form-group py-4">
+                            <label for="recipient-name" class="col-form-label text-primary">Client(s)</label>
+                            <textarea type="text" name ="clients" class="form-control" style="width:720pt" required></textarea>
                             @error('clients')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
-                        <div class="form-group py-4">
-                            <label for="message-text" class="col-form-label text-primary">Developer</label>
-                            <input type="text" name ="developer" class="form-control @error('developer') is-invalid @enderror" required id="developer" value="">
-                            @error('developer')
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                            </span>
+                        <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
+                            <label for="recipient-name" class="col-form-label text-primary">Start Date</label>
+                            <input type="date" name="startdate" class="form-control" style="width:720pt" required placeholder="Select date" id="startdate">
+                            @error('startdate')
+                              <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                              </span>
                             @enderror
                         </div>
-                        <div class="form-group py-4">
-                            <label for="recipient-name" class="col-form-label text-primary">Contact Number</label>
-                            <input type="text" name ="contactno" class="form-control @error('contactno') is-invalid @enderror" required autofocus id="contactno" value="">
-                            @error('contactno')
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                            </span>
+                        <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
+                            <label for="recipient-name" class="col-form-label text-primary">End Date</label>
+                            <input type="date" name="enddate" class="form-control" style="width:720pt" required placeholder="Select date" id="date">
+                            @error('enddate')
+                              <span class="invalid-feedback" role="alert">
+                              <strong>{{ $message }}</strong>
+                              </span>
                             @enderror
                         </div>
-                        <div class="form-group py-4">
-                            <label for="recipient-name" class="col-form-label text-primary">Email</label>
-                            <input type="text" name ="email" class="form-control @error('email') is-invalid @enderror" required id="email" value="">
-                            @error('email')
-                            <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <a href="/project-register" class="btn btn-danger float-right" style="margin:20px;">Cancel</a>
-                        <button type="submit" class="btn btn-info float-right" style="margin:20px;">Update</button>     
                 </form>
                 </div>
+                <div style="text-align:right">
+                    <button type="submit" class="btn btn-info" style="margin:20px">Save</button>  
+                    <a href="{{ url('project-register') }}" class="btn btn-danger" style="margin:20px">Cancel</a>
+                </div> 
             </div>
         </div>
     </div>

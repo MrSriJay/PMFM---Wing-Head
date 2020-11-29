@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 
+
 class ProjectController extends Controller
 {
     public function create()
@@ -24,19 +25,25 @@ class ProjectController extends Controller
     public function store(Request $request)
     {        
        
-        $request->validate([
-            'email' => 'required|email',
-            'contactno' => 'required|digits:10'
+        $this->validate($request, [
+            'title' => 'required',
+            'description' => 'required',
+            'developers' => 'required',
+            'clients' => 'required',
+            'startdate' => 'required',
+            'enddate' => 'required',
+
         ]);
 
         $project = new Projects;
 
-        $project->title = $request->input('projecttitle');
+        $project->title = $request->input('title');
         $project->description = $request->input('description');
+        $project->files = $request->input('files');
+        $project->developers = $request->input('developers');
         $project->clients = $request->input('clients');
-        $project->developer = $request->input('developer');
-        $project->contact_no = $request->input('contactno');
-        $project->email = $request->input('email');
+        $project->startdate = $request->input('startdate');
+        $project->enddate = $request->input('enddate');
 
         $project->save();
         return redirect('/project-register')->with('status','Project Added Successfully!');
@@ -58,12 +65,13 @@ class ProjectController extends Controller
         
         $project = Projects::findOrFail($id);
 
-        $project->title = $request->input('projecttitle');
+        $project->title = $request->input('title');
         $project->description = $request->input('description');
+        $project->files = $request->input('files');
+        $project->developers = $request->input('developers');
         $project->clients = $request->input('clients');
-        $project->developer = $request->input('developer');
-        $project->contact_no = $request->input('contactno');
-        $project->email = $request->input('email');
+        $project->startdate = $request->input('startdate');
+        $project->enddate = $request->input('enddate');
 
         $project->update();
 

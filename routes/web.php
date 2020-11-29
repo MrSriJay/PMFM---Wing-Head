@@ -35,7 +35,8 @@ Route::delete('/user-delete/{id}', [App\Http\Controllers\Admin\UserController::c
 
 Route::get('/project-form', [App\Http\Controllers\Admin\ProjectController::class, 'create']);
 Route::get('/project-register', [App\Http\Controllers\Admin\ProjectController::class, 'index']);
-Route::post('/save-projects', [App\Http\Controllers\Admin\ProjectController::class, 'store']);
+
+Route::post('/save-projects', [App\Http\Controllers\Admin\ProjectController::class,'store']);
 Route::get('/project-register-edit/{id}', [App\Http\Controllers\Admin\ProjectController::class,'edit']);
 Route::put('/project-register-update/{id}', [App\Http\Controllers\Admin\ProjectController::class,'update']);
 Route::delete('/project-register-delete/{id}', [App\Http\Controllers\Admin\ProjectController::class,'delete']);
