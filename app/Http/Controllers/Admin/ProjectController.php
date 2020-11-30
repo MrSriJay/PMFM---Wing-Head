@@ -27,7 +27,7 @@ class ProjectController extends Controller
        
         $this->validate($request, [
             'title' => 'required',
-            'description' => 'required',
+            'summary-ckeditor' => 'required',
             'developers' => 'required',
             'clients' => 'required',
             'startdate' => 'required',
@@ -38,7 +38,7 @@ class ProjectController extends Controller
         $project = new Projects;
 
         $project->title = $request->input('title');
-        $project->description = $request->input('description');
+        $project->description = $request->input('summary-ckeditor');
         $project->files = $request->input('files');
         $project->developers = $request->input('developers');
         $project->clients = $request->input('clients');

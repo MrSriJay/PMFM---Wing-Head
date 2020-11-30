@@ -522,7 +522,6 @@ The above copyright notice and this permission notice shall be included in all c
         });
       });
     });
-   
  <script>
     <script src="{{asset('assets/js/sweetalert.js')}}"></script>
     <script>
