@@ -45,7 +45,7 @@ Add Projects | PMFM
                         </div>
                         <div>
                             <label for="recipient-name" class="col-form-label text-primary">Files</label>
-                            <input type="file" name="files[]" multiple class="form-control" id="files">
+                            <input type="file" name="files" class="form-control" id="files">
                             @error('files')
                               <span class="invalid-feedback" role="alert">
                               <strong>{{ $message }}</strong>

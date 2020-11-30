@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
 
 
 class ProjectController extends Controller
@@ -39,7 +40,22 @@ class ProjectController extends Controller
 
         $project->title = $request->input('title');
         $project->description = $request->input('summary-ckeditor');
-        $project->files = $request->input('files');
+        if($request->hasFile('files'))
+        {
+            foreach($request->file as $file)
+            {
+                $filename = file->getClientOriginalName();
+                $filesize = $file->getClientSize();
+                $file->storeAs('public/upload',$filename);
+                $fileModel = new File;
+                $fileModel->name = $filename;
+                $fileModel->size = $filesize;
+                $fileModel->save();
+            }
+        
+        }
+        //$project->files = $request->file('files');
+        
         $project->developers = $request->input('developers');
         $project->clients = $request->input('clients');
         $project->startdate = $request->input('startdate');

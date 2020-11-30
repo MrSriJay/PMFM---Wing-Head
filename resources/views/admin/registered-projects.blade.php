@@ -39,7 +39,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary"> 
-          <a href="project-form" class="btn btn-success float-right">ADD Complaint</a>
+          <a href="project-form" class="btn btn-success float-right">Add New Project</a>
           <h4 class="card-title ">Project Details</h4>
           <p class="card-category">Details of projects that are registered in the system</p>
             
