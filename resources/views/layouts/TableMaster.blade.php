@@ -14,8 +14,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/crd-logo.png">
+  <link rel="icon" type="image/png" href="../assets/img/crd-logo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
    @yield('title')
@@ -28,7 +28,11 @@ The above copyright notice and this permission notice shall be included in all c
   <link href="../assets/css/material-dashboard.css?v=2.1.2" rel="stylesheet" />
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
+  <!--Search Bar-->
   <link rel="stylesheet" href="{{asset('assets/css/dataTables.min.css')}}">
+  <!--DropZone-->
+  <link href="../dist/css/jquery.dm-uploader.min.css" rel="stylesheet">
+  <link href="styles.css" rel="stylesheet">
 </head>
 
 <body class="">
@@ -314,6 +318,7 @@ The above copyright notice and this permission notice shall be included in all c
   <script src="../assets/js/core/bootstrap-material-design.min.js"></script>
   <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <script src="{{asset('assets/js/dataTables.min.js')}}"></script>
+  <script src="{{asset('assets/js/dropzone.js')}}"></script>
   <!-- Plugin for the momentJs  -->
   <script src="../assets/js/plugins/moment.min.js"></script>
   <!--  Plugin for Sweet Alert -->
@@ -522,7 +527,14 @@ The above copyright notice and this permission notice shall be included in all c
         });
       });
     });
+ </script>
+ <script src="{{ asset('dropzone/dropzone.js') }}"></script>
+
+ <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
  <script>
+ CKEDITOR.replace( 'summary-ckeditor' );
+
+ </script>
     <script src="{{asset('assets/js/sweetalert.js')}}"></script>
     <script>
     @if (session('status'))
@@ -534,7 +546,7 @@ The above copyright notice and this permission notice shall be included in all c
     });
     @endif
   </script>
- </script>
+
   @yield('scripts')
 </body>
 
