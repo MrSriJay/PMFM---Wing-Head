@@ -12,14 +12,14 @@ Add Projects | PMFM
         <div class="card">
             <div class="card-header card-header-primary">
                 <!--<a href="" class="btn btn-info float-right py-2">ADD</a>-->
-                <h4 class="card-title" style="text-align:left">Add a New Project</h4>
-                <p class="card-category" style="text-align:left">Select and type on the text-boxes that you want to fill</p>
+                <h2 class="card-title" style="text-align:left">Add a New Project</h2>
+                <p class="card-category" style="text-align:left">Select and type on the fields that you want to edit</p>
             </div>
             <div class="card-body">
                 <div class="col-md-12 py-3">
                 <form action="/save-projects" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
-                        <!--Project Title-->
+                        <!--Insert Project Title-->
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Project Title</label>
                             <input type="text" name ="title" class="form-control"  required value="">
@@ -29,7 +29,7 @@ Add Projects | PMFM
                             </span>
                             @enderror
                         </div>
-                        <!--Description-->
+                        <!--Insert Description-->
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Description</label>
                             <textarea class="form-control" id="summary-ckeditor" name="summary-ckeditor"  rows="6" cols="5"></textarea>
@@ -71,7 +71,7 @@ Add Projects | PMFM
                          <br>
                          <input type="file" name="file[]" multiple>
                          </div>
-                        <!--Developers-->
+                        <!--Insert Developers-->
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Developer(s)</label>
                             <textarea type="text" name ="developers" class="form-control" required></textarea>
@@ -81,7 +81,7 @@ Add Projects | PMFM
                             </span>
                             @enderror
                         </div>
-                        <!--Clients-->
+                        <!--Insert Clients-->
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Client(s)</label>
                             <textarea type="text" name ="clients" class="form-control" required></textarea>
@@ -91,7 +91,7 @@ Add Projects | PMFM
                             </span>
                             @enderror
                         </div>
-                        <!--Start Date-->
+                        <!--Insert Start Date-->
                         <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
                             <label for="recipient-name" class="col-form-label text-primary">Start Date</label>
                             <input type="date" name="startdate" class="form-control" required placeholder="Select date" id="startdate">
@@ -101,7 +101,7 @@ Add Projects | PMFM
                               </span>
                             @enderror
                         </div>
-                        <!--End Date-->
+                        <!--Insert End Date-->
                         <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
                             <label for="recipient-name" class="col-form-label text-primary">End Date</label>
                             <input type="date" name="enddate" class="form-control" required placeholder="Select date" id="date">

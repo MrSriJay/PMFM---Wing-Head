@@ -35,75 +35,39 @@
 </div>
 {{-- End - Delete Model --}}
 
-<div class="row">
+ <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary"> 
-          <a href="project-form" class="btn btn-success float-right">Add New Project</a>
-          <h4 class="card-title ">Project Details</h4>
-          <p class="card-category">Details of projects that are registered in the system</p>
-            
+          <a href="project-form" class="btn btn-success float-right" style="margin-top:20px">Add New Project</a>
+          <h2 class="card-title">Projects</h2>
+          <p class="card-category">Details of projects that are registered in the system</p> 
         </div>
-        <style>
-        .w10-p{
-            width: 10% !important;
-          }
-        </style>
-        
+
         <div class="card-body">
-          
           @if (session('status'))
           <div class="alert alert-success py-2" role="alert">
           {{ session('status') }}
           </div>
-        @endif
-          <div class="table-responsive">
-            <table id="datatable" class="table table-stripped">
-              <thead class="text-primary">
-                <th style="text-align:center" class="w-10p">Project ID</th>
-                <th style="text-align:center" class="w-10p">Project Title</th>
-                <th style="text-align:center" class="w-10p">Description</th>
-                <th style="text-align:center" class="w-10p">Clients</th>
-                <th style="text-align:center" class="w-10p">Developer</th>
-                <th style="text-align:center" class="w-10p">Contact Number</th>
-                <th style="text-align:center" class="w-10p">Email</th>
-                <th style="text-align:center" class="w-10p">EDIT</th>
-                <th style="text-align:center" class="w-10p">DELETE</th>
-              </thead>
-              <tbody>
-               @foreach ($project as $data)
-                <tr>
-                 <td>{{ $data->id }}</td>
-                 <td>{{ $data->title }}</td>
-                 <td>
-                   
-                    {{ $data->description }}
-                  
-                 </td>
-                 <td>
-                 
-                   {{ $data->clients }}
-                  
-                 </td>
-                 <td>{{ $data->developer }}</td> 
-                 <td>{{ $data->contact_no }}</td>
-                 <td>{{ $data->email }}</td>
-                  <td>
-                    <a href="{{ url('project-register-edit/'.$data->id) }}" class="btn btn-info">EDIT</a>  
-                  </td>
-                  <td>
-                    <a href="javascript:void(0)" class="btn btn-danger deletebtn">DELETE</a> 
-                  </td> 
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+          @endif
+          <div>
+            @if(count($project)>0)
+              @foreach ($project as $data)
+                <div class="card">
+                  <div class="card-header"> 
+                  <h3><a class="card-title text-primary" href="/project-register-edit/{{$data->id}}">{{$data->title}}</a></h3>
+                  <small class="text-danger">Written on {{$data->created_at}}</small>
+                  </div>
+                </div>
+              @endforeach
+            @else 
+              <p>No Projects Found</p>
+            @endif
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
+     </div>
+   </div>
+ </div>
 @endsection
 
 @section('scripts')
