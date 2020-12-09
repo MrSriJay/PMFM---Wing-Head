@@ -17,7 +17,6 @@ Add Projects | PMFM
             </div>
             <div class="card-body">
                 <div class="col-md-12 py-3">
-
                 <form action="/save-projects" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                         <!--Project Title-->
@@ -37,7 +36,7 @@ Add Projects | PMFM
                         </div>
                         <script>
                           CKEDITOR.replace( 'summary-ckeditor' );
-                          $("iframe").submit( function(e) {
+                          $("form").submit( function(e) {
                               var messageLength = CKEDITOR.instances['summary-ckeditor'].getData().replace(/<[^>]*>/gi, '').length;
                               if( !messageLength ) {
                                   alert( 'Please enter a message' );
@@ -45,17 +44,16 @@ Add Projects | PMFM
                               }
                           });
                       </script>
-                        <!--Drop Zone-->
-                        <div class="row">
+                        <!--
+                        <div class="row py-5">
                             <div class="col-md-6 col-sm-12">
                               <div id="drag-and-drop-zone" class="dm-uploader p-5 text-center">
                                 <h3 class="mb-5 mt-5 text-muted text-primary">Drag &amp; drop files here</h3>
                                 <div class="btn btn-primary btn-block mb-5">
                                     <span>Open the file Browser</span>
-                                    <input type="file" title='Click to add Files' hidden multiple>
+                                    <input type="file" title='Click to add Files' multiple>
                                 </div>
-                              </div><!-- /uploader -->
-                    
+                              </div>
                             </div>
                             <div class="col-md-6 col-sm-12">
                               <div class="card h-100">
@@ -63,12 +61,16 @@ Add Projects | PMFM
                                   <h5>File List</h5>
                                 </div>
                                 <ul class="list-unstyled p-2 d-flex flex-column col" id="files">
-                                  <li class="text-muted text-center empty" style="padding-top:90px">No files uploaded.</li>
+                                  <li class="text-muted text-center empty" style="padding-top:50px">No files uploaded.</li>
                                 </ul>
                               </div>
                             </div>
-                          </div><!-- /file list -->
-                        <br>
+                         </div> -->
+                         <div class="py-4">
+                         <label for="recipient-name" class="col-form-label text-primary py-4">Upload File(s)</label>
+                         <br>
+                         <input type="file" name="file[]" multiple>
+                         </div>
                         <!--Developers-->
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Developer(s)</label>
@@ -116,7 +118,6 @@ Add Projects | PMFM
                         </div> 
                 </form>
                 </div>
-               
             </div>
         </div>
     </div>

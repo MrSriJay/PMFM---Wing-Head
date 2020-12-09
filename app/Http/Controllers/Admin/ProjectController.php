@@ -9,8 +9,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
-
-
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 
 class ProjectController extends Controller
 {
@@ -43,7 +42,14 @@ class ProjectController extends Controller
         $project->title = $request->input('title');
         $project->description = $request->input('summary-ckeditor');
         
-
+        if($request->hasFile('file')){
+            foreach($request->file as $file)
+            {
+                $filename = $file->getClientOriginalName(); 
+                $file->storeAs('public/upload',$filename);
+                $project->files = $filename;   
+            }
+        }
         //$project->files = $request->file('files');
         
         $project->developers = $request->input('developers');
@@ -64,11 +70,6 @@ class ProjectController extends Controller
 
     public function update(Request $request, $id)
     {
-        $request->validate([
-            'email' => 'required|email',
-            'contactno' => 'required|digits:10'
-        ]);
-        
         $project = Projects::findOrFail($id);
 
         $project->title = $request->input('title');

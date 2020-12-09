@@ -201,10 +201,8 @@ The above copyright notice and this permission notice shall be included in all c
       <div class="content">
         
         <div class="container-fluid">
-            @yield('content')
-         
+            @yield('content')         
         </div>
-
 
       </div>
       <footer class="footer">
@@ -533,7 +531,6 @@ The above copyright notice and this permission notice shall be included in all c
  <script src="{{ asset('ckeditor/ckeditor.js') }}"></script>
  <script>
  CKEDITOR.replace( 'summary-ckeditor' );
-
  </script>
     <script src="{{asset('assets/js/sweetalert.js')}}"></script>
     <script>
