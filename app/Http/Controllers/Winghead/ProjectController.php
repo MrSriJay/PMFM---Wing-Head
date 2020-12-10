@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Winghead;
 
 use App\Models\Projects;
 use League\Flysystem\File;
@@ -16,12 +16,12 @@ class ProjectController extends Controller
     public function create()
     {
         $project = Projects::all();
-        return view('admin.add-project');
+        return view('winghead.add-projects');
     }
     public function index()
     {
         $project = Projects::all();
-        return view('admin.registered-projects')->with('project', $project);
+        return view('winghead.registered-projects')->with('project', $project);
     }
 
     public function store(Request $request)
@@ -65,7 +65,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Projects::findOrFail($id);
-        return view('admin.edit-registered-projects')->with('project',$project);
+        return view('winghead.edit-registered-projects')->with('project',$project);
     }
 
     public function update(Request $request, $id)

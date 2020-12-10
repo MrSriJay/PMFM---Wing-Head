@@ -1,4 +1,4 @@
-@extends('layouts.TableMaster')
+@extends('layouts.WingheadMaster')
 
 @section('title')
     Projects | NBC
@@ -40,7 +40,7 @@
       <div class="card">
         <div class="card-header card-header-primary"> 
           <a href="project-form" class="btn btn-success float-right" style="margin-top:20px">Add New Project</a>
-          <h2 class="card-title">Projects</h2>
+          <h4 class="card-title">Projects</h4>
           <p class="card-category">Details of projects that are registered in the system</p> 
         </div>
 

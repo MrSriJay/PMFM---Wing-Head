@@ -22,11 +22,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+/*--------------------------------------------------------------------------------------------------------*/ 
+                                            //ADMIN//
+/*--------------------------------------------------------------------------------------------------------*/ 
 Route::group(['middleware' => ['auth','admin']],function() {
 
-    Route::get('/dashboard', function () {
-        return view('admin.dashboard');
+    Route::get('/admin-dashboard', function () {
+    return view('admin.dashboard');
 });
+
 
 Route::get('/user-register', [App\Http\Controllers\Admin\UserController::class, 'registered']);
 Route::get('/user-edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'registeredit']);
@@ -46,4 +50,38 @@ Route::post('/save-complaint', [App\Http\Controllers\Admin\ComplaintController::
 Route::get('/complaint-edit/{id}', [App\Http\Controllers\Admin\ComplaintController::class,'edit']);
 Route::put('/complaint-update/{id}', [App\Http\Controllers\Admin\ComplaintController::class,'update']);
 Route::delete('/complaint-register-delete/{id}', [App\Http\Controllers\Admin\ComplaintController::class,'delete']);
+});
+
+/*--------------------------------------------------------------------------------------------------------*/ 
+                                            //WING HEAD//
+/*--------------------------------------------------------------------------------------------------------*/ 
+Route::group(['middleware' => ['auth','winghead']],function() {
+
+    Route::get('/winghead-dashboard', function () {
+    return view('winghead.dashboard');
+});
+Route::get('/project-form', [App\Http\Controllers\Winghead\ProjectController::class, 'create']);
+Route::get('/project-register', [App\Http\Controllers\Winghead\ProjectController::class, 'index']);
+
+Route::post('/save-projects', [App\Http\Controllers\Winghead\ProjectController::class,'store']);
+Route::get('/project-register-edit/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'edit']);
+Route::put('/project-register-update/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'update']);
+Route::delete('/project-register-delete/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'delete']);
+
+Route::get('/complaint-register', [App\Http\Controllers\Winghead\ComplaintController::class,'index']);
+Route::post('/save-complaint', [App\Http\Controllers\Winghead\ComplaintController::class,'store']);
+Route::get('/complaint-edit/{id}', [App\Http\Controllers\Winghead\ComplaintController::class,'edit']);
+Route::put('/complaint-update/{id}', [App\Http\Controllers\Winghead\ComplaintController::class,'update']);
+Route::delete('/complaint-register-delete/{id}', [App\Http\Controllers\Winghead\ComplaintController::class,'delete']);
+});
+
+/*--------------------------------------------------------------------------------------------------------*/ 
+                                            //CLIENT//
+/*--------------------------------------------------------------------------------------------------------*/ 
+Route::group(['middleware' => ['auth','client']],function() {
+
+    Route::get('/client-dashboard', function () {
+    return view('client.dashboard');
+});
+Route::get('/complaint-register', [App\Http\Controllers\Client\ComplaintController::class,'index']);
 });

@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\Winghead;
 
 use App\Models\Complaints;
 use Illuminate\Http\Request;
@@ -11,7 +11,7 @@ class ComplaintController extends Controller
     public function index()
     {
         $complaints = Complaints::all();
-        return view('admin.complaints')->with('complaints',$complaints);
+        return view('winghead.posted-complaints')->with('complaints',$complaints);
     }
 
     public function store(Request $request)
@@ -32,7 +32,7 @@ class ComplaintController extends Controller
     public function edit($id)
     {
         $complaints = Complaints::findOrFail($id);
-        return view('admin.complaint-edit')->with('complaints',$complaints);
+        return view('winghead.edit-complaint')->with('complaints',$complaints);
     }
 
     public function update(Request $request, $id)

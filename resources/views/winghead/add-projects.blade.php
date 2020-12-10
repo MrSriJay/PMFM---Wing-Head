@@ -1,4 +1,4 @@
-@extends('layouts.TableMaster')
+@extends('layouts.WingheadMaster')
 
 
 @section('title')
@@ -12,7 +12,7 @@ Add Projects | PMFM
         <div class="card">
             <div class="card-header card-header-primary">
                 <!--<a href="" class="btn btn-info float-right py-2">ADD</a>-->
-                <h2 class="card-title" style="text-align:left">Add a New Project</h2>
+                <h4 class="card-title" style="text-align:left">Add a New Project</h4>
                 <p class="card-category" style="text-align:left">Select and type on the fields that you want to edit</p>
             </div>
             <div class="card-body">

@@ -48,58 +48,22 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="{{ 'dashboard' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/dashboard">
+          <li class="{{ 'client-dashboard' == request()->path() ? 'active' : '' }}">
+            <a class="nav-link" href="/client-dashboard">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
-            </a>
-          </li>
-          <li class="{{ 'user-register' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/user-register">
-              <i class="material-icons">person</i>
-              <p>Registered Users</p>
             </a>
           </li>
           <li class="{{ 'project-register' == request()->path() ? 'active' : '' }}">
             <a class="nav-link" href="/project-register">
               <i class="material-icons">content_paste</i>
-              <p>Projects</p>
+              <p>Purchased Systems</p>
             </a>
           </li>
           <li class="{{ 'complaint-register' == request()->path() ? 'active' : '' }}">
             <a class="nav-link" href="/complaint-register">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./icons.html">
-              <i class="material-icons">bubble_chart</i>
-              <p>Icons</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./map.html">
-              <i class="material-icons">location_ons</i>
-              <p>Maps</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./notifications.html">
-              <i class="material-icons">notifications</i>
-              <p>Notifications</p>
-            </a>
-          </li>
-          <li class="nav-item ">
-            <a class="nav-link" href="./rtl.html">
-              <i class="material-icons">language</i>
-              <p>RTL Support</p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./upgrade.html">
-              <i class="material-icons">unarchive</i>
-              <p>Upgrade to PRO</p>
             </a>
           </li>
         </ul>
@@ -110,7 +74,7 @@ The above copyright notice and this permission notice shall be included in all c
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">NBC Wing</a>
+            <a class="navbar-brand" href="javascript:;">Client-Side</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -195,7 +159,8 @@ The above copyright notice and this permission notice shall be included in all c
       </nav>
       <!-- End Navbar -->
 
-      
+      <!--End Dashboards -->
+
       <div class="panel-header panel-header-sm"></div>
 
       <div class="content">
@@ -532,7 +497,7 @@ The above copyright notice and this permission notice shall be included in all c
  <script>
  CKEDITOR.replace( 'summary-ckeditor' );
  </script>
-    <script src="{{asset('assets/js/sweetalert.js')}}"></script>
+ <!--<script src="{{asset('assets/js/sweetalert.js')}}"></script>
     <script>
     @if (session('status'))
     swal({
@@ -542,7 +507,7 @@ The above copyright notice and this permission notice shall be included in all c
         button: "OK",
     });
     @endif
-  </script>
+  </script>-->
 
   @yield('scripts')
 </body>
