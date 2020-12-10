@@ -20,7 +20,7 @@ class ProjectController extends Controller
     }
     public function index()
     {
-        $project = Projects::all();
+        $project = Projects::all();;
         return view('admin.registered-projects')->with('project', $project);
     }
 
