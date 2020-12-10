@@ -20,8 +20,8 @@ class ProjectController extends Controller
     }
     public function index()
     {
-        $project = Projects::all();
-        return view('winghead.registered-projects')->with('project', $project);
+        $project = Projects::all();;
+        return view('admin.registered-projects')->with('project', $project);
     }
 
     public function store(Request $request)
