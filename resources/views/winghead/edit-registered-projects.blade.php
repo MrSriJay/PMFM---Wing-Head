@@ -55,8 +55,8 @@ Projects - Edit | PMFM
                             <hr>
                         </div>
                          <!--Update and Cancel Buttons-->
-                        <a href="/project-register" class="btn btn-danger float-right" style="margin:20px;">Cancel</a>
-                        <button type="submit" class="btn btn-info float-right" style="margin:20px;">Update</button>     
+                        <a href="/project-register" class="btn btn-danger float-right" style="margin:20px;">Back</a>
+                        <button type="submit" class="btn btn-info float-right" style="margin:20px;">Edit</button>     
                 </form>
                 </div>
             </div>
