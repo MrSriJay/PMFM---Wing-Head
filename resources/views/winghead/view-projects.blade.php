@@ -39,7 +39,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary"> 
-          <a href="project-form" class="btn btn-success float-right" style="margin-top:20px">Add New Project</a>
+          <a href="project-form" class="btn btn-success float-right" data-toggle="" data-target="">Add New Project</a>
           <h4 class="card-title">Projects</h4>
           <p class="card-category">Details of projects that are registered in the system</p> 
         </div>
@@ -54,9 +54,16 @@
             @if(count($project)>0)
               @foreach ($project as $data)
                 <div class="card">
+                  <div class="row">
+                  <div class="col-md-2 col-sm-2">
+                    <img style="width:100%" src="/storage/project_icons/{{$data->project_icon}}">
+                  </div>  
                   <div class="card-header"> 
+                  <div class="col-md-12 col-sm-12">
                   <h3><a class="card-title text-primary" href="/project-register-edit/{{$data->id}}">{{$data->title}}</a></h3>
                   <small class="text-danger">Posted on {{$data->created_at}}</small>
+                  </div>  
+                </div>
                   </div>
                 </div>
               @endforeach

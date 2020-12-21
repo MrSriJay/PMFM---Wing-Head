@@ -54,14 +54,14 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ 'project-register' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/project-register">
+          <li class="{{ 'system-register' == request()->path() ? 'active' : '' }}">
+            <a class="nav-link" href="/system-register">
               <i class="material-icons">content_paste</i>
               <p>Purchased Systems</p>
             </a>
           </li>
-          <li class="{{ 'complaint-register' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/complaint-register">
+          <li class="{{ '' == request()->path() ? 'active' : '' }}">
+            <a class="nav-link" href="/">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>
             </a>
@@ -74,7 +74,7 @@ The above copyright notice and this permission notice shall be included in all c
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Client-Side</a>
+            <a class="navbar-brand" href="javascript:;">Client View</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>

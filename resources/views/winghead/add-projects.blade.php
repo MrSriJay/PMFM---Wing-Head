@@ -17,7 +17,7 @@ Add Projects | PMFM
             </div>
             <div class="card-body">
                 <div class="col-md-12 py-3">
-                <form action="/save-projects" method="POST" enctype="multipart/form-data">
+                <form action="/project-register-save" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                         <!--Insert Project Title-->
                         <div class="form-group py-4">
@@ -29,6 +29,12 @@ Add Projects | PMFM
                             </span>
                             @enderror
                         </div>
+                         <!--Insert Project Icon-->
+                         <div class="py-4">
+                            <label for="recipient-name" class="col-form-label text-primary py-3">Project Icon</label>
+                            <br>
+                            <input type="file" name="projecticon">
+                         </div>
                         <!--Insert Description-->
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Description</label>
@@ -39,33 +45,6 @@ Add Projects | PMFM
                             </span>
                             @enderror
                         </div>
-                        <!--
-                        <div class="row py-5">
-                            <div class="col-md-6 col-sm-12">
-                              <div id="drag-and-drop-zone" class="dm-uploader p-5 text-center">
-                                <h3 class="mb-5 mt-5 text-muted text-primary">Drag &amp; drop files here</h3>
-                                <div class="btn btn-primary btn-block mb-5">
-                                    <span>Open the file Browser</span>
-                                    <input type="file" title='Click to add Files' multiple>
-                                </div>
-                              </div>
-                            </div>
-                            <div class="col-md-6 col-sm-12">
-                              <div class="card h-100">
-                                <div class="card-header text-primary text-center">
-                                  <h5>File List</h5>
-                                </div>
-                                <ul class="list-unstyled p-2 d-flex flex-column col" id="files">
-                                  <li class="text-muted text-center empty" style="padding-top:50px">No files uploaded.</li>
-                                </ul>
-                              </div>
-                            </div>
-                         </div> -->
-                         <div class="py-4">
-                         <label for="recipient-name" class="col-form-label text-primary py-4">Upload File(s)</label>
-                         <br>
-                         <input type="file" name="file[]" multiple>
-                         </div>
                         <!--Insert Developers-->
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Developer(s)</label>
@@ -105,6 +84,12 @@ Add Projects | PMFM
                               <strong>{{ $message }}</strong>
                               </span>
                             @enderror
+                        </div>
+                        <!--Upload Files-->
+                        <div>
+                          <label for="recipient-name" class="col-form-label text-primary py-3">Project File(s)</label>
+                          <br>
+                          <input type="file" name="file[]" multiple>
                         </div>
                         <!--Save and Cancel Buttons-->
                         <div style="text-align:right">

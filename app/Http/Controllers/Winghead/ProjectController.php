@@ -21,7 +21,7 @@ class ProjectController extends Controller
     public function index()
     {
         $project = Projects::all();;
-        return view('admin.registered-projects')->with('project', $project);
+        return view('winghead.view-projects')->with('project', $project);
     }
 
     public function store(Request $request)
@@ -29,6 +29,7 @@ class ProjectController extends Controller
        
         $this->validate($request, [
             'title' => 'required',
+            'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
             'developers' => 'required',
             'clients' => 'required',
@@ -38,8 +39,27 @@ class ProjectController extends Controller
         ]);
 
         $project = new Projects;
-
+    
         $project->title = $request->input('title');
+
+        // Handle Project Icon Upload
+        if($request->hasFile('projecticon')){
+            // Get filename with the extension
+           $filenameWithExt = $request->file('projecticon')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('projecticon')->getClientOriginalExtension();
+            // Filename to Store
+            $fileNameToStore = $filename.'_'.time().'.'.$extension;
+            // Upload Image
+            $path = $request->file('projecticon')->storeAs('public/project_icons',$fileNameToStore);
+        }
+        else
+        {
+           $fileNameToStore = 'noimage.jpg';
+        }
+        $project->project_icon = $fileNameToStore;
         $project->description = $request->input('summary-ckeditor');
         
         if($request->hasFile('file')){
