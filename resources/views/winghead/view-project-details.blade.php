@@ -38,7 +38,7 @@ Projects - View | PMFM
                             <hr>
                         </div>
                          <!--View Start Date-->
-                        <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
+                        <div id="date-picker-example" class="md-forms md-outline input-with-post-icon datepicker py-3">
                             <label for="recipient-name" class="col-form-label text-primary">Start Date</label>
                             <br>
                             <samp>{!!$project->startdate!!}</samp>
@@ -55,7 +55,7 @@ Projects - View | PMFM
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Project File(s)</label>
                             <br>
-                            <samp>{!!$project->files!!}</samp>
+                            <samp>{!!$project->enddate!!}</samp>
                             <hr>
                         </div>
                          <!--Update and Cancel Buttons-->

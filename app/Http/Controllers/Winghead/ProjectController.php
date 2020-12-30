@@ -43,38 +43,36 @@ class ProjectController extends Controller
             'startdate' => 'required',
             'enddate' => 'required',
         ]);
+        
 
-        //Handle File Upload
-        if($request->hasFile('projecticon')){
-            // Get filename with extension
-            $filenameWithExt = $request->file('projecticon')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just ext
-            $extension = $request->file('projecticon')->getClientOriginalExtension();
-            // Filename to store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('projecticon')->storeAs('public/project_icons',$fileNameToStore);
-        } else{
-            $fileNameToStore = 'noimage.jpg';
-        }
         $project = new Projects;
         $project->title = $request->input('title');
-        $project->project_icon = $fileNameToStore;
-        $project->description = $request->input('summary-ckeditor');
-        if($request->hasFile('file')){
-            foreach($request->file as $file)
-            {
-                $filename = $file->getClientOriginalName(); 
-                $file->storeAs('public/upload',$filename);
-                $project->files = $filename;   
-            }
+        // Upload Project Icon
+        if($request->hasFile('projecticon')){
+            $icon_name = $request->projecticon->getClientOriginalName();
+            $request->projecticon->storeAs('public/project_icons/',$icon_name);
+            $project->project_icon = $icon_name;
         }
+        else
+        {
+            $project->project_icon = 'noimage.jpg';
+        }
+        //
+        $project->description = $request->input('summary-ckeditor');
         $project->developers = $request->input('developers');
         $project->clients = $request->input('clients');
         $project->startdate = $request->input('startdate');
         $project->enddate = $request->input('enddate');
+        // Upload Project Files
+        if($request->hasFile('file')){
+            foreach($request->file as $file){
+            $file_name = $file->getClientOriginalName();
+            $file->storeAs('public/project_files',$file_name);
+            $project->files = $file_name;
+            }
+        }
+       
+        //
         $project->save();
         return redirect('/project-register')->with('status','Project Added Successfully!');
 
@@ -98,33 +96,9 @@ class ProjectController extends Controller
             'enddate' => 'required',
         ]);
 
-        //Handle File Upload
-        if($request->hasFile('projecticon')){
-            // Get filename with extension
-            $filenameWithExt = $request->file('projecticon')->getClientOriginalName();
-            // Get just filename
-            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-            // Get just ext
-            $extension = $request->file('projecticon')->getClientOriginalExtension();
-            // Filename to store
-            $fileNameToStore = $filename.'_'.time().'.'.$extension;
-            // Upload Image
-            $path = $request->file('projecticon')->storeAs('public/project_icons',$fileNameToStore);
-        }
         $project = Projects::findOrFail($id);
         $project->title = $request->input('title');
-        if($request->hasFile('projecticon')){
-            $project->project_icon = $fileNameToStore;
-        }
         $project->description = $request->input('summary-ckeditor');
-        if($request->hasFile('file')){
-            foreach($request->file as $file)
-            {
-                $filename = $file->getClientOriginalName(); 
-                $file->storeAs('public/upload',$filename);
-                $project->files = $filename;   
-            }
-        }
         $project->developers = $request->input('developers');
         $project->clients = $request->input('clients');
         $project->startdate = $request->input('startdate');
