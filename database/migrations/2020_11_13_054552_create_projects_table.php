@@ -17,8 +17,12 @@ class CreateProjectsTable extends Migration
             $table->id();
             $table->string('title');
             $table->longText('description');
-            $table->string('client');
-            $table->string('developer');
+            $table->string('files')->nullable();
+            $table->string('project_icon')->nullable();
+            $table->longText('developers');
+            $table->longText('clients');
+            $table->date('startdate');
+            $table->date('enddate');
             $table->timestamps();
         });
     }
