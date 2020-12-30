@@ -32,7 +32,7 @@ Complaints - Edit | PMFM
                         </div>
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label">Date</label>
-                            <input type="text" name ="date" class="form-control" value="{{$complaints->date}}">
+                            <input type="date" name ="date" class="form-control" value="{{$complaints->date}}">
                         </div>
                         <a href="{{ url('complaint-register') }}" class="btn btn-danger float-right" style="margin:20px;">Cancel</a>
                         <button type="submit" class="btn btn-info float-right" style="margin:20px;">Update</button>     

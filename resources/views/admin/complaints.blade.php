@@ -15,23 +15,46 @@
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
-      <form action="/save-complaint" method="POST">
+      <form action="/save-complaint" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
 
           <div class="modal-body">
               <div class="form-group py-3">
                   <label for="recipient-name" class="col-form-label">System</label>
-                  <input type="text" name="system" class="form-control" id="recipient-name">
+                  <input type="text" name="system" class="form-control @error('system') is-invalid @enderror" required id="system">
+                  @error('system')
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
               </div>
               <div class="form-group py-3">
                   <label for="recipient-name" class="col-form-label">Description</label>
-                  <textarea name="description" class="form-control" id="message-text"></textarea>
+                  <textarea name="description" class="form-control @error('description') is-invalid @enderror" id="description"></textarea>
+                  @error('description')
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
               </div>
-              <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Date</label>
-                <input type="text" name="date" class="form-control" id="recipient-name">
+              <div>
+                  <label for="recipient-name" class="col-form-label">Images</label>
+                  <input type="file" name="images" class="form-control @error('images') is-invalid @enderror" id="images">
+                  @error('images')
+                    <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
               </div>
-
+              <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
+                <label for="recipient-name" class="col-form-label">Date</label>
+                <input type="date" name="date" class="form-control @error('date') is-invalid @enderror" required placeholder="Select date" id="date">
+                @error('date')
+                  <span class="invalid-feedback" role="alert">
+                  <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -76,7 +99,6 @@
       <div class="card">
         <div class="card-header card-header-primary">
           <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">ADD Complaint</button>
-          <!--<a href="" class="btn btn-info float-right py-2">ADD</a>-->
           <h4 class="card-title ">Complaints Details</h4>
           <p class="card-category">Complaints of projects that are submitted by clients</p>
             
@@ -95,28 +117,30 @@
           <div class="table-responsive">
             <table id="datatable" class="table table-stripped">
               <thead class="text-primary">
-                <th class="w-10p">ComplaintID</th>
-                <th class="w-10p">System</th>
-                <th class="w-10p">Description</th>
-                <th class="w-10p">Date</th>
-                <th class="w-10p">EDIT</th>
-                <th class="w-10p">DELETE</th>
+                <th style="text-align:center" class="w-10p">ComplaintID</th>
+                <th style="text-align:center" class="w-10p">System</th>
+                <th style="text-align:center" class="w-10p">Description</th>
+                <th style="text-align:center" class="w-10p">Images</th>
+                <th style="text-align:center" class="w-10p">Date</th>
+                <th style="text-align:center" class="w-10p">EDIT</th>
+                <th style="text-align:center" class="w-10p">DELETE</th>
               </thead>
               <tbody>
                   @foreach ($complaints as $data)
                 <tr>
-                    <td>{{ $data->id }}</td>
-                    <td>{{ $data->system_name }}</td>
-                    <td>
+                    <td style="text-align:center">{{ $data->id }}</td>
+                    <td style="text-align:center">{{ $data->system_name }}</td>
+                    <td style="text-align:center">
                       <div style="height:80px; overflow: hidden;">
                         {{ $data->description }}
                       </div>
                     </td>
-                    <td>{{ $data->date }}</td>
-                    <td>
+                    <td style="text-align:center">{{ $data->images }}</td>
+                    <td style="text-align:center">{{ $data->date }}</td>
+                    <td style="text-align:center">
                        <a href="{{ url('complaint-edit/'.$data->id) }}" class="btn btn-info">Edit</a>  
                     </td>
-                    <td>
+                    <td style="text-align:center">
                        <a href="javascript:void(0)" class="btn btn-danger deletebtn">DELETE</a> 
                     </td> 
                   @endforeach
@@ -155,6 +179,8 @@
 
       });
   });
+  $('.datepicker').datepicker();
+
 </script>
     
 @endsection

@@ -11,7 +11,7 @@
         <div class="col-md-12">
           <div class="card">
                 <div class="card-header card-header-primary">
-                   <h4 class="card-title">Edit User Details</h4>
+                   <h2 class="card-title">User Profile</h2>
                    <p class="card-category">Select and type on the text-boxes that you want to edit</p>
                 </div>
                 <div class="card-body">
@@ -38,8 +38,9 @@
                                 <label  class="text-primary">Give Role</label>
                                 <select name="usertype" class="form-control">
                                     <option value="admin">Admin</option>
-                                    <option value="vendor">Vendor</option>
-                                    <option value="">None</option>
+                                    <option value="client">Client</option>
+                                    <option value="winghead">Wing Head</option>
+                                    <option value="developer">Developer</option>
                                 </select>
                             </div>  
                                 <a href="/user-register" class="btn btn-danger float-right" style="margin:20px;">Cancel</a>

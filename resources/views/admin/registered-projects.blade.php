@@ -6,47 +6,6 @@
 
 @section('content')
     
-<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-primary" id="exampleModalLabel">Add Project</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <form action="/save-projects" method="POST">
-          {{ csrf_field() }}
-
-          <div class="modal-body">
-              <div class="form-group py-3">
-                  <label for="recipient-name" class="col-form-label">Project Title:</label>
-                  <input type="text" name="projecttitle" class="form-control" id="recipient-name">
-              </div>
-              <div class="form-group py-3">
-                  <label for="recipient-name" class="col-form-label">Description</label>
-                  <textarea name="description" class="form-control" id="message-text"></textarea>
-              </div>
-              <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Client</label>
-                <input type="text" name="client" class="form-control" id="recipient-name">
-              </div>
-              <div class="form-group py-3">
-                <label for="message-text" class="col-form-label">Developer</label>
-                <input type="text" name="developer" class="form-control" id="recipient-name">
-              </div>
-
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-              <button type="submit" class="btn btn-primary">SAVE</button>
-          </div>
-      </form>
-
-    </div>
-  </div>
-</div>
-
 {{-- Delete Modal --}}
 <!-- Modal -->
 <div class="modal fade" id="deletemodalpop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -76,68 +35,39 @@
 </div>
 {{-- End - Delete Model --}}
 
-<div class="row">
+ <div class="row">
     <div class="col-md-12">
       <div class="card">
-        <div class="card-header card-header-primary">
-          <button type="button" class="btn btn-success float-right" data-toggle="modal" data-target="#exampleModal">ADD Project</button>
-          <!--<a href="" class="btn btn-info float-right py-2">ADD</a>-->
-          <h4 class="card-title ">Project Details</h4>
-          <p class="card-category">Details of projects that are registered in the system</p>
-            
+        <div class="card-header card-header-primary"> 
+          <a href="project-form" class="btn btn-success float-right" style="margin-top:20px">Add New Project</a>
+          <h2 class="card-title">Projects</h2>
+          <p class="card-category">Details of projects that are registered in the system</p> 
         </div>
-        <style>
-          .w10-p{
-            width: 10% !important;
-          }
-        </style>
-        
+
         <div class="card-body">
-          
           @if (session('status'))
           <div class="alert alert-success py-2" role="alert">
           {{ session('status') }}
           </div>
-        @endif
-          <div class="table-responsive">
-            <table id="datatable" class="table table-stripped">
-              <thead class="text-primary">
-                <th class="w-10p">ProjectID</th>
-                <th class="w-10p">Project Title</th>
-                <th class="w-10p">Description</th>
-                <th class="w-10p">Client</th>
-                <th class="w-10p">Developer</th>
-                <th class="w-10p">EDIT</th>
-                <th class="w-10p">DELETE</th>
-              </thead>
-              <tbody>
-               @foreach ($project as $data)
-                <tr>
-                 <td>{{ $data->id }}</td>
-                 <td>{{ $data->title }}</td>
-                 <td>
-                   <div style="height:80px; overflow: hidden;">
-                    {{ $data->description }}
-                   </div>
-                 </td>
-                 <td>{{ $data->client }}</td>
-                 <td>{{ $data->developer }}</td>
-                  <td>
-                    <a href="{{ url('project-register-edit/'.$data->id) }}" class="btn btn-info">EDIT</a>  
-                  </td>
-                  <td>
-                    <a href="javascript:void(0)" class="btn btn-danger deletebtn">DELETE</a> 
-                  </td> 
-                </tr>
-                @endforeach
-              </tbody>
-            </table>
+          @endif
+          <div>
+            @if(count($project)>0)
+              @foreach ($project as $data)
+                <div class="card">
+                  <div class="card-header"> 
+                  <h3><a class="card-title text-primary" href="/project-register-edit/{{$data->id}}">{{$data->title}}</a></h3>
+                  <small class="text-danger">Posted on {{$data->created_at}}</small>
+                  </div>
+                </div>
+              @endforeach
+            @else 
+              <p>No Projects Found</p>
+            @endif
           </div>
         </div>
-      </div>
-    </div>
-  </div>
-
+     </div>
+   </div>
+ </div>
 @endsection
 
 @section('scripts')
