@@ -45,7 +45,7 @@ class LoginController extends Controller
         }
         else if (Auth::user()->usertype == 'client')
         {
-            return 'client-dashboard';
+            return 'client';
         }
         else
         {

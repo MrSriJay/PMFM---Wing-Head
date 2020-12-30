@@ -1,19 +1,10 @@
-<!--
-=========================================================
-Material Dashboard - v2.1.2
-=========================================================
 
-Product Page: https://www.creative-tim.com/product/material-dashboard
-Copyright 2020 Creative Tim (https://www.creative-tim.com)
-Coded by Creative Tim
-
-=========================================================
-The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software. -->
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
   <meta charset="utf-8" />
+  <base href="http://127.0.0.1:8000" target="">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/crd-logo.png">
   <link rel="icon" type="image/png" href="../assets/img/crd-logo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
@@ -48,20 +39,20 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="{{ 'client-dashboard' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/client-dashboard">
+          <li class="{{ 'client' == request()->path() ? 'active' : '' }}">
+            <a class="nav-link" href="/client">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ 'system-register' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/system-register">
+          <li class="{{ 'client/purchasedsystems' == request()->path() ? 'active' : '' }}">
+            <a class="nav-link" href="/client/purchasedsystems">
               <i class="material-icons">content_paste</i>
               <p>Purchased Systems</p>
             </a>
           </li>
-          <li class="{{ '' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/">
+          <li class="{{ 'client/complaint/create' == request()->path() ? 'active' : ''}} ; {{ 'client/complaint' == request()->path() ? 'active' : ''}} ">
+            <a class="nav-link" href="/client/complaint">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>
             </a>
@@ -73,9 +64,7 @@ The above copyright notice and this permission notice shall be included in all c
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
-          <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Client View</a>
-          </div>
+          
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
