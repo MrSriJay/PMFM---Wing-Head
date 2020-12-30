@@ -9,54 +9,58 @@ Projects - Edit | PMFM
 
 <div class="row">
     <div class="col-md-12">
-        <div class="card">
+        <div class="card">  
             <div class="card-header card-header-primary">
-                <h2 class="card-title">{{$project->title}}</h2>
-                <p class="card-category">Select and type on the fields that you want to edit</p>
+                <h2 class="card-title">Edit Project Details</h2>
+                <p class="card-category">Click edit button to update project details</p>
             </div>
             <div class="card-body">
                 <div class="col-md-12">
-                <form action="{{ url('project-register-update/'.$project->id) }}" method="POST">
-                    {{ csrf_field() }}
-                    {{ method_field('PUT') }}
-                   
-                         <!--Edit Description-->
+                <form>
+                         <!--View Description-->
                         <div class="form-group"> 
                             <label for="message-text" class="col-form-label text-primary">Project Description</label>
                             <samp>{!!$project->description!!}</samp>
                         <hr>
                         </div>
-                         <!--Edit Developers-->
+                         <!--View Developers-->
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label text-primary">Developers</label>
+                            <label for="message-text" class="col-form-label text-primary">Developer(s)</label>
                             <br>
                             <samp>{!!$project->developers!!}</samp>
                             <hr>
                         </div>
-                         <!--Edit Clients-->
+                         <!--View Clients-->
                         <div class="form-group py-4">
-                            <label for="message-text" class="col-form-label text-primary">Clients</label>
+                            <label for="message-text" class="col-form-label text-primary">Clients(s)</label>
                             <br>
                             <samp>{!!$project->clients!!}</samp>
                             <hr>
                         </div>
-                         <!--Edit Start Date-->
+                         <!--View Start Date-->
                         <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
                             <label for="recipient-name" class="col-form-label text-primary">Start Date</label>
                             <br>
                             <samp>{!!$project->startdate!!}</samp>
                             <hr>
                         </div>
-                         <!--Edit End Date-->
+                         <!--View End Date-->
                         <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
                             <label for="recipient-name" class="col-form-label text-primary">End Date</label>
                             <br>
                             <samp>{!!$project->enddate!!}</samp>
                             <hr>
                         </div>
+                        <!--View Uploaded Files-->
+                        <div class="form-group py-4">
+                            <label for="message-text" class="col-form-label text-primary">Project File(s)</label>
+                            <br>
+                            <samp>{!!$project->files!!}</samp>
+                            <hr>
+                        </div>
                          <!--Update and Cancel Buttons-->
                         <a href="/project-register" class="btn btn-danger float-right" style="margin:20px;">Back</a>
-                        <button type="submit" class="btn btn-info float-right" style="margin:20px;">Edit</button>     
+                        <a href="{{url('project-register-edit/'.$project->id)}}" class="btn btn-info float-right" style="margin:20px;">Update</a>     
                 </form>
                 </div>
             </div>
@@ -65,5 +69,3 @@ Projects - Edit | PMFM
 </div>    
 
 @endsection
-
-

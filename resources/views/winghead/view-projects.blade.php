@@ -60,7 +60,7 @@
                   </div>  
                   <div class="card-header"> 
                   <div class="col-md-12 col-sm-12">
-                  <h3><a class="card-title text-primary" href="/project-register-edit/{{$data->id}}">{{$data->title}}</a></h3>
+                  <h3><a class="card-title text-primary" href="/project-register-view/{{$data->id}}">{{$data->title}}</a></h3>
                   <small class="text-danger">Posted on {{$data->created_at}}</small>
                   </div>  
                 </div>

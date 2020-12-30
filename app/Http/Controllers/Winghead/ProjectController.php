@@ -20,9 +20,16 @@ class ProjectController extends Controller
     }
     public function index()
     {
-        $project = Projects::all();;
+        $project = Projects::all();
         return view('winghead.view-projects')->with('project', $project);
     }
+
+    public function index2($id)
+    {
+        $project = Projects::findOrFail($id);
+        return view('winghead.view-project-details')->with('project', $project);
+    }
+
 
     public function store(Request $request)
     {        
@@ -76,7 +83,7 @@ class ProjectController extends Controller
     public function edit($id)
     {
         $project = Projects::findOrFail($id);
-        return view('winghead.edit-registered-projects')->with('project',$project);
+        return view('winghead.edit-project-details')->with('project',$project);
     }
 
     public function update(Request $request, $id)

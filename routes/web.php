@@ -49,6 +49,7 @@ Route::group(['middleware' => ['auth','winghead']],function() {
 Route::get('/project-register', [App\Http\Controllers\Winghead\ProjectController::class, 'index']);
 Route::get('/project-form', [App\Http\Controllers\Winghead\ProjectController::class, 'create']);
 Route::post('/project-register-save', [App\Http\Controllers\Winghead\ProjectController::class,'store']);
+Route::get('/project-register-view/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'index2']);
 Route::get('/project-register-edit/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'edit']);
 Route::put('/project-register-update/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'update']);
 Route::delete('/project-register-delete/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'delete']);
