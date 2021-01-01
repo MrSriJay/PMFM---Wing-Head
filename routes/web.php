@@ -87,3 +87,4 @@ Route::resource('developer', App\Http\Controllers\Developer\DeveloperController:
 
 Route::get('/autocomplete', [App\Http\Controllers\client\AutocompleteprojectController::class,'index']);
 Route::get('/projects-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearch']);
+

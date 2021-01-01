@@ -41,6 +41,8 @@
                         <!--Done Buttons-->
                         <div style="text-align:right">
                             <a class="btn btn-primary" id="doneBtn" onclick="viewNext()" style="color:white" >Next</a>
+
+
                         </div> 
 
                     <div style="display:none" id="add_content">
@@ -116,7 +118,8 @@ else{
   button.style.display = "none";
 }
 }
+
+
 </script>
 
 @endsection
-

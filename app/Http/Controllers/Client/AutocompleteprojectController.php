@@ -5,7 +5,6 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Projects;
-use DB;
 use Illuminate\Support\Facades\Auth;
 class AutocompleteprojectController extends Controller
 {
@@ -26,5 +25,6 @@ class AutocompleteprojectController extends Controller
             		->get();
         }
         return response()->json($data);
+
     }
 }
