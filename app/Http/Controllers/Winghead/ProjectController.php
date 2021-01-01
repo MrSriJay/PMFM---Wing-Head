@@ -16,21 +16,26 @@ class ProjectController extends Controller
     public function create()
     {
         $project = Projects::all();
-        return view('winghead.add-projects');
+        $areaList = Projects::select('id','name')->get();
+        return view('winghead.add-projects',compact('areaList'));
     }
-    public function index()
+
+    public function ViewProjects()
     {
         $project = Projects::all();
         return view('winghead.view-projects')->with('project', $project);
     }
 
-    public function index2($id)
+    public function ViewProjectDetails($id)
     {
         $project = Projects::findOrFail($id);
         return view('winghead.view-project-details')->with('project', $project);
     }
 
-
+    public function index()
+    {
+       
+    }
     public function store(Request $request)
     {        
        
