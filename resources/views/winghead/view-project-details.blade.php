@@ -27,18 +27,18 @@ Projects - View | PMFM
                         <div class="form-group">
                             <label for="message-text" class="col-form-label text-primary">Developer(s)</label>
                             <br>
-                            <samp>{!!$project->developers!!}</samp>
+                            <samp>{!! nl2br(e($project->developers))!!}</samp>
                             <hr>
-                        </div>
+                        </div> 
                          <!--View Clients-->
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Clients(s)</label>
                             <br>
-                            <samp>{!!$project->clients!!}</samp>
+                            <samp>{!! nl2br(e($project->clients))!!}</samp>
                             <hr>
                         </div>
                          <!--View Start Date-->
-                        <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
+                        <div id="date-picker-example" class="md-forms md-outline input-with-post-icon datepicker py-3">
                             <label for="recipient-name" class="col-form-label text-primary">Start Date</label>
                             <br>
                             <samp>{!!$project->startdate!!}</samp>
@@ -55,7 +55,15 @@ Projects - View | PMFM
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Project File(s)</label>
                             <br>
-                            <samp>{!!$project->files!!}</samp>
+<<<<<<< HEAD
+                            @foreach ($project as $data)
+                            <samp> 
+                               {{ asset("storage/upload/{!!$data->files!!}") }} <br>
+                            </samp>
+                            @endforeach
+=======
+                            <samp>{!!$project->enddate!!}</samp>
+>>>>>>> 5188d2c2cf8fd9ae51653dbd0f9a064ec2a4e8cb
                             <hr>
                         </div>
                          <!--Update and Cancel Buttons-->
@@ -71,3 +79,4 @@ Projects - View | PMFM
 @endsection
 
 
+ 
