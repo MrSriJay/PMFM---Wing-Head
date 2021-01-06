@@ -33,6 +33,20 @@ The above copyright notice and this permission notice shall be included in all c
   <!--DropZone-->
   <link href="../dist/css/jquery.dm-uploader.min.css" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
+
+  <style>
+    .download-btn{
+      color: #131213;
+      text-decoration: none;
+      background-color: transparent;
+      -webkit-text-decoration-skip: objects;
+    }
+
+    .download-btn:hover {
+      color: #9c27b0;
+      text-decoration: none;
+    }
+  </style>
 </head>
 
 <body class="">

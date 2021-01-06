@@ -55,9 +55,19 @@ Projects - View | PMFM
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Project File(s)</label>
                             <br>
-                            @foreach ($project as $data)
-                            <samp>{!!$project->files!!}<br></samp>   
+                            <?php $files = Storage::files($project->files); ?>
+                            @foreach ($files as $file)
+                            <?php $path = storage_path( $file); ?>
+                            <div class="row border border-light " style="margin-top: 5px" >
+                                <div class="col-lg-4" >
+                                    <samp>{!! basename($file)!!}<br></samp>   
+                                </div>
+                                <div class="col-lg-2">
+                                    <a href="#"class="download-btn"><span class="material-icons">save_alt</span></a>
+                                </div>
+                            </div>
                             @endforeach
+                            
                             <hr>
                         </div>
                          <!--Update and Cancel Buttons-->

@@ -67,8 +67,10 @@ class ProjectController extends Controller
         if($request->hasFile('file')){
             foreach($request->file as $file){
             $file_name = $file->getClientOriginalName();
-            $file->storeAs('public/project_files',$file_name);
-            $project->files = $file_name;
+            $path_name='public/project_files/'. $request->input('title').'/';
+            $file->storeAs('public/project_files/'. $request->input('title').'/',$file_name);
+            //$data[] = $file_name;
+            $project->files=$path_name;
             }
         }
        
