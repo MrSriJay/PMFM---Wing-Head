@@ -27,14 +27,14 @@ Projects - View | PMFM
                         <div class="form-group">
                             <label for="message-text" class="col-form-label text-primary">Developer(s)</label>
                             <br>
-                            <samp>{!!$project->developers!!}</samp>
+                            <samp>{!!nl2br(e($project->developers))!!}</samp>
                             <hr>
                         </div>
                          <!--View Clients-->
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Clients(s)</label>
                             <br>
-                            <samp>{!!$project->clients!!}</samp>
+                            <samp>{!!nl2br(e($project->clients))!!}</samp>
                             <hr>
                         </div>
                          <!--View Start Date-->
@@ -55,7 +55,9 @@ Projects - View | PMFM
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Project File(s)</label>
                             <br>
-                            <samp>{!!$project->enddate!!}</samp>
+                            @foreach ($project as $data)
+                            <samp>{!!$project->files!!}<br></samp>   
+                            @endforeach
                             <hr>
                         </div>
                          <!--Update and Cancel Buttons-->

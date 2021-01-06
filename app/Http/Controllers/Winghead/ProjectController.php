@@ -16,8 +16,7 @@ class ProjectController extends Controller
     public function create()
     {
         $project = Projects::all();
-        $areaList = Projects::select('id','name')->get();
-        return view('winghead.add-projects',compact('areaList'));
+        return view('winghead.add-projects');
     }
 
     public function ViewProjects()
@@ -32,10 +31,6 @@ class ProjectController extends Controller
         return view('winghead.view-project-details')->with('project', $project);
     }
 
-    public function index()
-    {
-       
-    }
     public function store(Request $request)
     {        
        
