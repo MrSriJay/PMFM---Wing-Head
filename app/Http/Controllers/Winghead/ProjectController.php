@@ -31,6 +31,12 @@ class ProjectController extends Controller
         return view('winghead.view-project-details')->with('project', $project);
     }
 
+    public function ViewFiles($id)
+    {
+       // $project = Projects::all();
+        return view('winghead.view-files');
+    }
+
     public function store(Request $request)
     {        
        
@@ -69,7 +75,6 @@ class ProjectController extends Controller
             $file_name = $file->getClientOriginalName();
             $path_name='public/project_files/'. $request->input('title').'/';
             $file->storeAs('public/project_files/'. $request->input('title').'/',$file_name);
-            //$data[] = $file_name;
             $project->files=$path_name;
             }
         }

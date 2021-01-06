@@ -46,6 +46,7 @@ Route::group(['middleware' => ['auth','winghead']],function() {
     return view('winghead.dashboard');
 });
 
+Route::get('/files-view', [App\Http\Controllers\Winghead\ProjectController::class, 'ViewFiles']);
 Route::get('/project-register', [App\Http\Controllers\Winghead\ProjectController::class, 'ViewProjects']);
 Route::get('/project-form', [App\Http\Controllers\Winghead\ProjectController::class, 'create']);
 Route::post('/project-register-save', [App\Http\Controllers\Winghead\ProjectController::class,'store']);

@@ -63,7 +63,8 @@ Projects - View | PMFM
                                     <samp>{!! basename($file)!!}<br></samp>   
                                 </div>
                                 <div class="col-lg-2">
-                                    <a href="#"class="download-btn"><span class="material-icons">save_alt</span></a>
+                                    <a href="/"class="download-btn"><span class="material-icons" style="margin-right:20px">save_alt</span></a>
+                                    <a href="files-view"class="preview-btn"><span class="material-icons">preview</span></a>
                                 </div>
                             </div>
                             @endforeach

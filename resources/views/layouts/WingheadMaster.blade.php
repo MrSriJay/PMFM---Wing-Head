@@ -46,6 +46,18 @@ The above copyright notice and this permission notice shall be included in all c
       color: #9c27b0;
       text-decoration: none;
     }
+
+    .preview-btn{
+      color: #131213;
+      text-decoration: none;
+      background-color: transparent;
+      -webkit-text-decoration-skip: objects;
+    }
+
+    .preview-btn:hover {
+      color: #9c27b0;
+      text-decoration: none;
+    }
   </style>
 </head>
 
