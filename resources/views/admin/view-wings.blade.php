@@ -46,10 +46,8 @@
                     <th scope="row">{{$data->id}}</th>
                     <td><a href="#" >{{$data->wing_name}}</a></td>
                     <td>
-                    {{ Form::open([ 'method'  => 'delete', 'route' => [ 'wings.destroy', $data->id ] ]) }}
-                      <button class="btn btn-danger float-right" type="submit" style="width=100%"> <i class="material-icons">delete</i> Delete</a>
-                    {{ Form::close() }}
-                     
+                      <button class="btn btn-danger float-right"  data-toggle="modal" data-target="#deleteModal" type="button" style="width=100%"> <i class="material-icons">delete</i> Delete</a>
+                      
                     </td>
                   </tr>
                   @endforeach
@@ -104,6 +102,29 @@
   </div>
 </div>
 
+<!--Delete Modal --->
+<div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Are you sure?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure you want to delete the wing</p>
+      </div> 
+      {{ Form::open([ 'method'  => 'delete', 'route' => [ 'wings.destroy', $data->id ] ]) }}
+      <div class="modal-footer">
+            <button type="submit" class="btn btn-success">Yes, Delete</button>
+            {{ Form::close() }}
+            <button type="button" class="btn btn-danger" data-dismiss="modal">No, Cancel</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 
 @endsection
 @section('scripts')
@@ -119,6 +140,11 @@ $(document).ready(function() {
 } );
 
 $('#addWingModal').on('shown.bs.modal', function () {
+  $('#name').trigger('focus')
+})
+
+
+$('#deleteModal').on('shown.bs.modal', function () {
   $('#name').trigger('focus')
 })
 

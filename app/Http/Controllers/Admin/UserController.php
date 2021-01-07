@@ -85,11 +85,24 @@ class UserController extends Controller
 
     }
 
-
-
-
     public function update (Request $request, $id)
     {
+
+        $validate = \Validator::make($request->all(), [
+            'rank' => ['required', 'string', 'max:255'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'telephone' => ['required', 'string', 'max:10', 'min:10'],
+            'email' => ['required', 'string', 'email', 'max:255'],
+        ]);
+
+        if( $validate->fails()){
+            return redirect()
+            ->back()
+            ->withErrors($validate)
+            ->withInput();
+        }
+
         $user = User::findOrFail($id);
         $input = $request->all();
         $user->fill($input)->save();
