@@ -45,27 +45,27 @@
             <a class="nav-link" href="/admin">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
-            </a>
+            </a>  
           </li>
-          <li class="{{ 'admin/users/create' == request()->path() ? 'active' : ''}} ; {{ 'admin/users' == request()->path() ? 'active' : '' }}">
+          <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/users">
               <i class="material-icons">people</i>
               <p>Users</p>
             </a>
           </li>
-          <li class="{{ 'admin/projects/create' == request()->path() ? 'active' : ''}} ; {{ 'admin/projects' == request()->path() ? 'active' : '' }}">
+          <li class="{{ Request::is('admin/projects*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/projects">
               <i class="material-icons">content_paste</i>
               <p>Projects</p>
             </a>
           </li>
-          <li class="{{ 'admin/complaints/create' == request()->path() ? 'active' : ''}} ; {{ 'admin/complaints' == request()->path() ? 'active' : ''}} ">
+          <li class="{{ Request::is('admin/complaints*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/complaints">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>
             </a>
           </li>
-          <li class="{{ 'admin/wings/create' == request()->path() ? 'active' : ''}} ; {{ 'admin/wings' == request()->path() ? 'active' : ''}} ">
+          <li class="{{ Request::is('admin/wings*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/wings">
               <i class="material-icons">account_balance</i>
               <p>Wings</p>

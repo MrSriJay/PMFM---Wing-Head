@@ -53,7 +53,7 @@
               <p>Purchased Systems</p>
             </a>
           </li>
-          <li class="{{ 'client/complaint/create' == request()->path() ? 'active' : ''}} ; {{ 'client/complaint' == request()->path() ? 'active' : ''}} ">
+          <li class="{{ Request::is('admin/complaint*') ? 'active' : '' }}">
             <a class="nav-link" href="/client/complaint">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>

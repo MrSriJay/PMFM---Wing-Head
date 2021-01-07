@@ -46,8 +46,7 @@
                     <th scope="row">{{$data->id}}</th>
                     <td><a href="#" >{{$data->wing_name}}</a></td>
                     <td>
-                      <button class="btn btn-danger float-right"  data-toggle="modal" data-target="#deleteModal" type="button" style="width=100%"> <i class="material-icons">delete</i> Delete</a>
-                      
+                      <button class="btn btn-danger float-right"  data-toggle="modal" data-target="#deleteModal" type="button" style="width=100%"> <i class="material-icons">delete</i> Delete</a> 
                     </td>
                   </tr>
                   @endforeach
