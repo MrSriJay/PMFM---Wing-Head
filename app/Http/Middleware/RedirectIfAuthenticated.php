@@ -26,7 +26,7 @@ class RedirectIfAuthenticated
 
                 if(Auth::user()->usertype == 'admin')
                 {
-                    return 'admin-dashboard';
+                    return redirect('/admin');
                 }
                 else if (Auth::user()->usertype == 'winghead')
                 {

@@ -41,22 +41,34 @@
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="{{ 'client' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/client">
+          <li class="{{ 'admin' == request()->path() ? 'active' : '' }}">
+            <a class="nav-link" href="/admin">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ 'client/purchasedsystems' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/client/purchasedsystems">
-              <i class="material-icons">content_paste</i>
-              <p>Purchased Systems</p>
+          <li class="{{ 'admin/users/create' == request()->path() ? 'active' : ''}} ; {{ 'admin/users' == request()->path() ? 'active' : '' }}">
+            <a class="nav-link" href="/admin/users">
+              <i class="material-icons">people</i>
+              <p>Users</p>
             </a>
           </li>
-          <li class="{{ 'client/complaint/create' == request()->path() ? 'active' : ''}} ; {{ 'client/complaint' == request()->path() ? 'active' : ''}} ">
-            <a class="nav-link" href="/client/complaint">
+          <li class="{{ 'admin/projects/create' == request()->path() ? 'active' : ''}} ; {{ 'admin/projects' == request()->path() ? 'active' : '' }}">
+            <a class="nav-link" href="/admin/projects">
+              <i class="material-icons">content_paste</i>
+              <p>Projects</p>
+            </a>
+          </li>
+          <li class="{{ 'admin/complaints/create' == request()->path() ? 'active' : ''}} ; {{ 'admin/complaints' == request()->path() ? 'active' : ''}} ">
+            <a class="nav-link" href="/admin/complaints">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>
+            </a>
+          </li>
+          <li class="{{ 'admin/wings/create' == request()->path() ? 'active' : ''}} ; {{ 'admin/wings' == request()->path() ? 'active' : ''}} ">
+            <a class="nav-link" href="/admin/wings">
+              <i class="material-icons">account_balance</i>
+              <p>Wings</p>
             </a>
           </li>
         </ul>
@@ -66,7 +78,9 @@
       <!-- Navbar -->
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
-          
+        <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;">Admin View</a>
+          </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
             <span class="navbar-toggler-icon icon-bar"></span>
