@@ -47,7 +47,7 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ 'client/purchasedsystems' == request()->path() ? 'active' : '' }}">
+          <li class="{{ Request::is('admin/complaint*') ? 'active' : '' }}">
             <a class="nav-link" href="/client/purchasedsystems">
               <i class="material-icons">content_paste</i>
               <p>Purchased Systems</p>
