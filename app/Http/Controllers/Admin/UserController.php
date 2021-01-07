@@ -63,23 +63,38 @@ class UserController extends Controller
         else{
             return redirect()
             ->back()
-            ->with('erroruser', 'User ALready Exits')
+            ->with('error', 'User Already Exits')
             ->withInput();
         }
 
        
     }
 
-    public function registerupdate(Request $request, $id)
-    {
-        $users = User::find($id);
-        $users->name = $request->input('name');
-        $users->phone = $request->input('phone');
-        $users->email = $request->input('email');
-        $users->usertype = $request->input('usertype');
-        $users->update();
+    public function show($id){
 
-        return redirect('/user-register')->with('status','Changes Saved Successfully!');
+        $user = User::findOrFail($id);
+        return view('admin.view-user-details')->with('user', $user);
+    }
+
+
+    public function destroy($id)
+    {
+        $user = User::find($id);
+        $user->delete();
+        return redirect('/admin/users')->with('status','User Deleted Successfully!');
+
+    }
+
+
+
+
+    public function update (Request $request, $id)
+    {
+        $user = User::findOrFail($id);
+        $input = $request->all();
+        $user->fill($input)->save();
+        
+        return redirect('/admin/users')->with('status','User Details Updated Successfully!');
     }
 
     public function registerdelete($id)

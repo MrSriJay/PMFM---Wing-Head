@@ -34,16 +34,16 @@
               </span>
               @enderror
 
-              @if (session('erroruser'))
-              <span class="invalid-feedback" role="alert">
+              @if (session('error'))
+              <span class="invalid-feedback" style="display:block">
                 <strong>
-                {{ session('erroruser') }}
+                {{ session('error') }}
                 </strong>
                </span>
              @endif
 
           </div>
-
+       
           <!--Insert id-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Rank</label>
@@ -109,6 +109,7 @@
                 <option value="officer" >Officer</option>
                 <option value="civil" >Civil Consultant</option>
               </select>
+              
           </div>
 
           <!--Insert wing-->
@@ -124,7 +125,15 @@
           <!--Insert Password-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Password</label>
-              <input id="password" type="password" placeholder="*********" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+              <div class="row">
+                 <div class="col-md-10">
+                    <input id="password" type="password" placeholder="*********" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                </div>
+                <div class="col-md-1 mx-auto">    
+                    <a class="btn btn-sm btn-secondary" onclick="generatePassword()">Generate Password </a> 
+                </div> 
+              </div>
+             
               @error('password')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -132,7 +141,7 @@
               @enderror
           </div>
 
-          <!--Insert Password-->
+          <!--Insert C Password-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Confirm Password</label>
               <input id="password-confirm" type="password"  placeholder="*********" class="form-control" name="password_confirmation" required autocomplete="new-password">             
@@ -141,7 +150,7 @@
           <!--Save and Cancel Buttons-->
           <div style="text-align:right">
              
-             <button type="submit" class="btn btn-primary">
+             <button type="submit" class="btn btn-lg btn-primary">
                   Register
              </button>
               
@@ -174,5 +183,17 @@
             cache: true
         }
     });
+
+    function generatePassword() {
+    var length = 8,
+        charset = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789",
+        retVal = "";
+    for (var i = 0, n = charset.length; i < length; ++i) {
+        retVal += charset.charAt(Math.floor(Math.random() * n));
+    }
+    document.getElementById("password").value = retVal;
+    document.getElementById("password-confirm").value = retVal;
+    return retVal;
+}
 </script>
 @endsection

@@ -6,6 +6,7 @@
 
 @section('styles')
 
+ <link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
     
 @endsection
 
@@ -26,7 +27,7 @@
             </div>
         @endif
         <div class="table-responsive">
-          <table id="tablewings"  style="width:100%">
+          <table id="tablewings" class="hover" style="width:100%">
               <thead>
                   <tr>
                   <th scope="col">ID No.</th>
@@ -36,6 +37,7 @@
                   <th scope="col">Email</th>
                   <th scope="col">Designation</th>
                   <th scope="col">Wing Name</th>
+                  <th scope="col"></th>
                   </tr>
               </thead>
               <tbody>
@@ -47,12 +49,16 @@
                     <td scope="row">{{$data->first_name}} {{$data->last_name}}</td>
                     <th scope="row">{{$data->telephone}}</th>
                     <th scope="row">{{$data->email}}</th>
-                    <th scope="row">{{$data->usertype}}</th>
-                    <th scope="row">{{$data->wing_name}}</th>
+                    <th scope="row">{!!Helper::getDesignation($data->usertype)!!}</th>
+                    <th scope="row">{!!Helper::getWingName($data->wing_name)!!}</th>
+                    <th scope="row">
+                     <a class="btn btn-secondary btn-sm mx-auto " href="admin/users/{{$data->user_id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                    </th>
+
                   </tr>
                   @endforeach
                 @else 
-                  <p>No Wings Found</p>
+                  <p>No Users Found</p>
                 @endif
           </table>
           <br><br>
@@ -65,7 +71,8 @@
 @endsection
 @section('scripts')
 
-<script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
 
 <script>
 $(document).ready(function() {

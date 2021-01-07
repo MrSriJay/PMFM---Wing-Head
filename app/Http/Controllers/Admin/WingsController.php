@@ -44,8 +44,5 @@ class WingsController extends Controller
         $wing = wing::find($id);
         $wing->delete();
         return redirect('/admin/wings')->with('status','Wing Deleted Successfully!');
-
-  
-
     }
 }
