@@ -31,10 +31,16 @@ class ProjectController extends Controller
         return view('winghead.view-project-details')->with('project', $project);
     }
 
+    //View Uploaded Files
     public function ViewFiles($id)
     {
-       // $project = Projects::all();
-        return view('winghead.view-files');
+        $project = Projects::find($id);
+        return view('winghead.view-files',compact('project'));
+    }
+    //Download Files
+    public function DownloadFiles($file)
+    {
+       return response()->download('storage/'.$file);
     }
 
     public function store(Request $request)

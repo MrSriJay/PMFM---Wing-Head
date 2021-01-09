@@ -57,18 +57,17 @@ Projects - View | PMFM
                             <br>
                             <?php $files = Storage::files($project->files); ?>
                             @foreach ($files as $file)
-                            <?php $path = storage_path( $file); ?>
+                            <?php $path = storage_path($file); ?>
                             <div class="row border border-light " style="margin-top: 5px" >
-                                <div class="col-lg-4" >
+                                <div class="col-lg-4">
                                     <samp>{!! basename($file)!!}<br></samp>   
                                 </div>
                                 <div class="col-lg-2">
-                                    <a href="/"class="download-btn"><span class="material-icons" style="margin-right:20px">save_alt</span></a>
-                                    <a href="files-view"class="preview-btn"><span class="material-icons">preview</span></a>
+                                    <a href="/files/{{$project->id}}" class="preview-btn"><span class="material-icons">preview</span></a>
+                                    <a href="/file-download/{{$project->file}}" class="download-btn"><span class="material-icons" style="margin-left:50px">save_alt</span></a>
                                 </div>
                             </div>
                             @endforeach
-                            
                             <hr>
                         </div>
                          <!--Update and Cancel Buttons-->

@@ -2,7 +2,7 @@
 
 
 @section('title')
-Projects - View | PMFM
+Projects - Files | PMFM
 @endsection 
 
 @section('content')
@@ -12,11 +12,11 @@ Projects - View | PMFM
         <div class="card">  
             <div class="card-header card-header-primary">
                 <h2 class="card-title">{{$project->title}}</h2>
-                <p class="card-category">Click edit button to update project details</p>
+                <p class="card-category"></p>
             </div>
             <div class="card-body">
                 <div class="col-md-12">
-                <form>
+                <iframe src="{{url('public/storage/project_files/'.$project->title.'/',$project->files)}}"></iframe>
                       
                 </div>
             </div>
