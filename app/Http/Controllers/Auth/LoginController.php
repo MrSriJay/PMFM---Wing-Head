@@ -33,7 +33,7 @@ class LoginController extends Controller
     {
         if(Auth::user()->usertype == 'admin')
         {
-            return 'admin-dashboard';
+            return 'admin';
         }
         else if (Auth::user()->usertype == 'winghead')
         {
@@ -45,7 +45,7 @@ class LoginController extends Controller
         }
         else if (Auth::user()->usertype == 'client')
         {
-            return 'client-dashboard';
+            return 'client';
         }
         else
         {

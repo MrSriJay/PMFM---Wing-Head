@@ -20,7 +20,7 @@ class CreateProjectsTable extends Migration
             $table->string('files')->nullable();
             $table->string('project_icon')->nullable();
             $table->longText('developers');
-            $table->longText('clients');
+            $table->longText('clientid');
             $table->date('startdate');
             $table->date('enddate');
             $table->timestamps();
