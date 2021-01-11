@@ -60,7 +60,7 @@
             </a>
           </li>
           <li class="{{ Request::is('admin/complaints*') ? 'active' : '' }}">
-            <a class="nav-link" href="/admin/complaints">
+            <a class="nav-link" href="/complaint-register">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>
             </a>
@@ -109,7 +109,7 @@
                <!-- User Name - Logout -->
                <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
+                    {{ Auth::user()->first_name}}
                 </a>
                   
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
