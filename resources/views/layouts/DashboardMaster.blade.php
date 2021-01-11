@@ -100,7 +100,7 @@ The above copyright notice and this permission notice shall be included in all c
               <!-- User Name - Logout -->
               <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
+                    {{ Auth::user()->first_name }}
                 </a>
                   
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

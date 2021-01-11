@@ -26,8 +26,8 @@ class Helper
             case 'topmanagement': return "Top Management"; break;
             case 'developer': return "Developer"; break;
             case 'officer': return "Officer"; break;
-            case 'civil': return "Civil Consultant"; break;
             case 'admin': return "Admin"; break;
+            case 'client': return "Client"; break;
 
         }
 

@@ -9,5 +9,5 @@ use Illuminate\Database\Eloquent\Model;
 class Projects extends Model
 {
    protected $table = 'projects';
-   protected $fillable = ['title','description','client','developer','contact_no','email'];
+   protected $fillable = ['title','description','clientid','startdate','wingid','enddate','addedBy','projectInchargeId'];
 }
