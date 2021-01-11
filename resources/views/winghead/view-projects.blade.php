@@ -39,8 +39,8 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary"> 
-          <a href="project-form" class="btn btn-success float-right" data-toggle="" data-target="">Add New Project</a>
-          <h4 class="card-title">Projects</h4>
+          <a href="project-form" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="">Add New Project</a>
+          <h2 class="card-title">Projects</h2>
           <p class="card-category">Details of projects that are registered in the system</p> 
         </div>
 
@@ -68,7 +68,7 @@
                 </div>
               @endforeach
             @else 
-              <p>No Projects Found</p>
+              <h3 style="text-align: center">No Projects Found</h3>
             @endif
           </div>
         </div>
