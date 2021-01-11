@@ -47,7 +47,7 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ Request::is('client/complaint*') ? 'active' : '' }}">
+          <li class="{{ Request::is('client/purchasedsystems*') ? 'active' : '' }}">
             <a class="nav-link" href="/client/purchasedsystems">
               <i class="material-icons">content_paste</i>
               <p>Purchased Systems</p>
@@ -95,7 +95,7 @@
                <!-- User Name - Logout -->
                <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
+                    {{ Auth::user()->first_name }}
                 </a>
                   
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

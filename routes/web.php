@@ -91,4 +91,6 @@ Route::resource('developer', App\Http\Controllers\Developer\DeveloperController:
 Route::get('/autocomplete', [App\Http\Controllers\client\AutocompleteprojectController::class,'index']);
 Route::get('/projects-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearch']);
 Route::get('/wings-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchWings']);
+Route::get('/supervisor-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchSupervisor']);
+Route::get('/client-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchClients']);
 

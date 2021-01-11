@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 
 
@@ -33,19 +34,6 @@ class ProjectController extends Controller
         return view('admin.add-projects');
     }
 
-
-    //View Uploaded Files
-    public function ViewFiles($id)
-    {
-        $project = Projects::find($id);
-        return view('admin.view-files',compact('project'));
-    }
-    //Download Files
-    public function DownloadFiles($file)
-    {
-       return response()->download('storage/'.$file);
-    }
-
     public function store(Request $request)
     {        
        
@@ -53,8 +41,6 @@ class ProjectController extends Controller
             'title' => 'required',
             'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
-            'developers' => 'required',
-            'clients' => 'required',
             'startdate' => 'required',
             'enddate' => 'required',
         ]);
@@ -74,10 +60,11 @@ class ProjectController extends Controller
         }
         //
         $project->description = $request->input('summary-ckeditor');
-        $project->developers = $request->input('developers');
-        $project->clients = $request->input('clients');
+        $project->clientid = $request->input('clientid');
         $project->startdate = $request->input('startdate');
         $project->enddate = $request->input('enddate');
+        $project->projectInchargeId = $request->input('supervisor');
+        $project->wingid  = $request->input('wing_name');
         // Upload Project Files
         if($request->hasFile('file')){
             foreach($request->file as $file){
@@ -87,7 +74,7 @@ class ProjectController extends Controller
             $project->files=$path_name;
             }
         }
-       
+        $project->addedBy = Auth::user()->user_id;
         //
         $project->save();
         return redirect('admin/projects')->with('status','Project Added Successfully!');

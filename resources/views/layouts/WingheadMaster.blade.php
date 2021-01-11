@@ -100,7 +100,7 @@ The above copyright notice and this permission notice shall be included in all c
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;">Winghead View</a>
+            <a class="navbar-brand" href="javascript:;"></a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -130,7 +130,7 @@ The above copyright notice and this permission notice shall be included in all c
                <!-- User Name - Logout -->
                <li class="nav-item dropdown">
                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->name }}
+                    {{ Auth::user()->first_name }}
                 </a>
                   
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">

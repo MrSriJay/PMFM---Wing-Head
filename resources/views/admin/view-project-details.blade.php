@@ -63,7 +63,7 @@ Projects - View | PMFM
                                     <samp>{!! basename($file)!!}<br></samp>   
                                 </div>
                                 <div class="col-lg-2"> 
-                                    <a class="btn btn-success  float-right" href="/storage/{{$project->files}}/{!! basename($file)!!}"  target="_blank"> <span class="material-icons">save_alt</span> Download</a>
+                                    <a class="btn btn-success float-right" href="/storage/{{$project->files}}/{!! basename($file)!!}"  target="_blank"> <span class="material-icons">save_alt</span> Download</a>
                                 </div>
                             </div>
                             @endforeach
