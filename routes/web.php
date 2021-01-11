@@ -32,12 +32,9 @@ Route::group(['middleware' => ['auth','admin']],function() {
 
 Route::resource('admin/users', App\Http\Controllers\admin\UserController::class);
 Route::resource('admin/wings', App\Http\Controllers\admin\WingsController::class);
+Route::resource('admin/projects', App\Http\Controllers\admin\ProjectController::class);
 
 
-Route::post('/user-register', [App\Http\Controllers\Admin\UserController::class, 'registered']);
-Route::get('/user-edit/{id}', [App\Http\Controllers\Admin\UserController::class, 'registeredit']);
-Route::put('/user-register-update/{id}', [App\Http\Controllers\Admin\UserController::class, 'registerupdate']);
-Route::delete('/user-delete/{id}', [App\Http\Controllers\Admin\UserController::class, 'registerdelete']);
 });
 
 /*--------------------------------------------------------------------------------------------------------*/ 

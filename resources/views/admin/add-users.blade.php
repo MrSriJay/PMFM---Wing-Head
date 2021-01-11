@@ -44,10 +44,18 @@
 
           </div>
        
-          <!--Insert id-->
+          <!--Insert rank-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Rank</label>
-              <input type="text" name ="rank" class="form-control @error('rank') is-invalid @enderror" value="{{ old('rank') }}"  placeholder="e.g. Major" required value="">
+              <input type="text" name ="rank" id ="rank"class="form-control @error('rank') is-invalid @enderror" value="{{ old('rank') }}"  placeholder="e.g. Major"  value="">
+              <div class="">
+              <br>
+                <label class="form-check-label" for="defaultCheck1">
+                   Civil
+                </label>
+                <input class="" id="rankCheck" name="rankCheck" onclick="setRank()" type="checkbox" value="none" id="defaultCheck1">
+                
+               </div>
               @error('rank')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -108,6 +116,7 @@
                 <option value="developer" >Developer</option>
                 <option value="officer" >Officer</option>
                 <option value="civil" >Civil Consultant</option>
+                <option value="client" >Client</option>
               </select>
               
           </div>
@@ -194,6 +203,20 @@
     document.getElementById("password").value = retVal;
     document.getElementById("password-confirm").value = retVal;
     return retVal;
-}
+    }
+
+    function setRank() {
+    
+        var checkBox = document.getElementById("rankCheck");
+        
+        if (checkBox.checked == true){
+            document.getElementById("rank").value = "Civil Personnel";
+            document.getElementById("rank").readOnly = true;
+        } else {
+            document.getElementById("rank").value = "";
+            document.getElementById("rank").readOnly = false;
+        }
+    }
+
 </script>
 @endsection
