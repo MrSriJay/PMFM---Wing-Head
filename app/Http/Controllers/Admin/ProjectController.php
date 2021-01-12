@@ -48,6 +48,18 @@ class ProjectController extends Controller
 
         $project = new Projects;
         $project->title = $request->input('title');
+        $project->description = $request->input('summary-ckeditor');
+        
+        // Upload Project Files
+        if($request->hasFile('file')){
+            foreach($request->file as $file){
+            $file_name = $file->getClientOriginalName();
+            $path_name='project_files/'. $request->input('title').'/';
+            $file->storeAs('public/project_files/'. $request->input('title').'/',$file_name);
+            $project->files=$path_name;
+            }
+        }
+        
         // Upload Project Icon
         if($request->hasFile('projecticon')){
             $icon_name = $request->projecticon->getClientOriginalName();
@@ -58,22 +70,12 @@ class ProjectController extends Controller
         {
             $project->project_icon = 'noimage.jpg';
         }
-        //
-        $project->description = $request->input('summary-ckeditor');
+        
         $project->clientid = $request->input('clientid');
-        $project->startdate = $request->input('startdate');
-        $project->enddate = $request->input('enddate');
         $project->projectInchargeId = $request->input('supervisor');
         $project->wingid  = $request->input('wing_name');
-        // Upload Project Files
-        if($request->hasFile('file')){
-            foreach($request->file as $file){
-            $file_name = $file->getClientOriginalName();
-            $path_name='project_files/'. $request->input('title').'/';
-            $file->storeAs('public/project_files/'. $request->input('title').'/',$file_name);
-            $project->files=$path_name;
-            }
-        }
+        $project->startdate = $request->input('startdate');
+        $project->enddate = $request->input('enddate');
         $project->addedBy = Auth::user()->user_id;
         //
         $project->save();
