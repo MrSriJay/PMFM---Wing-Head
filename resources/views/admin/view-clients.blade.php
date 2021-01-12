@@ -16,8 +16,8 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary"> 
-          <a href="/admin/users/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" > <i class="material-icons">add</i> Add User</a>
-          <h2 class="card-title">Users</h2>
+          <a href="/admin/clients/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" > <i class="material-icons">add</i> Add Client</a>
+          <h2 class="card-title">Clients</h2>
           <p class="card-category">Registered user details</p> 
       </div>
       <div class="card-body">
@@ -30,29 +30,26 @@
           <table id="tablewings" class="hover" style="width:100%">
               <thead>
                   <tr>
-                  <th scope="col">ID No.</th>
-                  <th scope="col">Rank</th>
-                  <th scope="col">Name</th>
-                  <th scope="col">Telephone</th>
+                
+                  <th scope="col">Oraganization Name</th>
+                  <th scope="col">Department</th>
+                  <th scope="col">Address</th>
+                  <th scope="col">Contact No</th>
                   <th scope="col">Email</th>
-                  <th scope="col">Designation</th>
-                  <th scope="col">Wing Name</th>
                   <th scope="col"></th>
                   </tr>
               </thead>
               <tbody>
-              @if(count($users)>0)
-                @foreach ($users as $data)
+                @if(count($clients)>0)
+                @foreach ($clients as $data)
                   <tr>
-                    <th scope="row">{{$data->user_id}}</th>
-                    <th scope="row">{{$data->rank}}</th>
-                    <td scope="row">{{$data->first_name}} {{$data->last_name}}</td>
+                    <th scope="row">{{$data->organization_name}}</th>
+                    <th scope="row">{{$data->dep_name}}</th>
+                    <th scope="row">{{$data->address}}</th>
                     <th scope="row">{{$data->telephone}}</th>
                     <th scope="row">{{$data->email}}</th>
-                    <th scope="row">{!!Helper::getDesignation($data->usertype)!!}</th>
-                    <th scope="row">{!!Helper::getWingName($data->wing_name)!!}</th>
                     <th scope="row">
-                     <a class="btn btn-secondary btn-sm mx-auto " href="admin/users/{{$data->user_id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                     <a class="btn btn-secondary btn-sm mx-auto " href="admin/clients/{{$data->user_id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
                     </th>
 
                   </tr>
