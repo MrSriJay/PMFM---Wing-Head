@@ -93,4 +93,4 @@ Route::get('/projects-search', [App\Http\Controllers\client\AutocompleteprojectC
 Route::get('/wings-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchWings']);
 Route::get('/supervisor-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchSupervisor']);
 Route::get('/client-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchClients']);
-
+Route::post('/dev-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchDevelopers']);

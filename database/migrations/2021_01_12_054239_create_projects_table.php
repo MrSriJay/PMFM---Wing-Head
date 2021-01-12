@@ -21,6 +21,7 @@ class CreateProjectsTable extends Migration
             $table->string('project_icon')->nullable();
             $table->longText('clientid');
             $table->longText('projectInchargeId');
+            $table->longText('developers')->nullable();
             $table->longText('wingid');
             $table->date('startdate');
             $table->date('enddate');

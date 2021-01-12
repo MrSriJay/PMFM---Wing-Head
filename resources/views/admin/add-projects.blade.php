@@ -57,20 +57,50 @@ Add Projects | PMFM
                       <!--Insert Proejct Ichage-->
                         <div class="form-group  py-4">
                             <label for="message-text" class="col-form-label text-primary">Project Supervisor</label>
-                            <select id="developer_name" class="livesearch form-control" name="supervisor" value="{{ old('wing_name') }}" style="width:99%;"  required></select>
+                            <select id="developer_name" class="livesearch form-control" name="supervisor" value="{{ old('supervisor') }}" style="width:99%;"  required></select>
                             <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
                               Please Select Wing Name 
                             </div>
                         </div> 
 
+                        <!--Insert Developers-->
+                        <div class="form-group py-4">
+                            <label for="recipient-name" class="col-form-label text-primary">Developer(s) Involved</label>
+                            <div class="row col-lg-12">
+                                <div class="col-lg-4 border border-light">
+                                    <div class="form-group">
+                                        <input type="text" name="country_name" id="country_name" class="form-control input-lg" placeholder="Enter Developer Name" />
+                                        <div id="countryList">
+                                        </div>
+                                        <br>
+                                        <a  class="AddTo btn btn-secondary text-primary btn-sm" ><span class="material-icons">person_add</span></a>
+                                        <a  class=" Backspace btn  btn-secondary text-primary float-right btn-sm"><span class="material-icons">person_remove</span></a>
+                                    </div>
+                                </div>
+                                <div class="col-lg-8 border border-light">
+                                    <textarea type="text" style="display :block; margin: 10px; width:100%; height:100%; border:0px; font-size:14px" rows="4" id="devops" name="developers" value="{{ old('developers') }}"  readonly placeholder="No Assigned Developers">sdada</textarea>
+                                </div>
+                             
+                            </div>
+                            
+                            <br>
+                            <div>
+                                
+                            </div>
+                            @error('developers')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
                         <!--Insert Clients-->
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Client</label>
-                            <select id="client_name" class="livesearch form-control" name="clientid" value="{{ old('wing_name') }}" style="width:99%;"  required></select>
+                            <select id="client_name" class="livesearch form-control" name="clientid" value="{{ old('clientid') }}" style="width:99%;"  required></select>
                             <div class="alert alert-danger"   id="required_meesage" style="display:none" role="alert">
                               Please Select Client Name 
                             </div>
-                            @error('clients')
+                            @error('clientid')
                             <span class="invalid-feedback" role="alert">
                             <strong>{{ $message }}</strong>
                             </span>
@@ -86,6 +116,11 @@ Add Projects | PMFM
                             <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
                             Please Select Wing Name 
                             </div>
+                            @error('wing_name')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div> 
 
 
@@ -130,6 +165,7 @@ Add Projects | PMFM
 </div>    
 
 <script type="text/javascript">
+
     $('#developer_name').select2({
         placeholder: 'Select Developer Name',
         ajax: {
@@ -190,6 +226,75 @@ Add Projects | PMFM
             cache: true
         }
     });
+
+    /*var temp;
+
+    function addDev() {
+    
+    var dev_ipt = document.getElementById("country_name");
+    var devops = document.getElementById("devops");
+    temp = devops.value;
+    devops.value  =devops.value+ " \n" +dev_ipt.value;
+    dev_ipt.value="";
+
+    }
+
+    function reDev() {
+
+        var devops = document.getElementById("devops");
+        devops.value  = temp;
+        temp = devops.value;
+    }*/
+
+    var values = [];
+
+    $(function(){
+
+    $('.AddTo').on('click', function() {
+        values.push($('#country_name').val());
+      $('#devops').val( values.join(" \n") );
+      $("#country_name").val("");
+    });
+
+    $('.Backspace').on('click', function(){
+        values.pop();
+        $('#devops').val( values.join(" ") );
+    });
+
+});
+    
 </script>
 
+
+@endsection 
+
+@section('scripts')
+
+<script>
+    $(document).ready(function(){
+    
+     $('#country_name').keyup(function(){ 
+            var query = $(this).val();
+            if(query != '')
+            {
+             var _token = $('input[name="_token"]').val();
+             $.ajax({
+              url: '/dev-search',
+              method:"POST",
+              data:{query:query, _token:_token},
+              success:function(data){
+               $('#countryList').fadeIn();  
+                        $('#countryList').html(data);
+              }
+             });
+            }
+        });
+    
+        $(document).on('click', 'li', function(){  
+            $('#country_name').val($(this).text());  
+            $('#countryList').fadeOut();  
+        });  
+    
+    });
+    </script>
 @endsection 

@@ -42,6 +42,9 @@ class ProjectController extends Controller
             'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
             'startdate' => 'required',
+            'wing_name' => 'required',
+            'clientid' => 'required',
+            'developers' => 'required',
             'enddate' => 'required',
         ]);
         
@@ -76,6 +79,7 @@ class ProjectController extends Controller
         $project->wingid  = $request->input('wing_name');
         $project->startdate = $request->input('startdate');
         $project->enddate = $request->input('enddate');
+        $project->developers = $request->input('developers');
         $project->addedBy = Auth::user()->user_id;
         //
         $project->save();
@@ -83,6 +87,43 @@ class ProjectController extends Controller
 
     }
 
+    public function destroy($id)
+    {
+        $project = Projects::find($id);
+        $project->delete();
+        return redirect('/admin/projects')->with('status','Project Deleted Successfully!');
+
+    }
+
+    public function update (Request $request, $id)
+    {
+
+        $validate = \Validator::make($request->all(), [
+            'summary-ckeditor' => 'required',
+            'startdate' => 'required',
+            'enddate' => 'required',
+        ]);
+
+        if( $validate->fails()){
+            return redirect()
+            ->back()
+            ->withErrors($validate)
+            ->withInput();
+        }
+
+        $project = Projects::find($id);
+        $project->description = $request->input('summary-ckeditor');
+        $project->clientid = $request->input('clientid');
+        $project->projectInchargeId = $request->input('supervisor');
+        $project->wingid  = $request->input('wing_name');
+        $project->startdate = $request->input('startdate');
+        $project->enddate = $request->input('enddate');
+        $project->developers = $request->input('developers');
+        $project->save();
+
+        
+        return redirect('/admin/projects')->with('status','Project Details Updated Successfully!');
+    }
     
 
 }
