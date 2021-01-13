@@ -12,9 +12,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-
-
-
 class ProjectController extends Controller
 {
     public function index()
@@ -167,9 +164,7 @@ class ProjectController extends Controller
                 }
             }
            
-           
-           
-            
+          
         
         $project->save();
 

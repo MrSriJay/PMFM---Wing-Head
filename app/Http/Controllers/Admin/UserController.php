@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::where('usertype', '!=', 'client')->get();
         return view('admin.view-users')->with('users',$users);
     }
     public function create()
@@ -52,7 +52,6 @@ class UserController extends Controller
                 'last_name' => $request->last_name,
                 'telephone' => $request->telephone,
                 'email' => $request->email,
-                'phone' =>$request->phone,
                 'usertype' => $request->usertype,
                 'wing_name' =>$request->wing_name,      
                 'password' => Hash::make($request->password),
@@ -112,5 +111,4 @@ class UserController extends Controller
         ->with('status','User Details Updated Successfully!');
     }
 
-   
 }
