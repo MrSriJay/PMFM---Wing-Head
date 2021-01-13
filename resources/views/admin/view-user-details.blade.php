@@ -21,7 +21,7 @@
       <a  class="btn btn-primary float-right" style="margin:20px" id="edit" onclick="toggleEdit()" > <i class="material-icons">edit</i>Edit</a>
       <div style="display:none" id="editext">Edit</div >
 
-      <label for="recipient-name" class="col-form-label text-light" >Militaray/National ID No</label>
+      <label for="recipient-name" class="col-form-label text-light">Militaray/National ID No</label>
           <h3 class="card-title">
              <strong>{!!$user->user_id!!}</strong>
           </h3> 
@@ -29,7 +29,7 @@
       <div class="card-body"  >
       {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'users.update', $user->user_id ] ]) }}
       {{ csrf_field() }}
-          <!--Insert rank-->
+          <!--View rank-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Rank</label>
               <input type="text" name ="rank" id ="rank"  class="form-control @error('rank') is-invalid @enderror" readonly value="{{ old('rank',$user->rank) }} "  placeholder="e.g. Major" required value="">
@@ -39,7 +39,7 @@
               </span>
               @enderror
           </div>
-          <!--Insert First Name-->
+          <!--View First Name-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">First Name</label>
               <input type="text" name ="first_name" id ="first_name" class="form-control @error('first_name') is-invalid @enderror" readonly  value="{{ old('first_name',$user->first_name) }}"  placeholder="e.g. Mahela"  required value="">
@@ -50,7 +50,7 @@
               @enderror
           </div>
 
-          <!--Insert Last Name-->
+          <!--View Last Name-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Last Name</label>
               <input type="text" name ="last_name" id ="last_name"  class="form-control @error('last_name') is-invalid @enderror" readonly  value="{{ old('last_name',$user->last_name) }}"  placeholder="e.g. Perera"  required value="">
@@ -61,7 +61,7 @@
               @enderror
           </div>
 
-           <!--Insert Telephone-->
+           <!--View Telephone-->
            <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Telephone</label>
               <input type="text" name ="telephone" id ="telephone" class="form-control @error('telephone') is-invalid @enderror" readonly value="{{ old('telephone',$user->telephone) }}"  placeholder="e.g. 0112111111"  pattern="[0-9]{1}[0-9]{9}" required value="">
@@ -72,7 +72,7 @@
               @enderror
           </div>
 
-          <!--Insert Email-->
+          <!--View Email-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Email</label>
               <input type="email" name ="email" id ="email" class="form-control @error('email') is-invalid @enderror" readonly value="{{ old('email',$user->email) }} "  placeholder="e.g. mymail@gmail.com" required value="">
@@ -83,7 +83,7 @@
               @enderror
           </div>
 
-           <!--Insert designation-->
+           <!--View designation-->
            <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Designation</label>
               <select id="usertype" class="form-control"  name="usertype"  disabled   aria-label="Default select example" >
@@ -97,7 +97,7 @@
               
           </div>
 
-          <!--Insert wing-->
+          <!--View wing-->
           <div class="form-group  py-4">
               <label for="message-text" class="col-form-label text-primary">Wing Name</label>
               <select id="wing_name" class="livesearch form-control" name="wing_name" disabled readonly value="{{ old('wing_name') }}" style="width:99%;"  required>
@@ -171,10 +171,6 @@
     </div>
   </div>
 </div>
-
-
-
-
 
 <script type="text/javascript">
     $('#wing_name').select2({

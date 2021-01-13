@@ -60,7 +60,7 @@
            <!--Insert Contact No-->
            <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Contact No</label>
-              <textarea type="text" name="contact_no" rows="4" cols="10" class="form-control @error('contact_no') is-invalid @enderror"  value="{{ old('contact_no') }}"  placeholder="e.g. 011 000 000 ( Please provide at least two numbers )"  pattern="[0-9]{1}[0-9]{9}" required value=""></textarea>
+              <textarea type="text" name="contact_no" rows="4" cols="10" class="form-control @error('contact_no') is-invalid @enderror"  value="{{ old('contact_no') }}"  placeholder="e.g. 011 000 000 ( Please provide at least two numbers )" required value=""></textarea>
               @error('contact_no')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>

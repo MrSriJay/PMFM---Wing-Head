@@ -47,7 +47,7 @@
                     <th scope="row">{{$data->user_id}}</th>
                     <th scope="row">{{$data->rank}}</th>
                     <td scope="row">{{$data->first_name}} {{$data->last_name}}</td>
-                    <th scope="row">{{$data->telephone}}</th>
+                    <th scope="row">{!!nl2br(e($data->telephone))!!}</th>
                     <th scope="row">{{$data->email}}</th>
                     <th scope="row">{!!Helper::getDesignation($data->usertype)!!}</th>
                     <th scope="row">{!!Helper::getWingName($data->wing_name)!!}</th>
