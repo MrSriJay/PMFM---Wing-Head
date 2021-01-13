@@ -107,14 +107,10 @@ class UserController extends Controller
         $input = $request->all();
         $user->fill($input)->save();
         
-        return redirect('/admin/users')->with('status','User Details Updated Successfully!');
+        return redirect()
+        ->back()
+        ->with('status','User Details Updated Successfully!');
     }
 
-    public function registerdelete($id)
-    {
-        $users = User::findOrFail($id);
-        $users->delete();
-
-        return redirect('/user-register')->with('status','User Deleted Successfully!');
-    }
+   
 }

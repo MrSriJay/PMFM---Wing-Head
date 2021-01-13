@@ -6,9 +6,14 @@ Projects - View | PMFM
 @endsection 
 @section('styles')
 
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
+    <link href="https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
+    <script src="https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.js"></script>
+    <link href="../assets/css/fle-styles.css" rel="stylesheet" />
     
 @endsection
 @section('content')
@@ -25,7 +30,12 @@ Projects - View | PMFM
                 </h3>
             </div>
             <div class="card-body">
-                {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'projects.update', $project->id ] ]) }}
+                @if (session('status'))
+                <div class="alert alert-success py-2" role="alert">
+                {{ session('status') }}
+                </div>
+                @endif
+                {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'projects.update', $project->id ], 'enctype'=> 'multipart/form-data' ]) }}
                 {{ csrf_field() }}
                 <div class="col-md-12">
                          <!--View Description-->
@@ -45,7 +55,7 @@ Projects - View | PMFM
                         </div>
                          <!--View supervisor-->
                         <div class="form-group">
-                            <label for="message-text" class="col-form-label text-primary">Project Incharge</label>
+                            <label for="message-text" class="col-form-label text-primary">Project Supervisor</label>
                             <br>
                             <select id="developer_name" disabled  class="livesearch form-control" name="supervisor" style="width:99%;"  required>
                                 <option value="{!!$project->projectInchargeId!!}" >{!!Helper::getName($project->projectInchargeId)!!}</option>
@@ -79,7 +89,7 @@ Projects - View | PMFM
 
                          <!--View developers-->
                         <div class="form-group py-4">
-                            <label for="message-text" class="col-form-label text-primary">Developer(s)</label>
+                            <label for="message-text" class="col-form-label text-primary">Project Officer(s)</label>
                             <br>
                             <div class="row col-lg-12">
                                 <div class="col-lg-4 border border-light" id="dev_edit" style="display: none">
@@ -103,6 +113,24 @@ Projects - View | PMFM
                             </span>
                             @enderror
                         </div>
+
+                        <!--Insert wing-->
+                        <div class="form-group  py-4">
+                            <label for="message-text" class="col-form-label text-primary">Wing</label>
+                            <select id="wing_name" disabled  class="livesearch form-control" name="wing_name" value="{{ old('wing_name') }}" style="width:99%;"  required>
+                                <option value="{!!$project->wingid!!}" selected >{!!Helper::getWingName( $project->wingid )!!}</option>
+                            </select>
+                            <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
+                            Please Select Wing Name 
+                            </div>
+                            @error('wing_name')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div> 
+
+
                          <!--View Start Date-->
                         <div id="date-picker-example" class="md-forms md-outline input-with-post-icon datepicker py-3">
                             <label for="recipient-name" class="col-form-label text-primary">Start Date</label>
@@ -133,16 +161,33 @@ Projects - View | PMFM
                             @foreach ($files as $file)
                             <?php $path = storage_path($file); ?>
                             <div class="row border border-light " style="margin-top: 5px" >
-                                <div class="col-lg-10 float-left">
+                                <div class="col-lg-9 float-left">
                                     <samp>{!! basename($file)!!}<br></samp>   
                                 </div>
-                                <div class="col-lg-2"> 
-                                    <a class="btn btn-success float-right" href="/storage/{{$project->files}}/{!! basename($file)!!}"  target="_blank"> <span class="material-icons">save_alt</span> Download</a>
+                                <div class="col-lg-3"> 
+                                    <a id="downbtn"  name="downbtn" class="btn btn-success float-right" href="/storage/{{$project->files}}/{!! basename($file)!!}"  target="_blank"> <span class="material-icons">save_alt</span> Download</a>
+                                    <a id="imgdel" name="imgdel" class="btn btn-secondary float-right text-danger" style="display: none;" > <span class="material-icons">delete</span></a>
                                 </div>
                             </div>
-                            @endforeach
-                            <hr>
+                            @endforeach                   
                         </div>
+
+                        <!--Upload Files-->
+                        <div id="morefiles" style="display: none">
+                            <label for="recipient-name" class="col-form-label py-3 text-sm">Upload More File(s)</label>
+                            <fieldset>   
+                              <input type="hidden" id="path" name="path" value="{{$project->files}}" />
+                              <div>
+                                  <label for="fileselect">Files to upload:</label>
+                                  <input type="file" id="fileselect" name="file[]" multiple="multiple" />
+                              </div>
+                             </fieldset>
+                              <div id="messages">
+                              <p></p>
+                              </div>
+                          </div>
+
+
                           <!--Save and Cancel Buttons-->
                         <div style="text-align:right" id="buttons"> 
                             <button type="button" class="btn btn-danger" id="delete" style="display:none"  data-toggle="modal" data-target="#deleteModal">
@@ -178,7 +223,7 @@ Projects - View | PMFM
                 </div>
             </div>
             
-            {{ Form::close() }}
+            {{ Form::close() }} 
             
             
             <!--Delete Modal --->
@@ -304,13 +349,18 @@ Projects - View | PMFM
          document.getElementById("developer_name").disabled = false;
          document.getElementById("client_name").disabled = false;
          document.getElementById("dev_edit").style.display = "block";
+         document.getElementById("wing_name").disabled = false;
 
          document.getElementById("startdate").readOnly = false;
          document.getElementById("enddate").readOnly = false;
-         
+
          document.getElementById("update").style.display = "inline";
          document.getElementById("delete").style.display = "inline";
          document.getElementById("edit").classList.add("btn-danger");
+         document.getElementById("morefiles").style.display = "block";
+         document.getElementById("downbtn").style.display = "none";
+         
+
          i.innerHTML="Cancel"
      }
      else{
@@ -320,6 +370,7 @@ Projects - View | PMFM
          document.getElementById("developer_name").disabled = true;
          document.getElementById("client_name").disabled = true;
          document.getElementById("dev_edit").style.display = "none";
+         document.getElementById("wing_name").disabled = true;
 
          document.getElementById("startdate").readOnly = true;
          document.getElementById("enddate").readOnly = true;
@@ -328,6 +379,10 @@ Projects - View | PMFM
          document.getElementById("delete").style.display = "none";
          document.getElementById("edit").classList.remove("btn-danger");
          document.getElementById("edit").classList.add("btn-primary");
+
+         document.getElementById("morefiles").style.display = "none";
+         document.getElementById("downbtn").style.display = "inline";
+
          i.innerHTML="Edit"
          i=0
      }
@@ -380,5 +435,29 @@ Projects - View | PMFM
         });  
     
     });
+
+    $(function(){
+  var viewModel = {};
+  viewModel.fileData = ko.observable({
+    dataURL: ko.observable(),
+    // base64String: ko.observable(),
+  });
+  viewModel.multiFileData = ko.observable({
+    dataURLArray: ko.observableArray(),
+  });
+  viewModel.onClear = function(fileData){
+    if(confirm('Are you sure?')){
+      fileData.clear && fileData.clear();
+    }                            
+  };
+  viewModel.debug = function(){
+    window.viewModel = viewModel;
+    console.log(ko.toJSON(viewModel));
+    debugger; 
+  };
+  ko.applyBindings(viewModel);
+});
     </script>
+
+    <script src="../assets/js/filedrag.js"></script>
 @endsection 
