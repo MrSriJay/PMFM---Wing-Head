@@ -30,7 +30,6 @@
           <table id="tablewings" class="hover" style="width:100%">
               <thead>
                   <tr>
-                
                   <th scope="col">Oraganization Name</th>
                   <th scope="col">Department</th>
                   <th scope="col">Address</th>
@@ -44,9 +43,9 @@
                 @foreach ($clients as $data)
                   <tr>
                     <th scope="row">{{$data->organization_name}}</th>
-                    <th scope="row">{{$data->dep_name}}</th>
+                    <th scope="row">{{$data->department_name}}</th>
                     <th scope="row">{{$data->address}}</th>
-                    <th scope="row">{{$data->telephone}}</th>
+                    <th scope="row">{!!nl2br(e($data->contact_no))!!}</th>
                     <th scope="row">{{$data->email}}</th>
                     <th scope="row">
                      <a class="btn btn-secondary btn-sm mx-auto " href="admin/clients/{{$data->user_id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>

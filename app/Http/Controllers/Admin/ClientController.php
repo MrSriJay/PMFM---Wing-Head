@@ -25,9 +25,9 @@ class ClientController extends Controller
       
             $validate = \Validator::make($request->all(), [
                 'organization_name' => ['required', 'string', 'max:255'],
-                'dep_name' => ['required', 'string', 'max:255'],
+                'department_name' => ['required', 'string', 'max:255'],
                 'address' => ['required', 'string', 'max:255'],
-                'telephone' => ['required', 'string'],
+                'contact_no' => ['required', 'string'],
                 'email' => ['required', 'string', 'email', 'max:255'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
@@ -42,16 +42,15 @@ class ClientController extends Controller
             $user_create = Client::create([
     
                 'organization_name' => $request->organization_name,
-                'department_name' => $request->dep_name,
+                'department_name' => $request->department_name,
                 'address' => $request->address,
-                'telephone' => $request->telephone,
-                'email' => $request->email,   
-                'usertype' => "client",   
+                'contact_no' => $request->contact_no,
+                'email' => $request->email,
+                'usertype'=>"client",   
                 'password' => Hash::make($request->password),
             ]);
             return redirect('/admin/clients')->with('status', 'Client Added Successfully');
            
-     
             return redirect()
             ->back()
             ->with('error', 'User Already Exits')

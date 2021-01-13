@@ -11,9 +11,10 @@ class Client extends Model
         'organization_name',
         'department_name',
         'address',
-        'telephone',
+        'contact_no',
         'email',
         'password',
+        'usertype',
     ];
 
     /**

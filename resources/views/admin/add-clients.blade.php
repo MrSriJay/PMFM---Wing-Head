@@ -38,8 +38,8 @@
           <!--Insert Department Name-->
           <div class="form-group py-4">
             <label for="recipient-name" class="col-form-label text-primary">Department</label>
-            <input type="text" name ="dep_name" class="form-control @error('dep_name') is-invalid @enderror"  value="{{ old('dep_name') }}"  placeholder="e.g. IT Department"  required value="">
-            @error('dep_name')
+            <input type="text" name ="department_name" class="form-control @error('department_name') is-invalid @enderror"  value="{{ old('department_name') }}"  placeholder="e.g. IT Department"  required value="">
+            @error('department_name')
             <span class="invalid-feedback" role="alert">
             <strong>{{ $message }}</strong>
             </span>
@@ -57,11 +57,11 @@
             @enderror
         </div>
 
-           <!--Insert Telephone-->
+           <!--Insert Contact No-->
            <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Telephone</label>
-              <textarea type="text" name="telephone" rows="4" cols="10" class="form-control @error('telephone') is-invalid @enderror"  value="{{ old('telephone') }}"  placeholder="e.g. 011 000 000 ( Please provide at least two numbers )"  pattern="[0-9]{1}[0-9]{9}" required value=""></textarea>
-              @error('telephone')
+              <label for="recipient-name" class="col-form-label text-primary">Contact No</label>
+              <textarea type="text" name="contact_no" rows="4" cols="10" class="form-control @error('contact_no') is-invalid @enderror"  value="{{ old('contact_no') }}"  placeholder="e.g. 011 000 000 ( Please provide at least two numbers )"  pattern="[0-9]{1}[0-9]{9}" required value=""></textarea>
+              @error('contact_no')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
               </span>
