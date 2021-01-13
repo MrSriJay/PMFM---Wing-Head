@@ -11,7 +11,6 @@ class WingsController extends Controller
 {
     public function index()
     {
-    
        $wing = Wing::All();
        return view('admin.view-wings')->with('wing',$wing);
     }

@@ -23,7 +23,10 @@ class ClientController extends Controller
 
     public function store(Request $request)
     {
-      
+        $email = $request->input('email');
+        $data = User::where('email', '=', $email)->first();
+        if ($data === null) 
+        {
             $validate = \Validator::make($request->all(), [
                 'organization_name' => ['required', 'string', 'max:255'],
                 'department_name' => ['required', 'string', 'max:255'],
@@ -65,6 +68,14 @@ class ClientController extends Controller
             ]);
 
             return redirect('/admin/clients')->with('status', 'Client Added Successfully');
+        }
+        else
+        {
+            return redirect()
+            ->back()
+            ->with('error', 'User Already Exits')
+            ->withInput();
+        }
 
     }
 
@@ -76,10 +87,24 @@ class ClientController extends Controller
     
     public function destroy($id)
     {
+        $data=Client::select("email")
+        ->where('id', $id)
+        ->get();
+
+        $output="";
+
+        foreach($data as $row)
+        {
+            $output = $row->email;
+        }
+
+        $user = User::find($output);
+        $user->delete();
+
         $clients = Client::find($id);
         $clients->delete();
-        return redirect('/admin/clients')->with('status','User Deleted Successfully!');
 
+        return redirect('/admin/clients')->with('status','User Deleted Successfully!');
     }
 
     public function update (Request $request, $id)
