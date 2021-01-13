@@ -55,8 +55,11 @@ class ClientController extends Controller
             ->back()
             ->with('error', 'User Already Exits')
             ->withInput();
-        
+    }
 
-       
+    public function show($id){
+
+        $clients = Client::findOrFail($id);
+        return view('admin.view-client-details')->with('clients', $clients);
     }
 }
