@@ -4,7 +4,6 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-
 class CreateProjectsTable extends Migration
 {
     /**
@@ -22,10 +21,11 @@ class CreateProjectsTable extends Migration
             $table->string('project_icon')->nullable();
             $table->longText('clientid');
             $table->longText('projectInchargeId');
+            $table->longText('developers')->nullable();
             $table->longText('wingid');
             $table->date('startdate');
             $table->date('enddate');
-            $table->date('addedBy');
+            $table->string('addedBy');
             $table->timestamps();
         });
     }

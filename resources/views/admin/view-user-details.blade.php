@@ -27,6 +27,12 @@
           </h3> 
       </div>
       <div class="card-body"  >
+        
+       @if (session('status'))
+          <div class="alert alert-success py-2" role="alert">
+          {{ session('status') }}
+          </div>
+       @endif
       {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'users.update', $user->user_id ] ]) }}
       {{ csrf_field() }}
           <!--View rank-->

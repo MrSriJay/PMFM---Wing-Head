@@ -34,17 +34,40 @@ class ProjectController extends Controller
     public function store(Request $request)
     {        
        
-        $this->validate($request, [
-            'title' => 'required',
+        $validate = \Validator::make($request->all(), [
+            'title' => ['required', 'string', 'max:255'],
             'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
-            'startdate' => 'required',
+            'startdate' => ['required'],
+            'wing_name' => ['required', 'string', 'max:255'],
+            'clientid' => ['required', 'string', 'max:255'],
+            'developers' => ['required', 'string', 'max:255'],
             'enddate' => 'required',
         ]);
-        
+
+        if( $validate->fails()){
+            return redirect()
+            ->back()
+            ->withErrors($validate)
+            ->withInput();
+        }
+
 
         $project = new Projects;
         $project->title = $request->input('title');
+        $project->description = $request->input('summary-ckeditor');
+        $ranstring = rand(10,50);
+
+        // Upload Project Files
+        if($request->hasFile('file')){
+            foreach($request->file as $file){
+            $file_name = $file->getClientOriginalName();
+            $path_name='project_files/'. $request->input('title').'-'.$ranstring.'/';
+            $file->storeAs('public/project_files/'. $request->input('title').'-'.$ranstring.'/',$file_name);
+            $project->files=$path_name;
+            }
+        }
+        
         // Upload Project Icon
         if($request->hasFile('projecticon')){
             $icon_name = $request->projecticon->getClientOriginalName();
@@ -55,27 +78,101 @@ class ProjectController extends Controller
         {
             $project->project_icon = 'noimage.jpg';
         }
-        //
-        $project->description = $request->input('summary-ckeditor');
+        
         $project->clientid = $request->input('clientid');
-        $project->startdate = $request->input('startdate');
-        $project->enddate = $request->input('enddate');
         $project->projectInchargeId = $request->input('supervisor');
         $project->wingid  = $request->input('wing_name');
-        // Upload Project Files
-        if($request->hasFile('file')){
-            foreach($request->file as $file){
-            $file_name = $file->getClientOriginalName();
-            $path_name='project_files/'. $request->input('title').'/';
-            $file->storeAs('public/project_files/'. $request->input('title').'/',$file_name);
-            $project->files=$path_name;
-            }
-        }
+        $project->startdate = $request->input('startdate');
+        $project->enddate = $request->input('enddate');
+        $project->developers = $request->input('developers');
         $project->addedBy = Auth::user()->user_id;
         //
         $project->save();
         return redirect('admin/projects')->with('status','Project Added Successfully!');
 
     }
+
+    public function destroy($id)
+    {
+        $output="";
+        $project = Projects::find($id);
+
+        $data =Projects::select("files")
+        ->where('id', $id)
+            ->get();
+
+        foreach($data as $row)
+        {
+            $output = $row->files;
+        }
+
+        Storage::deleteDirectory('public/'.$output); 
+
+        $project->delete();
+       
+        return redirect('/admin/projects')->with('status','Project Deleted Successfully!');
+
+    }
+
+    public function update (Request $request, $id)
+    {
+
+        $validate = \Validator::make($request->all(), [
+            'summary-ckeditor' => 'required',
+            'startdate' => 'required',
+            'enddate' => 'required',
+        ]);
+
+        if( $validate->fails()){
+            return redirect()
+            ->back()
+            ->withErrors($validate)
+            ->withInput();
+        }
+        $ranstring = rand(10,50);
+
+        $project = Projects::find($id);
+        $project->description = $request->input('summary-ckeditor');
+        $project->clientid = $request->input('clientid');
+        $project->projectInchargeId = $request->input('supervisor');
+        $project->wingid  = $request->input('wing_name');
+        $project->startdate = $request->input('startdate');
+        $project->enddate = $request->input('enddate');
+        $project->developers = $request->input('developers');
+        $path =$request->input('path');
+
+        // Upload Project Files
+     
+            
+           
+
+            if($path==NULL){
+
+                foreach($request->file as $file){
+
+                    $file_name = $file->getClientOriginalName();
+                    $path_name='project_files/'. $request->input('title').'-'.$ranstring.'/';
+                    $file->storeAs('public/project_files/'. $request->input('title').'-'.$ranstring.'/',$file_name);
+                    $project->files=$path_name;
+                }
+            }
+            else{
+
+                foreach($request->file as $file){
+                    $file_name = $file->getClientOriginalName();
+                    $file->storeAs('public/'.$path,$file_name);
+                }
+            }
+           
+          
+        
+        $project->save();
+
+        return redirect()
+            ->back()
+            ->with('status','Project Details Updated Successfully!');
+
+    }
+    
 
 }
