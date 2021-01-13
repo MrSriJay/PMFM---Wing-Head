@@ -12,9 +12,6 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-
-
-
 class ProjectController extends Controller
 {
     public function index()
@@ -80,7 +77,5 @@ class ProjectController extends Controller
         return redirect('admin/projects')->with('status','Project Added Successfully!');
 
     }
-
-    
 
 }

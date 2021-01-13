@@ -13,7 +13,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::all();
+        $users = User::where('usertype', '!=', 'client')->get();
         return view('admin.view-users')->with('users',$users);
     }
     public function create()
@@ -52,7 +52,6 @@ class UserController extends Controller
                 'last_name' => $request->last_name,
                 'telephone' => $request->telephone,
                 'email' => $request->email,
-                'phone' =>$request->phone,
                 'usertype' => $request->usertype,
                 'wing_name' =>$request->wing_name,      
                 'password' => Hash::make($request->password),
@@ -108,13 +107,5 @@ class UserController extends Controller
         $user->fill($input)->save();
         
         return redirect('/admin/users')->with('status','User Details Updated Successfully!');
-    }
-
-    public function registerdelete($id)
-    {
-        $users = User::findOrFail($id);
-        $users->delete();
-
-        return redirect('/user-register')->with('status','User Deleted Successfully!');
     }
 }

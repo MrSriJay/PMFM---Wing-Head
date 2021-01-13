@@ -71,6 +71,12 @@
               <p>Wings</p>
             </a>
           </li>
+          <li class="{{ Request::is('admin/clients*') ? 'active' : '' }}">
+            <a class="nav-link" href="/admin/clients">
+              <i class="material-icons">account_box</i>
+              <p>Clients</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

@@ -33,7 +33,7 @@ Route::group(['middleware' => ['auth','admin']],function() {
 Route::resource('admin/users', App\Http\Controllers\admin\UserController::class);
 Route::resource('admin/wings', App\Http\Controllers\admin\WingsController::class);
 Route::resource('admin/projects', App\Http\Controllers\admin\ProjectController::class);
-
+Route::resource('admin/clients', App\Http\Controllers\admin\ClientController::class);
 
 });
 
@@ -68,15 +68,7 @@ Route::delete('/complaint-register-delete/{id}', [App\Http\Controllers\Winghead\
 /*--------------------------------------------------------------------------------------------------------*/ 
                                             //CLIENT//
 /*--------------------------------------------------------------------------------------------------------*/ 
-Route::group(['middleware' => ['auth','client']],function() {
 
-    Route::get('/client', function () { return view('client.dashboard');
-    });
-    
-Route::resource('client/complaint', App\Http\Controllers\client\ComplaintController::class);
-Route::resource('client/purchasedsystems', App\Http\Controllers\client\PurchasedSystemsController::class);
-
-});
 
 /*--------------------------------------------------------------------------------------------------------*/ 
                                             //DEVELOPER//

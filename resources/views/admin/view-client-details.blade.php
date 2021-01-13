@@ -1,7 +1,7 @@
 @extends('layouts.AdminMaster')
 
 @section('title')
-    Complaints | CRD
+    Clients | CRD
 @endsection
 
 @section('styles')
@@ -21,93 +21,58 @@
       <a  class="btn btn-primary float-right" style="margin:20px" id="edit" onclick="toggleEdit()" > <i class="material-icons">edit</i>Edit</a>
       <div style="display:none" id="editext">Edit</div >
 
-      <label for="recipient-name" class="col-form-label text-light">Militaray/National ID No</label>
+      <label for="recipient-name" class="col-form-label text-light">Client Name</label>
           <h3 class="card-title">
-             <strong>{!!$user->user_id!!}</strong>
+             <strong>{!!$clients->organization_name!!}</strong>
           </h3> 
       </div>
       <div class="card-body"  >
-      {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'users.update', $user->user_id ] ]) }}
+      {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'clients.update', $clients->id ] ]) }}
       {{ csrf_field() }}
-          <!--View rank-->
+        
+          <!--View Department Name-->
           <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Rank</label>
-              <input type="text" name ="rank" id ="rank"  class="form-control @error('rank') is-invalid @enderror" readonly value="{{ old('rank',$user->rank) }} "  placeholder="e.g. Major" required value="">
-              @error('rank')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-          </div>
-          <!--View First Name-->
-          <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">First Name</label>
-              <input type="text" name ="first_name" id ="first_name" class="form-control @error('first_name') is-invalid @enderror" readonly  value="{{ old('first_name',$user->first_name) }}"  placeholder="e.g. Mahela"  required value="">
-              @error('first_name')
+              <label for="recipient-name" class="col-form-label text-primary">Department</label>
+              <input type="text" name ="department_name" id ="department_name" class="form-control @error('department_name') is-invalid @enderror" readonly  value="{{ old('department_name',$clients->department_name) }}"  placeholder="e.g. Mahela"  required value="">
+              @error('department_name')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
               </span>
               @enderror
           </div>
 
-          <!--View Last Name-->
+          <!--View Address-->
           <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Last Name</label>
-              <input type="text" name ="last_name" id ="last_name"  class="form-control @error('last_name') is-invalid @enderror" readonly  value="{{ old('last_name',$user->last_name) }}"  placeholder="e.g. Perera"  required value="">
-              @error('last_name')
+              <label for="recipient-name" class="col-form-label text-primary">Address</label>
+              <input type="text" name ="address" id="address"  class="form-control @error('address') is-invalid @enderror" readonly  value="{{ old('address',$clients->address) }}"  placeholder="e.g. Perera"  required value="">
+              @error('address')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
               </span>
               @enderror
           </div>
 
-           <!--View Telephone-->
+           <!--View Contact No-->
            <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Telephone</label>
-              <input type="text" name ="telephone" id ="telephone" class="form-control @error('telephone') is-invalid @enderror" readonly value="{{ old('telephone',$user->telephone) }}"  placeholder="e.g. 0112111111"  pattern="[0-9]{1}[0-9]{9}" required value="">
-              @error('telephone')
+              <label for="recipient-name" class="col-form-label text-primary">Contact No</label>
+              <input type="text" name="contact_no" id="contact_no" class="form-control @error('contact_no') is-invalid @enderror" readonly value="{{ old('contact_no',$clients->contact_no) }}"  placeholder="e.g. 0112111111" required value="">
+              @error('contact_no')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
               </span>
               @enderror
           </div>
 
-          <!--View Email-->
+          <!--Insert Email-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Email</label>
-              <input type="email" name ="email" id ="email" class="form-control @error('email') is-invalid @enderror" readonly value="{{ old('email',$user->email) }} "  placeholder="e.g. mymail@gmail.com" required value="">
+              <input type="email" name ="email" id ="email" class="form-control @error('email') is-invalid @enderror" readonly value="{{ old('email',$clients->email) }} "  placeholder="e.g. mymail@gmail.com" required value="">
               @error('email')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
               </span>
               @enderror
           </div>
-
-           <!--View designation-->
-           <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Designation</label>
-              <select id="usertype" class="form-control"  name="usertype"  disabled   aria-label="Default select example" >
-                <option value="{{ old('usertype',$user->usertype) }}" disable selected>{!!Helper::getDesignation($user->usertype)!!}</option>
-                <option value="winghead" >Wing Head</option>
-                <option value="topmanagement" >Top Management</option>
-                <option value="developer" >Developer</option>
-                <option value="officer" >Officer</option>
-                <option value="client" >Client</option>
-              </select>
-              
-          </div>
-
-          <!--View wing-->
-          <div class="form-group  py-4">
-              <label for="message-text" class="col-form-label text-primary">Wing Name</label>
-              <select id="wing_name" class="livesearch form-control" name="wing_name" disabled readonly value="{{ old('wing_name') }}" style="width:99%;"  required>
-              <option value="{{ old('wing_name',$user->wing_name) }}" disable selected>{!!Helper::getWingName($user->wing_name)!!}</option>
-              </select>
-
-              <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
-                Please Select Wing Name 
-              </div>
-          </div> 
 
           <!--Save and Cancel Buttons-->
           <div style="text-align:right" id="buttons"> 
@@ -129,13 +94,13 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Are you sure?</h5>
+        <h5 class="modal-title">Client Update</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to update the user details </p>
+        <p>Are you sure you want to update the client details? </p>
       </div> 
      
       <div class="modal-footer">
@@ -154,15 +119,15 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Are you sure?</h5>
+        <h5 class="modal-title">Client Delete</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
       </div>
       <div class="modal-body">
-        <p>Are you sure you want to delete the user </p>
+        <p>Are you sure you want to delete this client?</p>
       </div> 
-      {{ Form::open([ 'method'  => 'delete', 'route' => [ 'users.destroy', $user->user_id ] ]) }}
+      {{ Form::open([ 'method'  => 'delete', 'route' => [ 'clients.destroy', $clients->id ] ]) }}
       <div class="modal-footer">
             <button type="submit" class="btn btn-success">Yes, Delete</button>
             {{ Form::close() }}
@@ -172,42 +137,16 @@
   </div>
 </div>
 
-<script type="text/javascript">
-    $('#wing_name').select2({
-        placeholder: 'Select System Name',
-        ajax: {
-            url: '/wings-search',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.wing_name,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    });
-    
-</script>
-
 <script>
 
 
    function toggleEdit() {    
     var i= document.getElementById("editext");
     if(i.innerHTML=="Edit"){
-        document.getElementById("rank").readOnly = false;
-        document.getElementById("first_name").readOnly = false;
-        document.getElementById("last_name").readOnly = false;
-        document.getElementById("telephone").readOnly = false;
+        document.getElementById("department_name").readOnly = false;
+        document.getElementById("address").readOnly = false;
+        document.getElementById("contact_no").readOnly = false;
         document.getElementById("email").readOnly = false;
-        document.getElementById("usertype").disabled = false;
-        document.getElementById("wing_name").disabled = false;
         document.getElementById("update").style.display = "inline";
         document.getElementById("delete").style.display = "inline";
         document.getElementById("edit").classList.add("btn-danger");
@@ -219,8 +158,6 @@
         document.getElementById("last_name").readOnly = true;
         document.getElementById("telephone").readOnly = true;
         document.getElementById("email").readOnly = true;
-        document.getElementById("usertype").disabled = true;
-        document.getElementById("wing_name").disabled = true;
         document.getElementById("update").style.display = "none";
         document.getElementById("delete").style.display = "none";
         document.getElementById("edit").classList.remove("btn-danger");
