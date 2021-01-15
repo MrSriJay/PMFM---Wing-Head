@@ -47,14 +47,14 @@
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ Request::is('client/purchasedsystems*') ? 'active' : '' }}">
-            <a class="nav-link" href="/client/purchasedsystems">
+          <li class="{{ Request::is('client/client-purchasedsystems*') ? 'active' : '' }}">
+            <a class="nav-link" href="/client/client-purchasedsystems">
               <i class="material-icons">content_paste</i>
               <p>Purchased Systems</p>
             </a>
           </li>
-          <li class="{{ Request::is('client/complaint*') ? 'active' : '' }}">
-            <a class="nav-link" href="/client/complaint">
+          <li class="{{ Request::is('client/client-complaint*') ? 'active' : '' }}">
+            <a class="nav-link" href="/client/client-complaint">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>
             </a>

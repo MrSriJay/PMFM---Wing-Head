@@ -22,11 +22,11 @@
           <h2 class="card-title">Add Compalints</h2> 
       </div>
       <div class="card-body">
-      <form action="/project-register-save" method="POST" enctype="multipart/form-data">
+      <form action="/client/client-complaint" method="POST" enctype="multipart/form-data">
       
                       <div class="form-group  py-4s">
                           <label for="message-text" class="col-form-label text-primary">System Name</label>
-                          <select id="title" class="livesearch form-control" name="title"  style="width:99%;"  required></select>
+                          <select id="title" class="livesearch form-control" name="projectid"  style="width:99%;"  required></select>
                           <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
                             Please Select System Name 
                           </div>
@@ -52,10 +52,22 @@
                         </div>
 
                         <!--Upload Files-->
-                        <div>
-                          <label for="recipient-name" class="col-form-label text-primary py-3">Project File(s)</label>
-                          <br>
-                          <input type="file" name="file[]" multiple>
+                        <<div>
+                          <label for="recipient-name" class="col-form-label text-primary py-3">Complaint File(s)</label>
+                          <!--
+                            <br>
+                             <input class="custom-file-inputs" type="file" name="file[]" multiple>
+                          -->
+                          <fieldset>   
+                            <input type="hidden" id="path" name="path" value="300000" />
+                            <div>
+                                <label for="fileselect">Files to upload:</label>
+                                <input type="file" id="fileselect" name="file[]" multiple="multiple" />
+                            </div>
+                           </fieldset>
+                            <div id="messages">
+                            <p></p>
+                            </div>
                         </div>
 
                         <!--Save and Cancel Buttons-->

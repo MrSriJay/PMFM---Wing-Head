@@ -4,7 +4,7 @@
 
 <head>
   <meta charset="utf-8" />
-  <base href="http://127.0.0.1:8000" target="">
+  <base href="http://127.0.0.1:8000/" target="">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/crd-logo.png">
   <link rel="icon" type="image/png" href="../assets/img/crd-logo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
