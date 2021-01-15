@@ -6,34 +6,6 @@
 
 @section('content')
     
-{{-- Delete Modal --}}
-<!-- Modal -->
-<div class="modal fade" id="deletemodalpop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-primary" id="exampleModalLabel">Delete Project</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <form id="delete_project_Form" method="POST">
-        {{ csrf_field() }}
-        {{ method_field("DELETE") }}
-      <div class="modal-body">
-        <input type="hidden" id="delete_project_id"> 
-        <h5>Are you sure you want to delete this project?</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Yes, Delete It.</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-{{-- End - Delete Model --}}
 
  <div class="row">
     <div class="col-md-12">

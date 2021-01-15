@@ -21,6 +21,7 @@
           {{ session('status') }}
           </div>
           @endif
+          
           <div>
             @if(count($project)>0)
               @foreach ($project as $data)
@@ -32,11 +33,24 @@
                   <div class="card-header"> 
                   <div class="col-md-12 col-sm-12">
                   <h3><a class="card-title text-primary font-weight-bold " href="admin/projects/{{$data->id}}">{{$data->title}}</a></h3>
-                  <span class="text-primary" >Developed for {{$data->clientid}}</span>
+                  <span class="text-primary" >Developed for {!!Helper::getClientName($data->clientid)!!}</span>
                   <br>
                   <small class="text-dark">Posted on {{$data->created_at}}</small>
                   </div>  
                 </div>
+                  </div>
+                  <div style="padding-right:20px; padding-bottom:20px">
+                    <div style ="float:right; font-size:20px;">
+                      <span style ="font-size:10px; float: right;." class="text-muted">Status</span>
+                      <br>
+                      @if($data->status==1)
+                        <span class="text-success float-right"><i class="material-icons">check_circle_outline</i></span>
+                      
+                      @elseif($data->status==0)
+                        <span class="text-danger float-right"><i class="material-icons">highlight_off</i></span>
+                      
+                      @endif
+                    </div>
                   </div>
                 </div>
               @endforeach

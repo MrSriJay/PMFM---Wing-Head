@@ -13,6 +13,7 @@ The above copyright notice and this permission notice shall be included in all c
 <html lang="en">
 
 <head>
+  <base href="http://127.0.0.1:8000" target="">
   <meta charset="utf-8" />
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/crd-logo.png">
   <link rel="icon" type="image/png" href="../assets/img/crd-logo.png">
@@ -33,7 +34,7 @@ The above copyright notice and this permission notice shall be included in all c
   <!--DropZone-->
   <link href="../dist/css/jquery.dm-uploader.min.css" rel="stylesheet">
   <link href="styles.css" rel="stylesheet">
-
+   @yield('styles')
   <style>
     .download-btn{
       color: #131213;
@@ -74,22 +75,28 @@ The above copyright notice and this permission notice shall be included in all c
         </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
-          <li class="{{ 'winghead-dashboard' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/winghead-dashboard">
+          <li class="{{ 'winghead' == request()->path() ? 'active' : '' }}">
+            <a class="nav-link" href="/winghead">
               <i class="material-icons">dashboard</i>
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ 'project-register' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/project-register">
+          <li class="{{ Request::is('winghead/wings-projects*') ? 'active' : '' }}">
+            <a class="nav-link" href="/winghead/wings-projects">
               <i class="material-icons">content_paste</i>
               <p>Projects</p>
             </a>
           </li>
-          <li class="{{ 'complaint-register' == request()->path() ? 'active' : '' }}">
-            <a class="nav-link" href="/complaint-register">
+          <li class="{{ Request::is('winghead/complaints*') ? 'active' : '' }}">
+            <a class="nav-link" href="/winghead/complaints">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>
+            </a>
+          </li>
+          <li class="{{ Request::is('winghead/wings-users*') ? 'active' : '' }}">
+            <a class="nav-link" href="/winghead/wings-users">
+              <i class="material-icons">people_outline</i>
+              <p>Officers</p>
             </a>
           </li>
         </ul>
@@ -100,7 +107,7 @@ The above copyright notice and this permission notice shall be included in all c
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;"></a>
+            <a class="navbar-brand" href="javascript:;"><i class="material-icons">account_balance</i> {!!Helper::getWingName(Auth::user()->wing_name)!!}</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>

@@ -203,7 +203,7 @@ Add Projects | PMFM
     $('#developer_name').select2({
         placeholder: 'Select Developer Name',
         ajax: {
-            url: '/supervisor-search',
+            url: '/admin-supervisor-search',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
@@ -231,8 +231,8 @@ Add Projects | PMFM
                 return {
                     results: $.map(data, function (item) {
                         return {
-                            text: item.first_name+" "+item.last_name,
-                            id: item.user_id
+                            text: item.organization_name,
+                            id: item.id
                         }
                     })
                 };

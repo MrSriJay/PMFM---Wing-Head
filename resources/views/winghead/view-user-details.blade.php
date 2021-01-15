@@ -1,4 +1,4 @@
-@extends('layouts.AdminMaster')
+@extends('layouts.WingheadMaster')
 
 @section('title')
     Complaints | CRD
@@ -33,7 +33,7 @@
           {{ session('status') }}
           </div>
        @endif
-      {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'users.update', $user->user_id ] ]) }}
+      {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'wings-users.update', $user->user_id ] ]) }}
       {{ csrf_field() }}
           <!--View rank-->
           <div class="form-group py-4">
@@ -167,7 +167,7 @@
       <div class="modal-body">
         <p>Are you sure you want to delete the user </p>
       </div> 
-      {{ Form::open([ 'method'  => 'delete', 'route' => [ 'users.destroy', $user->user_id ] ]) }}
+      {{ Form::open([ 'method'  => 'delete', 'route' => [ 'wings-users.destroy', $user->user_id ] ]) }}
       <div class="modal-footer">
             <button type="submit" class="btn btn-success">Yes, Delete</button>
             {{ Form::close() }}

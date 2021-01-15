@@ -37,7 +37,7 @@ class LoginController extends Controller
         }
         else if (Auth::user()->usertype == 'winghead')
         {
-            return 'winghead-dashboard';
+            return 'winghead';
         }
         else if (Auth::user()->usertype == 'developer')
         {

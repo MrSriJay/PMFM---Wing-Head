@@ -1,4 +1,4 @@
-@extends('layouts.AdminMaster')
+@extends('layouts.WingheadMaster')
 
 @section('title')
     Complaints | CRD
@@ -21,7 +21,7 @@
           <h2 class="card-title">Add Users</h2> 
       </div>
       <div class="card-body">
-      <form method="POST" action="/admin/users">
+      <form method="POST" action="/winghead/wings-users">
       {{ csrf_field() }}
           <!--Insert id-->
           <div class="form-group py-4">
@@ -111,8 +111,6 @@
               <label for="recipient-name" class="col-form-label text-primary">Designation</label>
               <select id="usertype" class="form-control" name="usertype" value="{{ old('usertype') }}"  aria-label="Default select example" >
                 <option value="" disabled selected>Select your option</option>
-                <option value="winghead" >Wing Head</option>
-                <option value="topmanagement" >Top Management</option>
                 <option value="developer" >Developer</option>
                 <option value="officer" >Officer</option>
               </select>
@@ -122,7 +120,9 @@
           <!--Insert wing-->
           <div class="form-group  py-4">
               <label for="message-text" class="col-form-label text-primary">Wing Name</label>
-              <select id="wing_name" class="livesearch form-control" name="wing_name" value="{{ old('wing_name') }}" style="width:99%;"  required></select>
+              <select  readonly class="livesearch form-control" name="wing_name" value="{{ old('wing_name') }}" style="width:99%;"  required>
+                <option value="{!!Auth::user()->wing_name!!}" selected >{!!Helper::getWingName( Auth::user()->wing_name) !!}</option>
+              </select>
               <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
                 Please Select Wing Name 
               </div>

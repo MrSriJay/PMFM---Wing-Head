@@ -3,8 +3,9 @@
 namespace App;
 use App\Models\Wing;
 use App\Models\User;
-
+use App\Models\Client;
 class Helper
+
 {
     public static function getWingName($id){
         $data =Wing::select("wing_name")
@@ -46,6 +47,21 @@ class Helper
 
         return $output;
     }
+
+    public static function getClientName($id){
+        $data =Client::select("organization_name")
+        ->where('id', 'LIKE', "%$id%")
+            ->get();
+
+            $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->organization_name;
+        }
+
+        return $output;
+    }
+    
     
 }
    
