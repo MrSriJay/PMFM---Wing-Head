@@ -7,6 +7,8 @@ use App\Models\Client;
 class Helper
 
 {
+    public static $baseurl = "http://127.0.0.1:8000";
+    
     public static function getWingName($id){
         $data =Wing::select("wing_name")
         ->where('id', 'LIKE', "%$id%")

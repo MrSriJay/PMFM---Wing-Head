@@ -17,8 +17,8 @@
     <div class="card">
       <div class="card-header card-header-primary"> 
           <a href="/winghead/wings-users/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" > <i class="material-icons">add</i> Add User</a>
-          <h2 class="card-title">Users</h2>
-          <p class="card-category">Registered user details</p> 
+          <h2 class="card-title">Officers</h2>
+          <p class="card-category">Registered offcer details</p> 
       </div>
       <div class="card-body">
         @if (session('status'))

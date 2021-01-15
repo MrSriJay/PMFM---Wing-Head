@@ -13,10 +13,10 @@ The above copyright notice and this permission notice shall be included in all c
 <html lang="en">
 
 <head>
-  <base href="http://127.0.0.1:8000" target="">
+  <base href="{!!Helper::$baseurl!!}" target="">
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/crd-logo.png">
-  <link rel="icon" type="image/png" href="../assets/img/crd-logo.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/crdlogo.png">
+  <link rel="icon" type="image/png" href="../assets/img/crdlogo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
    @yield('title')
@@ -70,11 +70,14 @@ The above copyright notice and this permission notice shall be included in all c
 
         Tip 2: you can also add an image using data-image tag
     -->
-      <div class="logo"><a href="http://www.creative-tim.com" class="simple-text logo-normal">
-          PMFM System | CRD
-        </a></div>
+    <div class="logo"><a href="#" class="simple-text logo-normal text-primary font-weight-bold">
+      PMFM System | CRD
+     </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">
+          <li>
+            <img class="img-responsive  mx-auto d-block" src="../assets/img/crdlogo.png" alt="">
+          </li>
           <li class="{{ 'winghead' == request()->path() ? 'active' : '' }}">
             <a class="nav-link" href="/winghead">
               <i class="material-icons">dashboard</i>
@@ -116,15 +119,6 @@ The above copyright notice and this permission notice shall be included in all c
             <span class="navbar-toggler-icon icon-bar"></span>
           </button>
           <div class="collapse navbar-collapse justify-content-end">
-            <form class="navbar-form">
-              <div class="input-group no-border">
-                <input type="text" value="" class="form-control" placeholder="Search...">
-                <button type="submit" class="btn btn-white btn-round btn-just-icon">
-                  <i class="material-icons">search</i>
-                  <div class="ripple-container"></div>
-                </button>
-              </div>
-            </form>
             <ul class="navbar-nav">
               <li class="nav-item">
                 <a class="nav-link" href="/dashboard">
@@ -134,24 +128,6 @@ The above copyright notice and this permission notice shall be included in all c
                   </p>
                 </a>
               </li>
-               <!-- User Name - Logout -->
-               <li class="nav-item dropdown">
-                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                    {{ Auth::user()->first_name }}
-                </a>
-                  
-                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="{{ route('logout') }}"
-                       onclick="event.preventDefault();
-                      document.getElementById('logout-form').submit();">
-                        {{ __('Logout') }}
-                    </a>
-
-                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                        @csrf
-                    </form>
-                </div>
-            </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
@@ -170,7 +146,7 @@ The above copyright notice and this permission notice shall be included in all c
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="material-icons">person</i>
+                  {{ Auth::user()->first_name }} <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
                   </p>
