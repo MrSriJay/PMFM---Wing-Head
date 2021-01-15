@@ -23,7 +23,7 @@ class AutocompleteprojectController extends Controller
             $search = $request->q;
             $data =Projects::select("id", "title")
                 ->where('title', 'LIKE', "%$search%")
-                ->where('clients', Auth::user()->id)
+                ->where('clientid', Auth::user()->user_id)
             		->get();
         }
         return response()->json($data);
@@ -84,4 +84,36 @@ class AutocompleteprojectController extends Controller
     return response()->json($data);
 
     }
+
+    function selectSearchDevelopers(Request $request)
+    {
+     if($request->get('query'))
+     {
+      $search = $request->get('query');
+      $data =User::select("user_id", "first_name", "last_name")
+      ->Where(function ($query) use ($search) {
+        $query->where('first_name', 'LIKE', "%$search%") 
+        ->orWhere('last_name', 'LIKE', "%$search%") ;
+      })
+      ->Where(function ($query){
+        $query->where('usertype', 'developer')
+        ->orWhere('usertype', 'officer')
+        ->orWhere('usertype', 'winghead');
+      })
+
+      ->get();
+      $output = '<ul class="text-primary" style="display:block; position:relative; color:black; list-style-type: none;">';
+      foreach($data as $row)
+      {
+       $output .= '
+       <li class="border border-light bg-light"  style="list-style-type: none; padding:10px; margin:5px; cursor:pointer"><a>'.$row->first_name.' '.$row->last_name.'</a></li>
+       ';
+      }
+      $output .= '</ul>';
+      echo $output;
+     }
+    }
+
+    
+  
 }

@@ -2,7 +2,7 @@
 
 namespace App;
 use App\Models\Wing;
-
+use App\Models\User;
 
 class Helper
 {
@@ -30,9 +30,23 @@ class Helper
             case 'client': return "Client"; break;
 
         }
-
         
     }
+
+    public static function getName($id){
+        $data =User::select("first_name","last_name")
+        ->where('user_id', 'LIKE', "%$id%")
+            ->get();
+
+            $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->first_name." ".$row->last_name;
+        }
+
+        return $output;
+    }
+    
 }
    
 
