@@ -14,8 +14,8 @@ The above copyright notice and this permission notice shall be included in all c
 
 <head>
   <meta charset="utf-8" />
-  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/apple-icon.png">
-  <link rel="icon" type="image/png" href="../assets/img/favicon.png">
+  <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/crdlogo.png">
+  <link rel="icon" type="image/png" href="../assets/img/crdlogo.png">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
    @yield('title')
@@ -29,14 +29,41 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- CSS Just for demo purpose, don't include it in your project -->
   <link href="../assets/demo/demo.css" rel="stylesheet" />
 
+  <style>
+    <!-- CSS -->
+    .fullscreen-bg {
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        overflow: hidden;
+        z-index: -100;
+    }
+
+    .fullscreen-bg__video {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        opacity: 0.2
+        
+    }
+      </style>
+
 </head>
 
 <body class="">
 
+  <div class="fullscreen-bg" style="100%">
+    <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+        <source src="../assets/img/bgvideo.mp4" type="video/mp4">
+    </video>
+  </div>
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
     <div class="container-fluid">
       <div class="navbar-wrapper">
-        <a class="navbar-brand text-primary text-bold font-weight-bold" href="/" >PMFM System</a>
+        
       </div>
     </div>
   </nav>
@@ -286,6 +313,8 @@ The above copyright notice and this permission notice shall be included in all c
             $('#content').removeClass('div-vertical-center');
           }
       })
+
+      
   </script>
 </body>
 
