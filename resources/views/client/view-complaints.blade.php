@@ -28,8 +28,10 @@
                   <tr>
                   <th scope="col">Complaint ID</th>
                   <th scope="col">System Name</th>
-                  <th scope="col">Complaint Type</th>
                   <th scope="col">Date Subitted</th>
+                  <th scope="col">Wing Name</th>
+                  <th scope="col">Type of Fault</th>
+                  <th scope="col">Urgency Level</th>
                   <th scope="col">Complaint Status</th>
                   <th scope="col"></th>
                   </tr>
@@ -40,11 +42,12 @@
                   <tr>
                     <th scope="row">{{$data->id}}</th>
                     <th scope="row">{{$data->system_name}}</th>
-                    <th scope="row">{{$data->fault_type}}</th>
                     <th scope="row">{{$data->created_at}}</th>
-                    <th scope="row">{{$data->status}}</th>
-                    <th scope="row">{!!Helper::getDesignation($data->usertype)!!}</th>
                     <th scope="row">{!!Helper::getWingName($data->wing_name)!!}</th>
+                    <th scope="row">{{$data->fault_type}}</th>
+                    <th scope="row">{{$data->urgency_level}}</th>
+                    <th scope="row">{{$data->status}}</th>
+                    
                     <th scope="row">
                      <a class="btn btn-secondary btn-sm mx-auto " href="admin/users/{{$data->user_id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
                     </th>

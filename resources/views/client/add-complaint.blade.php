@@ -9,7 +9,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    
+    <link href="https://raw.githubusercontent.com/bantikyan/icheck-bootstrap/master/icheck-bootstrap.min.css" rel="stylesheet"/>
+
 @endsection
 
 
@@ -23,21 +24,20 @@
       </div>
       <div class="card-body">
       <form action="/client/client-complaint" method="POST" enctype="multipart/form-data">
-      
+        {{ csrf_field() }}
                       <div class="form-group  py-4s">
                           <label for="message-text" class="col-form-label text-primary">System Name</label>
-                          <select id="title" class="livesearch form-control" name="projectid"  style="width:99%;"  required></select>
+                          <select id="title" name="title" class="livesearch form-control"   style="width:99%;"  required></select>
                           <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
                             Please Select System Name 
                           </div>
                       </div>   
                         
-                      {{ csrf_field() }}
+                    
                       <!--Done Buttons-->
                       <div style="text-align:right">
                           <a class="btn btn-primary" id="doneBtn" onclick="viewNext()" style="color:white">Next</a>
                       </div> 
-              
 
                     <div style="display:none" id="add_content">
                         <!--Insert Description-->
@@ -50,9 +50,45 @@
                             </span>
                             @enderror
                         </div>
+                        
+                        <!--Insert Complaint Type-->
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label text-primary py-2">Type of Fault</label><br>
+                          <label class="py-2">Select at least one option:</label><br>
+                          <input type="checkbox" id="hw_fault" class="icheck-danger" name="fault_type" value="HW_FAULT">
+                          <label for="hw_fault"> Hardware Fault</label><br>
+                          <input type="checkbox" id="sw_fault" name="fault_type" class="icheck-danger" value="SW_FAULT">
+                          <label for="sw_fault"> Software Fault</label><br>
+                          <input type="checkbox" id="other" name="fault_type" value="OTHER">
+                          <label for="other"> Other</label>
+                          @error('fault_type')
+                          <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                        </div>
 
-                        <!--Upload Files-->
-                        <<div>
+                        <!--Insert Urgency Level -->
+                        <div class="form-group">
+                          <label for="recipient-name" class="col-form-label text-primary py-2">Urgency Level</label><br>
+                          <label class="py-2">Select the urgency level:</label><br>
+                          <input type="radio" id="low" name="urgency" value="low">
+                          <label for="male">Low</label><br>
+                          <input type="radio" id="medium" name="urgency" value="medium">
+                          <label for="female">Medium</label><br>
+                          <input type="radio" id="high" name="urgency" value="high">
+                          <label for="other">High</label><br>
+                          <input type="radio" id="critical" name="urgency" value="critical">
+                          <label for="other">Critical</label>
+                          @error('urgency')
+                          <span class="invalid-feedback" role="alert">
+                          <strong>{{ $message }}</strong>
+                          </span>
+                          @enderror
+                        </div>
+
+                        <!--Upload Complaint Files-->
+                        <div>
                           <label for="recipient-name" class="col-form-label text-primary py-3">Complaint File(s)</label>
                           <!--
                             <br>
@@ -76,7 +112,7 @@
                             <a href="{{ url('project-register') }}" class="btn btn-danger" style="margin:20px">Cancel</a>
                         </div> 
                         
-                    </div>
+                      </div>
                  
       </div> 
        </form> 

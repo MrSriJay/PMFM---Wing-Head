@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Complaints extends Model
 {
     protected $table = 'complaints';
-    protected $fillable = ['system_name','description'];
+    protected $fillable = ['system_name','description','fault_type','urgency_level'];
 }

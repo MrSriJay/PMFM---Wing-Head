@@ -33,11 +33,12 @@ class ComplaintController extends Controller
       $validate = \Validator::make($request->all(), [
          'title' => ['required', 'string', 'max:255'],
          'summary-ckeditor' => 'required',
-        
+         'fault_type' => ['required'],
+         'urgency' => ['required']
+         
      ]);
 
-     if( $validate->fails())
-     {
+     if( $validate->fails()){
          return redirect()
          ->back()
          ->withErrors($validate)
@@ -46,11 +47,11 @@ class ComplaintController extends Controller
     
      $complaints = new Complaints;
 
-     $complaints->system_name = $request->input('title');
+     $complaints->system_name = Helper::getprojectName($request->input('title'));
      $complaints->description = $request->input('summary-ckeditor');
      $ranstring = rand(10,50);
 
-     // Upload Project Files
+     // Upload Complaint Files
      if($request->hasFile('file')){
          foreach($request->file as $file){
          $file_name = $file->getClientOriginalName();
@@ -59,12 +60,15 @@ class ComplaintController extends Controller
          $complaints->files=$path_name;
          }
       }
-      $complaints->client_id = Auth::user()->client_id;
-      $complaints->wing_id = Helper::getWingId($request->input('projectid'));
-      $complaints->project_id = $request->input('projectid');
+      $complaints->client_id = Auth::user()->user_id;
+      $complaints->wing_id = Helper::getWingId($request->input('title'));
+      $complaints->project_id = $request->input('title');
+      $complaints->fault_type = $request->input('fault_type');
+      $complaints->urgency_level = $request->input('urgency');
+
       //
       $complaints->save();
-      return redirect('client/complaints')->with('status','Complaint Submitted Successfully!');
+      return redirect('client/client-complaint')->with('status','Complaint Submitted Successfully!');
    }
 
 }

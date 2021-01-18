@@ -55,12 +55,25 @@ class Helper
             $output="";    
         foreach($data as $row)
         {
-            $output = $row->wing_name;
+            $output = $row->wingid;
         }
     
         return $output;
     }
     
+    public static function getprojectName($id){
+        $data =Projects::select("title")
+        ->where('id', 'LIKE', "%$id%")
+            ->get();    
+    
+            $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->title;
+        }
+    
+        return $output;
+    }
 }
    
 

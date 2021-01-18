@@ -18,11 +18,12 @@ class CreateComplaintsTable extends Migration
             $table->string('system_name');
             $table->longText('description')->nullable();
             $table->boolean('status')->default(0);
-            $table->string('files');
-            $table->bigInteger('client_id');
-            $table->bigInteger('project_id');
-            $table->bigInteger('wing_id');
-            $table->bigInteger('developer_id');
+            $table->string('files')->nullable();
+            $table->longText('client_id');
+            $table->longText('project_id');
+            $table->longText('wing_id');
+            $table->string('fault_type');
+            $table->string('urgency_level');
             $table->timestamps();
         });
     }
