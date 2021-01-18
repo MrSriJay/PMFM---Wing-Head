@@ -11,7 +11,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary"> 
-          <a href="/client/client-complaint/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" >Add New Complaint</a>
+          <a href="/client/client-complaint/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add New Complaint</a>
           <h2 class="card-title">Compalints Submitted</h2>
           <p class="card-category">The Comapint details</p> 
       </div>
