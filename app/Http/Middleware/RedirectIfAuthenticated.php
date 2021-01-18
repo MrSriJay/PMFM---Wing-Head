@@ -36,6 +36,10 @@ class RedirectIfAuthenticated
                 {
                     return redirect('/developer');
                 }
+                else if (Auth::user()->usertype == 'officer')
+                {
+                    return redirect('/developer');
+                }
                 else if (Auth::user()->usertype == 'client')
                 {
                     return redirect('/client');

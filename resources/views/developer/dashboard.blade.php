@@ -1,4 +1,4 @@
-@extends('layouts.WingheadMaster')
+@extends('layouts.DeveloperMaster')
 
 @section('title')
     Dashboard | NBC

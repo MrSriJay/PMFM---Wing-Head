@@ -109,23 +109,32 @@
            <!--Insert designation-->
            <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Designation</label>
-              <select id="usertype" class="form-control" name="usertype" value="{{ old('usertype') }}"  aria-label="Default select example" >
+              <select id="usertype" class="form-control @error('usertype') is-invalid @enderror" name="usertype" required value="{{ old('usertype') }}"  aria-label="Default select example" >
                 <option value="" disabled selected>Select your option</option>
                 <option value="developer" >Developer</option>
                 <option value="officer" >Officer</option>
               </select>
-              
+              @error('usertype')
+              <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+              </span>
+              @enderror
           </div>
 
           <!--Insert wing-->
           <div class="form-group  py-4">
               <label for="message-text" class="col-form-label text-primary">Wing Name</label>
-              <select  readonly class="livesearch form-control" name="wing_name" value="{{ old('wing_name') }}" style="width:99%;"  required>
+              <select  readonly class="livesearch form-control @error('wing_name') is-invalid @enderror" name="wing_name" value="{{ old('wing_name') }}" style="width:99%;"  required>
                 <option value="{!!Auth::user()->wing_name!!}" selected >{!!Helper::getWingName( Auth::user()->wing_name) !!}</option>
               </select>
               <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
                 Please Select Wing Name 
               </div>
+              @error('wing_name')
+              <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+              </span>
+              @enderror
           </div> 
 
 

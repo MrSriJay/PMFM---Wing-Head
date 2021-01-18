@@ -4,6 +4,8 @@ namespace App;
 use App\Models\Wing;
 use App\Models\User;
 use App\Models\Client;
+use App\Models\Projects;
+
 class Helper
 
 {
@@ -63,8 +65,22 @@ class Helper
 
         return $output;
     }
+
+    // Dashboard------------------------
+
+    public static function getcountOfficers($id){
+        $data =User::select("user_id")
+        ->where('wing_name', $id) ->count();
+        return $data;
+    }
     
-    
+    public static function getcountProjects($id){
+        $data =Projects::select("id")
+        ->where('wingid', $id) ->count();
+        return $data;
+    }
+
+     //-----------------------------------
 }
    
 

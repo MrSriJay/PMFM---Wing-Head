@@ -94,8 +94,6 @@
               <label for="recipient-name" class="col-form-label text-primary">Designation</label>
               <select id="usertype" class="form-control"  name="usertype"  disabled   aria-label="Default select example" >
                 <option value="{{ old('usertype',$user->usertype) }}" disable selected>{!!Helper::getDesignation($user->usertype)!!}</option>
-                <option value="winghead" >Wing Head</option>
-                <option value="topmanagement" >Top Management</option>
                 <option value="developer" >Developer</option>
                 <option value="officer" >Officer</option>
               </select>

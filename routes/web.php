@@ -86,9 +86,15 @@ Route::resource('client/purchasedsystems', App\Http\Controllers\client\Purchased
 /*--------------------------------------------------------------------------------------------------------*/ 
                                             //DEVELOPER//
 /*--------------------------------------------------------------------------------------------------------*/
-Route::resource('developer', App\Http\Controllers\Developer\DeveloperController::class);
+Route::group(['middleware' => ['auth','developer']],function() {
 
+    Route::get('/developer', function () { return view('developer.dashboard');
+    });
+    Route::resource('develoiper/developer-projects', App\Http\Controllers\Developer\ProjectController::class);
+    Route::resource('developer/developer-complaints', App\Http\Controllers\Developer\UserController::class);
+    
 
+});
 /*--------------------------------------------------------------------------------------------------------*/ 
                                             //Auto Complete Projects//
 /*--------------------------------------------------------------------------------------------------------*/

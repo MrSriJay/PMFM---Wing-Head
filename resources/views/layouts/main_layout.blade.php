@@ -72,21 +72,20 @@ The above copyright notice and this permission notice shall be included in all c
   
   @yield('content')
 
+  <br>
   
-  <footer class="footer footer-bottom"> 
-        <div class="container-fluid" >
-         <div style="postion:relative ; background-color:red">
-          
-          <div class="copyright float-right" style="float:left">
-            &copy;
-            <script>
-              document.write(new Date().getFullYear())
-            </script>, Developed by
-            <a href="https://www.creative-tim.com" target="_blank">CRD</a> Ministry of Defence
-          </div>
-          </div>
-        </div>
-      </footer> 
+  <footer class="footer footer-bottom">
+    <div class="container-fluid">
+      
+      <div class="copyright float-right">
+        &copy;
+        <script>
+          document.write(new Date().getFullYear())
+        </script>, Developed by
+        <a href="https://www.creative-tim.com" target="_blank">CRD</a> Ministry of Defence
+      </div>
+    </div>
+
    
   <!--   Core JS Files   -->
   <script src="../assets/js/core/jquery.min.js"></script>
