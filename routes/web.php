@@ -34,7 +34,7 @@ Route::resource('admin/users', App\Http\Controllers\admin\UserController::class)
 Route::resource('admin/wings', App\Http\Controllers\admin\WingsController::class);
 Route::resource('admin/projects', App\Http\Controllers\admin\ProjectController::class);
 Route::resource('admin/clients', App\Http\Controllers\admin\ClientController::class);
-
+Route::resource('admin/complaints', App\Http\Controllers\admin\ComplaintController::class);
 });
 
 /*--------------------------------------------------------------------------------------------------------*/ 
@@ -48,6 +48,7 @@ Route::group(['middleware' => ['auth','winghead']],function() {
 
 Route::resource('winghead/wings-projects', App\Http\Controllers\Winghead\ProjectController::class);
 Route::resource('winghead/wings-users', App\Http\Controllers\Winghead\UserController::class);
+Route::resource('winghead/wings-complaints', App\Http\Controllers\Winghead\ComplaintController::class);
 
 /*
 Route::get('/files/{id}', [App\Http\Controllers\Winghead\ProjectController::class, 'ViewFiles']);

@@ -1,74 +1,74 @@
 <?php
 
-namespace App\Http\Controllers\Winghead;
+namespace App\Http\Controllers\Admin;
 
-use App\Models\Complaints;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use App\Models\Projects;
+use League\Flysystem\File;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Storage;
+use SebastianBergmann\CodeCoverage\Report\Xml\Project;
+use Illuminate\Support\Facades\Auth;
+use App\Models\Complaints;
+use App\helper;
 
 class ComplaintController extends Controller
 {
+
     public function index()
     {
-        $complaints = Complaints::all();
-        return view('winghead.posted-complaints')->with('complaints',$complaints);
+       $complaints = Complaints::all();
+       return view('admin.view-complaints')->with('complaints',$complaints);
+    }
+
+    public function create()
+    {
+       return view('admin.add-complaint');
     }
 
     public function store(Request $request)
     {
-        $validate = \Validator::make($request->all(), [
-            'title' => ['required', 'string', 'max:255'],
-            'summary-ckeditor' => 'required',
-            'fault_type' => ['required'],
-            'urgency' => ['required']
-            
-        ]);
+      $validate = \Validator::make($request->all(), [
+         'title' => ['required', 'string', 'max:255'],
+         'summary-ckeditor' => 'required',
+         'fault_type' => ['required'],
+         'urgency' => ['required']
+         
+     ]);
 
-        if( $validate->fails()){
-            return redirect()
-            ->back()
-            ->withErrors($validate)
-            ->withInput();
-        }
+     if( $validate->fails()){
+         return redirect()
+         ->back()
+         ->withErrors($validate)
+         ->withInput();
+     }
+    
+     $complaints = new Complaints;
 
-        $complaints = new Complaints; 
-        $complaints->system_name = $request->input('system');
-        $complaints->description = $request->input('description');
-        $complaints->images = $request->input('images');
-        $complaints->date = $request->input('date');
-        $complaints->images = $request->input('images');
-        $complaints->date = $request->input('date');
+     $complaints->system_name = Helper::getprojectName($request->input('title'));
+     $complaints->description = $request->input('summary-ckeditor');
+     $ranstring = rand(10,50);
 
-        $complaints->save();
-        return redirect('/complaint-register')->with('status','Complaint Added Successfully!');
+     // Upload Complaint Files
+     if($request->hasFile('file')){
+         foreach($request->file as $file){
+         $file_name = $file->getClientOriginalName();
+         $path_name='complaint_files/'. $request->input('title').'-'.$ranstring.'/';
+         $file->storeAs('public/complaint_files/'. $request->input('title').'-'.$ranstring.'/',$file_name);
+         $complaints->files=$path_name;
+         }
+      }
+      $complaints->client_id = Auth::user()->user_id;
+      $complaints->wing_id = Helper::getWingId($request->input('title'));
+      $complaints->project_id = $request->input('title');
+      $complaints->fault_type = $request->input('fault_type');
+      $complaints->urgency_level = $request->input('urgency');
 
-    }
-
-    public function edit($id)
-    {
-        $complaints = Complaints::findOrFail($id);
-        return view('winghead.edit-complaint')->with('complaints',$complaints);
-    }
-
-    public function update(Request $request, $id)
-    {
-        $complaints = Complaints::findOrFail($id);
-        $complaints->system_name = $request->input('system');
-        $complaints->description = $request->input('description');
-        $complaints->images = $request->input('images');
-        $complaints->date = $request->input('date');
-
-        $complaints->update(); 
-        return redirect('/complaint-register')->with('status','Complaint Updated Successfully!');
-    }
-
-    public function delete($id)
-    {
-        $complaints = Complaints::findOrFail($id);
-        $complaints->delete(); 
-
-        return redirect('/complaint-register')->with('status','Complaint Deleted Successfully!');
-
-    }
+      //
+      $complaints->save();
+      return redirect('admin/complaints')->with('status','Complaint Submitted Successfully!');
+   }
 
 }
