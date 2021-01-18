@@ -30,9 +30,13 @@ class RedirectIfAuthenticated
                 }
                 else if (Auth::user()->usertype == 'winghead')
                 {
-                    return redirect('winghead-dashboard');
+                    return redirect('/winghead');
                 }
                 else if (Auth::user()->usertype == 'developer')
+                {
+                    return redirect('/developer');
+                }
+                else if (Auth::user()->usertype == 'officer')
                 {
                     return redirect('/developer');
                 }
