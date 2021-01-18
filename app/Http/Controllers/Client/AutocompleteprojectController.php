@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Projects;
 use App\Models\Wing;
 use App\Models\User;
+use App\Models\Client;
 use Illuminate\Support\Facades\Auth;
 class AutocompleteprojectController extends Controller
 {
@@ -60,6 +61,30 @@ class AutocompleteprojectController extends Controller
                 ->orWhere('usertype', 'officer')
                 ->orWhere('usertype', 'winghead');
               })
+              ->where('wing_name',Auth::user()->wing_name)
+
+              ->get();
+        }
+        return response()->json($data);
+
+    }
+
+    public function selectAdminSearchSupervisor(Request $request)
+    {
+    	$data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data =User::select("user_id", "first_name", "last_name")
+              ->Where(function ($query) use ($search) {
+                $query->where('first_name', 'LIKE', "%$search%") 
+                ->orWhere('last_name', 'LIKE', "%$search%") ;
+              })
+              ->Where(function ($query){
+                $query->where('usertype', 'developer')
+                ->orWhere('usertype', 'officer')
+                ->orWhere('usertype', 'winghead');
+              })
 
               ->get();
         }
@@ -73,12 +98,8 @@ class AutocompleteprojectController extends Controller
       
       if($request->has('q')){
         $search = $request->q;
-        $data =User::select("user_id", "first_name", "last_name")
-          ->Where(function ($query) use ($search) {
-            $query->where('first_name', 'LIKE', "%$search%") 
-            ->orWhere('last_name', 'LIKE', "%$search%") ;
-          })
-          ->where('usertype', 'client')
+        $data =Client::select("id", "organization_name")
+          ->where('organization_name', 'LIKE', "%$search%")
           ->get();
     }
     return response()->json($data);
@@ -100,6 +121,7 @@ class AutocompleteprojectController extends Controller
         ->orWhere('usertype', 'officer')
         ->orWhere('usertype', 'winghead');
       })
+      ->where('wing_name',Auth::user()->wing_name)
 
       ->get();
       $output = '<ul class="text-primary" style="display:block; position:relative; color:black; list-style-type: none;">';

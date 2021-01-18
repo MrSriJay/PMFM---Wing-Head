@@ -6,41 +6,13 @@
 
 @section('content')
     
-{{-- Delete Modal --}}
-<!-- Modal -->
-<div class="modal fade" id="deletemodalpop" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title text-primary" id="exampleModalLabel">Delete Project</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      
-      <form id="delete_project_Form" method="POST">
-        {{ csrf_field() }}
-        {{ method_field("DELETE") }}
-      <div class="modal-body">
-        <input type="hidden" id="delete_project_id"> 
-        <h5>Are you sure you want to delete this project?</h5>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Yes, Delete It.</button>
-      </div>
-      </form>
-    </div>
-  </div>
-</div>
-{{-- End - Delete Model --}}
 
  <div class="row">
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary"> 
-          <h4 class="card-title">Dashboards</h4>
-          <p class="card-category">Details of projects that are registered in the system</p> 
+          <h4 class="card-title">Dashboard</h4>
+          <p class="card-category">Welcome to Project Monitoring and Fault Management System</p> 
         </div>
 
         <div class="card-body">
@@ -49,19 +21,18 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6">
                       <div class="card card-stats">
-                        <div class="card-header card-header-warning card-header-icon">
+                        <div class="card-header card-header-info card-header-icon">
                           <div class="card-icon">
-                            <i class="material-icons">content_copy</i>
+                            <i class="material-icons">people_outline</i>
                           </div>
-                          <p class="card-category">Used Space</p>
-                          <h3 class="card-title">49/50
-                            <small>GB</small>
+                          <p class="card-category">Officers Assigned</p>
+                          <h3 class="card-title">{!!Helper::getcountOfficers(Auth::user()->wing_name)!!}
                           </h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <a href="javascript:;">Get More Space...</a>
+                            <i class="material-icons text-info">people</i>
+                            <a href="/winghead/wings-users" class="text-dark">Offices</a>
                           </div>
                         </div>
                       </div>
@@ -70,14 +41,15 @@
                       <div class="card card-stats">
                         <div class="card-header card-header-success card-header-icon">
                           <div class="card-icon">
-                            <i class="material-icons">store</i>
+                            <i class="material-icons">content_copy</i>
                           </div>
-                          <p class="card-category">Revenue</p>
-                          <h3 class="card-title">$34,245</h3>
+                          <p class="card-category">Delivered Projects</p>
+                          <h3 class="card-title">{!!Helper::getcountProjects(Auth::user()->wing_name)!!}</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">date_range</i> Last 24 Hours
+                            <i class="material-icons text-success">content_copy</i>
+                            <a href="/winghead/wings-users" class="text-dark">Projects</a>
                           </div>
                         </div>
                       </div>
@@ -86,30 +58,32 @@
                       <div class="card card-stats">
                         <div class="card-header card-header-danger card-header-icon">
                           <div class="card-icon">
-                            <i class="material-icons">info_outline</i>
+                            <i class="material-icons">report_problem</i>
                           </div>
-                          <p class="card-category">Fixed Issues</p>
+                          <p class="card-category">Complaints</p>
                           <h3 class="card-title">75</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">local_offer</i> Tracked from Github
+                            <i class="material-icons text-danger">report_problem</i>
+                            <a href="/winghead/wings-users" class="text-dark">Complaints</a>
                           </div>
                         </div>
                       </div>
                     </div>
                     <div class="col-lg-3 col-md-6 col-sm-6">
                       <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
+                        <div class="card-header card-header-warning card-header-icon">
                           <div class="card-icon">
-                            <i class="fa fa-twitter"></i>
+                            <i class="material-icons">chat</i>
                           </div>
-                          <p class="card-category">Followers</p>
+                          <p class="card-category">Messages</p>
                           <h3 class="card-title">+245</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">update</i> Just Updated
+                            <i class="material-icons text-warning">chat</i>
+                            <a href="/winghead/wings-projects" class="text-dark">Messages</a>
                           </div>
                         </div>
                       </div>
@@ -122,7 +96,7 @@
                           <div class="ct-chart" id="dailySalesChart"></div>
                         </div>
                         <div class="card-body">
-                          <h4 class="card-title">Daily Sales</h4>
+                          <h4 class="card-title">New Complaints</h4>
                           <p class="card-category">
                             <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
                         </div>

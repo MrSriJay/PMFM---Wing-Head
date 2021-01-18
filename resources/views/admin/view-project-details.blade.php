@@ -20,13 +20,16 @@ Projects - View | PMFM
 
 <div class="row">
     <div class="col-md-12">
+        {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'projects.update', $project->id ], 'enctype'=> 'multipart/form-data' ]) }}
+        {{ csrf_field() }}
         <div class="card">  
             <div class="card-header card-header-primary">
                 <a  class="btn btn-primary float-right" style="margin:20px" id="edit" onclick="toggleEdit()" > <i class="material-icons">edit</i>Edit</a>
                 <div style="display:none" id="editext">Edit</div >
                 <label for="recipient-name" class="col-form-label text-light" >Project Title</label>
                 <h3 class="card-title">
-                    <strong>{!!$project->title!!}</strong>
+                    <strong id="title0">{!!$project->title!!}</strong>
+                    <input  type="text" style="display:none; font-size:20px" name ="title" id="title1" class="form-control text-white"  @error('title') is-invalid @enderror  required value="{!!$project->title!!}">
                 </h3>
             </div>
             <div class="card-body">
@@ -35,16 +38,26 @@ Projects - View | PMFM
                 {{ session('status') }}
                 </div>
                 @endif
-                {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'projects.update', $project->id ], 'enctype'=> 'multipart/form-data' ]) }}
-                {{ csrf_field() }}
+                  @if($project->status==1)
+                  <div class="alert alert-success alert-dismissible fade show" role="alert">
+                      <strong>System in good health !</strong>
+                      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                      </button>
+                      </div>
+                   @elseif($project->status==0)
+                   <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                      <strong>System not working!</strong> Please view the complaint(s).<br> <strong><a href="#" class="alert-link"> Learn More</a></strong>
+                    </div>
+                @endif
                 <div class="col-md-12">
                          <!--View Description-->
                         <div class="form-group"> 
                             <label for="message-text" class="col-form-label text-primary">Project Description</label>
                             <br>
-                            <span id="title0" >{!!$project->description!!}</span>
+                            <span id="dec0" >{!!$project->description!!}</span>
 
-                            <div id="title1" style="display:none" >
+                            <div id="dec1" style="display:none" >
                                 <textarea  class="form-control" id="summary-ckeditor" name="summary-ckeditor" required rows="6" cols="5">{{$project->description}}</textarea>
                             </div>
                             @error('summary-ckeditor')
@@ -75,7 +88,7 @@ Projects - View | PMFM
                             <label for="message-text" class="col-form-label text-primary">Client Name</label>
                             <br>
                             <select id="client_name" disabled class="livesearch form-control" name="clientid" style="width:99%;"  required>
-                                <option value="{!!$project->clientid!!}" >{!!Helper::getName($project->clientid)!!}</option>
+                                <option value="{!!$project->clientid!!}" >{!!Helper::getClientName($project->clientid)!!}</option>
                             </select>
                             <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
                               Please Select Client Name 
@@ -176,6 +189,7 @@ Projects - View | PMFM
                         <div id="morefiles" style="display: none">
                             <label for="recipient-name" class="col-form-label py-3 text-sm">Upload More File(s)</label>
                             <fieldset>   
+
                               <input type="hidden" id="path" name="path" value="{{$project->files}}" />
                               <div>
                                   <label for="fileselect">Files to upload:</label>
@@ -226,29 +240,31 @@ Projects - View | PMFM
             {{ Form::close() }} 
             
             
-            <!--Delete Modal --->
-            <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                    <h5 class="modal-title">Are you sure?</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                    </div>
-                    <div class="modal-body">
-                    <p>Are you sure you want to delete project </p>
-                    </div> 
-                    {{ Form::open([ 'method'  => 'delete', 'route' => [ 'projects.destroy', $project->id ] ]) }}
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-success">Yes, Delete</button>
-                        {{ Form::close() }}
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">No, Cancel</button>
-                    </div>
+            
+  
+        </div>
+
+        <!--Delete Modal --->
+        <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title">Are you sure?</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
                 </div>
+                <div class="modal-body">
+                <p>Are you sure you want to delete project </p>
+                </div> 
+                {{ Form::open([ 'method'  => 'delete', 'route' => [ 'projects.destroy', $project->id ] ]) }}
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Yes, Delete</button>
+                    {{ Form::close() }}
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">No, Cancel</button>
                 </div>
             </div>
-  
+            </div>
         </div>
     </div>
 </div>    
@@ -258,7 +274,7 @@ Projects - View | PMFM
     $('#developer_name').select2({
         placeholder: 'Select Developer Name',
         ajax: {
-            url: '/supervisor-search',
+            url: '/admin-supervisor-search',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
@@ -286,8 +302,8 @@ Projects - View | PMFM
                 return {
                     results: $.map(data, function (item) {
                         return {
-                            text: item.first_name+" "+item.last_name,
-                            id: item.user_id
+                            text: item.organization_name,
+                            id: item.id
                         }
                     })
                 };
@@ -343,8 +359,11 @@ Projects - View | PMFM
     function toggleEdit() {    
      var i= document.getElementById("editext");
      if(i.innerHTML=="Edit"){
-         document.getElementById("title0").style.display = "none";
+        document.getElementById("title0").style.display = "none";
          document.getElementById("title1").style.display = "block";
+
+         document.getElementById("dec0").style.display = "none";
+         document.getElementById("dec1").style.display = "block";
 
          document.getElementById("developer_name").disabled = false;
          document.getElementById("client_name").disabled = false;
@@ -364,8 +383,11 @@ Projects - View | PMFM
          i.innerHTML="Cancel"
      }
      else{
-        document.getElementById("title0").style.display = "block";
+         document.getElementById("title0").style.display = "block";
          document.getElementById("title1").style.display = "none";
+
+         document.getElementById("dec0").style.display = "block";
+         document.getElementById("dec1").style.display = "none";
 
          document.getElementById("developer_name").disabled = true;
          document.getElementById("client_name").disabled = true;

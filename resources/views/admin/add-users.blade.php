@@ -115,7 +115,6 @@
                 <option value="topmanagement" >Top Management</option>
                 <option value="developer" >Developer</option>
                 <option value="officer" >Officer</option>
-                <option value="client" >Client</option>
               </select>
               @error('usertype')
               <span class="invalid-feedback" role="alert">

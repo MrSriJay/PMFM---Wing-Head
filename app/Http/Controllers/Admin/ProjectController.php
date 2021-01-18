@@ -132,6 +132,7 @@ class ProjectController extends Controller
         $ranstring = rand(10,50);
 
         $project = Projects::find($id);
+        $project->title = $request->input('title');
         $project->description = $request->input('summary-ckeditor');
         $project->clientid = $request->input('clientid');
         $project->projectInchargeId = $request->input('supervisor');
@@ -146,8 +147,8 @@ class ProjectController extends Controller
             
            
 
-            if($path==NULL){
-
+        if($path==NULL){
+            if($request->hasFile('file')){
                 foreach($request->file as $file){
 
                     $file_name = $file->getClientOriginalName();
@@ -156,16 +157,18 @@ class ProjectController extends Controller
                     $project->files=$path_name;
                 }
             }
-            else{
+         }
 
+         else{
+
+            if($request->hasFile('file')){
                 foreach($request->file as $file){
                     $file_name = $file->getClientOriginalName();
                     $file->storeAs('public/'.$path,$file_name);
                 }
             }
+        }
            
-          
-        
         $project->save();
 
         return redirect()
