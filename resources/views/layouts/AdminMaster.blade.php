@@ -4,9 +4,11 @@
 
 <head>
   <meta charset="utf-8" />
+
   <base href="{!!Helper::$baseurl!!}" target="">
   <link rel="apple-touch-icon" sizes="76x76" href="../assets/img/crdlogo.png">
   <link rel="icon" type="image/png" href="../assets/img/crdlogo.png">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
   <title>
    @yield('title')

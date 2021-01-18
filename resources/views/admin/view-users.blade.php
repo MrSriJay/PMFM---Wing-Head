@@ -54,7 +54,6 @@
                     <th scope="row">
                      <a class="btn btn-secondary btn-sm mx-auto " href="admin/users/{{$data->user_id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
                     </th>
-
                   </tr>
                   @endforeach
                 @else 

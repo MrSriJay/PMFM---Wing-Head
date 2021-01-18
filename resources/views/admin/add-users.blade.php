@@ -109,14 +109,18 @@
            <!--Insert designation-->
            <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Designation</label>
-              <select id="usertype" class="form-control" name="usertype" value="{{ old('usertype') }}"  aria-label="Default select example" >
+              <select id="usertype" class="form-control  @error('usertype') is-invalid @enderror"  name="usertype" value="{{ old('usertype') }}"  aria-label="Default select example" required>
                 <option value="" disabled selected>Select your option</option>
                 <option value="winghead" >Wing Head</option>
                 <option value="topmanagement" >Top Management</option>
                 <option value="developer" >Developer</option>
                 <option value="officer" >Officer</option>
               </select>
-              
+              @error('usertype')
+              <span class="invalid-feedback" role="alert">
+              <strong>{{ $message }}</strong>
+              </span>
+              @enderror
           </div>
 
           <!--Insert wing-->

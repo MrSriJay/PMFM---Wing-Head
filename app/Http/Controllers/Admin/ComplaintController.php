@@ -16,10 +16,26 @@ class ComplaintController extends Controller
 
     public function store(Request $request)
     {
-    
+        $validate = \Validator::make($request->all(), [
+            'title' => ['required', 'string', 'max:255'],
+            'summary-ckeditor' => 'required',
+            'fault_type' => ['required'],
+            'urgency' => ['required']
+            
+        ]);
+
+        if( $validate->fails()){
+            return redirect()
+            ->back()
+            ->withErrors($validate)
+            ->withInput();
+        }
+
         $complaints = new Complaints; 
         $complaints->system_name = $request->input('system');
         $complaints->description = $request->input('description');
+        $complaints->images = $request->input('images');
+        $complaints->date = $request->input('date');
         $complaints->images = $request->input('images');
         $complaints->date = $request->input('date');
 
