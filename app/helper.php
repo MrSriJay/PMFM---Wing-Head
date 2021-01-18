@@ -3,6 +3,7 @@
 namespace App;
 use App\Models\Wing;
 use App\Models\User;
+use App\Models\Projects;
 
 class Helper
 {
@@ -46,7 +47,33 @@ class Helper
 
         return $output;
     }
+    public static function getWingId($id){
+        $data =Projects::select("wingid")
+        ->where('id', 'LIKE', "%$id%")
+            ->get();    
     
+            $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->wingid;
+        }
+    
+        return $output;
+    }
+    
+    public static function getprojectName($id){
+        $data =Projects::select("title")
+        ->where('id', 'LIKE', "%$id%")
+            ->get();    
+    
+            $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->title;
+        }
+    
+        return $output;
+    }
 }
    
 

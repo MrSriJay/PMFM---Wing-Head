@@ -79,7 +79,7 @@ Add Projects | PMFM
                             @enderror
                         </div>
 
-                      <!--Insert Proejct Ichage-->
+                      <!--Insert Proejct Supervisor-->
                         <div class="form-group  py-4">
                             <label for="message-text" class="col-form-label text-primary">Project Supervisor</label>
                             <select id="developer_name" class="livesearch form-control" name="supervisor" value="{{ old('supervisor') }}" style="width:99%;"  required></select>
