@@ -68,7 +68,13 @@ class ComplaintController extends Controller
 
       //
       $complaints->save();
-      return redirect('client/client-complaint')->with('status','Complaint Submitted Successfully!');
+      return redirect('client/complaints')->with('status','Complaint Submitted Successfully!');
    }
+
+   
+   public function show($id){
+      $complaints = Complaints::findOrFail($id);
+      return view('client.view-complaint-details')->with('complaints', $complaints);
+  }
 
 }

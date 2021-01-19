@@ -23,7 +23,7 @@
           <h2 class="card-title">Add Compalint</h2> 
       </div>
       <div class="card-body">
-      <form action="/client/client-complaint" method="POST" enctype="multipart/form-data">
+      <form action="/client/complaints" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
                       <div class="form-group  py-4s">
                           <label for="message-text" class="col-form-label text-primary">System Name</label>
@@ -32,7 +32,6 @@
                             Please Select System Name 
                           </div>
                       </div>   
-                        
                     
                       <!--Done Buttons-->
                       <div style="text-align:right">
@@ -57,9 +56,9 @@
                           <label class="py-2">Select at least one option:</label><br>
                           <input type="checkbox" id="hw_fault" class="icheck-danger" name="fault_type" value="Hardware Fault">
                           <label for="hw_fault"> Hardware Fault</label><br>
-                          <input type="checkbox" id="sw_fault" name="fault_type" class="icheck-danger" value="Software Fault">
+                          <input type="checkbox" id="sw_fault" class="icheck-danger" name="fault_type"  value="Software Fault">
                           <label for="sw_fault"> Software Fault</label><br>
-                          <input type="checkbox" id="other" name="fault_type" value="Other">
+                          <input type="checkbox" id="other" class="icheck-danger" name="fault_type" value="Other">
                           <label for="other"> Other</label>
                           @error('fault_type')
                           <span class="invalid-feedback" role="alert">
@@ -108,17 +107,21 @@
 
                         <!--Save and Cancel Buttons-->
                         <div style="text-align:right">
-                            <button type="submit" class="btn btn-info" style="margin:20px">Save</button>  
-                            <a href="{{ url('project-register') }}" class="btn btn-danger" style="margin:20px">Cancel</a>
+             
+                          <button type="submit" class="btn btn-lg btn-primary">
+                               Save
+                          </button>
+                           
                         </div> 
                         
                       </div>
                  
-      </div> 
-       </form> 
-    </div>
-  </div>
-</div>
+                    </div> 
+
+                  </form> 
+              </div>
+            </div>
+          </div>
 <script type="text/javascript">
     $('#title').select2({
         placeholder: 'Select System Name',

@@ -84,8 +84,8 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ Request::is('winghead/wings-projects*') ? 'active' : '' }}">
-            <a class="nav-link" href="/winghead/wings-projects">
+          <li class="{{ Request::is('winghead/projects*') ? 'active' : '' }}">
+            <a class="nav-link" href="/winghead/projects">
               <i class="material-icons">content_paste</i>
               <p>Projects</p>
             </a>
@@ -96,8 +96,8 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Complaints</p>
             </a>
           </li>
-          <li class="{{ Request::is('winghead/wings-users*') ? 'active' : '' }}">
-            <a class="nav-link" href="/winghead/wings-users">
+          <li class="{{ Request::is('winghead/susers*') ? 'active' : '' }}">
+            <a class="nav-link" href="/winghead/users">
               <i class="material-icons">people_outline</i>
               <p>Officers</p>
             </a>
