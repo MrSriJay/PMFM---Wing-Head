@@ -20,10 +20,10 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary"> 
-          <h2 class="card-title">Add Compalints</h2> 
+          <h2 class="card-title">Add Compalint</h2> 
       </div>
       <div class="card-body">
-      <form action="/client/client-complaint" method="POST" enctype="multipart/form-data">
+      <form action="/client/complaints" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
                       <div class="form-group  py-4s">
                           <label for="message-text" class="col-form-label text-primary">System Name</label>
@@ -32,7 +32,6 @@
                             Please Select System Name 
                           </div>
                       </div>   
-                        
                     
                       <!--Done Buttons-->
                       <div style="text-align:right">
@@ -55,11 +54,11 @@
                         <div class="form-group">
                           <label for="recipient-name" class="col-form-label text-primary py-2">Type of Fault</label><br>
                           <label class="py-2">Select at least one option:</label><br>
-                          <input type="checkbox" id="hw_fault" class="icheck-danger" name="fault_type" value="HW_FAULT">
+                          <input type="checkbox" id="hw_fault" class="icheck-danger" name="fault_type" value="Hardware Fault">
                           <label for="hw_fault"> Hardware Fault</label><br>
-                          <input type="checkbox" id="sw_fault" name="fault_type" class="icheck-danger" value="SW_FAULT">
+                          <input type="checkbox" id="sw_fault" class="icheck-danger" name="fault_type"  value="Software Fault">
                           <label for="sw_fault"> Software Fault</label><br>
-                          <input type="checkbox" id="other" name="fault_type" value="OTHER">
+                          <input type="checkbox" id="other" class="icheck-danger" name="fault_type" value="Other">
                           <label for="other"> Other</label>
                           @error('fault_type')
                           <span class="invalid-feedback" role="alert">
@@ -72,13 +71,13 @@
                         <div class="form-group">
                           <label for="recipient-name" class="col-form-label text-primary py-2">Urgency Level</label><br>
                           <label class="py-2">Select the urgency level:</label><br>
-                          <input type="radio" id="low" name="urgency" value="low">
+                          <input type="radio" id="low" name="urgency" value="Low">
                           <label for="male">Low</label><br>
-                          <input type="radio" id="medium" name="urgency" value="medium">
+                          <input type="radio" id="medium" name="urgency" value="Medium">
                           <label for="female">Medium</label><br>
-                          <input type="radio" id="high" name="urgency" value="high">
+                          <input type="radio" id="high" name="urgency" value="High">
                           <label for="other">High</label><br>
-                          <input type="radio" id="critical" name="urgency" value="critical">
+                          <input type="radio" id="critical" name="urgency" value="Critical">
                           <label for="other">Critical</label>
                           @error('urgency')
                           <span class="invalid-feedback" role="alert">
@@ -108,22 +107,26 @@
 
                         <!--Save and Cancel Buttons-->
                         <div style="text-align:right">
-                            <button type="submit" class="btn btn-info" style="margin:20px">Save</button>  
-                            <a href="{{ url('project-register') }}" class="btn btn-danger" style="margin:20px">Cancel</a>
+             
+                          <button type="submit" class="btn btn-lg btn-primary">
+                               Save
+                          </button>
+                           
                         </div> 
                         
                       </div>
                  
-      </div> 
-       </form> 
-    </div>
-  </div>
-</div>
+                    </div> 
+
+                  </form> 
+              </div>
+            </div>
+          </div>
 <script type="text/javascript">
     $('#title').select2({
         placeholder: 'Select System Name',
         ajax: {
-            url: '/projects-search',
+            url: '/projects-search-client',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {

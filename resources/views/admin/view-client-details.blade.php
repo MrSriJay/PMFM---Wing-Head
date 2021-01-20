@@ -20,16 +20,17 @@
       <div class="card-header card-header-primary"> 
       <a  class="btn btn-primary float-right" style="margin:20px" id="edit" onclick="toggleEdit()" > <i class="material-icons">edit</i>Edit</a>
       <div style="display:none" id="editext">Edit</div >
-
+        {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'clients.update', $clients->id ] ]) }}
+        {{ csrf_field() }}
+          
       <label for="recipient-name" class="col-form-label text-light">Client Name</label>
           <h3 class="card-title">
-             <strong>{!!$clients->organization_name!!}</strong>
+             <strong id="o_name">{!!$clients->organization_name!!}</strong>
+             <input style="display: none" type="text" name ="organization_name" style="font-size: 50px" id ="organization_name" class="form-control text-light text-lg"  value="{{ old('department_name',$clients->organization_name) }}"  placeholder="e.g. Mahela"  required value="">
           </h3> 
       </div>
       <div class="card-body"  >
-      {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'clients.update', $clients->id ] ]) }}
-      {{ csrf_field() }}
-        
+      
           <!--View Department Name-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Department</label>
@@ -55,7 +56,7 @@
            <!--View Contact No-->
            <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Contact No</label>
-              <input type="text" name="contact_no" id="contact_no" class="form-control @error('contact_no') is-invalid @enderror" readonly value="{{ old('contact_no',$clients->contact_no) }}"  placeholder="e.g. 0112111111" required value="">
+              <textarea type="text" name="contact_no" rows="4"  id="contact_no"  cols="10" class="form-control @error('contact_no') is-invalid @enderror" readonly required>{!!($clients->contact_no)!!}</textarea>
               @error('contact_no')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -149,6 +150,8 @@
         document.getElementById("email").readOnly = false;
         document.getElementById("update").style.display = "inline";
         document.getElementById("delete").style.display = "inline";
+        document.getElementById("organization_name").style.display = "inline";
+        document.getElementById("o_name").style.display = "none";
         document.getElementById("edit").classList.add("btn-danger");
         i.innerHTML="Cancel"
     }
@@ -160,6 +163,8 @@
         document.getElementById("email").readOnly = true;
         document.getElementById("update").style.display = "none";
         document.getElementById("delete").style.display = "none";
+        document.getElementById("organization_name").style.display = "none";
+        document.getElementById("o_name").style.display = "line";
         document.getElementById("edit").classList.remove("btn-danger");
         document.getElementById("edit").classList.add("btn-primary");
         i.innerHTML="Edit"

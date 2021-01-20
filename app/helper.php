@@ -97,6 +97,21 @@ class Helper
     }
   
   
+    public static function getClientId($id){
+        $data =Client::select("id")
+        ->where('email',$id)
+            ->get();    
+    
+        $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->id;
+        }
+    
+        return $output;
+    }
+  
+
   // Dashboard------------------------
 
     public static function getcountOfficers($id){
