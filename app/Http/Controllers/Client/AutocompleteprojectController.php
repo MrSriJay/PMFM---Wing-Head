@@ -8,6 +8,7 @@ use App\Models\Projects;
 use App\Models\Wing;
 use App\Models\User;
 use App\Models\Client;
+use App\Helper;
 use Illuminate\Support\Facades\Auth;
 class AutocompleteprojectController extends Controller
 {
@@ -16,6 +17,7 @@ class AutocompleteprojectController extends Controller
    return view('autocomplete');
   }
 
+  //project search wings/developers/officers
   public function selectSearch(Request $request)
     {
     	$data = [];
@@ -46,6 +48,23 @@ class AutocompleteprojectController extends Controller
 
     }
 
+    //project search Clients
+    public function selectSearchProjectClient(Request $request)
+    {
+    	$data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data =Projects::select("id", "title")
+                ->where('title', 'LIKE', "%$search%")
+                ->where('clientid',Auth::user()->user_id)
+            		->get();
+        }
+        return response()->json($data);
+
+    }
+
+  // Get Wing Name from ID
   public function selectSearchWings(Request $request)
     {
     	$data = [];
@@ -60,6 +79,8 @@ class AutocompleteprojectController extends Controller
 
     }
 
+
+    // Get supervisors List wingHead -- Project Insert
     public function selectSearchSupervisor(Request $request)
     {
     	$data = [];
@@ -84,6 +105,8 @@ class AutocompleteprojectController extends Controller
 
     }
 
+
+     // Get supervisors List Admin -- Project Insert
     public function selectAdminSearchSupervisor(Request $request)
     {
     	$data = [];
@@ -107,6 +130,8 @@ class AutocompleteprojectController extends Controller
 
     }
 
+
+    // Get Clients -- Project Insert
     public function selectSearchClients(Request $request)
     {
       $data = [];
@@ -121,6 +146,8 @@ class AutocompleteprojectController extends Controller
 
     }
 
+
+    // Get Project Developers -- Project Insert
     function selectSearchDevelopers(Request $request)
     {
      if($request->get('query'))

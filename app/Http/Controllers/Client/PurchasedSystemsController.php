@@ -11,12 +11,13 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
+use App\Helper;
 
 class PurchasedSystemsController extends Controller
 {
     public function index()
     {
-       $project = Projects::all();
+       $project =  Projects::where('clientid',Auth::user()->user_id)->get();
        return view('client.purchased-systems')->with('project',$project);
     }
 }

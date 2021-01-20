@@ -70,10 +70,18 @@ class ComplaintController extends Controller
       //
       $complaints->save();
 
+
       $project = Projects::find( $request->input('title'));
       $project->status =0;
       $project->save();
       return redirect('client/client-complaint')->with('status','Complaint Submitted Successfully!');
+
    }
+
+   
+   public function show($id){
+      $complaints = Complaints::findOrFail($id);
+      return view('client.view-complaint-details')->with('complaints', $complaints);
+  }
 
 }
