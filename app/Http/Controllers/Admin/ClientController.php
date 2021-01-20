@@ -32,7 +32,7 @@ class ClientController extends Controller
                 'department_name' => ['required', 'string', 'max:255'],
                 'address' => ['required', 'string', 'max:255'],
                 'contact_no' => ['required', 'string'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:clients'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
 
@@ -54,9 +54,19 @@ class ClientController extends Controller
                 'password' => Hash::make($request->password),
             ]);
 
+            $client =Client::select("id")
+            ->where('email',$request->email )
+            ->get();
+
+            $clientIDoutput="";    
+            foreach($client as $row)
+            {
+                $clientIDoutput = $row->id;
+            }
+
             $user_create = User::create([
     
-                'user_id' => $request->email,
+                'user_id' => $clientIDoutput,
                 'rank' => "client",
                 'first_name' => $request->organization_name,
                 'last_name' => $request->organization_name,
@@ -71,9 +81,12 @@ class ClientController extends Controller
         }
         else
         {
+            $validate = \Validator::make($request->all(), [
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            ]);
             return redirect()
             ->back()
-            ->with('error', 'User Already Exits')
+            ->withErrors($validate)
             ->withInput();
         }
 
@@ -111,6 +124,7 @@ class ClientController extends Controller
     {
 
         $validate = \Validator::make($request->all(), [
+            'organization_name' => ['required', 'string', 'max:255'],
             'department_name' => ['required', 'string', 'max:255'],
             'address' => ['required', 'string', 'max:255'],
             'contact_no' => ['required', 'string', 'max:255'],
@@ -127,7 +141,12 @@ class ClientController extends Controller
         $clients = Client::findOrFail($id);
         $input = $request->all();
         $clients->fill($input)->save();
-        
+
+        $user = User::find($id);
+        $user->first_name = $request->input('organization_name');
+        $user->email = $request->input('email');
+        $user ->save();
+
         return redirect('/admin/clients')->with('status','Client Details Updated Successfully!');
     }
 

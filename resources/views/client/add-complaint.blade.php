@@ -126,7 +126,7 @@
     $('#title').select2({
         placeholder: 'Select System Name',
         ajax: {
-            url: '/projects-search',
+            url: '/projects-search-client',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
