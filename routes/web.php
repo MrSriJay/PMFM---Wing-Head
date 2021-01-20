@@ -34,7 +34,7 @@ Route::resource('admin/users', App\Http\Controllers\admin\UserController::class)
 Route::resource('admin/wings', App\Http\Controllers\admin\WingsController::class);
 Route::resource('admin/projects', App\Http\Controllers\admin\ProjectController::class);
 Route::resource('admin/clients', App\Http\Controllers\admin\ClientController::class);
-
+Route::resource('admin/complaints', App\Http\Controllers\admin\ComplaintController::class);
 });
 
 /*--------------------------------------------------------------------------------------------------------*/ 
@@ -48,7 +48,9 @@ Route::group(['middleware' => ['auth','winghead']],function() {
 
 Route::resource('winghead/wings-projects', App\Http\Controllers\Winghead\ProjectController::class);
 Route::resource('winghead/wings-users', App\Http\Controllers\Winghead\UserController::class);
-Route::resource('winghead/wings-complaints', App\Http\Controllers\Winghead\ComplaintController::class);
+Route::resource('winghead/wings-complaints', App\Http\Controllers\Winghead\UserComplaintController::class);
+
+
 /*
 Route::get('/files/{id}', [App\Http\Controllers\Winghead\ProjectController::class, 'ViewFiles']);
 Route::get('/file-download/{file}', [App\Http\Controllers\Winghead\ProjectController::class, 'DownloadFiles']);
@@ -101,6 +103,7 @@ Route::group(['middleware' => ['auth','developer']],function() {
 
 Route::get('/autocomplete', [App\Http\Controllers\client\AutocompleteprojectController::class,'index']);
 Route::get('/projects-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearch']);
+Route::get('/projects-search-admin', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchAdmin']);
 Route::get('/projects-search-client', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchProjectClient']);
 Route::get('/wings-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchWings']);
 Route::get('/supervisor-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchSupervisor']);

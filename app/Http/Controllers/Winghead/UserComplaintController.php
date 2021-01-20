@@ -1,31 +1,22 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers\winghead;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Projects;
-use League\Flysystem\File;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Facades\Storage;
-use SebastianBergmann\CodeCoverage\Report\Xml\Project;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Complaints;
-use App\helper;
+use Illuminate\Support\Facades\Auth;
 
-class ComplaintController extends Controller
+class UserComplaintController extends Controller
 {
-
     public function index()
     {
-       $complaints = Complaints::all();
-       return view('admin.view-complaints')->with('complaints',$complaints);
+       $complaints = Complaints::where('wing_id',Auth::user()->wing_name)->get();
+       return view('winghead.view-complaints')->with('complaints',$complaints);
     }
-
     public function create()
     {
-       return view('admin.add-complaint');
+       return view('winghead.add-complaint');
     }
 
     public function store(Request $request)
@@ -73,7 +64,6 @@ class ComplaintController extends Controller
       $project->status =0;
       $project->save();
 
-      return redirect('admin/complaints')->with('status','Complaint Submitted Successfully!');
+      return redirect('winghead/wings-complaints')->with('status','Complaint Submitted Successfully!');
    }
-
 }

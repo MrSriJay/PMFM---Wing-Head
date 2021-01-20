@@ -26,7 +26,22 @@ class AutocompleteprojectController extends Controller
             $search = $request->q;
             $data =Projects::select("id", "title")
                 ->where('title', 'LIKE', "%$search%")
-                ->where('clientid', Auth::user()->user_id)
+                ->where('wingid', Auth::user()->wing_name)
+            		->get();
+        }
+        return response()->json($data);
+
+    }
+
+
+    public function selectSearchAdmin(Request $request)
+    {
+    	$data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data =Projects::select("id", "title")
+                ->where('title', 'LIKE', "%$search%")
             		->get();
         }
         return response()->json($data);
