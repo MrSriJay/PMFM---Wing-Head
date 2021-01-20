@@ -81,7 +81,7 @@ Route::group(['middleware' => ['auth','client']],function() {
     });
     
 Route::resource('client/purchased-systems', App\Http\Controllers\client\PurchasedSystemsController::class);
-Route::resource('client/complaints', App\Http\Controllers\client\ComplaintController::class);
+Route::resource('client/clients-complaints', App\Http\Controllers\client\ComplaintController::class);
 
 });
 
