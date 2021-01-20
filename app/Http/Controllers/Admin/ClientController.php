@@ -32,7 +32,7 @@ class ClientController extends Controller
                 'department_name' => ['required', 'string', 'max:255'],
                 'address' => ['required', 'string', 'max:255'],
                 'contact_no' => ['required', 'string'],
-                'email' => ['required', 'string', 'email', 'max:255', 'unique:clients'],
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
                 'password' => ['required', 'string', 'min:8', 'confirmed'],
             ]);
 
@@ -71,9 +71,12 @@ class ClientController extends Controller
         }
         else
         {
+            $validate = \Validator::make($request->all(), [
+                'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            ]);
             return redirect()
             ->back()
-            ->with('error', 'User Already Exits')
+            ->withErrors($validate)
             ->withInput();
         }
 

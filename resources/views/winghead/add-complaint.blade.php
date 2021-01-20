@@ -25,7 +25,7 @@
           <h2 class="card-title">Add Compalints</h2> 
       </div>
       <div class="card-body">
-      <form action="/client/client-complaint" method="POST" enctype="multipart/form-data">
+      <form action="/winghead/wings-complaints" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
                       <div class="form-group  py-4s">
                           <label for="message-text" class="col-form-label text-primary">System Name</label>

@@ -48,7 +48,7 @@ Route::group(['middleware' => ['auth','winghead']],function() {
 
 Route::resource('winghead/wings-projects', App\Http\Controllers\Winghead\ProjectController::class);
 Route::resource('winghead/wings-users', App\Http\Controllers\Winghead\UserController::class);
-Route::resource('winghead/wings-complaints', App\Http\Controllers\Winghead\ComplaintController::class);
+Route::resource('winghead/wings-complaints', App\Http\Controllers\Winghead\UserComplaintController::class);
 
 /*
 Route::get('/files/{id}', [App\Http\Controllers\Winghead\ProjectController::class, 'ViewFiles']);
@@ -103,6 +103,7 @@ Route::group(['middleware' => ['auth','developer']],function() {
 
 Route::get('/autocomplete', [App\Http\Controllers\client\AutocompleteprojectController::class,'index']);
 Route::get('/projects-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearch']);
+Route::get('/projects-search-admin', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchAdmin']);
 Route::get('/wings-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchWings']);
 Route::get('/supervisor-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchSupervisor']);
 Route::get('/admin-supervisor-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectAdminSearchSupervisor']);

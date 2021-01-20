@@ -68,6 +68,11 @@ class ComplaintController extends Controller
 
       //
       $complaints->save();
+
+      $project = Projects::find( $request->input('title'));
+      $project->status =0;
+      $project->save();
+
       return redirect('admin/complaints')->with('status','Complaint Submitted Successfully!');
    }
 

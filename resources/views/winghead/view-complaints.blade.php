@@ -11,8 +11,8 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary"> 
-          <a href="/admin/complaints/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add New Complaint</a>
-          <h2 class="card-title">Complaints Submitted</h2>
+          <a href="/winghead/wings-complaints/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add Client Complaint</a>
+          <h2 class="card-title">Complaints Reported</h2>
           <p class="card-category">The Complaint details</p> 
       </div>
       <div class="card-body">

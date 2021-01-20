@@ -25,7 +25,7 @@
           <h2 class="card-title">Add Compalints</h2> 
       </div>
       <div class="card-body">
-      <form action="/client/client-complaint" method="POST" enctype="multipart/form-data">
+      <form action="/admin/complaints" method="POST" enctype="multipart/form-data">
         {{ csrf_field() }}
                       <div class="form-group  py-4s">
                           <label for="message-text" class="col-form-label text-primary">System Name</label>
@@ -124,7 +124,7 @@
     $('#title').select2({
         placeholder: 'Select System Name',
         ajax: {
-            url: '/projects-search',
+            url: '/projects-search-admin',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {

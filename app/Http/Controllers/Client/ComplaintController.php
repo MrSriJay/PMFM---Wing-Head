@@ -66,8 +66,13 @@ class ComplaintController extends Controller
       $complaints->fault_type = $request->input('fault_type');
       $complaints->urgency_level = $request->input('urgency');
 
+
       //
       $complaints->save();
+
+      $project = Projects::find( $request->input('title'));
+      $project->status =0;
+      $project->save();
       return redirect('client/client-complaint')->with('status','Complaint Submitted Successfully!');
    }
 
