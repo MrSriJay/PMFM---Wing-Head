@@ -106,6 +106,10 @@ class UserController extends Controller
         $user = User::findOrFail($id);
         $input = $request->all();
         $user->fill($input)->save();
+
+        $user = User::find($id);
+        $user->user_id = $request->input('user_id');
+        $user ->save();
         
         return redirect()
         ->back()

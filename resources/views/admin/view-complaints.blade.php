@@ -12,7 +12,7 @@
     <div class="card">
       <div class="card-header card-header-primary"> 
           <a href="/admin/complaints/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add New Complaint</a>
-          <h2 class="card-title">Complaints Submitted</h2>
+          <h2 class="card-title">Submitted Complaints</h2>
           <p class="card-category">The Complaint details</p> 
       </div>
       <div class="card-body">
@@ -66,5 +66,26 @@
     </div>
   </div>
 </div>
-    
+@endsection
+
+@section('scripts')
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#tablewings').DataTable({
+
+    });
+
+} );
+
+$('#addWingModal').on('shown.bs.modal', function () {
+  $('#name').trigger('focus')
+})
+
+</script>
+
+
 @endsection
