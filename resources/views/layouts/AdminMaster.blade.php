@@ -65,7 +65,7 @@
             </a>
           </li>
           <li class="{{ Request::is('admin/complaints*') ? 'active' : '' }}">
-            <a class="nav-link" href="/complaint-register">
+            <a class="nav-link" href="/admin/complaints">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>
             </a>

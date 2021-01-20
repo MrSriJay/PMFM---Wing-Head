@@ -24,7 +24,7 @@
                           <div class="card-icon">
                             <i class="material-icons">content_copy</i>
                           </div>
-                          <p class="card-category">Used Space</p>
+                          <p class="card-category">Wings</p>
                           <h3 class="card-title">49/50
                             <small>GB</small>
                           </h3>
@@ -43,12 +43,13 @@
                           <div class="card-icon">
                             <i class="material-icons">store</i>
                           </div>
-                          <p class="card-category">Revenue</p>
+                          <p class="card-category">Users</p>
                           <h3 class="card-title">$34,245</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
                             <i class="material-icons">date_range</i> Last 24 Hours
+                            
                           </div>
                         </div>
                       </div>
@@ -59,12 +60,13 @@
                           <div class="card-icon">
                             <i class="material-icons">info_outline</i>
                           </div>
-                          <p class="card-category">Fixed Issues</p>
+                          <p class="card-category">Systems</p>
                           <h3 class="card-title">75</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">local_offer</i> Tracked from Github
+                            <i class="material-icons">local_offer</i> Working
+                            <i class="material-icons float-right">local_offer</i> Fault
                           </div>
                         </div>
                       </div>
@@ -75,7 +77,7 @@
                           <div class="card-icon">
                             <i class="fa fa-twitter"></i>
                           </div>
-                          <p class="card-category">Followers</p>
+                          <p class="card-category">Compalints</p>
                           <h3 class="card-title">+245</h3>
                         </div>
                         <div class="card-footer">
