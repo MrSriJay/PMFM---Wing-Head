@@ -21,7 +21,6 @@
           {{ session('status') }}
           </div>
           @endif
-          
           <div>
             @if(count($project)>0)
               @foreach ($project as $data)
@@ -30,16 +29,17 @@
                   <div class="row">
                     <div class="col-md-2 col-sm-2">
                       <img style="width:100%; padding:20px" src="/storage/project_icons/{{$data->project_icon}}" >
-                  </div>  
-
+                    </div>  
                   <div class="card-header"> 
-
+                  <a href="client/clients-complaints/create" class="btn btn-danger" style="margin-left:1100px" data-toggle="" data-target=""><i class="material-icons">error_outline</i><br>View Complaints</a>
+                  
                   <div class="col-md-12 col-sm-12">
                   <h3><a class="card-title text-primary font-weight-bold " href="admin/projects/{{$data->id}}">{{$data->title}}</a></h3>
                   <span class="text-primary" >Developed for {!!Helper::getClientName($data->clientid)!!}</span>
                   <br>
                   <small class="text-dark">Posted on {{$data->created_at}}</small>
                   </div>  
+                  
                 </div>
                   </div>
                   <div style="padding-right:20px; padding-bottom:20px">

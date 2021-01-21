@@ -60,7 +60,7 @@ class Helper
             $output="";    
         foreach($data as $row)
         {
-            $output = $row->organization_name;
+            $output = $row->organization_name;    
         }
 
         return $output;
@@ -110,7 +110,20 @@ class Helper
     
         return $output;
     }
-  
+    
+    public static function getSenderDetails($id){
+        $data =Client::select("organization_name","address","email","contact_no")
+        ->where('id', 'LIKE', "%$id%")
+            ->get();
+
+            $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->organization_name."\n\n".$row->address."\n\n".$row->email."\n\n".$row->contact_no;
+        }
+
+        return $output;
+    }
 
   // Dashboard------------------------
 

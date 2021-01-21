@@ -8,7 +8,7 @@ use App\Models\Projects;
 use App\Models\Wing;
 use App\Models\User;
 use App\Models\Client;
-use App\Helper;
+use App\;
 use Illuminate\Support\Facades\Auth;
 class AutocompleteprojectController extends Controller
 {
