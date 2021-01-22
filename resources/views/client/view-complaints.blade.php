@@ -48,9 +48,18 @@
                     <th scope="row">{{$data->system_name}}</th>
                     <th scope="row">{{$data->fault_type}}</th>
                     <th scope="row">{{$data->created_at}}</th>
-                    <th scope="row">{!!Helper::getWingName($data->wing_name)!!}</th>
-                    <th scope="row">{{$data->urgency_level}}</th>
-                    <th scope="row">{{$data->status}}</th>
+                    <th scope="row">{!!Helper::getWingName($data->wing_id)!!}</th>
+
+                    @if($data->urgency_level=="medium")
+                        <th scope="row"  class="text-warning">Medium</th>
+                    @elseif($data->urgency_level=="high")
+                        <th scope="row"  class="text-danger">High</th>
+                    @elseif($data->urgency_level=="low")
+                        <th scope="row"  class="text-success">Low</th>
+                    @elseif($data->urgency_level=="critical")
+                        <th scope="row"  class="text-danger">Critial</th>
+                    @endif
+                    <th scope="row"  class="text-primary">{!!Helper::getComplaintStatus($data->status)!!}</th>
                     <th scope="row">
                      <a class="btn btn-secondary btn-sm mx-auto " href="client/complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
                     </th>

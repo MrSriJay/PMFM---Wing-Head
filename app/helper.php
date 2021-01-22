@@ -110,7 +110,26 @@ class Helper
     
         return $output;
     }
+
+
+
+    public static function getProjectClientId($id){
+        $data =Projects::select("clientid")
+        ->where('id',$id)
+            ->get();    
     
+        $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->clientid;
+        }
+    
+        return $output;
+    } 
+
+
+    
+
     public static function getSenderDetails($id){
         $data =Client::select("organization_name","address","email","contact_no")
         ->where('id', 'LIKE', "%$id%")
@@ -119,11 +138,31 @@ class Helper
             $output="";    
         foreach($data as $row)
         {
-            $output = $row->organization_name."\n\n".$row->address."\n\n".$row->email."\n\n".$row->contact_no;
+
+            $output = $row->organization_name."<br>".$row->address."<br>".$row->email."<br>".$row->contact_no;
+
         }
 
         return $output;
     }
+
+
+
+    public static function getComplaintStatus($id){
+
+        switch($id){
+
+            case '0': return "Pending Developer"; break;
+            case '1': return "Developer Assigned"; break;
+            case '2': return "Solution Pending"; break;
+            case '3': return "Solved"; break;
+
+        }
+        
+    }
+  
+
+
 
   // Dashboard------------------------
 

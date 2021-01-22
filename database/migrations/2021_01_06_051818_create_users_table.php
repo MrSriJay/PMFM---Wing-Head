@@ -38,7 +38,7 @@ class CreateUsersTable extends Migration
             'email' => 'admin@gmail.com',
             'usertype' => 'admin',
             'wing_name' => 'admin',
-            'password' => '123456789'
+            'password' => '$2y$12$UzPe.jHV.kpT4/KyRcPJ0e4RsESaT/WqwgTqTXuTOilrv7YA6bAZm'
         ]);
     }
 

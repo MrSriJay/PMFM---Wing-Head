@@ -28,6 +28,15 @@ class ComplaintController extends Controller
        return view('admin.add-complaint');
     }
 
+
+    public function show($id)
+    {
+        $complaints = complaints::findOrFail($id);
+        return view('admin.view-complaints-details')->with('complaints', $complaints);
+    }
+
+
+
     public function store(Request $request)
     {
       $validate = \Validator::make($request->all(), [
@@ -60,7 +69,8 @@ class ComplaintController extends Controller
          $complaints->files=$path_name;
          }
       }
-      $complaints->client_id = Auth::user()->user_id;
+
+      $complaints->client_id = Helper::getProjectClientId($request->input('title'));
       $complaints->wing_id = Helper::getWingId($request->input('title'));
       $complaints->project_id = $request->input('title');
       $complaints->fault_type = $request->input('fault_type');

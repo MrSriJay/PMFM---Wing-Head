@@ -71,13 +71,13 @@
                         <div class="form-group">
                           <label for="recipient-name" class="col-form-label text-primary py-2">Urgency Level</label><br>
                           <label class="py-2">Select the urgency level:</label><br>
-                          <input type="radio" id="low" name="urgency" value="Low">
+                          <input type="radio" id="low" name="urgency" value="low">
                           <label for="male">Low</label><br>
-                          <input type="radio" id="medium" name="urgency" value="Medium">
+                          <input type="radio" id="medium" name="urgency" value="medium">
                           <label for="female">Medium</label><br>
-                          <input type="radio" id="high" name="urgency" value="High">
+                          <input type="radio" id="high" name="urgency" value="high">
                           <label for="other">High</label><br>
-                          <input type="radio" id="critical" name="urgency" value="Critical">
+                          <input type="radio" id="critical" name="urgency" value="critical">
                           <label for="other">Critical</label>
                           @error('urgency')
                           <span class="invalid-feedback" role="alert">
