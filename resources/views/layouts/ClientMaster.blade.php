@@ -56,8 +56,8 @@
               <p>Purchased Systems</p>
             </a>
           </li>
-          <li class="{{ Request::is('client/complaints*') ? 'active' : '' }}">
-            <a class="nav-link" href="/client/complaints">
+          <li class="{{ Request::is('client/clients-complaints*') ? 'active' : '' }}">
+            <a class="nav-link" href="/client/clients-complaints">
               <i class="material-icons">library_books</i>
               <p>Complaints</p>
             </a>
