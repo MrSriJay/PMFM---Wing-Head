@@ -23,7 +23,8 @@
 
       <label for="recipient-name" class="col-form-label text-light">Militaray/National ID No</label>
           <h3 class="card-title">
-             <strong>{!!$user->user_id!!}</strong>
+             <strong id="u_id">{!!$user->user_id!!}</strong>
+             <input style="display: none" type="text" name ="user_id" style="font-size: 50px" id ="user_id" class="form-control text-light text-lg"  value="{{ old('department_name',$user->user_id) }}"  placeholder="e.g. Mahela"  required value="">
           </h3> 
       </div>
       <div class="card-body"  >
@@ -35,6 +36,7 @@
        @endif
       {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'users.update', $user->user_id ] ]) }}
       {{ csrf_field() }}
+
           <!--View rank-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Rank</label>
@@ -215,6 +217,8 @@
         document.getElementById("wing_name").disabled = false;
         document.getElementById("update").style.display = "inline";
         document.getElementById("delete").style.display = "inline";
+        document.getElementById("user_id").style.display = "inline";
+        document.getElementById("u_id").style.display = "none";
         document.getElementById("edit").classList.add("btn-danger");
         i.innerHTML="Cancel"
     }
@@ -228,6 +232,7 @@
         document.getElementById("wing_name").disabled = true;
         document.getElementById("update").style.display = "none";
         document.getElementById("delete").style.display = "none";
+        document.getElementById("u_id").style.display = "line";
         document.getElementById("edit").classList.remove("btn-danger");
         document.getElementById("edit").classList.add("btn-primary");
         i.innerHTML="Edit"

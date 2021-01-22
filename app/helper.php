@@ -60,7 +60,7 @@ class Helper
             $output="";    
         foreach($data as $row)
         {
-            $output = $row->organization_name;
+            $output = $row->organization_name;    
         }
 
         return $output;
@@ -112,6 +112,7 @@ class Helper
     }
 
 
+
     public static function getProjectClientId($id){
         $data =Projects::select("clientid")
         ->where('id',$id)
@@ -126,6 +127,9 @@ class Helper
         return $output;
     } 
 
+
+    
+
     public static function getSenderDetails($id){
         $data =Client::select("organization_name","address","email","contact_no")
         ->where('id', 'LIKE', "%$id%")
@@ -134,11 +138,14 @@ class Helper
             $output="";    
         foreach($data as $row)
         {
+
             $output = $row->organization_name."<br>".$row->address."<br>".$row->email."<br>".$row->contact_no;
+
         }
 
         return $output;
     }
+
 
 
     public static function getComplaintStatus($id){
@@ -154,6 +161,8 @@ class Helper
         
     }
   
+
+
 
   // Dashboard------------------------
 
