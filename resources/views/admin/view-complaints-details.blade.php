@@ -29,6 +29,7 @@ Projects - View | PMFM
           {{ csrf_field() }}
             
         <label for="recipient-name" class="col-form-label text-light">System Name:</label>
+            <a href="admin/projects/{{$complaints->project_id}}" class="btn btn-primary float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">preview</i> View Project</a>
             <h3 class="card-title">
                <strong id="o_name">{!!$complaints->system_name!!}</strong>
                <input style="display: none" type="text" name ="system_name" style="font-size: 50px" id ="system_name" class="form-control text-light text-lg"  value="{{ old('system_name',$complaints->system_name) }}"  placeholder="e.g. Mahela"  required value="">
@@ -43,8 +44,8 @@ Projects - View | PMFM
             @endif
 
             @if($complaints->status==0)
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><a href="#" class="alert-link"> Assign </a></strong>
+                <div class="alert alert-light alert-dismissible fade show text-danger" role="alert">
+                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="#" class="alert-link text-danger"> Assign Now </a></strong>
                 </div>
              @elseif($complaints->status==1)
              
@@ -92,6 +93,45 @@ Projects - View | PMFM
 
                 @endif
                 
+            </div>
+
+            <!--Assign Developers-->
+            <div class="form-group"> 
+              <label for="message-text" class="col-form-label text-primary">Assign Developers</label>
+              <br>
+              <div class="row col-lg-12">
+                <div class="col-lg-4 border border-light">
+                    <div class="form-group">
+                        <input type="text" name="country_name" id="country_name" class="form-control input-lg" placeholder="Enter Developer Name" />
+                        <div id="countryList">
+                        </div>
+                        <br>
+                        <a class=" Backspace btn   btn-primary text-light  float-right btn-sm">Assign</a>
+                    </div>
+                </div>
+                <div class="col-lg-8 border border-light">
+                    <table class="table table-responsive" style="width: 100%">
+                      <thead class="thead-dark">
+                        <tr>
+                          <th>Name</th>
+                          <th class="text-muted">Option</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <th>Name</th>
+                          <th><button class="btn btn-danger">Delete</button></th>
+                        </tr>
+                      </tbody>
+                    </table>
+                </div>
+                @error('developers')
+                <span style="color:red">
+                <strong>{{ $message }}</strong>
+                </span>
+                @enderror
+            </div>
+              
             </div>
   
              <!--View Sender Details-->
@@ -229,23 +269,8 @@ Projects - View | PMFM
 @endsection
 
 
- 
 @section('scripts')
 <script>
-
-    $('#deleteModal').on('shown.bs.modal', function () {
-      $('#name').trigger('focus')
-    })
-    
-    $('#updatemodal').on('shown.bs.modal', function () {
-      $('#name').trigger('focus')
-    })
-    
-    
-</script>
-<script>
-
-    
     $(document).ready(function(){
     
      $('#country_name').keyup(function(){ 
@@ -295,5 +320,6 @@ Projects - View | PMFM
 });
     </script>
 
-    <script src="../assets/js/filedrag.js"></script>
+   <script src="../assets/js/filedrag.js"></script>
+
 @endsection 

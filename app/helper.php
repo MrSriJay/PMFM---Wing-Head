@@ -145,10 +145,10 @@ class Helper
 
         switch($id){
 
-            case '0': return "Pending Developer"; break;
+            case '0': return "Developer Not Assigned"; break;
             case '1': return "Developer Assigned"; break;
             case '2': return "Solution Pending"; break;
-            case '3': return "Solved"; break;
+            case '3': return "Complaint Solved"; break;
 
         }
         
