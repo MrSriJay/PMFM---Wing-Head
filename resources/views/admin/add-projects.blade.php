@@ -244,7 +244,7 @@ Add Projects | PMFM
     $('#wing_name').select2({
         placeholder: 'Select System Name',
         ajax: {
-            url: '/wings-search',
+            url: '/dev-admin,
             dataType: 'json',
             delay: 250,
             processResults: function (data) {

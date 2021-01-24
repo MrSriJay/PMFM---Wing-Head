@@ -102,28 +102,20 @@ Projects - View | PMFM
               <div class="row col-lg-12">
                 <div class="col-lg-4 border border-light">
                     <div class="form-group">
-                        <input type="text" name="country_name" id="country_name" class="form-control input-lg" placeholder="Enter Developer Name" />
-                        <div id="countryList">
-                        </div>
-                        <br>
-                        <a class=" Backspace btn   btn-primary text-light  float-right btn-sm">Assign</a>
-                    </div>
+                      <form action="/admin/projects" method="POST" enctype="multipart/form-data">
+                        {{ csrf_field() }}
+                      <select id="dev_name" class="livesearch form-control" name="dev_name"  @error('dev_name') is-invalid @enderror value="{{ old('dev_name') }}" style="width:99%;"  required>
+                      </select>
+                          <br>
+                          <a class=" Backspace btn   btn-primary text-light  float-right btn-sm">Assign</a>
+                      </div>
+                    </form>
                 </div>
-                <div class="col-lg-8 border border-light">
-                    <table class="table table-responsive" style="width: 100%">
-                      <thead class="thead-dark">
-                        <tr>
+                <div class="col-lg-8 border border-primary" style="padding: 20px">
+                        <tr style="width: 100%">
                           <th>Name</th>
-                          <th class="text-muted">Option</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <th>Name</th>
-                          <th><button class="btn btn-danger">Delete</button></th>
-                        </tr>
-                      </tbody>
-                    </table>
+                           <th><button class="btn btn-sm btn-outline-danger float-right">D</button></th>
+                          </tr>
                 </div>
                 @error('developers')
                 <span style="color:red">
@@ -184,59 +176,22 @@ Projects - View | PMFM
 
 <script type="text/javascript">
 
-    $('#developer_name').select2({
-        placeholder: 'Select Developer Name',
-        ajax: {
-            url: '/admin-supervisor-search',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.first_name+" "+item.last_name,
-                            id: item.user_id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    });
-
-
-    $('#client_name').select2({
-        placeholder: 'Select Client Name',
-        ajax: {
-            url: '/client-search',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.organization_name,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    });
-
-    $('#wing_name').select2({
+$('#dev_name').select2({
         placeholder: 'Select System Name',
         ajax: {
-            url: '/wings-search',
+            url: '/com-dev-admin',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
                 return {
                     results: $.map(data, function (item) {
                         return {
-                            text: item.wing_name,
+                           /* text: item.title,
                             id: item.id
+                            */
+                            text: item.first_name+" "+item.last_name,
+                            id: item.user_id
+                            
                         }
                     })
                 };
@@ -245,23 +200,7 @@ Projects - View | PMFM
         }
     });
 
-    
-    var values = [];
 
-    $(function(){
-
-    $('.AddTo').on('click', function() {
-        values.push($('#country_name').val());
-      $('#devops').val( values.join(" \n") );
-      $("#country_name").val("");
-    });
-
-    $('.Backspace').on('click', function(){
-        values.pop();
-        $('#devops').val( values.join(" ") );
-    });
-
-});
     
 
 </script>
@@ -271,31 +210,7 @@ Projects - View | PMFM
 
 @section('scripts')
 <script>
-    $(document).ready(function(){
     
-     $('#country_name').keyup(function(){ 
-            var query = $(this).val();
-            if(query != '')
-            {
-             var _token = $('input[name="_token"]').val();
-             $.ajax({
-              url: '/dev-search',
-              method:"POST",
-              data:{query:query, _token:_token},
-              success:function(data){
-               $('#countryList').fadeIn();  
-                        $('#countryList').html(data);
-              }
-             });
-            }
-        });
-    
-        $(document).on('click', 'li', function(){  
-            $('#country_name').val($(this).text());  
-            $('#countryList').fadeOut();  
-        });  
-    
-    });
 
     $(function(){
   var viewModel = {};

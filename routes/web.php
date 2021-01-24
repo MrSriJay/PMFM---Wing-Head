@@ -110,3 +110,9 @@ Route::get('/supervisor-search', [App\Http\Controllers\client\Autocompleteprojec
 Route::get('/admin-supervisor-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectAdminSearchSupervisor']);
 Route::get('/client-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchClients']);
 Route::post('/dev-search', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchDevelopers']);
+Route::post('/dev-search-admin', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchDevelopersAdmin']);
+
+Route::get('/com-dev-admin', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchDevAdmin']);
+Route::get('/com-dev', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchDev']);
+
+
