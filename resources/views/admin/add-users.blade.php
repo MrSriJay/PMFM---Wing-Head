@@ -47,7 +47,7 @@
           <!--Insert rank-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Rank</label>
-              <input type="text" name ="rank" id ="rank"class="form-control @error('rank') is-invalid @enderror" value="{{ old('rank') }}"  placeholder="e.g. Major"  value="">
+              <input type="text" name ="rank" id ="rank"class="form-control @error('rank') is-invalid @enderror" value="{{ old('rank') }}"  placeholder="e.g. Major"  required value="">
               <div class="">
               <br>
                 <label class="form-check-label" for="defaultCheck1">
