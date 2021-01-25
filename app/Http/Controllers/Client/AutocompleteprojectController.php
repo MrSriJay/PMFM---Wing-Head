@@ -8,7 +8,8 @@ use App\Models\Projects;
 use App\Models\Wing;
 use App\Models\User;
 use App\Models\Client;
-use App\;
+use App\Models\Complaint_Developer;
+
 use Illuminate\Support\Facades\Auth;
 class AutocompleteprojectController extends Controller
 {
@@ -256,6 +257,22 @@ class AutocompleteprojectController extends Controller
     }
       return response()->json($data);
      }
+
+     //project search Clients
+    public function selectSearchAssignedDevs(Request $request)
+    {
+    	$data = [];
+
+        if($request->has('q')){
+            $search = $request->q;
+            $data =Complaint_Developer::select("developer_id", "complaint_developers")
+                ->where('title', 'LIKE', "%$search%")
+                ->where('clientid',Auth::user()->user_id)
+            		->get();
+        }
+        return response()->json($data);
+
+    }
 
     
   

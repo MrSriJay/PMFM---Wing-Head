@@ -13,6 +13,8 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Complaints;
 use App\helper;
+use App\Models\Complaint_Developer;
+use App\Models\Message;
 
 class ComplaintController extends Controller
 {
@@ -20,6 +22,7 @@ class ComplaintController extends Controller
     public function index()
     {
        $complaints = Complaints::all();
+     
        return view('admin.view-complaints')->with('complaints',$complaints);
     }
 
@@ -31,8 +34,10 @@ class ComplaintController extends Controller
 
     public function show($id)
     {
+        $message = Message::where('complaint_id',$id)->get();
+        $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
         $complaints = complaints::findOrFail($id);
-        return view('admin.view-complaints-details')->with('complaints', $complaints);
+        return view('admin.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
     }
 
 
@@ -86,10 +91,5 @@ class ComplaintController extends Controller
       return redirect('admin/complaints')->with('status','Complaint Submitted Successfully!');
    }
    
-   public function show($id){
-
-      $complaints = Complaints::findOrFail($id);
-      return view('admin.view-complaint-details')->with('complaints', $complaints);
-  }
-
+ 
 }
