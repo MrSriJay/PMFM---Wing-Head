@@ -24,7 +24,10 @@ Projects - View | PMFM
         <div class="card-header card-header-primary"> 
 
         <label for="recipient-name" class="col-form-label text-light">System Name:</label>
+
             <a href="winghead/wings-projects/{{$complaints->project_id}}" class="btn btn-primary float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">preview</i> View Project</a>
+
+
             <h3 class="card-title">
                <strong id="o_name">{!!$complaints->system_name!!}</strong>
                <input style="display: none" type="text" name ="system_name" style="font-size: 50px" id ="system_name" class="form-control text-light text-lg"  value="{{ old('system_name',$complaints->system_name) }}"  placeholder="e.g. Mahela"  required value="">
@@ -210,7 +213,9 @@ Projects - View | PMFM
             <div class="card border-success  col-lg-12" >
                 <div class="card-header">Client Details</div>
                 <div class="card-body text-primary">
+
                     <p class="card-text">{!!(Helper::getSenderDetails($complaints->client_id))!!}</p>
+
                 </div>
             </div>
 

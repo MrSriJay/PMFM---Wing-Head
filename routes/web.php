@@ -36,7 +36,9 @@ Route::resource('admin/projects', App\Http\Controllers\admin\ProjectController::
 Route::resource('admin/clients', App\Http\Controllers\admin\ClientController::class);
 Route::resource('admin/complaints', App\Http\Controllers\admin\ComplaintController::class);
 
+
 Route::get('admin/projects-history/{id}', [App\Http\Controllers\admin\ProjectController::class, 'showCompalintHistory']);
+
 
 
 });
