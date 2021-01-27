@@ -53,7 +53,7 @@
           <li class="{{ Request::is('client/purchased-systems*') ? 'active' : '' }}">
             <a class="nav-link" href="/client/purchased-systems">
               <i class="material-icons">content_paste</i>
-              <p>Purchased Systems</p>
+              <p>Systems</p>
             </a>
           </li>
           <li class="{{ Request::is('client/clients-complaints*') ? 'active' : '' }}">
@@ -279,6 +279,8 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/core-js/2.4.1/core.js"></script>
   <!-- Library for adding dinamically elements -->
   <script src="../assets/js/plugins/arrive.min.js"></script>
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+
   <!--  Google Maps Plugin    -->
   <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
   <!-- Chartist JS -->

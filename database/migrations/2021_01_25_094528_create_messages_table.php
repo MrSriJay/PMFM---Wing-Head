@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComplaintDeveloperTable extends Migration
+class CreateMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,19 +13,17 @@ class CreateComplaintDeveloperTable extends Migration
      */
     public function up()
     {
-        Schema::create('complaint_developer', function (Blueprint $table) {
-            $table->bigInteger('complaint_id');
-            $table->string('developer_id');
-            $table->primary(['complaint_id', 'developer_id']);
-            $table->string('assigned_by');
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id();
+            $table->longText('message');
+            $table->string('sender');
+            $table->string('receiver');
+            $table->string('complaint_id');
             $table->timestamps();
-           
-
+            
         });
-
-
-
     }
+
     /**
      * Reverse the migrations.
      *
@@ -33,6 +31,6 @@ class CreateComplaintDeveloperTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('complaint_developer');
+        Schema::dropIfExists('messages');
     }
 }

@@ -8,12 +8,14 @@ use App\Models\Complaints;
 use Illuminate\Support\Facades\Auth;
 use App\helper;
 use App\Models\Projects;
+use App\Models\Complaint_Developer;
+use App\Models\Message;
 
 class UserComplaintController extends Controller
 {
     public function index()
     {
-       $complaints = Complaints::where('wing_id',Auth::user()->wing_name)->get();
+       $complaints = Complaints::where('wing_id',Auth::user()->wing_name)->orderBy('updated_at', 'DESC')->get();
        return view('winghead.view-complaints')->with('complaints',$complaints);
     }
     public function create()
@@ -67,5 +69,13 @@ class UserComplaintController extends Controller
       $project->save();
 
       return redirect('winghead/wings-complaints')->with('status','Complaint Submitted Successfully!');
+   }
+
+   public function show($id)
+   {
+       $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
+       $message = Message::where('complaint_id',$id)->get();
+       $complaints = complaints::findOrFail($id);
+       return view('winghead.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
    }
 }

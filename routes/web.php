@@ -35,6 +35,10 @@ Route::resource('admin/wings', App\Http\Controllers\admin\WingsController::class
 Route::resource('admin/projects', App\Http\Controllers\admin\ProjectController::class);
 Route::resource('admin/clients', App\Http\Controllers\admin\ClientController::class);
 Route::resource('admin/complaints', App\Http\Controllers\admin\ComplaintController::class);
+
+Route::get('admin/projects-history/{id}', [App\Http\Controllers\admin\ProjectController::class, 'showCompalintHistory']);
+
+
 });
 
 /*--------------------------------------------------------------------------------------------------------*/ 
@@ -50,26 +54,8 @@ Route::resource('winghead/wings-projects', App\Http\Controllers\Winghead\Project
 Route::resource('winghead/wings-users', App\Http\Controllers\Winghead\UserController::class);
 Route::resource('winghead/wings-complaints', App\Http\Controllers\Winghead\UserComplaintController::class);
 
+Route::get('winghead/wings-projects-history/{id}', [App\Http\Controllers\Winghead\ProjectController::class, 'showCompalintHistory']);
 
-/*
-Route::get('/files/{id}', [App\Http\Controllers\Winghead\ProjectController::class, 'ViewFiles']);
-Route::get('/file-download/{file}', [App\Http\Controllers\Winghead\ProjectController::class, 'DownloadFiles']);
-
-Route::get('/project-register', [App\Http\Controllers\Winghead\ProjectController::class, 'ViewProjects']);
-Route::get('/project-form', [App\Http\Controllers\Winghead\ProjectController::class, 'create']);
-Route::post('/project-register-save', [App\Http\Controllers\Winghead\ProjectController::class,'store']);
-Route::get('/project-register-view/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'ViewProjectDetails']);
-Route::get('/project-register-edit/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'edit']);
-Route::put('/project-register-update/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'update']);
-Route::delete('/project-register-delete/{id}', [App\Http\Controllers\Winghead\ProjectController::class,'delete']);
-
-Route::get('/complaint-register', [App\Http\Controllers\Winghead\ComplaintController::class,'index']);
-Route::get('/project-form', [App\Http\Controllers\Winghead\ProjectController::class, 'create']);
-Route::post('/complaint-register-save', [App\Http\Controllers\Winghead\ComplaintController::class,'store']);
-Route::get('/complaint-register-edit/{id}', [App\Http\Controllers\Winghead\ComplaintController::class,'edit']);
-Route::put('/complaint-register-update/{id}', [App\Http\Controllers\Winghead\ComplaintController::class,'update']);
-Route::delete('/complaint-register-delete/{id}', [App\Http\Controllers\Winghead\ComplaintController::class,'delete']);
-*/
 });
 
 /*--------------------------------------------------------------------------------------------------------*/ 
@@ -92,8 +78,8 @@ Route::group(['middleware' => ['auth','developer']],function() {
 
     Route::get('/developer', function () { return view('developer.dashboard');
     });
-    Route::resource('develoiper/developer-projects', App\Http\Controllers\Developer\ProjectController::class);
-    Route::resource('developer/developer-complaints', App\Http\Controllers\Developer\UserController::class);
+   // Route::resource('develoiper/developer-projects', App\Http\Controllers\Developer\ProjectController::class);
+ //   Route::resource('developer/developer-complaints', App\Http\Controllers\Developer\UserController::class);
     
 
 });
@@ -116,3 +102,11 @@ Route::get('/com-dev-admin', [App\Http\Controllers\client\AutocompleteprojectCon
 Route::get('/com-dev', [App\Http\Controllers\client\AutocompleteprojectController::class, 'selectSearchDev']);
 
 
+/*--------------------------------------------------------------------------------------------------------*/ 
+                                            //Asign Developers//
+/*--------------------------------------------------------------------------------------------------------*/
+
+Route::post('/add-developer', [App\Http\Controllers\AssignDeveloperController::class, 'addDeveloper']);
+Route::post('/delete-developer', [App\Http\Controllers\AssignDeveloperController::class, 'deleteDeveloper']);
+
+Route::post('/send-messages', [App\Http\Controllers\AssignDeveloperController::class, 'addFeedback']);

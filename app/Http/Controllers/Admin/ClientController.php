@@ -12,7 +12,7 @@ class ClientController extends Controller
 {
     public function index()
     {
-        $clients = Client::all();
+        $clients = Client::orderBy('updated_at', 'DESC')->get();
         return view('admin.view-clients')->with('clients',$clients);
     }
 

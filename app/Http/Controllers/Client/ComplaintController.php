@@ -19,7 +19,7 @@ class ComplaintController extends Controller
 
     public function index()
     {
-       $complaints = Complaints::where('client_id',Auth::user()->user_id)->get();
+       $complaints = Complaints::where('client_id',Auth::user()->user_id)->orderBy('updated_at', 'DESC')->get();
        return view('client.view-complaints')->with('complaints',$complaints);
     }
 

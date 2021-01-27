@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Winghead;
 
 use App\Models\Projects;
+use App\Models\Complaints;
 use League\Flysystem\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $project = Projects::where('wingid',Auth::user()->wing_name)->get();
+        $project = Projects::where('wingid',Auth::user()->wing_name)->orderBy('updated_at', 'DESC')->get();
         return view('winghead.view-projects')->with('project', $project);
     }
 
@@ -42,7 +43,7 @@ class ProjectController extends Controller
             'wing_name' => ['required', 'string', 'max:255'],
             'clientid' => ['required', 'string', 'max:255'],
             'developers' => ['required', 'string', 'max:255'],
-            'enddate' => 'required',
+            'enddate' => 'required',  
         ]);
 
         if( $validate->fails()){
@@ -177,6 +178,13 @@ class ProjectController extends Controller
             ->with('status','Project Details Updated Successfully!');
 
     }
+
+    public function showCompalintHistory($id)
+    {
+        $complaints = complaints::where('project_id',$id)->orderBy('updated_at', 'DESC')->get();
+        $proid= $id;
+        return view('winghead.view-complaint-history')->with('complaints', $complaints)->with('proid', $proid);
+    }  
     
 
 }

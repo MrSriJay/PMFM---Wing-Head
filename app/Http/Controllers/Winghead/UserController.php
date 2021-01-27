@@ -14,7 +14,7 @@ class UserController extends Controller
 {
     public function index()
     {
-        $users = User::where('wing_name',Auth::user()->wing_name)->get();
+        $users = User::where('wing_name',Auth::user()->wing_name)->orderBy('updated_at', 'DESC')->get();
         return view('winghead.view-users')->with('users',$users);
     }
     public function create()

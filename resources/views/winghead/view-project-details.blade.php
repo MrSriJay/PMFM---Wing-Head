@@ -211,6 +211,8 @@ Projects - View | PMFM
                             </button>
                         </div> 
 
+                        <hr>
+                        <a href="winghead/wings-projects-history/{{$project->id}}" class="text-primary"><b><span class="material-icons">history</span> View Complaint History</b></a>
                 </div>
             </div>
 

@@ -20,4 +20,11 @@ class PurchasedSystemsController extends Controller
        $project =  Projects::where('clientid',Auth::user()->user_id)->get();
        return view('client.purchased-systems')->with('project',$project);
     }
+
+    public function show($id)
+    {
+        $project = Projects::findOrFail($id);
+        return view('client.view-systems')->with('project', $project);
+    }
+
 }
