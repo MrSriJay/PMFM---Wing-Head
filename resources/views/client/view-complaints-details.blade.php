@@ -1,4 +1,4 @@
-@extends('layouts.WingheadMaster')
+@extends('layouts.ClientMaster')
 
 
 @section('title')
@@ -24,10 +24,6 @@ Projects - View | PMFM
         <div class="card-header card-header-primary"> 
 
         <label for="recipient-name" class="col-form-label text-light">System Name:</label>
-
-            <a href="winghead/wings-projects/{{$complaints->project_id}}" class="btn btn-primary float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">preview</i> View Project</a>
-
-
             <h3 class="card-title">
                <strong id="o_name">{!!$complaints->system_name!!}</strong>
                <input style="display: none" type="text" name ="system_name" style="font-size: 50px" id ="system_name" class="form-control text-light text-lg"  value="{{ old('system_name',$complaints->system_name) }}"  placeholder="e.g. Mahela"  required value="">
@@ -43,7 +39,7 @@ Projects - View | PMFM
 
             @if($complaints->status==0)
                 <div class="alert alert-light alert-dismissible fade show text-danger" role="alert">
-                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="winghead/wings-complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
+                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="admin/complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
                 </div>
              @elseif($complaints->status==1)
              
@@ -53,10 +49,10 @@ Projects - View | PMFM
             <div class="form-group"> 
               <label for="message-text" class="col-form-label text-primary">Complaint Description:</label>
               <br>
-              <span id="dec0">{!!$complaints->description!!}</span>
-              
-          </div>
-          <hr>
+              <span id="dec0" >{!!$complaints->description!!}</span>
+            </div>
+
+             <hr>
               <!--View Complaint Files-->
               <div class="form-group py-4">
                   <label for="message-text" class="col-form-label text-primary">Complaint File(s):</label>
@@ -98,49 +94,15 @@ Projects - View | PMFM
               <label for="message-text" class="col-form-label text-primary">Assign Developers</label>
               <br>
               <div class="row col-lg-12 border-secondary">
-                <div class="col-lg-4 border border-light">
-                    <div class="form-group">
-                      <form action="/add-developer" method="POST" enctype="multipart/form-data">
-                        {{ csrf_field() }}
-                        <input type="hidden" value="{!!$complaints->id!!}" name="compId">
-                        <select id="dev_name" class="livesearch form-control" name="dev_name"  @error('dev_name') is-invalid @enderror value="{{ old('dev_name') }}" style="width:99%;"  required>
-                        </select>
-                        <br><br>
-                        <input class="Backspace btn  btn-primary text-light btn-sm" type="submit" style="width:100%" value="Assign">
-                      </div>
-                      </form>
-                    @if (session('devstatus'))
-                      <label class="text-success">
-                        {{ session('devstatus') }}
-                      </label>
-                    @endif
-
-                    @if (session('error'))
-                      <label class="text-danger">
-                        {{ session('error') }}
-                      </label>
-                    @endif
-
-
-                </div>
+                
                 <div class="col-lg-8 border border-light" style="padding: 20px">
                         @if(count($complaint_developer)>0)
                         @foreach ($complaint_developer as $data)
                           <div class="row bg-muted">
-                              <div class="col-lg-10">
-                                <a href="winghead/wings-users/{{$data->developer_id}}">{!!Helper::getName($data->developer_id)!!}</a>
+                              <div class="col-lg-12">
+                                {!!Helper::getName($data->developer_id)!!}
                                 <small style=" display:block ;margin-top:-10px; color:#bfbfbf" ><i>Assigned by {!!Helper::getName($data->assigned_by)!!} on {!!$data->created_at!!} </i></small>
                               </div>
-                              <div class="col-lg-2">
-                                <form action="/delete-developer" method="POST" enctype="multipart/form-data">
-                                  {{ csrf_field() }}
-                                  <input type="hidden" value="{!!$data->complaint_id!!}" name="comp_id">
-                                  <input type="hidden" value="{!!$data->developer_id!!}" name="dev_id">
-                                  <button class="btn text-danger btn-secondary float-right"><i class="material-icons">delete</i></button>
-                                </form>
-                              </div>
-                            
-
                           </div> 
                         @endforeach
                         @else 
@@ -153,11 +115,11 @@ Projects - View | PMFM
                 </span>
                 @enderror
             </div>
+              
             </div>
-            <br>
-            
-            <!--Feedbacks -->
-            <div class="form-group"> 
+
+             <!--Feedbacks -->
+             <div class="form-group"> 
               <div class="row col-lg-12 border" style="margin: 5px; padding:10px">
                 <br>
                 <div class="col-lg-4 border">
@@ -167,7 +129,7 @@ Projects - View | PMFM
                     <div class="text-primary"> <span class="material-icons">feedback</span> Feedbacks</div>
                     <br>
                     <label for="">Message</label>
-                    <textarea class="form-control" placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
+                    <textarea class="form-control"  placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
                     <br>
                     <label for="">To</label>
 
@@ -184,6 +146,7 @@ Projects - View | PMFM
                     <div class="form-group">
                       <input class="Backspace btn  btn-success text-light btn-sm" type="submit" style="width:100%" value="Send">
                     </div>
+                   
                   </form>
                 </div>
                 <div class="col-lg-8 border">
@@ -207,19 +170,6 @@ Projects - View | PMFM
                 </div>
               </div>
             </div>
-  
-             <!--View Sender Details-->
-
-            <div class="card border-success  col-lg-12" >
-                <div class="card-header">Client Details</div>
-                <div class="card-body text-primary">
-
-                    <p class="card-text">{!!(Helper::getSenderDetails($complaints->client_id))!!}</p>
-
-                </div>
-            </div>
-
-      
         </div> 
       </div>
     </div>
@@ -231,13 +181,16 @@ Projects - View | PMFM
 $('#dev_name').select2({
         placeholder: 'Select Developer Name',
         ajax: {
-            url: '/com-dev',
+            url: '/com-dev-admin',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
                 return {
                     results: $.map(data, function (item) {
                         return {
+                           /* text: item.title,
+                            id: item.id
+                            */
                             text: item.first_name+" "+item.last_name,
                             id: item.user_id
                             

@@ -18,6 +18,7 @@ class CreateComplaintDevelopersTable extends Migration
             $table->string('developer_id');
             $table->primary(['complaint_id', 'developer_id']);
             $table->string('assigned_by');
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }

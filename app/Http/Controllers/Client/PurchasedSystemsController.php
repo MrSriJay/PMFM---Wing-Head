@@ -4,6 +4,7 @@ namespace App\Http\Controllers\client;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Models\Complaints;
 use App\Models\Projects;
 use League\Flysystem\File;
 use Illuminate\Support\Facades\Session;
@@ -24,7 +25,8 @@ class PurchasedSystemsController extends Controller
     public function show($id)
     {
         $project = Projects::findOrFail($id);
-        return view('client.view-systems')->with('project', $project);
+        $complaints = complaints::where('project_id',$id)->orderBy('updated_at', 'DESC')->get();
+        return view('client.view-systems')->with('project', $project)->with('complaints', $complaints);
     }
 
 }

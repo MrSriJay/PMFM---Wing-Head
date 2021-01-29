@@ -66,7 +66,7 @@ Projects - View | PMFM
                           <samp>{!! basename($file)!!}<br></samp>   
                       </div>
                       <div class="col-lg-3"> 
-                          <a id="downbtn"  name="downbtn" style="margin-right:20px" class="btn btn-success float-right" href="/storage/{{$complaints->files}}/{!! basename($file)!!}"  target="_blank">Open  <span class="material-icons">import_contacts</span></a>
+                          <a id="downbtn"  name="downbtn" style="margin-right:20px" class="btn btn-success float-right" href="/storage/{{$complaints->files}}/{!! basename($file)!!}"  target="_blank"><span class="material-icons">import_contacts</span></a>
                       </div>
                   </div>
                   @endforeach                   

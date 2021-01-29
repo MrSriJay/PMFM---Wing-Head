@@ -55,7 +55,7 @@
           <li class="{{ Request::is('admin/users*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/users">
               <i class="material-icons">people</i>
-              <p>Users</p>
+              <p>Officers</p>
             </a>
           </li>
           <li class="{{ Request::is('admin/projects*') ? 'active' : '' }}">
@@ -90,7 +90,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
         <div class="navbar-wrapper">
-          <a class="navbar-brand" href="javascript:;"><i class="material-icons">admin_panel_settings</i> Admin View</a>
+          <a class="navbar-brand" href="javascript:;"><i class="material-icons">admin_panel_settings</i> Director General</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
