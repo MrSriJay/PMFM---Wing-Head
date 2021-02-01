@@ -2,27 +2,42 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-
-class Complaint_developer extends Authenticatable
+use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
+class Complaint_developer extends Model
 {
-    use HasFactory, Notifiable;
 
-    public $primaryKey = 'complaint_id,developer_id';
+    public $primaryKey = ['complaint_id', 'developer_id'];
     public $incrementing = false;
-    public $keyType = 'string';
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
-     */
-    protected $fillable = [
-        'complaint_id',
-        'developer_id',
-        'assigned_by'
-    ];
 
+   /* protected function setKeysForSaveQuery(Builder $query)
+    {
+        $keys = $this->getKeyName();
+        if(!is_array($keys)){
+            return parent::setKeysForSaveQuery($query);
+        }
+    
+        foreach($keys as $keyName){
+            $query->where($keyName, '=', $this->getKeyForSaveQuery($keyName));
+        }
+    
+        return $query;
+    }
+
+    protected function getKeyForSaveQuery($keyName = null)
+    {
+        if(is_null($keyName)){
+            $keyName = $this->getKeyName();
+        }
+    
+        if (isset($this->original[$keyName])) {
+            return $this->original[$keyName];
+        }
+    
+        return $this->getAttribute($keyName);
+    }*/
+
+    
 }

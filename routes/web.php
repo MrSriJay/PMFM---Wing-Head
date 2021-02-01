@@ -82,7 +82,8 @@ Route::group(['middleware' => ['auth','developer']],function() {
     });
    // Route::resource('develoiper/developer-projects', App\Http\Controllers\Developer\ProjectController::class);
     Route::resource('developer/developer-complaints', App\Http\Controllers\Developer\ComplaintController::class);
-    
+    Route::post('developer/developer-complaint-seen',[App\Http\Controllers\Developer\ComplaintController::class, 'seenComplaint']);
+
 
 });
 /*--------------------------------------------------------------------------------------------------------*/ 

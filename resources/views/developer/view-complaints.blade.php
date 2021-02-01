@@ -4,6 +4,12 @@
     Complaints | CRD
 @endsection
 
+@section('styles')
+
+ <link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
+    
+@endsection
+
 @section('content')
     
   
@@ -28,15 +34,14 @@
                   <th scope="col">Date Subitted</th>
                   <th scope="col">Wing Name</th>
                   <th scope="col">Type of Fault</th>
-                  <th scope="col">Urgency Level</th>
-                  <th scope="col">Complaint Status</th>
+                  <th scope="col">Urgency Level</th>  
                   <th scope="col"></th>
                   </tr>
               </thead>
               <tbody>
               @if(count($complaints)>0)
                 @foreach ($complaints as $data)
-                  <tr>
+                  <tr @if($data->status == 1) class="table-primary" @endif>
                     <th scope="row">{{$data->system_name}}</th>
                     <th scope="row">{{$data->created_at}}</th>
                     <th scope="row">{!!Helper::getWingName($data->wing_id)!!}</th>
@@ -49,20 +54,19 @@
                         <th scope="row"  class="text-success">Low</th>
                     @elseif($data->urgency_level=="critical")
                         <th scope="row"  class="text-danger">Critial</th>
-                    @endif
-
-                    <th scope="row"  class="text-primary" >{!!Helper::getComplaintStatus($data->status)!!}</th>
-                    
-                    <th scope="row">
-                      @foreach ($Complaint_Developer as $data2)
-                        @if($data2->complaint_id == $data->id )
-                          @if($data2->status == 0 )
-                           <a class="btn btn-secondary btn-sm mx-auto " href="winghead/wings-complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
-                          @else 
-                            <a class="btn btn-danger btn-sm mx-auto " href="winghead/wings-complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
-                          @endif
+                    @endif                    
+                    <th scope="row">    
+                        @if($data->status == 1)
+                        <form action="/developer/developer-complaint-seen" method="POST" enctype="multipart/form-data">
+                          {{ csrf_field() }}
+                          <input type="hidden" name="comp_id" value="{{$data->complaint_id}}">
+                          <input type="hidden" name="dev_name" value="{{$data->developer_id}}">
+                          <Button class="btn btn-primary btn-sm mx-auto" style="width:100%">View</Button>
+                        </form>
+                        @else 
+                          <a class="btn btn-outline-primary btn-sm mx-auto " href="developer/developer-complaints/{{$data->complaint_id}}" style="width:100%">View</a>
                         @endif
-                      @endforeach
+                   
                     </th>
 
                   </tr>
@@ -80,4 +84,23 @@
   </div>
 </div>
     
+@endsection
+@section('scripts')
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+
+  <script>
+    $(document).ready(function() {
+        $('#tablewings').DataTable({
+    
+        });
+    
+    } );
+    
+    $('#addWingModal').on('shown.bs.modal', function () {
+      $('#name').trigger('focus')
+    })
+    
+    </script>
 @endsection

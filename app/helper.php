@@ -165,8 +165,9 @@ class Helper
 
             case '0': return "Developer(s) Not Assigned"; break;
             case '1': return "Developer(s) Assigned"; break;
-            case '2': return "Solution Pending"; break;
-            case '3': return "Complaint Solved"; break;
+            case '2': return "Seen By Developer"; break;
+            case '3': return "Solution Pending"; break;
+            case '4': return "Complaint Solved"; break;
 
         }
         

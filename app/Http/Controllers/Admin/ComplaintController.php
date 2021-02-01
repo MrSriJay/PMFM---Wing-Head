@@ -23,9 +23,8 @@ class ComplaintController extends Controller
     {
 
        $complaints = Complaints::orderBy('updated_at', 'DESC')->get();
-
-     
        return view('admin.view-complaints')->with('complaints',$complaints);
+       
     }
 
     public function create()

@@ -36,8 +36,6 @@ class AssignDeveloperController extends Controller
             ->with('error', 'Developer already assigned');
         }
     
-        
-    
     }
     
     public function deleteDeveloper(Request $request){
