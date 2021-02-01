@@ -84,8 +84,8 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Dashboard</p>
             </a>
           </li>
-          <li class="{{ Request::is('developer/complaints*') ? 'active' : '' }}">
-            <a class="nav-link" href="/developer/complaints">
+          <li class="{{ Request::is('developer/developer-complaints*') ? 'active' : '' }}">
+            <a class="nav-link" href="developer/developer-complaints">
               <i class="material-icons">report_problem</i>
               <p>Complaints</p>
             </a>
@@ -93,13 +93,7 @@ The above copyright notice and this permission notice shall be included in all c
           <li class="{{ Request::is('developer/wings-projects*') ? 'active' : '' }}">
             <a class="nav-link" href="/developer/wings-projects">
               <i class="material-icons">content_paste</i>
-              <p>Assigned Projects</p>
-            </a>
-          </li>
-          <li class="{{ Request::is('developer/wings-users*') ? 'active' : '' }}">
-            <a class="nav-link" href="/developer/wings-users">
-              <i class="material-icons">chat</i>
-              <p>Messages</p>
+              <p>Feedbacks</p>
             </a>
           </li>
         </ul>
@@ -295,6 +289,7 @@ The above copyright notice and this permission notice shall be included in all c
   <!--  Plugin for Sweet Alert -->
   <script src="../assets/js/plugins/sweetalert2.js"></script>
   <!-- Forms Validations Plugin -->
+  <script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
   <script src="../assets/js/plugins/jquery.validate.min.js"></script>
   <!-- Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
   <script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>

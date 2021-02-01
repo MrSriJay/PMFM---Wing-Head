@@ -35,13 +35,14 @@ Add Projects | PMFM
                         <!--Insert Project Title-->
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Project Title</label>
-                            <input type="text" name ="title" id ="title" class="form-control"  @error('title') is-invalid @enderror  required value="{{ old('title') }}">
+                            <input type="text" name ="title" id ="title" class="form-control @error('title') is-invalid @enderror"    required value="{{ old('title') }}">
                             @error('title')
                             <span style="color:red">
                             <strong>{{ $message }}</strong>
                             </span>
                             @enderror
                         </div>
+
                          <!--Insert Project Icon-->
                          <div class="py-4">
                             <label for="recipient-name" class="col-form-label text-primary py-3">Project Icon</label>
@@ -71,7 +72,7 @@ Add Projects | PMFM
                         <!--Insert Description-->
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Description</label>
-                            <textarea class="form-control" id="summary-ckeditor"  @error('summary-cheditor') is-invalid @enderror  name="summary-ckeditor" required rows="6" cols="5">{{ old('summary-cheditor') }}</textarea>
+                            <textarea class="form-control  @error('summary-cheditor') is-invalid @enderror " id="summary-ckeditor"  name="summary-ckeditor" required rows="6" cols="5">{{ old('summary-cheditor') }}</textarea>
                             @error('summary-ckeditor')
                             <span style="color:red">
                             <strong>{{ $message }}</strong>
@@ -103,7 +104,7 @@ Add Projects | PMFM
                                     </div>
                                 </div>
                                 <div class="col-lg-8 border border-light">
-                                    <textarea type="text" required style="display :block; margin: 10px; width:100%; height:100%; border:0px; font-size:14px" rows="4" id="devops" name="developers"  readonly placeholder="No Assigned Developers">{{ old('developers') }}</textarea>
+                                    <textarea type="text" class=" @error('developers') is-invalid @enderror " required style="display :block; margin: 10px; width:100%; height:100%; border:0px; font-size:14px" rows="4" id="devops" name="developers"  readonly placeholder="No Assigned Developers">{{ old('developers') }}</textarea>
                                 </div>
                                 @error('developers')
                                 <span style="color:red">
@@ -119,7 +120,7 @@ Add Projects | PMFM
                         <!--Insert Clients-->
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Client</label>
-                            <select id="client_name" class="livesearch form-control" name="clientid"  @error('clientid') is-invalid @enderror value="{{ old('clientid') }}" style="width:99%;"  required></select>
+                            <select id="client_name" class="livesearch form-control  @error('clientid') is-invalid @enderror " name="clientid" value="{{ old('clientid') }}" style="width:99%;"  required></select>
                             <div class="alert alert-danger"   id="required_meesage" style="display:none" role="alert">
                               Please Select Client Name 
                             </div>
@@ -133,7 +134,7 @@ Add Projects | PMFM
                         <!--Insert wing-->
                         <div class="form-group  py-4">
                             <label for="message-text" class="col-form-label text-primary">Wing</label>
-                            <select id="wing_name" class="livesearch form-control" name="wing_name"  @error('wing_name') is-invalid @enderror value="{{ old('wing_name') }}" style="width:99%;"  required>
+                            <select id="wing_name" class="livesearch form-control @error('wing_name') is-invalid @enderror " name="wing_name"  value="{{ old('wing_name') }}" style="width:99%;"  required>
                                 <option value="{!!Auth::user()->wing_name!!}" selected >{!!Helper::getWingName( Auth::user()->wing_name) !!}</option>
                             </select>
                             <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
@@ -150,7 +151,7 @@ Add Projects | PMFM
                         <!--Insert Start Date-->
                         <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
                             <label for="recipient-name" class="col-form-label text-primary">Project Start Date</label>
-                            <input type="date" name="startdate" value="{{ old('startdate') }}"  @error('startdate') is-invalid @enderror  class="form-control" required placeholder="Select date" id="startdate">
+                            <input type="date" name="startdate" value="{{ old('startdate') }}"    class="form-control @error('startdate') is-invalid @enderror" required placeholder="Select date" id="startdate">
                             @error('startdate')
                             <span style="color:red">
                               <strong>{{ $message }}</strong>
@@ -161,7 +162,7 @@ Add Projects | PMFM
                         <!--Insert End Date-->
                         <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
                             <label for="recipient-name" class="col-form-label text-primary">Proejct Delivered Date</label>
-                            <input type="date" name="enddate" value="{{ old('enddate') }}"  @error('enddate') is-invalid @enderror class="form-control" required placeholder="Select date" id="date">
+                            <input type="date" name="enddate" value="{{ old('enddate') }}"  class="form-control  @error('enddate') is-invalid @enderror" required placeholder="Select date" id="date">
                             @error('enddate')
                             <span style="color:red">
                               <strong>{{ $message }}</strong>

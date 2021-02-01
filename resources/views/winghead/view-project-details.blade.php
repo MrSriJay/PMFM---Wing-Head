@@ -40,7 +40,7 @@ Projects - View | PMFM
                 @endif
                 @if($project->status==1)
                 <div class="alert alert-success alert-dismissible fade show" role="alert">
-                    <strong>System in good health !</strong>
+                    <strong>System is in good health !</strong>
                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -211,6 +211,8 @@ Projects - View | PMFM
                             </button>
                         </div> 
 
+                        <hr>
+                        <a href="winghead/wings-projects-history/{{$project->id}}" class="text-primary"><b><span class="material-icons">history</span> View Complaint History</b></a>
                 </div>
             </div>
 

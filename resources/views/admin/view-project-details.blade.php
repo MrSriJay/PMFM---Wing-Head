@@ -40,7 +40,7 @@ Projects - View | PMFM
                 @endif
                   @if($project->status==1)
                   <div class="alert alert-success alert-dismissible fade show" role="alert">
-                      <strong>System in good health !</strong>
+                      <strong>System is in good health !</strong>
                       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                       </button>
@@ -51,6 +51,11 @@ Projects - View | PMFM
                     </div>
                 @endif
                 <div class="col-md-12">
+                        
+                        <!--View Project Icon-->
+                        <div class="form-group float-right">                
+                        </div>
+
                          <!--View Description-->
                         <div class="form-group"> 
                             <label for="message-text" class="col-form-label text-primary">Project Description</label>
@@ -66,6 +71,7 @@ Projects - View | PMFM
                             </span>
                             @enderror
                         </div>
+                       
                          <!--View supervisor-->
                         <div class="form-group">
                             <label for="message-text" class="col-form-label text-primary">Project Supervisor</label>
@@ -178,8 +184,7 @@ Projects - View | PMFM
                                     <samp>{!! basename($file)!!}<br></samp>   
                                 </div>
                                 <div class="col-lg-3"> 
-                                    <a id="downbtn"  name="downbtn" class="btn btn-success float-right" href="/storage/{{$project->files}}/{!! basename($file)!!}"  target="_blank"> <span class="material-icons">save_alt</span> Download</a>
-                                    <a id="imgdel" name="imgdel" class="btn btn-secondary float-right text-danger" style="display: none;" > <span class="material-icons">delete</span></a>
+                                    <a id="downbtn"  name="downbtn" class="btn btn-success float-right" style="margin-right:10px;padding:10px;border-radius:80%" href="/storage/{{$project->files}}/{!! basename($file)!!}"  target="_blank"> <span class="material-icons">save_alt</span></a>
                                 </div>
                             </div>
                             @endforeach                   
@@ -211,6 +216,10 @@ Projects - View | PMFM
                             <span class="material-icons">update</span> Update
                             </button>
                         </div> 
+
+                        <hr>
+                        <a href="admin/projects-history/{{$project->id}}" class="text-primary"><b><span class="material-icons">history</span> View Complaint History</b></a>
+
 
                 </div>
             </div>

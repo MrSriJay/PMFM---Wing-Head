@@ -10,8 +10,9 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary"> 
+          <a href="/client/clients-complaints/create" class="btn btn-primary float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add New Complaint</a>
           <h2 class="card-title">Purchased Systems</h2>
-          <p class="card-category">Details of purchased systems</p> 
+          <p class="card-category">Details of Systems</p> 
         </div>
 
         <div class="card-body">
@@ -31,13 +32,24 @@
                     
                    <div class="card-header">
                      <div class="col-md-12 col-sm-12">
-                       <h3><a class="card-title text-primary font-weight-bold " href="admin/projects/{{$data->id}}">{{$data->title}}</a></h3>
-                       <a href="client/complaints/create" class="btn btn-danger float-right" style="margin-left:800px" data-toggle="" data-target=""><i class="material-icons">error_outline</i> <br>Add Complaint</a>
+                       <h3><a class="card-title text-primary font-weight-bold " href="client/purchased-systems/{{$data->id}}">{{$data->title}}</a></h3>
                        <small class="text-dark">Posted on {{$data->created_at}}</small>
                     </div>
                    </div>
                   </div>
+                  <div style="padding-right:20px; padding-bottom:20px">
+                    <div style ="float:right; font-size:20px;">
+                      <span style ="font-size:10px; float: right;." class="text-muted">Status</span>
+                      <br>
+                      @if($data->status==1)
+                        <span class="text-success float-right"><i class="material-icons">check_circle_outline</i></span>
+                      @elseif($data->status==0)
+                        <span class="text-danger float-right"><i class="material-icons">highlight_off</i></span>
+                      @endif
+                    </div>
+                  </div>
                 </div>
+                
               @endforeach
             @else 
               <h3 style="text-align: center">No Projects Found</h3>

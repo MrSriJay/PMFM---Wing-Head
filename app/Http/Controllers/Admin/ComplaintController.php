@@ -13,13 +13,18 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Complaints;
 use App\helper;
+use App\Models\Complaint_Developer;
+use App\Models\Message;
 
 class ComplaintController extends Controller
 {
 
     public function index()
     {
-       $complaints = Complaints::all();
+
+       $complaints = Complaints::orderBy('updated_at', 'DESC')->get();
+
+     
        return view('admin.view-complaints')->with('complaints',$complaints);
     }
 
@@ -27,6 +32,17 @@ class ComplaintController extends Controller
     {
        return view('admin.add-complaint');
     }
+
+
+    public function show($id)
+    {
+        $message = Message::where('complaint_id',$id)->get();
+        $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
+        $complaints = complaints::findOrFail($id);
+        return view('admin.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
+    }
+
+
 
     public function store(Request $request)
     {
@@ -60,7 +76,8 @@ class ComplaintController extends Controller
          $complaints->files=$path_name;
          }
       }
-      $complaints->client_id = Auth::user()->user_id;
+
+      $complaints->client_id = Helper::getProjectClientId($request->input('title'));
       $complaints->wing_id = Helper::getWingId($request->input('title'));
       $complaints->project_id = $request->input('title');
       $complaints->fault_type = $request->input('fault_type');
@@ -75,5 +92,7 @@ class ComplaintController extends Controller
 
       return redirect('admin/complaints')->with('status','Complaint Submitted Successfully!');
    }
+   
 
+ 
 }

@@ -1,4 +1,4 @@
-@extends('layouts.WingheadMaster')
+@extends('layouts.DeveloperMaster')
 
 @section('title')
     Complaints | CRD
@@ -11,9 +11,7 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary"> 
-          <a href="/winghead/wings-complaints/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add Client Complaint</a>
-          <h2 class="card-title">Complaints Reported</h2>
-          <p class="card-category">The Complaint details</p> 
+          <h2 class="card-title">Assigned Complaints</h2>
       </div>
       <div class="card-body">
         
@@ -26,7 +24,6 @@
           <table id="tablewings" class="hover" style="width:100%">
               <thead>
                   <tr>
-                  <th scope="col">Complaint ID</th>
                   <th scope="col">System Name</th>
                   <th scope="col">Date Subitted</th>
                   <th scope="col">Wing Name</th>
@@ -40,12 +37,10 @@
               @if(count($complaints)>0)
                 @foreach ($complaints as $data)
                   <tr>
-                    <th scope="row">{{$data->id}}</th>
                     <th scope="row">{{$data->system_name}}</th>
                     <th scope="row">{{$data->created_at}}</th>
                     <th scope="row">{!!Helper::getWingName($data->wing_id)!!}</th>
                     <th scope="row">{{$data->fault_type}}</th>
-
                     @if($data->urgency_level=="medium")
                         <th scope="row"  class="text-warning">Medium</th>
                     @elseif($data->urgency_level=="high")
@@ -59,7 +54,15 @@
                     <th scope="row"  class="text-primary" >{!!Helper::getComplaintStatus($data->status)!!}</th>
                     
                     <th scope="row">
-                     <a class="btn btn-secondary btn-sm mx-auto " href="winghead/wings-complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                      @foreach ($Complaint_Developer as $data2)
+                        @if($data2->complaint_id == $data->id )
+                          @if($data2->status == 0 )
+                           <a class="btn btn-secondary btn-sm mx-auto " href="winghead/wings-complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                          @else 
+                            <a class="btn btn-danger btn-sm mx-auto " href="winghead/wings-complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                          @endif
+                        @endif
+                      @endforeach
                     </th>
 
                   </tr>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\admin;
 
 use App\Models\Projects;
+use App\Models\Complaints;
 use League\Flysystem\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -16,7 +17,7 @@ class ProjectController extends Controller
 {
     public function index()
     {
-        $project = Projects::all();
+        $project = Projects::orderBy('updated_at', 'DESC')->orderBy('status', 'ASC')->get();
         return view('admin.view-projects')->with('project', $project);
     }
 
@@ -176,6 +177,12 @@ class ProjectController extends Controller
             ->with('status','Project Details Updated Successfully!');
 
     }
-    
+
+    public function showCompalintHistory($id)
+    {
+        $complaints = complaints::where('project_id',$id)->orderBy('updated_at', 'DESC')->get();
+        $proid= $id;
+        return view('admin.view-complaint-history')->with('complaints', $complaints)->with('proid', $proid);
+    }  
 
 }

@@ -12,7 +12,7 @@
     <div class="card">
       <div class="card-header card-header-primary"> 
           <a href="/admin/complaints/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add New Complaint</a>
-          <h2 class="card-title">Complaints Submitted</h2>
+          <h2 class="card-title">Submitted Complaints</h2>
           <p class="card-category">The Complaint details</p> 
       </div>
       <div class="card-body">
@@ -43,13 +43,21 @@
                     <th scope="row">{{$data->id}}</th>
                     <th scope="row">{{$data->system_name}}</th>
                     <th scope="row">{{$data->created_at}}</th>
-                    <th scope="row">{!!Helper::getWingName($data->wing_name)!!}</th>
+                    <th scope="row">{!!Helper::getWingName($data->wing_id)!!}</th>
                     <th scope="row">{{$data->fault_type}}</th>
-                    <th scope="row">{{$data->urgency_level}}</th>
-                    <th scope="row">{{$data->status}}</th>
+                    @if($data->urgency_level=="medium")
+                        <th scope="row"  class="text-warning">Medium</th>
+                    @elseif($data->urgency_level=="high")
+                        <th scope="row"  class="text-danger">High</th>
+                    @elseif($data->urgency_level=="low")
+                        <th scope="row"  class="text-success">Low</th>
+                    @elseif($data->urgency_level=="critical")
+                        <th scope="row"  class="text-danger">Critial</th>
+                    @endif
+                    <th scope="row" class="text-primary">{!!Helper::getComplaintStatus($data->status)!!}</th>
                     
                     <th scope="row">
-                     <a class="btn btn-secondary btn-sm mx-auto " href="admin/users/{{$data->user_id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                     <a class="btn btn-secondary btn-sm mx-auto " href="admin/complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
                     </th>
 
                   </tr>
@@ -66,5 +74,26 @@
     </div>
   </div>
 </div>
-    
+@endsection
+
+@section('scripts')
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#tablewings').DataTable({
+
+    });
+
+} );
+
+$('#addWingModal').on('shown.bs.modal', function () {
+  $('#name').trigger('focus')
+})
+
+</script>
+
+
 @endsection

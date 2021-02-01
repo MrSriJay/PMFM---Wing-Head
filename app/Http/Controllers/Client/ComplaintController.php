@@ -13,19 +13,30 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Complaints;
 use App\helper;
+use App\Models\Complaint_Developer;
+use App\Models\Message;
+
 
 class ComplaintController extends Controller
 {
 
     public function index()
     {
-       $complaints = Complaints::all();
+       $complaints = Complaints::where('client_id',Auth::user()->user_id)->orderBy('updated_at', 'DESC')->get();
        return view('client.view-complaints')->with('complaints',$complaints);
     }
 
     public function create()
     {
        return view('client.add-complaint');
+    }
+
+    public function show($id)
+    {
+        $message = Message::where('complaint_id',$id)->get();
+        $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
+        $complaints = complaints::findOrFail($id);
+        return view('client.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
     }
 
     public function store(Request $request)
@@ -74,14 +85,11 @@ class ComplaintController extends Controller
       $project = Projects::find( $request->input('title'));
       $project->status =0;
       $project->save();
-      return redirect('client/client-complaint')->with('status','Complaint Submitted Successfully!');
+      return redirect('client/clients-complaints')->with('status','Complaint Submitted Successfully!');
 
    }
 
    
-   public function show($id){
-      $complaints = Complaints::findOrFail($id);
-      return view('client.view-complaint-details')->with('complaints', $complaints);
-  }
+
 
 }
