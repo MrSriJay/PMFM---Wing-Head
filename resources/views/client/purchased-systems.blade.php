@@ -10,6 +10,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary"> 
+          <a href="/client/clients-complaints/create" class="btn btn-primary float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add New Complaint</a>
           <h2 class="card-title">Purchased Systems</h2>
           <p class="card-category">Details of purchased systems</p> 
         </div>
@@ -32,7 +33,6 @@
                    <div class="card-header">
                      <div class="col-md-12 col-sm-12">
                        <h3><a class="card-title text-primary font-weight-bold " href="admin/projects/{{$data->id}}">{{$data->title}}</a></h3>
-                       <a href="client/clients-complaints/create" class="btn btn-danger float-right" style="margin-left:800px" data-toggle="" data-target=""><i class="material-icons">error_outline</i> <br>Add Complaint</a>
                        <small class="text-dark">Posted on {{$data->created_at}}</small>
                     </div>
                    </div>

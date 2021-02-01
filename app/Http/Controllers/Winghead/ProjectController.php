@@ -35,14 +35,14 @@ class ProjectController extends Controller
     {        
        
         $validate = \Validator::make($request->all(), [
-            'title' => ['required', 'string', 'max:255'],
+            /*'title' => ['required', 'string', 'max:255'],
             'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
             'startdate' => ['required'],
             'wing_name' => ['required', 'string', 'max:255'],
             'clientid' => ['required', 'string', 'max:255'],
             'developers' => ['required', 'string', 'max:255'],
-            'enddate' => 'required',
+            'enddate' => 'required',*/   
         ]);
 
         if( $validate->fails()){

@@ -23,16 +23,16 @@
                       <div class="card card-stats">
                         <div class="card-header card-header-info card-header-icon">
                           <div class="card-icon">
-                            <i class="material-icons">people_outline</i>
+                            <i class="material-icons">content_paste</i>
                           </div>
-                          <p class="card-category">Officers Assigned</p>
+                          <p class="card-category">Projects Assigned</p>
                           <h3 class="card-title">{!!Helper::getcountOfficers(Auth::user()->wing_name)!!}
                           </h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons text-info">people</i>
-                            <a href="/winghead/wings-users" class="text-dark">Offices</a>
+                            <i class="material-icons">report_problem</i>
+                            <a href="/winghead/wings-users" class="text-dark">Projects Assigned</a>
                           </div>
                         </div>
                       </div>
@@ -43,13 +43,13 @@
                           <div class="card-icon">
                             <i class="material-icons">content_copy</i>
                           </div>
-                          <p class="card-category">Delivered Projects</p>
+                          <p class="card-category">Projects Delivered</p>
                           <h3 class="card-title">{!!Helper::getcountProjects(Auth::user()->wing_name)!!}</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
                             <i class="material-icons text-success">content_copy</i>
-                            <a href="/winghead/wings-users" class="text-dark">Projects</a>
+                            <a href="/winghead/wings-users" class="text-dark">Delivered Project</a>
                           </div>
                         </div>
                       </div>
@@ -60,13 +60,13 @@
                           <div class="card-icon">
                             <i class="material-icons">report_problem</i>
                           </div>
-                          <p class="card-category">Complaints</p>
+                          <p class="card-category">Complaints Assigned</p>
                           <h3 class="card-title">75</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
                             <i class="material-icons text-danger">report_problem</i>
-                            <a href="/winghead/wings-users" class="text-dark">Complaints</a>
+                            <a href="/winghead/wings-users" class="text-dark">Complaints Assigned</a>
                           </div>
                         </div>
                       </div>
@@ -77,13 +77,13 @@
                           <div class="card-icon">
                             <i class="material-icons">chat</i>
                           </div>
-                          <p class="card-category">Messages</p>
+                          <p class="card-category">Solution Feedbacks</p>
                           <h3 class="card-title">+245</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
                             <i class="material-icons text-warning">chat</i>
-                            <a href="/winghead/wings-projects" class="text-dark">Messages</a>
+                            <a href="/winghead/wings-projects" class="text-dark">Solution Feedbacks</a>
                           </div>
                         </div>
                       </div>
@@ -96,29 +96,12 @@
                           <div class="ct-chart" id="dailySalesChart"></div>
                         </div>
                         <div class="card-body">
-                          <h4 class="card-title">New Complaints</h4>
-                          <p class="card-category">
-                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                          <h4 class="card-title">Recently Delivered Projects</h4>
+                          <p class="card-category">Last Project Delivered</p>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">access_time</i> updated 4 minutes ago
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="card card-chart">
-                        <div class="card-header card-header-warning">
-                          <div class="ct-chart" id="websiteViewsChart"></div>
-                        </div>
-                        <div class="card-body">
-                          <h4 class="card-title">Email Subscriptions</h4>
-                          <p class="card-category">Last Campaign Performance</p>
-                        </div>
-                        <div class="card-footer">
-                          <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            <i class="material-icons">access_time</i> posted 4 minutes ago
                           </div>
                         </div>
                       </div>
@@ -129,12 +112,28 @@
                           <div class="ct-chart" id="completedTasksChart"></div>
                         </div>
                         <div class="card-body">
-                          <h4 class="card-title">Completed Tasks</h4>
-                          <p class="card-category">Last Campaign Performance</p>
+                          <h4 class="card-title">Recently Assigned Complaints</h4>
+                          <p class="card-category">Last Complaint Assigned</p>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            <i class="material-icons">access_time</i> posted 2 days ago
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-4">
+                      <div class="card card-chart">
+                        <div class="card-header card-header-warning">
+                          <div class="ct-chart" id="websiteViewsChart"></div>
+                        </div>
+                        <div class="card-body">
+                          <h4 class="card-title">Recently Received Feedbacks </h4>
+                          <p class="card-category">Last Feedback Received</p>
+                        </div>
+                        <div class="card-footer">
+                          <div class="stats">
+                            <i class="material-icons">access_time</i> posted 2 days ago
                           </div>
                         </div>
                       </div>

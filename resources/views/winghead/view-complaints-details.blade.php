@@ -1,4 +1,4 @@
-@extends('layouts.AdminMaster')
+@extends('layouts.WingheadMaster')
 
 
 @section('title')
@@ -24,6 +24,7 @@ Projects - View | PMFM
         <div class="card-header card-header-primary"> 
 
         <label for="recipient-name" class="col-form-label text-light">System Name:</label>
+            <a href="winghead/wings-projects/{{$complaints->project_id}}" class="btn btn-primary float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">preview</i> View Project</a>
             <h3 class="card-title">
                <strong id="o_name">{!!$complaints->system_name!!}</strong>
                <input style="display: none" type="text" name ="system_name" style="font-size: 50px" id ="system_name" class="form-control text-light text-lg"  value="{{ old('system_name',$complaints->system_name) }}"  placeholder="e.g. Mahela"  required value="">
@@ -38,13 +39,8 @@ Projects - View | PMFM
             @endif
 
             @if($complaints->status==0)
-<<<<<<< Updated upstream
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><a href="#" class="alert-link"> Assign </a></strong>
-=======
                 <div class="alert alert-light alert-dismissible fade show text-danger" role="alert">
-                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="admin/complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
->>>>>>> Stashed changes
+                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="winghead/wings-complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
                 </div>
              @elseif($complaints->status==1)
              
@@ -54,7 +50,7 @@ Projects - View | PMFM
             <div class="form-group"> 
               <label for="message-text" class="col-form-label text-primary">Complaint Description:</label>
               <br>
-              <span id="dec0" >{!!$complaints->description!!}</span>
+              <span id="dec0">{!!$complaints->description!!}</span>
               
           </div>
           <hr>
@@ -93,8 +89,6 @@ Projects - View | PMFM
                 @endif
                 
             </div>
-<<<<<<< Updated upstream
-=======
 
             <!--Assign Developers-->
             <div class="form-group" id="assign_Dev"> 
@@ -106,10 +100,10 @@ Projects - View | PMFM
                       <form action="/add-developer" method="POST" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <input type="hidden" value="{!!$complaints->id!!}" name="compId">
-                      <select id="dev_name" class="livesearch form-control" name="dev_name"  @error('dev_name') is-invalid @enderror value="{{ old('dev_name') }}" style="width:99%;"  required>
-                      </select>
-                          <br>
-                          <input class="Backspace btn  btn-primary text-light btn-sm" type="submit" style="width:100%" value="Assign">
+                        <select id="dev_name" class="livesearch form-control" name="dev_name"  @error('dev_name') is-invalid @enderror value="{{ old('dev_name') }}" style="width:99%;"  required>
+                        </select>
+                        <br><br>
+                        <input class="Backspace btn  btn-primary text-light btn-sm" type="submit" style="width:100%" value="Assign">
                       </div>
                       </form>
                     @if (session('devstatus'))
@@ -123,13 +117,15 @@ Projects - View | PMFM
                         {{ session('error') }}
                       </label>
                     @endif
+
+
                 </div>
                 <div class="col-lg-8 border border-light" style="padding: 20px">
                         @if(count($complaint_developer)>0)
                         @foreach ($complaint_developer as $data)
                           <div class="row bg-muted">
                               <div class="col-lg-10">
-                                <a href="admin/users/{{$data->developer_id}}">{!!Helper::getName($data->developer_id)!!}</a>
+                                <a href="winghead/wings-users/{{$data->developer_id}}">{!!Helper::getName($data->developer_id)!!}</a>
                                 <small style=" display:block ;margin-top:-10px; color:#bfbfbf" ><i>Assigned by {!!Helper::getName($data->assigned_by)!!} on {!!$data->created_at!!} </i></small>
                               </div>
                               <div class="col-lg-2">
@@ -140,6 +136,8 @@ Projects - View | PMFM
                                   <button class="btn text-danger btn-secondary float-right"><i class="material-icons">delete</i></button>
                                 </form>
                               </div>
+                            
+
                           </div> 
                         @endforeach
                         @else 
@@ -152,11 +150,11 @@ Projects - View | PMFM
                 </span>
                 @enderror
             </div>
-              
             </div>
-
-             <!--Feedbacks -->
-             <div class="form-group"> 
+            <br>
+            
+            <!--Feedbacks -->
+            <div class="form-group"> 
               <div class="row col-lg-12 border" style="margin: 5px; padding:10px">
                 <br>
                 <div class="col-lg-4 border">
@@ -166,7 +164,7 @@ Projects - View | PMFM
                     <div class="text-primary"> <span class="material-icons">feedback</span> Feedbacks</div>
                     <br>
                     <label for="">Message</label>
-                    <textarea class="form-control"  placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
+                    <textarea class="form-control" placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
                     <br>
                     <label for="">To</label>
 
@@ -183,7 +181,6 @@ Projects - View | PMFM
                     <div class="form-group">
                       <input class="Backspace btn  btn-success text-light btn-sm" type="submit" style="width:100%" value="Send">
                     </div>
-                   
                   </form>
                 </div>
                 <div class="col-lg-8 border">
@@ -207,16 +204,15 @@ Projects - View | PMFM
                 </div>
               </div>
             </div>
->>>>>>> Stashed changes
   
              <!--View Sender Details-->
 
-            <div class="card border-success mb-3" style="width: 30rem;">
+            <div class="card border-success  col-lg-12" >
                 <div class="card-header">Client Details</div>
                 <div class="card-body text-primary">
                     <p class="card-text">{!!(Helper::getSenderDetails($complaints->client_id))!!}</p>
                 </div>
-              </div>
+            </div>
 
       
         </div> 
@@ -227,14 +223,10 @@ Projects - View | PMFM
 
 <script type="text/javascript">
 
-<<<<<<< Updated upstream
-    $('#developer_name').select2({
-=======
 $('#dev_name').select2({
->>>>>>> Stashed changes
         placeholder: 'Select Developer Name',
         ajax: {
-            url: '/admin-supervisor-search',
+            url: '/com-dev',
             dataType: 'json',
             delay: 250,
             processResults: function (data) {
@@ -243,6 +235,7 @@ $('#dev_name').select2({
                         return {
                             text: item.first_name+" "+item.last_name,
                             id: item.user_id
+                            
                         }
                     })
                 };
@@ -252,63 +245,6 @@ $('#dev_name').select2({
     });
 
 
-    $('#client_name').select2({
-        placeholder: 'Select Client Name',
-        ajax: {
-            url: '/client-search',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.organization_name,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    });
-
-    $('#wing_name').select2({
-        placeholder: 'Select System Name',
-        ajax: {
-            url: '/wings-search',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.wing_name,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    });
-
-    
-    var values = [];
-
-    $(function(){
-
-    $('.AddTo').on('click', function() {
-        values.push($('#country_name').val());
-      $('#devops').val( values.join(" \n") );
-      $("#country_name").val("");
-    });
-
-    $('.Backspace').on('click', function(){
-        values.pop();
-        $('#devops').val( values.join(" ") );
-    });
-
-});
     
 
 </script>
@@ -316,48 +252,9 @@ $('#dev_name').select2({
 @endsection
 
 
- 
 @section('scripts')
 <script>
-
-    $('#deleteModal').on('shown.bs.modal', function () {
-      $('#name').trigger('focus')
-    })
     
-    $('#updatemodal').on('shown.bs.modal', function () {
-      $('#name').trigger('focus')
-    })
-    
-    
-</script>
-<script>
-
-    
-    $(document).ready(function(){
-    
-     $('#country_name').keyup(function(){ 
-            var query = $(this).val();
-            if(query != '')
-            {
-             var _token = $('input[name="_token"]').val();
-             $.ajax({
-              url: '/dev-search',
-              method:"POST",
-              data:{query:query, _token:_token},
-              success:function(data){
-               $('#countryList').fadeIn();  
-                        $('#countryList').html(data);
-              }
-             });
-            }
-        });
-    
-        $(document).on('click', 'li', function(){  
-            $('#country_name').val($(this).text());  
-            $('#countryList').fadeOut();  
-        });  
-    
-    });
 
     $(function(){
   var viewModel = {};
@@ -382,5 +279,6 @@ $('#dev_name').select2({
 });
     </script>
 
-    <script src="../assets/js/filedrag.js"></script>
+   <script src="../assets/js/filedrag.js"></script>
+
 @endsection 

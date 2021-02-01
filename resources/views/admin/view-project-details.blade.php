@@ -52,12 +52,10 @@ Projects - View | PMFM
                 @endif
                 <div class="col-md-12">
                         
-                           <!--View Project Icon-->
-                         <div class="form-group float-right">
-                           
-                            <img style="width:100%; padding:20px" src="/storage/project_icons/{{$project->project_icon}}" >
-                       
+                        <!--View Project Icon-->
+                        <div class="form-group float-right">                
                         </div>
+
                          <!--View Description-->
                         <div class="form-group"> 
                             <label for="message-text" class="col-form-label text-primary">Project Description</label>
@@ -187,7 +185,6 @@ Projects - View | PMFM
                                 </div>
                                 <div class="col-lg-3"> 
                                     <a id="downbtn"  name="downbtn" class="btn btn-success float-right" style="margin-right:10px;padding:10px;border-radius:80%" href="/storage/{{$project->files}}/{!! basename($file)!!}"  target="_blank"> <span class="material-icons">save_alt</span></a>
-                                    <a id="downbtn"  name="downbtn" class="btn btn-danger float-right" style="margin-right:10px;padding:10px;border-radius:80%" href="/storage/{{$project->files}}/{!! basename($file)!!}"  target="_blank"> <span class="material-icons">close</span></a>
                                 </div>
                             </div>
                             @endforeach                   

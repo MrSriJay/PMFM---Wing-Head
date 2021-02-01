@@ -1,4 +1,4 @@
-@extends('layouts.WingheadMaster')
+@extends('layouts.DeveloperMaster')
 
 @section('title')
     Projects | NBC
@@ -10,7 +10,7 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary"> 
-          <a href="/winghead/wings-projects/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target=""><i class="material-icons">add</i> Add New Project</a>
+          <a href="develoiper/developer-projects/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target=""><i class="material-icons">add</i> Add New Project</a>
           <h2 class="card-title">Projects</h2>
           <p class="card-category">Details of projects that are registered in the system</p> 
         </div>
@@ -31,7 +31,7 @@
                     </div>  
                     <div class="card-header"> 
                       <div class="col-md-12 col-sm-12">
-                      <h3><a class="card-title text-primary font-weight-bold " href="winghead/wings-projects/{{$data->id}}">{{$data->title}}</a></h3>
+                      <h3><a class="card-title text-primary font-weight-bold " href="develoiper/developer-projects/{{$data->id}}">{{$data->title}}</a></h3>
                       <span class="text-primary" >Developed for {!!Helper::getClientName($data->clientid)!!}</span>
                       <br>
                       <small class="text-dark">Posted on {{$data->created_at}}</small>

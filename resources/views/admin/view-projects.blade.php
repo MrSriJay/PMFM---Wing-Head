@@ -31,8 +31,7 @@
                       <img style="width:100%; padding:20px" src="/storage/project_icons/{{$data->project_icon}}" >
                     </div>  
                   <div class="card-header"> 
-                  <a href="client/clients-complaints/create" class="btn btn-danger" style="margin-left:1100px" data-toggle="" data-target=""><i class="material-icons">error_outline</i><br>View Complaints</a>
-                  
+                    
                   <div class="col-md-12 col-sm-12">
                   <h3><a class="card-title text-primary font-weight-bold " href="admin/projects/{{$data->id}}">{{$data->title}}</a></h3>
                   <span class="text-primary" >Developed for {!!Helper::getClientName($data->clientid)!!}</span>

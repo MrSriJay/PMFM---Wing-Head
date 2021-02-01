@@ -59,7 +59,7 @@
                     <th scope="row"  class="text-primary" >{!!Helper::getComplaintStatus($data->status)!!}</th>
                     
                     <th scope="row">
-                     <a class="btn btn-secondary btn-sm mx-auto " href="admin/users/{{$data->user_id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                     <a class="btn btn-secondary btn-sm mx-auto " href="winghead/wings-complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
                     </th>
 
                   </tr>

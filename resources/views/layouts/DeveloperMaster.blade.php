@@ -84,22 +84,28 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Dashboard</p>
             </a>
           </li>
+          <li class="{{ Request::is('developer/developer-projects*') ? 'active' : '' }}">
+            <a class="nav-link" href="/developer/developer-projects">
+              <i class="material-icons">content_paste</i>
+              <p>Projects Assigned</p>
+            </a>
+          </li>
+          <li class="{{ Request::is('developer/wings-users*') ? 'active' : '' }}">
+            <a class="nav-link" href="/developer/wings-users">
+              <i class="material-icons">content_copy</i>
+              <p>Projects Delivered</p>
+            </a>
+          </li>
           <li class="{{ Request::is('developer/complaints*') ? 'active' : '' }}">
             <a class="nav-link" href="/developer/complaints">
               <i class="material-icons">report_problem</i>
-              <p>Complaints</p>
-            </a>
-          </li>
-          <li class="{{ Request::is('developer/wings-projects*') ? 'active' : '' }}">
-            <a class="nav-link" href="/developer/wings-projects">
-              <i class="material-icons">content_paste</i>
-              <p>Assigned Projects</p>
+              <p>Complaints Assigned</p>
             </a>
           </li>
           <li class="{{ Request::is('developer/wings-users*') ? 'active' : '' }}">
             <a class="nav-link" href="/developer/wings-users">
               <i class="material-icons">chat</i>
-              <p>Messages</p>
+              <p>Solution Feedbacks</p>
             </a>
           </li>
         </ul>

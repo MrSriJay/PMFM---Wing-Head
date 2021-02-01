@@ -13,7 +13,7 @@ class Helper
     
     public static function getWingName($id){
         $data =Wing::select("wing_name")
-        ->where('id', 'LIKE', "%$id%")
+        ->where('id', $id)
             ->get();
 
             $output="";    
@@ -39,22 +39,33 @@ class Helper
     }
 
     public static function getName($id){
-        $data =User::select("first_name","last_name")
-        ->where('user_id', 'LIKE', "%$id%")
+        $data =User::select("first_name","last_name","usertype")
+        ->where('user_id',$id)
             ->get();
 
             $output="";    
         foreach($data as $row)
+        
         {
-            $output = $row->first_name." ".$row->last_name;
+
+            if($row->usertype=="client"){
+
+                $output = $row->first_name;
+            }
+            else{
+
+                $output = $row->first_name." ".$row->last_name;
+            }
         }
 
         return $output;
     }
 
+    
+
     public static function getClientName($id){
         $data =Client::select("organization_name")
-        ->where('id', 'LIKE', "%$id%")
+        ->where('id', $id)
             ->get();
 
             $output="";    
@@ -70,7 +81,7 @@ class Helper
 
     public static function getWingId($id){
         $data =Projects::select("wingid")
-        ->where('id', 'LIKE', "%$id%")
+        ->where('id', $id)
             ->get();    
     
             $output="";    
@@ -84,7 +95,7 @@ class Helper
     
     public static function getprojectName($id){
         $data =Projects::select("title")
-        ->where('id', 'LIKE', "%$id%")
+        ->where('id', $id)
             ->get();    
     
             $output="";    
@@ -132,7 +143,7 @@ class Helper
 
     public static function getSenderDetails($id){
         $data =Client::select("organization_name","address","email","contact_no")
-        ->where('id', 'LIKE', "%$id%")
+        ->where('id', $id)
             ->get();
 
             $output="";    
@@ -152,8 +163,13 @@ class Helper
 
         switch($id){
 
+<<<<<<< Updated upstream
             case '0': return "Pending Developer"; break;
             case '1': return "Developer Assigned"; break;
+=======
+            case '0': return "Developer(s) Not Assigned"; break;
+            case '1': return "Developer(s) Assigned"; break;
+>>>>>>> Stashed changes
             case '2': return "Solution Pending"; break;
             case '3': return "Solved"; break;
 

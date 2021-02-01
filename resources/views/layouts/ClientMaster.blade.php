@@ -53,7 +53,7 @@
           <li class="{{ Request::is('client/purchased-systems*') ? 'active' : '' }}">
             <a class="nav-link" href="/client/purchased-systems">
               <i class="material-icons">content_paste</i>
-              <p>Purchased Systems</p>
+              <p>Systems</p>
             </a>
           </li>
           <li class="{{ Request::is('client/clients-complaints*') ? 'active' : '' }}">
