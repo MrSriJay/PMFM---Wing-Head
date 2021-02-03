@@ -39,6 +39,7 @@
                             </div>
                         </div>
                     </form>
+                    <a href="/"><span class="material-icons">keyboard_backspace</span></a>
                 </div>
             </div>
         </div>

@@ -64,7 +64,7 @@
                           <Button class="btn btn-primary btn-sm mx-auto" style="width:100%">View</Button>
                         </form>
                         @else 
-                          <a class="btn btn-outline-primary btn-sm mx-auto " href="developer/developer-complaints/{{$data->complaint_id}}" style="width:100%">View</a>
+                          <a class="btn btn-secondary  btn-sm mx-auto " href="developer/developer-complaints/{{$data->complaint_id}}" style="width:100%">View</a>
                         @endif
                    
                     </th>

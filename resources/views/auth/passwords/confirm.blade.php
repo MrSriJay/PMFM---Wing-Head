@@ -8,11 +8,12 @@
                 <div class="card-header">{{ __('Confirm Password') }}</div>
 
                 <div class="card-body">
+                    
                     {{ __('Please confirm your password before continuing.') }}
 
                     <form method="POST" action="{{ route('password.confirm') }}">
                         @csrf
-
+                        
                         <div class="form-group row">
                             <span for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</span>
 
@@ -41,6 +42,7 @@
                             </div>
                         </div>
                     </form>
+                  
                 </div>
             </div>
         </div>

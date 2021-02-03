@@ -31,6 +31,20 @@ Projects - View | PMFM
         </div>
         <div class="card-body" >
 
+            <div class="alert alert-muted alert-dismissible fade show border"  style="background-color:gainsboro" role="alert">
+               <strong><b>Urgency Level</b></strong> <br><b style="font-size: 15px">
+                @if($complaints->urgency_level=="medium")
+                  <span class="text-warning">Medium</span>
+                @elseif($complaints->urgency_level=="high")
+                   <span class="text-danger">High</span>
+                @elseif($complaints->urgency_level=="low")
+                  <span class="text-success" style="color: seagreen">Low</span>
+                @elseif($complaints->urgency_level=="critical")
+                  <span class="text-danger" style="color: orangered">Critical</span>
+                @endif
+               </b>
+            </div>
+
             @if (session('status'))
             <div class="alert alert-success py-2" role="alert">
             {{ session('status') }}
@@ -71,52 +85,6 @@ Projects - View | PMFM
                   @endforeach                   
               </div>
               <hr>
-            <!--View Urgency Level-->
-            <div class="form-group py-4">
-                
-                <label for="recipient-name" class="col-form-label text-primary">Urgency Level:</label>
-
-                @if($complaints->urgency_level=="medium")
-                    <div class="alert alert-warning" >Medium</div>
-                @elseif($complaints->urgency_level=="high")
-                    <div class="alert alert-danger" >High</div>
-                @elseif($complaints->urgency_level=="low")
-                    <div class="alert alert-success" style="background-color: seagreen" >Low</div>
-                @elseif($complaints->urgency_level=="critical")
-                    <div class="alert alert-danger" style="background-color: orangered" >Critical</div>
-
-                @endif
-                
-            </div>
-
-            <!--Assign Developers-->
-            <div class="form-group" id="assign_Dev"> 
-              <label for="message-text" class="col-form-label text-primary">Assign Developers</label>
-              <br>
-              <div class="row col-lg-12 border-secondary">
-                
-                <div class="col-lg-8 border border-light" style="padding: 20px">
-                        @if(count($complaint_developer)>0)
-                        @foreach ($complaint_developer as $data)
-                          <div class="row bg-muted">
-                              <div class="col-lg-12">
-                                {!!Helper::getName($data->developer_id)!!}
-                                <small style=" display:block ;margin-top:-10px; color:#bfbfbf" ><i>Assigned by {!!Helper::getName($data->assigned_by)!!} on {!!$data->created_at!!} </i></small>
-                              </div>
-                          </div> 
-                        @endforeach
-                        @else 
-                          <p align-text="center">No developers assigned</p>
-                        @endif
-                </div>
-                @error('developers')
-                <span style="color:red">
-                <strong>{{ $message }}</strong>
-                </span>
-                @enderror
-            </div>
-              
-            </div>
 
              <!--Feedbacks -->
              <div class="form-group"> 
@@ -133,7 +101,7 @@ Projects - View | PMFM
                     <br>
                     <label for="">To</label>
 
-                    <select id="sender_name" class="form-control" style="font-size:16px ; border: 1px sold grey" name="sender_name"  required>
+                    <select id="sender_name" class="form-select" style="font-size:16px ; border: 1px sold grey" name="sender_name"  required>
                       <option value="" disabled selected  class="text-muted"> Select User</option>
                       @foreach ($complaint_developer as $data)
                         <option value="{{$data->developer_id}}" >{!!Helper::getName($data->developer_id)!!}</option>
@@ -169,6 +137,38 @@ Projects - View | PMFM
                   @endif
                 </div>
               </div>
+            </div>
+
+            <!--View Sender Details-->
+            <div class="card border-success  col-lg-12" >
+              <div class="card-header">Client Details</div>
+              <div class="card-body text-primary">
+                  <p class="card-text">{!!(Helper::getSenderDetails($complaints->client_id))!!}</p>
+              </div>
+            </div>
+
+             <!--Assign Developers-->
+             <div class="form-group" id="assign_Dev"> 
+              <label for="message-text" class="col-form-label text-primary">Assign Developers</label>
+              <br>
+              <div class="row col-lg-12 border-secondary">
+                
+                <div class="col-lg-8 border border-light" style="padding: 20px">
+                        @if(count($complaint_developer)>0)
+                        @foreach ($complaint_developer as $data)
+                          <div class="row bg-muted">
+                              <div class="col-lg-12">
+                                {!!Helper::getName($data->developer_id)!!}
+                                <small style=" display:block ;margin-top:-10px; color:#bfbfbf" ><i>Assigned by {!!Helper::getName($data->assigned_by)!!} on {!!$data->created_at!!} </i></small>
+                              </div>
+                          </div> 
+                        @endforeach
+                        @else 
+                          <p align-text="center">No developers assigned</p>
+                        @endif
+                </div>
+            </div>
+              
             </div>
         </div> 
       </div>

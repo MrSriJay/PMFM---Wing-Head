@@ -109,7 +109,7 @@
            <!--Insert designation-->
            <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Designation</label>
-              <select id="usertype" class="form-control @error('usertype') is-invalid @enderror" name="usertype" required value="{{ old('usertype') }}"  aria-label="Default select example" >
+              <select id="usertype" class="form-select  @error('usertype') is-invalid @enderror" name="usertype" required value="{{ old('usertype') }}"  aria-label="Default select example" >
                 <option value="" disabled selected>Select your option</option>
                 <option value="developer" >Developer</option>
                 <option value="officer" >Officer</option>

@@ -163,11 +163,11 @@ class Helper
 
         switch($id){
 
-            case '0': return "Developer(s) Not Assigned"; break;
-            case '1': return "Developer(s) Assigned"; break;
-            case '2': return "Seen By Developer"; break;
-            case '3': return "Solution Pending"; break;
-            case '4': return "Complaint Solved"; break;
+            case '0': return "Developer(s) not assigned"; break;
+            case '1': return "Developer(s) assigned"; break;
+            case '2': return "Seen by developer"; break;
+            case '3': return "Solution pending"; break;
+            case '4': return "Complaint solved"; break;
 
         }
         

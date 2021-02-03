@@ -164,7 +164,7 @@ Projects - View | PMFM
                     <br>
                     <label for="">To</label>
 
-                    <select id="sender_name" class="form-control" style="font-size:16px ; border: 1px sold grey" name="sender_name"  required>
+                    <select id="sender_name" class="form-select" style="font-size:16px ; border: 1px sold grey" name="sender_name"  required>
                       <option value="" disabled selected  class="text-muted"> Select User</option>
                       @foreach ($complaint_developer as $data)
                         <option value="{{$data->developer_id}}" >{!!Helper::getName($data->developer_id)!!}</option>
