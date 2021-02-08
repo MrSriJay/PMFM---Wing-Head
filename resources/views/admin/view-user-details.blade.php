@@ -18,7 +18,11 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary"> 
-      <a  class="btn btn-primary float-right" style="margin:20px" id="edit" onclick="toggleEdit()" > <i class="material-icons">edit</i>Edit</a>
+        
+      @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
+        <a  class="btn btn-primary float-right" style="margin:20px" id="edit" onclick="toggleEdit()" > <i class="material-icons">edit</i>Edit</a>
+      @endif
+
       <div style="display:none" id="editext">Edit</div >
 
       <label for="recipient-name" class="col-form-label text-light">Militaray/National ID No</label>

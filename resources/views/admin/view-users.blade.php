@@ -16,7 +16,9 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary"> 
+          @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
           <a href="/admin/users/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" > <i class="material-icons">add</i> Add User</a>
+          @endif
           <h2 class="card-title">Users</h2>
           <p class="card-category">Registered user details</p> 
       </div>

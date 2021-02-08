@@ -24,7 +24,7 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
 
-                if(Auth::user()->usertype == 'admin')
+                if(Auth::user()->usertype == 'admin' || Auth::user()->usertype == 'dg' || Auth::user()->usertype == 's01' || Auth::user()->usertype == 'c-controller' || Auth::user()->usertype == 'c-coordinator' || Auth::user()->usertype == 'hq')
                 {
                     return redirect('/admin');
                 }

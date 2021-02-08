@@ -16,7 +16,9 @@
   <div class="col-md-12"> 
     <div class="card">
       <div class="card-header card-header-primary"> 
-          <a href="" class="btn btn-success float-right" data-toggle="modal" data-target="#addWingModal"><i class="material-icons">add</i> Add Wing</a>
+           @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
+              <a href="" class="btn btn-success float-right" data-toggle="modal" data-target="#addWingModal"><i class="material-icons">add</i> Add Wing</a>
+            @endif
           <h2 class="card-title">Wings</h2>
       </div>
       <div class="card-body">
@@ -36,7 +38,9 @@
                   <tr>
                   <th scope="col">ID</th>
                   <th scope="col">Name</th>
-                  <th scope="col"></th>
+                  @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
+                   <th scope="col"></th>
+                  @endif
                   </tr>
               </thead>
               <tbody>
@@ -45,10 +49,12 @@
                   <tr>
                     <th scope="row">{{$data->id}}</th>
                     <td><a href="#" >{{$data->wing_name}}</a></td>
-                    <td>
-                      <button class="btn btn-success float-right" style="margin-left:10px" data-toggle="" data-target="#" type="button" style="width=100%"> <i class="material-icons">update</i> Update</a> 
-                      <button class="btn btn-danger float-right"  data-toggle="modal" data-target="#deleteModal" type="button" style="width=100%"> <i class="material-icons">delete</i> Delete</a> 
-                    </td>
+                    @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
+                      <td>
+                        <button class="btn btn-success float-right" style="margin-left:10px" data-toggle="" data-target="#" type="button" style="width=100%"> <i class="material-icons">update</i> Update</a> 
+                        <button class="btn btn-danger float-right"  data-toggle="modal" data-target="#deleteModal" type="button" style="width=100%"> <i class="material-icons">delete</i> Delete</a> 
+                      </td>
+                    @endif
                   </tr>
 
                   <!--Delete Modal --->

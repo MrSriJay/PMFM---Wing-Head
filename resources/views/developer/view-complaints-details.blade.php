@@ -25,6 +25,7 @@ Projects - View | PMFM
 
         <label for="recipient-name" class="col-form-label text-light">System Name:</label>
             <h3 class="card-title">
+               <a href="/admin/clients/create" class="btn btn-primary float-right" >Completed</a>
                <strong id="o_name">{!!$complaints->system_name!!}</strong>
                <input style="display: none" type="text" name ="system_name" style="font-size: 50px" id ="system_name" class="form-control text-light text-lg"  value="{{ old('system_name',$complaints->system_name) }}"  placeholder="e.g. Mahela"  required value="">
             </h3> 

@@ -90,7 +90,7 @@
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
         <div class="navbar-wrapper">
-          <a class="navbar-brand" href="javascript:;"><i class="material-icons">admin_panel_settings</i> Director General</a>
+          <a class="navbar-brand" href="javascript:;"><i class="material-icons">admin_panel_settings</i> {!!Helper::getDesignation(Auth::user()->usertype)!!}</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -126,7 +126,7 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ Auth::user()->first_name}}<i class="material-icons">person</i>
+                  {{ Auth::user()->first_name}} {{ Auth::user()->last_name}}<i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
                   </p>

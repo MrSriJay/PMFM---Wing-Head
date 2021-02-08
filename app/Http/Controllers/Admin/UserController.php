@@ -8,6 +8,9 @@ use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Mail\AccountCreationMail;
+use Illuminate\Support\Facades\Mail;
+use App\helper;
 
 class UserController extends Controller
 {
@@ -66,6 +69,18 @@ class UserController extends Controller
                     'wing_name' =>$request->wing_name,      
                     'password' => Hash::make($request->password),
                 ]);
+
+                Helper::$login_data = [
+                    'first_name' => $request->first_name,
+                    'last_name' => $request->last_name,
+                    'telephone' => $request->telephone,
+                    'email' => $request->email,
+                    'usertype' => $request->usertype,
+                    'password' =>$request->password
+                 ];
+
+
+                Mail::to("podilali69@gmail.com")->send(new AccountCreationMail());
                 return redirect('/admin/users')->with('status', 'User added successfully');
             }
 

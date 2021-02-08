@@ -35,7 +35,15 @@
 @else
 @lang('Regards'),<br>
     <b>Performance Monitoring & Fault Management System</b> <br>
-    <small style="margin-top:-10px"><i>Center for Defence Research & Development, Ministry for National Security<i></small>
+    <small style="margin-top:-10px">Center for Defence Research & Development, Ministry for National Security</small>
+    <br>
+    <small style="margin-top:-10px"><i>Mahenawaththa,Moragahahena Road, Pitipana, Homagama</i></small>
+    <br>
+    <small style="margin-top:-10px"><i>Tel : 011-3173491 / 077-3929482</i></small>
+    <br>
+    <small style="margin-top:-10px"><i>Fax : 011-2182175</i></small>
+    <br>
+    <small style="margin-top:-10px"><i>Email : hq@crd.lk / hqcrdmod@gmail.com</i></small>
 @endif
 
 {{-- Subcopy --}}

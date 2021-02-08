@@ -10,6 +10,7 @@ class Helper
 
 {
     public static $baseurl = "http://127.0.0.1:8000";
+    public static $login_data =[];
     
     public static function getWingName($id){
         $data =Wing::select("wing_name")
@@ -28,12 +29,15 @@ class Helper
     public static function getDesignation($id){
         switch($id){
             case 'winghead': return "Winghead"; break;
-            case 'topmanagement': return "Top Management"; break;
             case 'developer': return "Developer"; break;
             case 'officer': return "Officer"; break;
             case 'admin': return "Admin"; break;
             case 'client': return "Client"; break;
-
+            case 'dg': return "Director General"; break;
+            case 's01': return "Staff Officer 01"; break;
+            case 'c-controller': return "Cheif Controller"; break;
+            case 'c-coordinator': return "Cheif Quadianator"; break;
+            case 'hq': return "Headquaters"; break;
         }
         
     }

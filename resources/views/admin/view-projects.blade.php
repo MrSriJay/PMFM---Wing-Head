@@ -10,7 +10,9 @@
     <div class="col-md-12">
       <div class="card">
         <div class="card-header card-header-primary"> 
-          <a href="/admin/projects/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target=""><i class="material-icons">add</i> Add New Project</a>
+          @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
+           <a href="/admin/projects/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target=""><i class="material-icons">add</i> Add New Project</a>
+          @endif
           <h2 class="card-title">Projects</h2>
           <p class="card-category">Details of projects that are registered in the system</p> 
         </div>

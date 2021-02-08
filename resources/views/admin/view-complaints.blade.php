@@ -11,7 +11,9 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary"> 
-          <a href="/admin/complaints/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add New Complaint</a>
+          @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
+            <a href="/admin/complaints/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add New Complaint</a>
+          @endif
           <h2 class="card-title">Submitted Complaints</h2>
           <p class="card-category">The Complaint details</p> 
       </div>

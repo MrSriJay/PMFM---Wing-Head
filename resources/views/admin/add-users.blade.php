@@ -112,7 +112,6 @@
               <select id="usertype" class="form-select  @error('usertype') is-invalid @enderror"  name="usertype" value="{{ old('usertype') }}"  aria-label="Default select example" required>
                 <option value="" disabled selected>Select your option</option>
                 <option value="winghead" >Wing Head</option>
-                <option value="topmanagement" >Top Management</option>
                 <option value="developer" >Developer</option>
                 <option value="officer" >Officer</option>
                 <option value="dg" >Director General</option>

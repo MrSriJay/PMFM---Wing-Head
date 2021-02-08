@@ -16,7 +16,9 @@
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary"> 
-          <a href="/admin/clients/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" > <i class="material-icons">add</i> Add Client</a>
+          @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
+            <a href="/admin/clients/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" > <i class="material-icons">add</i> Add Client</a>
+          @endif
           <h2 class="card-title">Clients</h2>
           <p class="card-category">Registered user details</p> 
       </div>
