@@ -68,6 +68,6 @@ class AssignDeveloperController extends Controller
             
             $message->save();
             return redirect()->back();
-
     }
+
 }

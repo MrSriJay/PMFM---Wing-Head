@@ -6,7 +6,6 @@ Projects - View | PMFM
 @endsection 
 @section('styles')
 
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
@@ -32,6 +31,12 @@ Projects - View | PMFM
         </div>
         <div class="card-body" >
 
+            @if($complaints->status == 3)
+              <div class="alert alert-success" role="alert">
+                <strong>Complaint fixed by developer!</strong> Waiting for client's feedback on the solution.
+              </div>
+            @endif
+
             @if (session('status'))
             <div class="alert alert-success py-2" role="alert">
             {{ session('status') }}
@@ -45,6 +50,8 @@ Projects - View | PMFM
              @elseif($complaints->status==1)
              
              @endif
+
+             <i><span>COMPLAINT STATUS: <b class="text-primary">{!!Helper::getComplaintStatus($complaints->status)!!}</b></span></i>
 
             <!--View Complaint Description-->
             <div class="form-group"> 
@@ -160,7 +167,7 @@ Projects - View | PMFM
                     <div class="text-primary"> <span class="material-icons">feedback</span> Feedbacks</div>
                     <br>
                     <label for="">Message</label>
-                    <textarea class="form-control"  placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
+                    <textarea class="form-control"  required placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
                     <br>
                     <label for="">To</label>
 

@@ -9,6 +9,9 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\AccountCreationMail;
+use Illuminate\Support\Facades\Mail;
+use App\helper;
 
 class UserController extends Controller
 {
@@ -59,6 +62,18 @@ class UserController extends Controller
                 'wing_name' =>$request->wing_name,      
                 'password' => Hash::make($request->password),
             ]);
+
+            Helper::$login_data = [
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'telephone' => $request->telephone,
+                'email' => $request->email,
+                'usertype' => $request->usertype,
+                'password' =>$request->password
+             ];
+
+
+            Mail::to($request->email)->send(new AccountCreationMail());
             return redirect('/winghead/wings-users')->with('status', 'User Added Successfully');
            
         }

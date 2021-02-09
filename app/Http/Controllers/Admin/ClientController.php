@@ -7,6 +7,9 @@ use App\Models\Client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use App\Mail\AccountCreationMail;
+use Illuminate\Support\Facades\Mail;
+use App\helper;
 
 class ClientController extends Controller
 {
@@ -76,7 +79,18 @@ class ClientController extends Controller
                 'wing_name' =>"client",      
                 'password' => Hash::make($request->password),
             ]);
+            
+            Helper::$login_data = [
+                'first_name' => $request->first_name,
+                'last_name' => $request->last_name,
+                'telephone' => $request->telephone,
+                'email' => $request->email,
+                'usertype' => $request->usertype,
+                'password' =>$request->password
+             ];
 
+
+            Mail::to($request->email)->send(new AccountCreationMail());
             return redirect('/admin/clients')->with('status', 'Client Added Successfully');
         }
         else

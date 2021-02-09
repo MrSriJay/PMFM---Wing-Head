@@ -22,7 +22,9 @@ class ComplaintController extends Controller
 
     public function index()
     {
-       $complaints = Complaints::where('client_id',Auth::user()->user_id)->orderBy('updated_at', 'DESC')->get();
+       $complaints = Complaints::where('client_id',Auth::user()->user_id)
+       ->where('status',"!=","5")
+       ->orderBy('updated_at', 'DESC')->get();
        return view('client.view-complaints')->with('complaints',$complaints);
     }
 
@@ -33,7 +35,7 @@ class ComplaintController extends Controller
 
     public function show($id)
     {
-        $message = Message::where('complaint_id',$id)->get();
+        $message = Message::where('complaint_id',$id)->orderBy('updated_at', 'DESC') -> get();
         $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
         $complaints = complaints::findOrFail($id);
         return view('client.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
@@ -77,7 +79,6 @@ class ComplaintController extends Controller
       $complaints->fault_type = $request->input('fault_type');
       $complaints->urgency_level = $request->input('urgency');
 
-
       //
       $complaints->save();
 
@@ -89,7 +90,31 @@ class ComplaintController extends Controller
 
    }
 
-   
+
+   public function solutionOk(Request $request){
+
+      $complaints = Complaints::find($request->input('comp_id'));
+      $complaints->status =5;
+    
+      $project = Projects::find( $request->input('proj_id'));
+      $project->status =1;
+
+      $project->save();
+      $complaints ->save();
+
+      return redirect('client/clients-complaints')->with('status','Complaint Fixed!, Please wait for client\'s feedback about the solution.');
+
+  }
+
+  public function solutionFalse(Request $request){
+
+   $complaints = Complaints::find($request->input('comp_id'));
+   $complaints->status =4;
+   $complaints ->save();
+
+   return redirect()->back()->with('status','Complaint Fixed!, Please wait for client\'s feedback about the solution.');
+
+}
 
 
 }

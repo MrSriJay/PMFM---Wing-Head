@@ -10,12 +10,20 @@ use App\helper;
 use App\Models\Projects;
 use App\Models\Complaint_Developer;
 use App\Models\Message;
-
+use DB;
 class UserComplaintController extends Controller
 {
     public function index()
     {
-       $complaints = Complaints::where('wing_id',Auth::user()->wing_name)->orderBy('updated_at', 'DESC')->get();
+   /*   $complaints =  DB::table('complaints')
+            ->join('projects','complaints.project_id','=','projects.id')
+            ->where('wingid',Auth::user()->wing_name)
+            ->orderBy('complaints.updated_at', 'DESC')
+            ->get();*/
+
+       $complaints = Complaints::where('wing_id',Auth::user()->wing_name)
+       ->where('status',"!=","5")
+       ->orderBy('updated_at', 'DESC')->get();
        return view('winghead.view-complaints')->with('complaints',$complaints);
     }
     public function create()
@@ -74,7 +82,7 @@ class UserComplaintController extends Controller
    public function show($id)
    {
        $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
-       $message = Message::where('complaint_id',$id)->get();
+       $message = Message::where('complaint_id',$id)->orderBy('updated_at', 'DESC') -> get();
        $complaints = complaints::findOrFail($id);
        return view('winghead.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
    }

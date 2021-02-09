@@ -25,12 +25,26 @@ Projects - View | PMFM
 
         <label for="recipient-name" class="col-form-label text-light">System Name:</label>
             <h3 class="card-title">
-               <a href="/admin/clients/create" class="btn btn-primary float-right" >Completed</a>
+              @if($complaints->status == 2)
+              <form action="/developer/developer-complaint-solved" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="hidden" name="comp_id" value="{{$complaints->id}}">
+                <Button class="btn btn-success float-right"><span class="material-icons">check_circle</span> Fixed</Button>
+              </form>
+              @endif 
                <strong id="o_name">{!!$complaints->system_name!!}</strong>
                <input style="display: none" type="text" name ="system_name" style="font-size: 50px" id ="system_name" class="form-control text-light text-lg"  value="{{ old('system_name',$complaints->system_name) }}"  placeholder="e.g. Mahela"  required value="">
             </h3> 
         </div>
         <div class="card-body" >
+          @if (session('status'))
+          <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <strong>Complaint Fixed!</strong> Waiting for client's feedback on the solution.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          @endif
 
             <div class="alert alert-muted alert-dismissible fade show border"  style="background-color:gainsboro" role="alert">
                <strong><b>Urgency Level</b></strong> <br><b style="font-size: 15px">
@@ -46,12 +60,6 @@ Projects - View | PMFM
                </b>
             </div>
 
-            @if (session('status'))
-            <div class="alert alert-success py-2" role="alert">
-            {{ session('status') }}
-            </div>
-            @endif
-
             @if($complaints->status==0)
                 <div class="alert alert-light alert-dismissible fade show text-danger" role="alert">
                     <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="admin/complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
@@ -59,6 +67,8 @@ Projects - View | PMFM
              @elseif($complaints->status==1)
              
              @endif
+
+             <i><span>COMPLAINT STATUS: <b class="text-primary">{!!Helper::getComplaintStatus($complaints->status)!!}</b></span></i>
 
             <!--View Complaint Description-->
             <div class="form-group"> 
@@ -98,7 +108,7 @@ Projects - View | PMFM
                     <div class="text-primary"> <span class="material-icons">feedback</span> Feedbacks</div>
                     <br>
                     <label for="">Message</label>
-                    <textarea class="form-control"  placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
+                    <textarea class="form-control"  required placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
                     <br>
                     <label for="">To</label>
 

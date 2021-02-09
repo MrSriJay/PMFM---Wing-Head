@@ -27,7 +27,7 @@ class ComplaintController extends Controller
 
     public function show($id)
     {
-        $message = Message::where('complaint_id',$id)->get();
+        $message = Message::where('complaint_id',$id)-> orderBy('updated_at', 'DESC') -> get();
         $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
         $complaints = complaints::findOrFail($id);
         return view('developer.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
@@ -47,6 +47,16 @@ class ComplaintController extends Controller
         $complaints = complaints::findOrFail($id);
 
         return view('developer.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_Developer)->with('message',$message);
+
+    }
+
+    public function solutionGiven(Request $request){
+
+        $complaints = Complaints::find($request->input('comp_id'));
+        $complaints->status =3;
+        $complaints ->save();
+
+        return redirect()->back()->with('status','Complaint Fixed!, Please wait for client\'s feedback about the solution.');
 
     }
 

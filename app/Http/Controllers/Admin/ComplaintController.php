@@ -35,7 +35,7 @@ class ComplaintController extends Controller
 
     public function show($id)
     {
-        $message = Message::where('complaint_id',$id)->get();
+        $message = Message::where('complaint_id',$id)->orderBy('updated_at', 'DESC') -> get();
         $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
         $complaints = complaints::findOrFail($id);
         return view('admin.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);

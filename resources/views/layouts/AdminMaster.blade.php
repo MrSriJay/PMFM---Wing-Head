@@ -190,7 +190,7 @@
             <script>
               document.write(new Date().getFullYear())
             </script>, Developed by
-            <a href="https://www.creative-tim.com" target="_blank">CRD</a> Ministry of Defence
+            <a href="https://crd.lk/" target="_blank">CDRD</a> State Ministry For National Security
           </div>
         </div>
       </footer>

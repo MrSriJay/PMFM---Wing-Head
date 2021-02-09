@@ -37,6 +37,26 @@ Projects - View | PMFM
             </div>
             @endif
 
+            @if($complaints->status==3)
+            <div class="alert alert-success" role="alert">
+              <p>Developer has fixed the reported issue with the system</p>
+              <h4 class="alert-heading" style="font-weight: bolder">Are you satisfied with the solution?</h4>
+
+              <form style="display: inline" action="/developer/clients-solved" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="hidden" name="comp_id" value="{{$complaints->id}}">
+                <input type="hidden" name="proj_id" value="{{$complaints->project_id}}">
+                <button class="btn btn-secondary text-success">Yes</button>
+              </form>
+              <form  style="display: inline" action="/developer/clients-not-solved" method="POST" enctype="multipart/form-data">
+                {{ csrf_field() }}
+                <input type="hidden" name="comp_id" value="{{$complaints->id}}">
+                <button class="btn btn-secondary text-success">No</button>
+              </form>
+          
+            </div>
+            @endif
+
             @if($complaints->status==0)
                 <div class="alert alert-light alert-dismissible fade show text-danger" role="alert">
                     <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="admin/complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
@@ -44,6 +64,8 @@ Projects - View | PMFM
              @elseif($complaints->status==1)
              
              @endif
+             
+             <i><span>COMPLAINT STATUS: <b class="text-primary">{!!Helper::getComplaintStatus($complaints->status)!!}</b></span></i>
 
             <!--View Complaint Description-->
             <div class="form-group"> 
@@ -129,7 +151,7 @@ Projects - View | PMFM
                     <div class="text-primary"> <span class="material-icons">feedback</span> Feedbacks</div>
                     <br>
                     <label for="">Message</label>
-                    <textarea class="form-control"  placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
+                    <textarea class="form-control"  required placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
                     <br>
                     <label for="">To</label>
 

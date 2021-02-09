@@ -71,6 +71,10 @@ Route::group(['middleware' => ['auth','client']],function() {
 Route::resource('client/purchased-systems', App\Http\Controllers\client\PurchasedSystemsController::class);
 Route::resource('client/clients-complaints', App\Http\Controllers\client\ComplaintController::class);
 
+Route::post('developer/clients-solved',[App\Http\Controllers\client\ComplaintController::class, 'solutionOk']);
+Route::post('developer/clients-not-solved',[App\Http\Controllers\client\ComplaintController::class, 'solutionFalse']);
+
+
 });
 
 /*--------------------------------------------------------------------------------------------------------*/ 
@@ -83,6 +87,8 @@ Route::group(['middleware' => ['auth','developer']],function() {
    // Route::resource('develoiper/developer-projects', App\Http\Controllers\Developer\ProjectController::class);
     Route::resource('developer/developer-complaints', App\Http\Controllers\Developer\ComplaintController::class);
     Route::post('developer/developer-complaint-seen',[App\Http\Controllers\Developer\ComplaintController::class, 'seenComplaint']);
+    Route::post('developer/developer-complaint-solved',[App\Http\Controllers\Developer\ComplaintController::class, 'solutionGiven']);
+
 
 
 });
@@ -111,5 +117,4 @@ Route::get('/com-dev', [App\Http\Controllers\client\AutocompleteprojectControlle
 
 Route::post('/add-developer', [App\Http\Controllers\AssignDeveloperController::class, 'addDeveloper']);
 Route::post('/delete-developer', [App\Http\Controllers\AssignDeveloperController::class, 'deleteDeveloper']);
-
 Route::post('/send-messages', [App\Http\Controllers\AssignDeveloperController::class, 'addFeedback']);
