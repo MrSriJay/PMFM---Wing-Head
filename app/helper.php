@@ -10,7 +10,10 @@ class Helper
 
 {
     public static $baseurl = "http://127.0.0.1:8000";
+
+    // Email 
     public static $login_data =[];
+    public static $complaint_data =[];
     
     public static function getWingName($id){
         $data =Wing::select("wing_name")
@@ -177,8 +180,38 @@ class Helper
         
     }
   
+    public static function getEmailfromUserID($id){
+        $data =User::select("email")
+        ->where('user_id',$id)
+            ->get();
 
+            $output="";    
+        foreach($data as $row)
+        {  
 
+                $output = $row->email;
+
+        }
+
+        return $output;
+    }
+
+    public static function getEmailfromUsertype($usertype,$wing_name){
+        $data =User::select("email")
+        ->where('wing_name',$wing_name)
+        ->where('usertype',$usertype)
+            ->get();
+
+            $output="";    
+        foreach($data as $row)
+        {  
+
+                $output = $row->email;
+
+        }
+
+        return $output;
+    }
 
   // Dashboard------------------------
 

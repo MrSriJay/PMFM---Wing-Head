@@ -19,6 +19,7 @@ class ComplaintController extends Controller
         $complaints =  DB::table('complaints')
             ->join('complaint_developers','complaints.id','=','complaint_developers.complaint_id')
             ->where('developer_id',Auth::user()->user_id)
+             ->where('status',"!=","5")
             ->orderBy('complaint_developers.updated_at', 'DESC')
             ->get();
 

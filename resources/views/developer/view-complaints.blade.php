@@ -35,14 +35,21 @@
                   <th scope="col">Wing Name</th>
                   <th scope="col">Type of Fault</th>
                   <th scope="col">Urgency Level</th>  
+                  <th scope="col">Complaint Status</th>
                   <th scope="col"></th>
                   </tr>
               </thead>
               <tbody>
               @if(count($complaints)>0)
                 @foreach ($complaints as $data)
-                  <tr @if($data->status == 1) class="table-primary" @endif>
-                    <th scope="row">{{$data->system_name}}</th>
+                  <tr @if($data->status == 1 || $data->status == 4 ) class="table-primary" @endif>
+                    <th scope="row">
+                      @if($data->status == 1)
+                        {{$data->system_name}}
+                      @else
+                        <a href="developer/developer-complaints/{{$data->complaint_id}}">{{$data->system_name}}</a>
+                      @endif
+                    </th>
                     <th scope="row">{{$data->created_at}}</th>
                     <th scope="row">{!!Helper::getWingName($data->wing_id)!!}</th>
                     <th scope="row">{{$data->fault_type}}</th>
@@ -54,9 +61,10 @@
                         <th scope="row"  class="text-success">Low</th>
                     @elseif($data->urgency_level=="critical")
                         <th scope="row"  class="text-danger">Critial</th>
-                    @endif                    
+                    @endif   
+                    <th scope="row"  class="text-primary">{!!Helper::getComplaintStatus($data->status)!!}</th>                 
                     <th scope="row">    
-                        @if($data->status == 1)
+                        @if($data->status == 1 || $data->status == 4  )
                         <form action="/developer/developer-complaint-seen" method="POST" enctype="multipart/form-data">
                           {{ csrf_field() }}
                           <input type="hidden" name="comp_id" value="{{$data->complaint_id}}">

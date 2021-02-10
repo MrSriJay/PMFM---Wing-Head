@@ -6,6 +6,8 @@ use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Lang;
+use App\helper;
 
 class ComplaintAddedNotifaction extends Mailable
 {
@@ -28,6 +30,7 @@ class ComplaintAddedNotifaction extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.complaintNotification');
+        return $this->markdown('email.complaintNotification')->from($address = 'podilali69@gmail.com', $name = 'Center Defence Research and Development | PMFM')
+        ->subject(Lang::get('PMFM | Fault Reported' ));
     }
 }

@@ -15,6 +15,8 @@ use App\Models\Complaints;
 use App\helper;
 use App\Models\Complaint_Developer;
 use App\Models\Message;
+use App\Mail\ComplaintAddedNotifaction;
+use Illuminate\Support\Facades\Mail;
 
 
 class ComplaintController extends Controller
@@ -86,6 +88,28 @@ class ComplaintController extends Controller
       $project = Projects::find( $request->input('title'));
       $project->status =0;
       $project->save();
+
+
+      Helper::$complaint_data = [
+         'system_name' => Helper::getprojectName($request->input('title')),
+         'description' => $request->input('summary-ckeditor'),
+         'client_id' => Auth::user()->user_id,
+         'client_name' =>  Helper::getClientName(Auth::user()->user_id),
+         'wing_id' =>  Helper::getWingId($request->input('title')),
+         'fault_type' => $request->input('fault_type'),
+         'urgency_level' =>$request->input('urgency')
+      ];
+
+
+    Mail::to("podilali69@gmail.com")->send(new ComplaintAddedNotifaction());
+
+     /* Mail::to(Helper::getEmailfromUserID(Auth::user()->user_id))->send(new ComplaintAddedNotifaction());
+      Mail::to(Helper::getEmailfromUsertype("winghead",Helper::getWingId($request->input('title'))))->send(new ComplaintAddedNotifaction());
+      Mail::to(Helper::getEmailfromUsertype("dg","99"))->send(new ComplaintAddedNotifaction());
+      Mail::to(Helper::getEmailfromUsertype("s01","99"))->send(new ComplaintAddedNotifaction());
+      Mail::to(Helper::getEmailfromUsertype("c-controller","99"))->send(new ComplaintAddedNotifaction());*/
+      
+
       return redirect('client/clients-complaints')->with('status','Complaint Submitted Successfully!');
 
    }
@@ -96,6 +120,7 @@ class ComplaintController extends Controller
       $complaints = Complaints::find($request->input('comp_id'));
       $complaints->status =5;
     
+
       $project = Projects::find( $request->input('proj_id'));
       $project->status =1;
 
