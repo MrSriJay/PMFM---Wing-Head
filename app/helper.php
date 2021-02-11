@@ -14,7 +14,9 @@ class Helper
     // Email 
     public static $login_data =[];
     public static $complaint_data =[];
-    
+    public static $dev_data =[];
+    public static $status_message =[];
+
     public static function getWingName($id){
         $data =Wing::select("wing_name")
         ->where('id', $id)

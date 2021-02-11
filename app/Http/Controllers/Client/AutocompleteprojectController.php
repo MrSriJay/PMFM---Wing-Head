@@ -258,7 +258,7 @@ class AutocompleteprojectController extends Controller
       return response()->json($data);
      }
 
-     //project search Clients
+    //project search Clients
     public function selectSearchAssignedDevs(Request $request)
     {
     	$data = [];

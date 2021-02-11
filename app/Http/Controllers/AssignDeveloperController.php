@@ -9,6 +9,9 @@ use App\Models\Complaints;
 use App\helper;
 use App\Models\Complaint_Developer;
 use Illuminate\Support\Facades\Auth;
+use App\Mail\DeveloperAssignmentMail;
+use App\Mail\ComplaintStatusMail;
+use Illuminate\Support\Facades\Mail;
 
 class AssignDeveloperController extends Controller
 {
@@ -27,6 +30,28 @@ class AssignDeveloperController extends Controller
     
             $complaints ->save();
             $complaint_developer->save();
+
+            Helper::$dev_data = [
+                'system_name' => Helper::getprojectName($complaints->project_id),
+                'description' => $complaints->description,
+                'client_id' =>$complaints->client_id,
+                'client_name' =>  Helper::getClientName($complaints->client_id),
+                'fault_type' => $complaints->fault_type,
+                'urgency_level' => $complaints->urgency_level,
+                'assigned_by' => $complaints->assigned_by
+             ];
+       
+
+             Helper::$status_message = [
+                'message' =>"We have assigned an officer to look into your complaint. Please await for further details",
+                'client_name' =>  Helper::getClientName($complaints->client_id)
+             ];
+       
+            //Mail::to("podilali69@gmail.com")->send(new DeveloperAssignmentMail());
+
+            Mail::to("podilali69@gmail.com")->send(new ComplaintStatusMail());
+
+            Mail::to(Helper::getEmailfromUserID($request->input('dev_name')))->send(new DeveloperAssignmentMail());
     
             return redirect()->back()->with('devstatus','Developer Assigned');
         }
