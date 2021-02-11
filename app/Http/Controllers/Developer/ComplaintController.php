@@ -11,6 +11,11 @@ use App\Models\Complaint_Developer;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use DB;
+use Illuminate\Mail\Mailable;
+use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Lang;
+use Illuminate\Support\Facades\Mail;
+use App\Mail\ComplaintStatusMail;
 
 class ComplaintController extends Controller
 {
@@ -47,6 +52,13 @@ class ComplaintController extends Controller
         $complaint_Developer = Complaint_Developer::where('complaint_id',$id)->get();
         $complaints = complaints::findOrFail($id);
 
+        Helper::$status_message = [
+            'message' =>"The assigned developer/officer has viewed the complaint and currently working to resolve the issue with the application. Please await for further details",
+            'client_name' =>  Helper::getClientName($complaints->client_id)
+         ];
+        Mail::to(Helper::getEmailfromUserID($complaints->client_id))->send(new ComplaintStatusMail());
+
+
         return view('developer.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_Developer)->with('message',$message);
 
     }
@@ -56,6 +68,12 @@ class ComplaintController extends Controller
         $complaints = Complaints::find($request->input('comp_id'));
         $complaints->status =3;
         $complaints ->save();
+
+        Helper::$status_message = [
+            'message' =>"Your compalaint has been successfully fixed! Please vist the PMFM site to give a feedback.",
+            'client_name' =>  Helper::getClientName($complaints->client_id)
+         ];
+        Mail::to(Helper::getEmailfromUserID($complaints->client_id))->send(new ComplaintStatusMail());
 
         return redirect()->back()->with('status','Complaint Fixed!, Please wait for client\'s feedback about the solution.');
 

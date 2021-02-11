@@ -1,8 +1,6 @@
 @component('mail::message')
 <p align="center"><b>Complaint Assignment!</b></p>
-
 {{ Helper::$dev_data['system_name'] }}<br>
-
 <div style="padding: 10px; border : 1px solid #f2f2f2 ">
     <b>Compalint description</b><br>
     {!! Helper::$dev_data['description'] !!}<br><br>
@@ -23,7 +21,6 @@
     <br>
     <small style="margin-top:-10px"><i>Email : hq@crd.lk / hqcrdmod@gmail.com</i></small>
 <br>
-
 {{-- Subcopy --}}
 <hr>
 @lang(

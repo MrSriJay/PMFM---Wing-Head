@@ -40,18 +40,19 @@ class AssignDeveloperController extends Controller
                 'urgency_level' => $complaints->urgency_level,
                 'assigned_by' => $complaints->assigned_by
              ];
-       
+             Mail::to(Helper::getEmailfromUserID($request->input('dev_name')))->send(new DeveloperAssignmentMail());
 
+            
              Helper::$status_message = [
                 'message' =>"We have assigned an officer to look into your complaint. Please await for further details",
                 'client_name' =>  Helper::getClientName($complaints->client_id)
              ];
-       
-            //Mail::to("podilali69@gmail.com")->send(new DeveloperAssignmentMail());
+             Mail::to(Helper::getEmailfromUserID($complaints->client_id))->send(new ComplaintStatusMail());
 
-            Mail::to("podilali69@gmail.com")->send(new ComplaintStatusMail());
+             //Mail::to("podilali69@gmail.com")->send(new DeveloperAssignmentMail());
+             //Mail::to("podilali69@gmail.com")->send(new ComplaintStatusMail());
 
-            Mail::to(Helper::getEmailfromUserID($request->input('dev_name')))->send(new DeveloperAssignmentMail());
+            
     
             return redirect()->back()->with('devstatus','Developer Assigned');
         }
