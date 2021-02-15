@@ -16,6 +16,7 @@ class Helper
     public static $complaint_data =[];
     public static $dev_data =[];
     public static $status_message =[];
+    public static $feedback_message =[];
 
     public static function getWingName($id){
         $data =Wing::select("wing_name")
@@ -70,7 +71,19 @@ class Helper
         return $output;
     }
 
-    
+    public static function getUserType($id){
+        $data =User::select("usertype")
+        ->where('user_id',$id)
+            ->get();
+            $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->usertype;
+           
+        }
+
+        return $output;
+    }
 
     public static function getClientName($id){
         $data =Client::select("organization_name")

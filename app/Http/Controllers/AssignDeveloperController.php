@@ -11,6 +11,7 @@ use App\Models\Complaint_Developer;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\DeveloperAssignmentMail;
 use App\Mail\ComplaintStatusMail;
+use App\Mail\FeedNewMail;
 use Illuminate\Support\Facades\Mail;
 
 class AssignDeveloperController extends Controller
@@ -89,6 +90,15 @@ class AssignDeveloperController extends Controller
             $message->receiver = $request->input('sender_name');
             $message->sender = Auth::user()->user_id;
             $message->complaint_id = $request->input('comp_id');
+
+            Helper::$feedback_message = [   
+                'sender' => Helper::getName(Auth::user()->user_id),
+                'receiver' => Helper::getName($request->input('sender_name')),
+                'usertype' => Helper::getUserType(Auth::user()->user_id)
+                
+             ];
+
+            Mail::to(Helper::getEmailfromUserID($request->input('sender_name')))->send(new FeedNewMail());
             
             $message->save();
             return redirect()->back();

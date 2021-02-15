@@ -24,10 +24,9 @@ class ComplaintController extends Controller
         $complaints =  DB::table('complaints')
             ->join('complaint_developers','complaints.id','=','complaint_developers.complaint_id')
             ->where('developer_id',Auth::user()->user_id)
-             ->where('status',"!=","5")
+            ->where('status',"!=","5")
             ->orderBy('complaint_developers.updated_at', 'DESC')
             ->get();
-
          return view('developer.view-complaints')->with('complaints',$complaints);
     }
 
@@ -68,7 +67,7 @@ class ComplaintController extends Controller
         $complaints = Complaints::find($request->input('comp_id'));
         $complaints->status =3;
         $complaints ->save();
-
+        
         Helper::$status_message = [
             'message' =>"Your compalaint has been successfully fixed! Please vist the PMFM site to give a feedback.",
             'client_name' =>  Helper::getClientName($complaints->client_id)
