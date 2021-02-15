@@ -52,8 +52,6 @@ class AssignDeveloperController extends Controller
              //Mail::to("podilali69@gmail.com")->send(new DeveloperAssignmentMail());
              //Mail::to("podilali69@gmail.com")->send(new ComplaintStatusMail());
 
-            
-    
             return redirect()->back()->with('devstatus','Developer Assigned');
         }
         else{
