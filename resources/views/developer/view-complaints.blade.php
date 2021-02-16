@@ -47,7 +47,7 @@
                       @if($data->status == 1)
                         {{$data->system_name}}
                       @else
-                        <a href="developer/developer-complaints/{{$data->complaint_id}}">{{$data->system_name}}</a>
+                        <a href="/developer/developer-complaints/{{$data->complaint_id}}">{{$data->system_name}}</a>
                       @endif
                     </th>
                     <th scope="row">{{$data->created_at}}</th>
@@ -72,7 +72,7 @@
                           <Button class="btn btn-primary btn-sm mx-auto" style="width:100%">View</Button>
                         </form>
                         @else 
-                          <a class="btn btn-secondary  btn-sm mx-auto " href="developer/developer-complaints/{{$data->complaint_id}}" style="width:100%">View</a>
+                          <a class="btn btn-secondary  btn-sm mx-auto " href="/developer/developer-complaints/{{$data->complaint_id}}" style="width:100%">View</a>
                         @endif
                    
                     </th>

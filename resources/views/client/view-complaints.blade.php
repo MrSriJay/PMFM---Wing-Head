@@ -45,7 +45,7 @@
               @if(count($complaints)>0)
                 @foreach ($complaints as $data)
                   <tr>
-                    <th scope="row"><a  @if($data->status == 3) class="text-success" @endif href="client/clients-complaints/{{$data->id}}">{{$data->system_name}}</a></th>
+                    <th scope="row"><a  @if($data->status == 3) class="text-success" @endif href="/client/clients-complaints/{{$data->id}}">{{$data->system_name}}</a></th>
                     <th scope="row">{{$data->fault_type}}</th>
                     <th scope="row">{{$data->created_at}}</th>
                     <th scope="row">{!!Helper::getWingName($data->wing_id)!!}</th>
@@ -61,7 +61,7 @@
                     @endif
                     <th scope="row"  class="text-primary">{!!Helper::getComplaintStatus($data->status)!!}</th>
                     <th scope="row">
-                     <a class="btn btn-secondary btn-sm mx-auto " href="client/clients-complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                     <a class="btn btn-secondary btn-sm mx-auto " href="/client/clients-complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
                     </th>
 
                   </tr>

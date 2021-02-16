@@ -26,7 +26,7 @@
                 <div class="card border">
                   <div class="row" style="padding: 20px">
                         <div class="col-lg-12" >
-                          <h5 style="font-weight: bolder"><a class="card-title text-primary" href="admin/complaints/{{$data->id}}" >{!! substr($data->description, 0,100) . '.....'!!} <small> View More</small></a></h5>
+                          <h5 style="font-weight: bolder"><a class="card-title text-primary" href="/admin/complaints/{{$data->id}}" >{!! substr($data->description, 0,100) . '.....'!!} <small> View More</small></a></h5>
                         </div>
                         <div class="col-lg-4">
                           <small class="text-muted">Urgency Level</small> <br>

@@ -25,7 +25,7 @@ Projects - View | PMFM
 
         <label for="recipient-name" class="col-form-label text-light">System Name:</label>
 
-            <a href="winghead/wings-projects/{{$complaints->project_id}}" class="btn btn-primary float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">preview</i> View Project</a>
+            <a href="/winghead/wings-projects/{{$complaints->project_id}}" class="btn btn-primary float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">preview</i> View Project</a>
 
 
             <h3 class="card-title">
@@ -49,7 +49,7 @@ Projects - View | PMFM
 
             @if($complaints->status==0)
                 <div class="alert alert-light alert-dismissible fade show text-danger" role="alert">
-                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="winghead/wings-complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
+                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="/winghead/wings-complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
                 </div>
              @elseif($complaints->status==1)
              
@@ -136,7 +136,7 @@ Projects - View | PMFM
                         @foreach ($complaint_developer as $data)
                           <div class="row bg-muted">
                               <div class="col-lg-10">
-                                <a href="winghead/wings-users/{{$data->developer_id}}">{!!Helper::getName($data->developer_id)!!}</a>
+                                <a href="/winghead/wings-users/{{$data->developer_id}}">{!!Helper::getName($data->developer_id)!!}</a>
                                 <small style=" display:block ;margin-top:-10px; color:#bfbfbf" ><i>Assigned by {!!Helper::getName($data->assigned_by)!!} on {!!$data->created_at!!} </i></small>
                               </div>
                               <div class="col-lg-2">

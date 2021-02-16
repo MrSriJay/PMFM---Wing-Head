@@ -220,7 +220,7 @@ Projects - View | PMFM
                         </div> 
 
                         <hr>
-                        <a href="admin/projects-history/{{$project->id}}" class="text-primary"><b><span class="material-icons">history</span> View Complaint History</b></a>
+                        <a href="/admin/projects-history/{{$project->id}}" class="text-primary"><b><span class="material-icons">history</span> View Complaint History</b></a>
 
 
                 </div>

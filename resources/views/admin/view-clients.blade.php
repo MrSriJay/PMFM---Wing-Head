@@ -50,7 +50,7 @@
                     <th scope="row">{!!nl2br(e($data->contact_no))!!}</th>
                     <th scope="row">{{$data->email}}</th>
                     <th scope="row">
-                     <a class="btn btn-secondary btn-sm mx-auto " href="admin/clients/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                     <a class="btn btn-secondary btn-sm mx-auto " href="/admin/clients/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
                     </th>
                   </tr>
                   @endforeach

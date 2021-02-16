@@ -137,7 +137,7 @@ class ComplaintController extends Controller
    $complaints->status =4;
    $complaints ->save();
 
-   return redirect()->back()->with('status','Complaint Fixed!, Please wait for client\'s feedback about the solution.');
+   return redirect()->back()->with('status','Solution Rejected!, Developer will be notified');
 
 }
 
