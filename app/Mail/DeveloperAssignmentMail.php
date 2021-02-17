@@ -30,7 +30,7 @@ class DeveloperAssignmentMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.devloperAssignment')->from($address = 'podilali69@gmail.com', $name = 'Center Defence Research and Development | PMFM')
+        return $this->markdown('email.devloperAssignment')->from($address = 'podilali69@gmail.com', $name = 'Center for Defence Research and Development | PMFM')
         ->subject(Lang::get('PMFM | Complaint Assigned' ));
     }
 }

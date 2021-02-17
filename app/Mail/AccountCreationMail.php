@@ -29,7 +29,7 @@ class AccountCreationMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.accountCreate')->from($address = 'podilali69@gmail.com', $name = 'Center Defence Research and Development | PMFM')
+        return $this->markdown('email.accountCreate')->from($address = 'podilali69@gmail.com', $name = 'Center for Defence Research and Development | PMFM')
         ->subject(Lang::get('PMFM Account Created Successfully'));
     }
 }
