@@ -11,7 +11,7 @@ use App\Models\Client;
 use App\Models\Complaint_Developer;
 
 use Illuminate\Support\Facades\Auth;
-class AutocompleteprojectController extends Controller
+class AutocompleteController extends Controller
 {
   function index()
   {

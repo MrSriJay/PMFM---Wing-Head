@@ -13,12 +13,12 @@ use App\Http\Controllers\Winghead\WingProjectController;
 use App\Http\Controllers\Winghead\WingUserController;
 use App\Http\Controllers\Winghead\UserComplaintController;
 
-use App\Http\Controllers\client\PurchasedSystemsController;
-use App\Http\Controllers\client\ClientComplaintController;
+use App\Http\Controllers\Client\PurchasedSystemsController;
+use App\Http\Controllers\Client\ClientComplaintController;
 
 use App\Http\Controllers\Developer\DeveloperComplaintController;
 
-use App\Http\Controllers\client\AutocompleteprojectController;
+use App\Http\Controllers\Client\AutocompleteController;
 
 use App\Http\Controllers\AssignDeveloperController;
 
@@ -115,19 +115,19 @@ Route::group(['middleware' => ['auth','developer']],function() {
                                             //Auto Complete Projects//
 /*--------------------------------------------------------------------------------------------------------*/
 
-Route::get('/autocomplete', [AutocompleteprojectController::class,'index']);
-Route::get('/projects-search', [AutocompleteprojectController::class, 'selectSearch']);
-Route::get('/projects-search-admin', [AutocompleteprojectController::class, 'selectSearchAdmin']);
-Route::get('/projects-search-client', [AutocompleteprojectController::class, 'selectSearchProjectClient']);
-Route::get('/wings-search', [AutocompleteprojectController::class, 'selectSearchWings']);
-Route::get('/supervisor-search', [AutocompleteprojectController::class, 'selectSearchSupervisor']);
-Route::get('/admin-supervisor-search', [AutocompleteprojectController::class, 'selectAdminSearchSupervisor']);
-Route::get('/client-search', [AutocompleteprojectController::class, 'selectSearchClients']);
-Route::post('/dev-search', [AutocompleteprojectController::class, 'selectSearchDevelopers']);
-Route::post('/dev-search-admin', [AutocompleteprojectController::class, 'selectSearchDevelopersAdmin']);
+Route::get('/autocomplete', [AutocompleteController::class,'index']);
+Route::get('/projects-search', [AutocompleteController::class, 'selectSearch']);
+Route::get('/projects-search-admin', [AutocompleteController::class, 'selectSearchAdmin']);
+Route::get('/projects-search-client', [AutocompleteController::class, 'selectSearchProjectClient']);
+Route::get('/wings-search', [AutocompleteController::class, 'selectSearchWings']);
+Route::get('/supervisor-search', [AutocompleteController::class, 'selectSearchSupervisor']);
+Route::get('/admin-supervisor-search', [AutocompleteController::class, 'selectAdminSearchSupervisor']);
+Route::get('/client-search', [AutocompleteController::class, 'selectSearchClients']);
+Route::get('/dev-search', [AutocompleteController::class, 'selectSearchDevelopers']);
+Route::get('/dev-search-admin', [AutocompleteController::class, 'selectSearchDevelopersAdmin']);
 
-Route::get('/com-dev-admin', [AutocompleteprojectController::class, 'selectSearchDevAdmin']);
-Route::get('/com-dev', [AutocompleteprojectController::class, 'selectSearchDev']);
+Route::get('/com-dev-admin', [AutocompleteController::class, 'selectSearchDevAdmin']);
+Route::get('/com-dev', [AutocompleteController::class, 'selectSearchDev']);
 
 
 /*--------------------------------------------------------------------------------------------------------*/ 
