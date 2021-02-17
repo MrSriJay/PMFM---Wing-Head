@@ -19,7 +19,7 @@ use App\Mail\ComplaintAddedNotifaction;
 use Illuminate\Support\Facades\Mail;
 
 
-class ComplaintController extends Controller
+class ClientComplaintController extends Controller
 {
 
     public function index()

@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ComplaintStatusMail;
 
-class ComplaintController extends Controller
+class DeveloperComplaintController extends Controller
 {
     public function index()
     {

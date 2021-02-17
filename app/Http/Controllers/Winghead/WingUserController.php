@@ -13,7 +13,7 @@ use App\Mail\AccountCreationMail;
 use Illuminate\Support\Facades\Mail;
 use App\helper;
 
-class UserController extends Controller
+class WingUserController extends Controller
 {
     public function index()
     {
