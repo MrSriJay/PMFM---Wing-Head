@@ -36,27 +36,6 @@ The above copyright notice and this permission notice shall be included in all c
   <link href="styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.css">
 
-  <style>
-    <!-- CSS -->
-    .fullscreen-bg {
-        position: fixed;
-        top: 0;
-        right: 0;
-        bottom: 0;
-        left: 0;
-        overflow: hidden;
-        z-index: -100;
-    }
-
-    .fullscreen-bg__video {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        opacity: 0.2
-        
-    }
-      </style>
 
 </head>
 

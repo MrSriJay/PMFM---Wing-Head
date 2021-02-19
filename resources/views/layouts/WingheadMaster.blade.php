@@ -129,6 +129,7 @@ The above copyright notice and this permission notice shall be included in all c
                   </p>
                 </a>
               </li>
+              <!--
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
@@ -145,6 +146,7 @@ The above copyright notice and this permission notice shall be included in all c
                   <a class="dropdown-item" href="#">Another One</a>
                 </div>
               </li>
+            -->
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{ Auth::user()->first_name }} <i class="material-icons">person</i>
@@ -174,7 +176,11 @@ The above copyright notice and this permission notice shall be included in all c
       <div class="panel-header panel-header-sm"></div>
 
       <div class="content">
-        
+        <div class="fullscreen-bg" style="100%">
+          <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+              <source src="{{asset('/assets/img/bgvideo.mp4')}}" type="video/mp4">
+          </video>
+        </div>
         <div class="container-fluid">
           <button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><span class="material-icons">north</span></button>
             @yield('content')         

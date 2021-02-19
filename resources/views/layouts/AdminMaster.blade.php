@@ -29,9 +29,8 @@
 </head>
 
 <body class="">
-  
   <div class="wrapper">
-    <div class="sidebar" data-color="purple" data-background-color="white" data-image=" {{asset('/assets/img/sidebar-1.jpg')}}">
+    <div class="sidebar" data-color="purple" data-background-color="white" data-image="{{asset('/assets/img/sidebar.jpg')}}">
       <!--
         Tip 1: You can change the color of the sidebar using: data-color="purple | azure | green | orange | danger"
 
@@ -107,6 +106,7 @@
                   </p>
                 </a>
               </li>
+              <!--
               <li class="nav-item dropdown">
                 <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   <i class="material-icons">notifications</i>
@@ -123,6 +123,7 @@
                   <a class="dropdown-item" href="#">Another One</a>
                 </div>
               </li>
+            -->
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                   {{ Auth::user()->first_name}} {{ Auth::user()->last_name}}<i class="material-icons">person</i>
@@ -152,7 +153,11 @@
       <div class="panel-header panel-header-sm"></div>
 
       <div class="content">
-        
+        <div class="fullscreen-bg" style="100%">
+          <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
+              <source src="{{asset('/assets/img/bgvideo.mp4')}}" type="video/mp4">
+          </video>
+        </div>
         <div class="container-fluid" id="section">
            <button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><span class="material-icons">north</span></button>
             @yield('content')         
