@@ -22,6 +22,7 @@ use App\Http\Controllers\Client\AutocompleteController;
 
 use App\Http\Controllers\AssignDeveloperController;
 
+use App\Http\Controllers\BotManController;  
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +41,9 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+
 
 /*--------------------------------------------------------------------------------------------------------*/ 
                                             //ADMIN//
@@ -97,6 +101,15 @@ Route::post('developer/clients-not-solved',[ClientComplaintController::class, 's
 });
 
 /*--------------------------------------------------------------------------------------------------------*/ 
+                                            //BOTMAN//
+/*--------------------------------------------------------------------------------------------------------*/ 
+
+Route::get('/iFrameUrl', function () { return view('iFrameUrl');
+});
+
+Route::match(['get', 'post'], '/botman', [BotManController::class, 'handle']);
+
+/*--------------------------------------------------------------------------------------------------------*/ 
                                             //DEVELOPER//
 /*--------------------------------------------------------------------------------------------------------*/
 Route::group(['middleware' => ['auth','developer']],function() {
@@ -123,8 +136,8 @@ Route::get('/wings-search', [AutocompleteController::class, 'selectSearchWings']
 Route::get('/supervisor-search', [AutocompleteController::class, 'selectSearchSupervisor']);
 Route::get('/admin-supervisor-search', [AutocompleteController::class, 'selectAdminSearchSupervisor']);
 Route::get('/client-search', [AutocompleteController::class, 'selectSearchClients']);
-Route::get('/dev-search', [AutocompleteController::class, 'selectSearchDevelopers']);
-Route::get('/dev-search-admin', [AutocompleteController::class, 'selectSearchDevelopersAdmin']);
+Route::post('/dev-search', [AutocompleteController::class, 'selectSearchDevelopers']);
+Route::post('/dev-search-admin', [AutocompleteController::class, 'selectSearchDevelopersAdmin']);
 
 Route::get('/com-dev-admin', [AutocompleteController::class, 'selectSearchDevAdmin']);
 Route::get('/com-dev', [AutocompleteController::class, 'selectSearchDev']);

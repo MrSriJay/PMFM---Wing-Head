@@ -4,6 +4,10 @@
     Dashboard | CRD
 @endsection
 
+@section('styles')
+ <link href="{{asset('/assets/css/chat.css" rel="stylesheet')}}" />
+@endsection
+
 @section('content')
     
 {{-- Delete Modal --}}
@@ -172,6 +176,27 @@
      </div>
    </div>
  </div>
+
+<script>
+ var botmanWidget = {
+   
+  frameEndpoint: '/iFrameUrl',
+  aboutText:'',
+  title: "PMFM Client Assistant",
+  introMessage: "Hello there! ✋ I'm your PMFM System Assistant.<br><br>Type 'hi' to receive my services",
+  mainColor: 'linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(9,50,161,1) 0%, rgba(0,185,255,0.9864320728291317) 100%',
+  headerTextColor: '#ffff',
+  bubbleAvatarUrl: '/chatboticon.png',
+  aboutText: 'Powered by CDRD',
+  aboutLink: 'https://crd.lk/',
+  bubbleBackground: '#ff76f4',
+  placeholderText: 'Ask a question....'
+
+  };
+</script>
+
+<script src="{{ asset('/assets/js/widget.js') }}"></script>
+
 @endsection
 
 @section('scripts')

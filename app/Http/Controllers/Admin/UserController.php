@@ -80,7 +80,7 @@ class UserController extends Controller
                  ];
 
 
-                Mail::to("podilali69@gmail.com")->send(new AccountCreationMail());
+                Mail::to($request->email)->send(new AccountCreationMail());
                 return redirect('/admin/users')->with('status', 'User added successfully');
             }
 

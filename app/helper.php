@@ -48,6 +48,33 @@ class Helper
         
     }
 
+    public static function getDesignationFromID($id){
+        $data =User::select("usertype")
+        ->where('user_id',$id)
+            ->get();
+
+            $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->usertype;
+
+        }
+
+        switch($output){
+            case 'winghead': return "Winghead"; break;
+            case 'developer': return "Developer"; break;
+            case 'officer': return "Officer"; break;
+            case 'admin': return "Admin"; break;
+            case 'client': return "Client"; break;
+            case 'dg': return "Director General"; break;
+            case 's01': return "Staff Officer 01"; break;
+            case 'c-controller': return "Cheif Controller"; break;
+            case 'c-coordinator': return "Cheif Quadianator"; break;
+            case 'hq': return "Headquaters"; break;
+        }
+        
+    }
+
     public static function getName($id){
         $data =User::select("first_name","last_name","usertype")
         ->where('user_id',$id)

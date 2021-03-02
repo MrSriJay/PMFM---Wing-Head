@@ -30,7 +30,7 @@ class FeedNewMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.feebackMail')->from($address = 'podilali69@gmail.com', $name = 'Center for Defence Research and Development | PMFM')
+        return $this->markdown('email.feebackMail')->from($address = 'cdrd.pmfm@gmail.com', $name = 'Center for Defence Research and Development | PMFM')
         ->subject(Lang::get('PMFM | New Message' ));
     }
 }

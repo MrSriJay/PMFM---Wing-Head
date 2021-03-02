@@ -199,10 +199,10 @@ Projects - View | PMFM
                   @foreach ($message as $data)
                     <div class="row bg-muted card" style="margin:10px">
                         <div class="card-body">
-                          <div class="text-success" style="font-size: 10px" >From <b>{!!Helper::getName($data->sender)!!}</b></div>
+                          <div class="text-success" style="font-size: 10px" >From <b>{!!Helper::getName($data->sender)!!} - <i class="text-muted">{!!Helper::getDesignationFromID($data->sender)!!}</i></b></div>
                           <div class="text-primary">{!!$data->message!!} </div>
                           <div class="text-success">
-                            <span style="font-size: 10px" class="float:left" >To <b>{!!Helper::getName($data->receiver)!!}</b></span>
+                            <span style="font-size: 10px" class="float:left" >To <b>{!!Helper::getName($data->receiver)!!} - <i class="text-muted">{!!Helper::getDesignationFromID($data->receiver)!!}</i></b></span>
                             <small style=" display:block ;margin-top:-10px; color:#bfbfbf" class="float-right"><i>Sent on {!!$data->created_at!!} </i></small>
                           </div>
                         </div>
