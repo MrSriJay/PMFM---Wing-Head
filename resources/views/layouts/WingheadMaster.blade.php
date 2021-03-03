@@ -157,7 +157,9 @@ The above copyright notice and this permission notice shall be included in all c
               <source src="/assets/img/bgvideo.mp4" type="video/mp4">
           </video>
         </div>
-       
+        <div class="container-fluid">
+            @yield('content')         
+        </div>
 
       </div>
       <footer class="footer">
