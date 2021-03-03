@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="{{asset('/assets/css/dataTables.min.css')}}">
   <!--DropZone-->
   <!-- <link href=" {{asset('/dist/css/jquery.dm-uploader.min.css')}}" rel="stylesheet">-->
-  <link href="styles.css" rel="stylesheet">
+  <link href=" styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.css">
   @yield('styles')
 </head>
