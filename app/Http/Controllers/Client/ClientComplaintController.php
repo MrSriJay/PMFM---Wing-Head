@@ -101,8 +101,8 @@ class ClientComplaintController extends Controller
       ];
 
 
-    //Mail::to("podilali69@gmail.com")->send(new ComplaintAddedNotifaction());
-/*
+     //Mail::to("podilali69@gmail.com")->send(new ComplaintAddedNotifaction());
+     /*
      Mail::to(Helper::getEmailfromUserID(Auth::user()->user_id))->send(new ComplaintAddedNotifaction());
      Mail::to(Helper::getEmailfromUsertype("winghead",Helper::getWingId($request->input('title'))))->send(new ComplaintAddedNotifaction());
      Mail::to(Helper::getEmailfromUsertype("dg","0"))->send(new ComplaintAddedNotifaction());

@@ -23,6 +23,8 @@ use App\Http\Controllers\Client\AutocompleteController;
 use App\Http\Controllers\AssignDeveloperController;
 
 use App\Http\Controllers\BotManController;  
+
+use App\Http\Controllers\EditprofileController;  
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,10 +42,12 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index']);
 
 
-
+Route::get('/edit_profile/{id}', [EditprofileController::class, 'index']);
+Route::post('/edit_profile/{id}', [EditprofileController::class, 'update']);
+Route::post('/edit_change_password/{id}', [EditprofileController::class, 'editPassword']);
 
 /*--------------------------------------------------------------------------------------------------------*/ 
                                             //ADMIN//
@@ -59,10 +63,7 @@ Route::resource('admin/projects', ProjectController::class);
 Route::resource('admin/clients', ClientController::class);
 Route::resource('admin/complaints',ComplaintController::class);
 
-
 Route::get('admin/projects-history/{id}', [ProjectController::class, 'showCompalintHistory']);
-
-
 
 });
 

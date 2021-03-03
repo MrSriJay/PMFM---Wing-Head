@@ -160,7 +160,7 @@ Add Projects | PMFM
 
                         <!--Insert End Date-->
                         <div id="date-picker-example" class="md-form md-outline input-with-post-icon datepicker py-3">
-                            <label for="recipient-name" class="col-form-label text-primary">Proejct Delivered Date</label>
+                            <label for="recipient-name" class="col-form-label text-primary">Project Delivered Date</label>
                             <input type="date" name="enddate" value="{{ old('enddate') }}"  class="form-control  @error('enddate') is-invalid @enderror" required placeholder="Select date" id="date">
                             @error('enddate')
                             <span style="color:red">
@@ -292,7 +292,7 @@ Add Projects | PMFM
             {
              var _token = $('input[name="_token"]').val();
              $.ajax({
-              url: '/dev-search',
+              url: '/dev-search-admin',
               method:"POST",
               data:{query:query, _token:_token},
               success:function(data){
