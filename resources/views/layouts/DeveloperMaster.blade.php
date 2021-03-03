@@ -35,7 +35,7 @@ The above copyright notice and this permission notice shall be included in all c
   <!-- <link href=" {{asset('/dist/css/jquery.dm-uploader.min.css')}}" rel="stylesheet">-->
   <link href="styles.css" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.css">
-
+  <link href="{{asset('/assets/css/bgvideo.css')}}" rel="stylesheet" />
    @yield('styles')
   <style>
     .download-btn{
