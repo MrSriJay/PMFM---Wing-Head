@@ -37,31 +37,7 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.css">
   <link href="{{asset('/assets/css/bgvideo.css')}}" rel="stylesheet" />
    @yield('styles')
-  <style>
-    .download-btn{
-      color: #131213;
-      text-decoration: none;
-      background-color: transparent;
-      -webkit-text-decoration-skip: objects;
-    }
 
-    .download-btn:hover {
-      color: #9c27b0;
-      text-decoration: none;
-    }
-
-    .preview-btn{
-      color: #131213;
-      text-decoration: none;
-      background-color: transparent;
-      -webkit-text-decoration-skip: objects;
-    }
-
-    .preview-btn:hover {
-      color: #9c27b0;
-      text-decoration: none;
-    }
-  </style>
 </head>
 
 <body class="">
@@ -176,10 +152,7 @@ The above copyright notice and this permission notice shall be included in all c
               <source src="/assets/img/bgvideo.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="container-fluid">
-          <button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><span class="material-icons">north</span></button>
-            @yield('content')         
-        </div>
+      
 
       </div>
       <footer class="footer">

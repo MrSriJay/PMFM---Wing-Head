@@ -159,10 +159,7 @@
               <source src="/assets/img/bgvideo.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="container-fluid" id="section">
-           <button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><span class="material-icons">north</span></button>
-            @yield('content')         
-        </div>
+       
 
       </div>
       <footer class="footer">

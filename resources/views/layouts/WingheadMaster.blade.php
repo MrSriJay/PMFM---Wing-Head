@@ -36,7 +36,6 @@ The above copyright notice and this permission notice shall be included in all c
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.7.2/dropzone.css">
   <link href="{{asset('/assets/css/bgvideo.css')}}" rel="stylesheet" />
    @yield('styles')
-
 </head>
 
 <body class="">
@@ -158,10 +157,7 @@ The above copyright notice and this permission notice shall be included in all c
               <source src="/assets/img/bgvideo.mp4" type="video/mp4">
           </video>
         </div>
-        <div class="container-fluid">
-          <button onclick="topFunction()" id="myBtn" class="btn" title="Go to top"><span class="material-icons">north</span></button>
-            @yield('content')         
-        </div>
+       
 
       </div>
       <footer class="footer">
