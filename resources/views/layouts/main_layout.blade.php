@@ -43,7 +43,7 @@ The above copyright notice and this permission notice shall be included in all c
 
   <div class="fullscreen-bg" style="100%">
     <video loop muted autoplay poster="img/videoframe.jpg" class="fullscreen-bg__video">
-        <source src="{{asset('/assets/img/bgvideo.mp4')}}" type="video/mp4">
+        <source src="/assets/img/bgvideo.mp4" type="video/mp4">
     </video>
   </div>
   <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
