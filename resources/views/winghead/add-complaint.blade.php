@@ -12,7 +12,7 @@
     <link href="https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.1.0/knockout-min.js"></script>
     <script src="https://rawgit.com/adrotec/knockout-file-bindings/master/knockout-file-bindings.js"></script>
-    <link href="../assets/css/fle-styles.css" rel="stylesheet" />
+    <link href="/assets/css/fle-styles.css" rel="stylesheet" />
 @endsection
 
 
@@ -235,5 +235,5 @@ else{
 
 
 </script>
-<script src="../assets/js/filedrag.js"></script>
+<script src="/assets/js/filedrag.js"></script>
 @endsection

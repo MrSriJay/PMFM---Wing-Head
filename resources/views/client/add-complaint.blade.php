@@ -10,7 +10,7 @@
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
     <link href="https://raw.githubusercontent.com/bantikyan/icheck-bootstrap/master/icheck-bootstrap.min.css" rel="stylesheet"/>
-
+    <link href="/assets/css/fle-styles.css" rel="stylesheet" />
 @endsection
 
 
@@ -235,7 +235,6 @@ else{
 }
 }
 
-
 </script>
-
+<script src="/assets/js/filedrag.js"></script>
 @endsection
