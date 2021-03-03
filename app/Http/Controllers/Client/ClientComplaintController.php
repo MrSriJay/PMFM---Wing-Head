@@ -102,13 +102,13 @@ class ClientComplaintController extends Controller
 
 
     //Mail::to("podilali69@gmail.com")->send(new ComplaintAddedNotifaction());
-
+/*
      Mail::to(Helper::getEmailfromUserID(Auth::user()->user_id))->send(new ComplaintAddedNotifaction());
      Mail::to(Helper::getEmailfromUsertype("winghead",Helper::getWingId($request->input('title'))))->send(new ComplaintAddedNotifaction());
-     Mail::to(Helper::getEmailfromUsertype("dg","99"))->send(new ComplaintAddedNotifaction());
-     Mail::to(Helper::getEmailfromUsertype("s01","99"))->send(new ComplaintAddedNotifaction());
-     Mail::to(Helper::getEmailfromUsertype("c-controller","99"))->send(new ComplaintAddedNotifaction());
-      
+     Mail::to(Helper::getEmailfromUsertype("dg","0"))->send(new ComplaintAddedNotifaction());
+     Mail::to(Helper::getEmailfromUsertype("s01","0"))->send(new ComplaintAddedNotifaction());
+     Mail::to(Helper::getEmailfromUsertype("c-controller","0"))->send(new ComplaintAddedNotifaction());
+      */
 
       return redirect('client/clients-complaints')->with('status','Complaint Submitted Successfully!');
 

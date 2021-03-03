@@ -1,7 +1,7 @@
 @component('mail::message')
 <p align="center"><b>Fault reported to {{ Helper::$complaint_data['system_name'] }}</b></p>
 
-A complaint has been reported by {{ Helper::$complaint_data['client_name'] }} for {{ Helper::$complaint_data['system_name'] }}, the system was developed by {!! Helper::getWingName(Helper::$complaint_data['wing_id']) !!} Wing of CDRD. <br>
+A complaint has been reported by {{ Helper::$complaint_data['client_name'] }} for {{ Helper::$complaint_data['system_name'] }}, the system was developed by {!! Helper::getWingName(Helper::$complaint_data['wing_id']) !!} of CDRD. <br>
 <div style="padding: 10px; border : 1px solid #f2f2f2 ">
     <b>Compalint description</b><br>
     {!! Helper::$complaint_data['description'] !!}<br><br>
