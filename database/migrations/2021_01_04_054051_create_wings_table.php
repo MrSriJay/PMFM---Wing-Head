@@ -18,6 +18,31 @@ class CreateWingsTable extends Migration
             $table->string('wing_name');
             $table->timestamps();
         });
+
+        DB::table('wings')->insert([
+            'wing_name' => 'none',
+        ]);
+
+        DB::table('wings')->insert([
+            'wing_name' => 'Radio & Electronic',
+        ]);
+
+        DB::table('wings')->insert([
+            'wing_name' => 'Electrical & Mechanical',
+        ]);
+
+        DB::table('wings')->insert([
+            'wing_name' => 'IT/ GIS',
+        ]);
+
+        DB::table('wings')->insert([
+            'wing_name' => 'Cyber',
+        ]);
+
+        DB::table('wings')->insert([
+            'wing_name' => 'Aeronautical',
+        ]);
+
     }
 
     /**
