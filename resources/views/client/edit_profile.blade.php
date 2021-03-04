@@ -1,4 +1,4 @@
-@extends('layouts.WingheadMaster')
+@extends('layouts.DeveloperMaster')
 
 @section('title')
     Complaints | CRD
@@ -13,91 +13,83 @@
 @endsection
 
 @section('content')
-    
+<form action="/edit_profile/{!!$clients->id!!}" method="post"> 
+  {{ csrf_field() }}
 <div class="row">
   <div class="col-md-12">
     <div class="card">
       <div class="card-header card-header-primary"> 
-
-      <label for="recipient-name" class="col-form-label text-light">Militaray/National ID No</label>
+          <label for="recipient-name" class="col-form-label text-light">Client Name</label>
           <h3 class="card-title">
-             <strong id="u_id">{!!$user->user_id!!}</strong>
-          </h3> 
+              <input  type="text" name ="organization_name" style="font-size: 20px" id ="organization_name" class="form-control text-light text-lg @error('organization_name') is-invalid @enderror"  value="{{ old('department_name',$clients->organization_name) }}"  placeholder="e.g. Mahela"  required value="">
+              @error('organization_name')
+                <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+                </span>
+              @enderror
+            </h3> 
       </div>
       <div class="card-body"  >
         
-       @if (session('status'))
-          <div class="alert alert-success py-2" role="alert">
-          {{ session('status') }}
-          </div>
-       @endif
-      <form action="/edit_profile/{!!$user->user_id!!}" method="post">
-      {{ csrf_field() }}
-        <div class="row">
-
-          <!--View rank-->
-          <div class="col-lg-4">
-              <label for="recipient-name" class="col-form-label text-primary">Rank</label>
-              <input type="text" name ="rank" id ="rank"  class="form-control @error('rank') is-invalid @enderror"  value="{{ old('rank',$user->rank) }} "  placeholder="e.g. Major" required value="">
-              @error('rank')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-          </div>
-          <!--View First Name-->
-          <div class="col-lg-4">
-              <label for="recipient-name" class="col-form-label text-primary">First Name</label>
-              <input type="text" name ="first_name" id ="first_name" class="form-control @error('first_name') is-invalid @enderror" value="{{ old('first_name',$user->first_name) }}"  placeholder="e.g. Mahela"  required value="">
-              @error('first_name')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-          </div>
-
-          <!--View Last Name-->
-          <div class="col-lg-4"> 
-              <label for="recipient-name" class="col-form-label text-primary">Last Name</label>
-              <input type="text" name ="last_name" id ="last_name"  class="form-control @error('last_name') is-invalid @enderror" value="{{ old('last_name',$user->last_name) }}"  placeholder="e.g. Perera"  required value="">
-              @error('last_name')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-          </div>
-
-           <!--View Telephone-->
-           <div class="col-lg-6">
-              <label for="recipient-name" class="col-form-label text-primary">Telephone</label>
-              <input type="text" name ="telephone" id ="telephone" class="form-control @error('telephone') is-invalid @enderror" value="{{ old('telephone',$user->telephone) }}"  placeholder="e.g. 0112111111"  pattern="[0-9]{1}[0-9]{9}" required value="">
-              @error('telephone')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-          </div>
-
-          <!--View Email-->
-          <div class="col-lg-4">
-              <label for="recipient-name" class="col-form-label text-primary">Email</label>
-              <input type="email" name ="email" id ="email" class="form-control @error('email') is-invalid @enderror" value="{{ old('email',$user->email) }} "  placeholder="e.g. mymail@gmail.com" required>
-              @error('email')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-          </div>
-
-          <!--Save and Cancel Buttons-->
-          <div style="text-align:right" class="col-lg-12" id="buttons"> 
-             <button type="button" class="btn btn-success" id="update" data-toggle="modal" data-target="#updatemodal">
-                <span class="material-icons">update</span> Update
-             </button>
-          </div> 
-        </div>
-    
-      </div> 
+        @if (session('status'))
+           <div class="alert alert-success py-2" role="alert">
+           {{ session('status') }}
+           </div>
+        @endif
+      
+       
+ 
+           <!--View Department Name-->
+           <div class="form-group py-4">
+             <label for="recipient-name" class="col-form-label text-primary">Department</label>
+             <input type="text" name ="department_name" id ="department_name" class="form-control @error('department_name') is-invalid @enderror"   value="{{ old('department_name',$clients->department_name) }}"  placeholder="e.g. Mahela"  required value="">
+             @error('department_name')
+             <span class="invalid-feedback" role="alert">
+             <strong>{{ $message }}</strong>
+             </span>
+             @enderror
+         </div>
+ 
+         <!--View Address-->
+         <div class="form-group py-4">
+             <label for="recipient-name" class="col-form-label text-primary">Address</label>
+             <input type="text" name ="address" id="address"  class="form-control @error('address') is-invalid @enderror"   value="{{ old('address',$clients->address) }}"  placeholder="e.g. Perera"  required value="">
+             @error('address')
+             <span class="invalid-feedback" role="alert">
+             <strong>{{ $message }}</strong>
+             </span>
+             @enderror
+         </div>
+ 
+          <!--View Contact No-->
+          <div class="form-group py-4">
+             <label for="recipient-name" class="col-form-label text-primary">Contact No</label>
+             <textarea type="text" name="contact_no" rows="4"  id="contact_no"  cols="10" class="form-control @error('contact_no') is-invalid @enderror"  required>{!!($clients->contact_no)!!}</textarea>
+             @error('contact_no')
+             <span class="invalid-feedback" role="alert">
+             <strong>{{ $message }}</strong>
+             </span>
+             @enderror
+         </div>
+ 
+         <!--Insert Email-->
+         <div class="form-group py-4">
+             <label for="recipient-name" class="col-form-label text-primary">Email</label>
+             <input type="email" name ="email" id ="email" class="form-control @error('email') is-invalid @enderror"  value="{{ old('email',$clients->email) }} "  placeholder="e.g. mymail@gmail.com" required value="">
+             @error('email')
+             <span class="invalid-feedback" role="alert">
+             <strong>{{ $message }}</strong>
+             </span>
+             @enderror
+         </div>
+ 
+           <!--Save and Cancel Buttons-->
+           <div style="text-align:right" class="col-lg-12" id="buttons"> 
+              <button type="button" class="btn btn-success" id="update" data-toggle="modal" data-target="#updatemodal">
+                 <span class="material-icons">update</span> Update
+              </button>
+           </div> 
+       </div> 
     </div>
   </div>
 </div>
@@ -124,7 +116,7 @@
 </div>
 </form>
 
-<form action="/edit_change_password/{!!$user->user_id!!}" method="post">
+<form action="/edit_change_password/{!!$clients->id!!}" method="post">
 
 <div class="card">
   <div class="card-header card-header-primary"> 
@@ -188,7 +180,7 @@
         <p>Are you sure you want to update the password? </p>
       </div> 
         {{ csrf_field() }}
-        <input type="hidden" value="{!!$user->user_id!!}" name="user_id">
+        <input type="hidden" value="{!!$clients->id!!}" name="user_id">
         <div class="modal-footer">
             <button type="submit" class="btn btn-success">Yes, Change Password</button>
        </form>

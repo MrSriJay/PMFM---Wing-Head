@@ -1,19 +1,18 @@
-@extends('layouts.WingheadMaster')
+@extends('layouts.AdminMaster')
 
 @section('title')
     Complaints | CRD
 @endsection
 
 @section('styles')
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
-    
 @endsection
 
 @section('content')
-    
+<form action="/edit_profile/{!!$user->user_id!!}" method="post">
+  {{ csrf_field() }}  
 <div class="row">
   <div class="col-md-12">
     <div class="card">
@@ -31,10 +30,8 @@
           {{ session('status') }}
           </div>
        @endif
-      <form action="/edit_profile/{!!$user->user_id!!}" method="post">
-      {{ csrf_field() }}
+    
         <div class="row">
-
           <!--View rank-->
           <div class="col-lg-4">
               <label for="recipient-name" class="col-form-label text-primary">Rank</label>

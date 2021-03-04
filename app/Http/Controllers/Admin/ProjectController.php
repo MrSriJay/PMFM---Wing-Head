@@ -145,9 +145,6 @@ class ProjectController extends Controller
 
         // Upload Project Files
      
-            
-           
-
         if($path==NULL){
             if($request->hasFile('file')){
                 foreach($request->file as $file){

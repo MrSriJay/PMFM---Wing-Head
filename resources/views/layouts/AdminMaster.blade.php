@@ -126,6 +126,9 @@
                   </p>
                 </a>
                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownProfile">
+                  @if(Auth::user()->usertype != "admin" )
+                  <a class="dropdown-item" href="/edit_profile/{{Auth::user()->user_id}}">Profile</a>  
+                  @endif
                   <a class="dropdown-item" href="#">Settings</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -154,8 +157,8 @@
         <div class="container-fluid" id="section">
             @yield('content')         
         </div>
-
       </div>
+
       <footer class="footer">
         <div class="container-fluid">
           <nav class="float-left">
