@@ -58,7 +58,7 @@
                         </div>
                         <div class="form-group row mb-0">
                             <div class="col-md-12 text-right">              
-                                    <a class="btn btn-link" >
+                                    <a class="btn btn-link" href="/help" >
                                         <span class="material-icons">
                                             help
                                             </span> Help

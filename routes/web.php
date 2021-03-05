@@ -25,6 +25,9 @@ use App\Http\Controllers\AssignDeveloperController;
 use App\Http\Controllers\BotManController;  
 
 use App\Http\Controllers\EditprofileController;  
+
+use App\Http\Controllers\HelperController;  
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -50,6 +53,13 @@ Route::post('/edit_profile/{id}', [EditprofileController::class, 'update']);
 Route::post('/edit_change_password/{id}', [EditprofileController::class, 'editPassword']);
 
 /*--------------------------------------------------------------------------------------------------------*/ 
+                                            //Help//
+/*--------------------------------------------------------------------------------------------------------*/ 
+Route::resource('help', HelperController::class);
+
+
+
+/*--------------------------------------------------------------------------------------------------------*/ 
                                             //ADMIN//
 /*--------------------------------------------------------------------------------------------------------*/ 
 Route::group(['middleware' => ['auth','admin']],function() {
@@ -64,6 +74,7 @@ Route::resource('admin/clients', ClientController::class);
 Route::resource('admin/complaints',ComplaintController::class);
 
 Route::get('admin/projects-history/{id}', [ProjectController::class, 'showCompalintHistory']);
+Route::post('/help-reply/{id}', [HelperController::class, 'sendReply']);
 
 });
 

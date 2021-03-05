@@ -72,6 +72,7 @@ class DeveloperComplaintController extends Controller
             'message' =>"Your compalaint has been successfully fixed! Please vist the PMFM site to give a feedback.",
             'client_name' =>  Helper::getClientName($complaints->client_id)
          ];
+         
         Mail::to(Helper::getEmailfromUserID($complaints->client_id))->send(new ComplaintStatusMail());
 
         return redirect()->back()->with('status','Complaint Fixed!, Please wait for client\'s feedback about the solution.');

@@ -81,6 +81,14 @@
               <p>Clients</p>
             </a>
           </li>
+          @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
+          <li class="{{ 'help/create' == request()->path() ? 'active' : '' }}">
+              <a class="nav-link" href="/help/create">
+                <i class="material-icons">help</i>
+                <p>Help Messages</p>
+              </a>
+            </li>
+          @endif
         </ul>
       </div>
     </div>

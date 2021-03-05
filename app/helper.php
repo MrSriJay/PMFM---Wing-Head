@@ -17,6 +17,8 @@ class Helper
     public static $dev_data =[];
     public static $status_message =[];
     public static $feedback_message =[];
+    public static $help_message =[];
+
 
     public static function getWingName($id){
         $data =Wing::select("wing_name")
