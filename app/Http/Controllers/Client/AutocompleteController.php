@@ -154,7 +154,7 @@ class AutocompleteController extends Controller
      if($request->get('query'))
      {
       $search = $request->get('query');
-      $data =User::select("user_id", "first_name", "last_name")
+      $data =User::select("user_id", "rank","first_name", "last_name")
       ->Where(function ($query) use ($search) {
         $query->where('first_name', 'LIKE', "%$search%") 
         ->orWhere('last_name', 'LIKE', "%$search%") ;
@@ -167,11 +167,21 @@ class AutocompleteController extends Controller
       ->where('wing_name',Auth::user()->wing_name)
 
       ->get();
+
+     
       $output = '<ul class="text-primary" style="display:block; position:relative; color:black; list-style-type: none;">';
       foreach($data as $row)
       {
+        $user_rank="";
+        $rank=$row->rank;
+        if($rank=="Civil Personnel"){
+          $user_rank="";
+        }
+        else{
+          $user_rank=$row->rank.". ";
+        }
        $output .= '
-       <li class="border border-light bg-light"  style="list-style-type: none; padding:10px; margin:5px; cursor:pointer"><a>'.$row->first_name.' '.$row->last_name.'</a></li>
+       <li class="border border-light bg-light"  style="list-style-type: none; padding:10px; margin:5px; cursor:pointer"><a>'.$user_rank.''.$row->first_name.' '.$row->last_name.'</a></li>
        ';
       }
       $output .= '</ul>';
@@ -185,7 +195,7 @@ class AutocompleteController extends Controller
         if($request->get('query'))
         {
          $search = $request->get('query');
-         $data =User::select("user_id", "first_name", "last_name")
+         $data =User::select("user_id", "rank", "first_name", "last_name")
          ->Where(function ($query) use ($search) {
            $query->where('first_name', 'LIKE', "%$search%") 
            ->orWhere('last_name', 'LIKE', "%$search%") ;
@@ -197,11 +207,23 @@ class AutocompleteController extends Controller
          })
       
          ->get();
+
+        
+
          $output = '<ul class="text-primary" style="display:block; position:relative; color:black; list-style-type: none;">';
          foreach($data as $row)
          {
+          $user_rank="";
+          $rank=$row->rank;
+          if($rank=="Civil Personnel"){
+           $user_rank="";
+          }
+          else{
+           $user_rank=$row->rank.". ";
+          }
+
           $output .= '
-          <li class="border border-light bg-light"  style="list-style-type: none; padding:10px; margin:5px; cursor:pointer"><a>'.$row->first_name.' '.$row->last_name.'</a></li>
+          <li class="border border-light bg-light"  style="list-style-type: none; padding:10px; margin:5px; cursor:pointer"><a>'.$user_rank.''.$row->first_name.' '.$row->last_name.'</a></li>
           ';
          }
          $output .= '</ul>';
@@ -218,7 +240,7 @@ class AutocompleteController extends Controller
 
         if($request->has('q')){
             $search = $request->q;
-            $data =User::select("user_id", "first_name", "last_name")
+            $data =User::select("user_id", "rank", "first_name", "last_name")
             ->Where(function ($query) use ($search) {
               $query->where('first_name', 'LIKE', "%$search%") 
               ->orWhere('last_name', 'LIKE', "%$search%") ;
@@ -243,7 +265,7 @@ class AutocompleteController extends Controller
       
       if($request->has('q')){
         $search = $request->get('query');
-       $data =User::select("user_id", "first_name", "last_name")
+       $data =User::select("user_id", "rank", "first_name", "last_name")
        ->Where(function ($query) use ($search) {
          $query->where('first_name', 'LIKE', "%$search%") 
          ->orWhere('last_name', 'LIKE', "%$search%") ;

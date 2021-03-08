@@ -128,7 +128,14 @@
             -->
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ Auth::user()->first_name}} {{ Auth::user()->last_name}}<i class="material-icons">person</i>
+                  @if(Auth::user()->usertype!="admin")
+                    {{ Auth::user()->rank}} {{ Auth::user()->first_name}} {{ Auth::user()->last_name}}<i class="material-icons">person</i>
+                  
+                  @else
+                   {{ Auth::user()->first_name}} {{ Auth::user()->last_name}}<i class="material-icons">person</i>
+                  
+                  @endif
+
                   <p class="d-lg-none d-md-block">
                     Account
                   </p>

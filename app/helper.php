@@ -78,22 +78,28 @@ class Helper
     }
 
     public static function getName($id){
-        $data =User::select("first_name","last_name","usertype")
+        $data =User::select("first_name","rank","last_name","usertype")
         ->where('user_id',$id)
             ->get();
-
             $output="";    
         foreach($data as $row)
         
         {
-
             if($row->usertype=="client"){
 
                 $output = $row->first_name;
             }
             else{
 
-                $output = $row->first_name." ".$row->last_name;
+                $user_rank="";
+                $rank=$row->rank;
+                if($rank=="Civil Personnel"){
+                $user_rank="";
+                }
+                else{
+                $user_rank=$row->rank.". ";
+                }
+                $output = $user_rank."".$row->first_name." ".$row->last_name;
             }
         }
 

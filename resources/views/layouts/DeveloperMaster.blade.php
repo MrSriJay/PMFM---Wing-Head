@@ -113,7 +113,7 @@ The above copyright notice and this permission notice shall be included in all c
             -->
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ Auth::user()->first_name }} <i class="material-icons">person</i>
+                  {{ Auth::user()->rank}} {{ Auth::user()->first_name}} {{ Auth::user()->last_name}} <i class="material-icons">person</i>
                   <p class="d-lg-none d-md-block">
                     Account
                   </p>

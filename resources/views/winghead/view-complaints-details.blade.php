@@ -245,8 +245,16 @@ $('#dev_name').select2({
             processResults: function (data) {
                 return {
                     results: $.map(data, function (item) {
+                      var user_rank="";
+                      var rank=item.rank;
+                      if(rank=="Civil Personnel"){
+                        rank="";
+                      }
+                      else{
+                        rank=item.rank+". ";
+                      }
                         return {
-                            text: item.first_name+" "+item.last_name,
+                            text: rank+item.first_name+" "+item.last_name,
                             id: item.user_id
                             
                         }
