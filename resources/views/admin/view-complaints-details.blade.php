@@ -30,8 +30,10 @@ Projects - View | PMFM
             </h3> 
         </div>
         <div class="card-body" >
-
-            @if($complaints->status == 3)
+          <a href="#remark" class="btn btn-primary btn-sm "  data-toggle="" data-target="" >Remarks</a>
+          <a href="#assign_Dev" class="btn btn-primary btn-sm "  data-toggle="" data-target="" >Assigned Developers</a>
+          <br>
+          @if($complaints->status == 3)
               <div class="alert alert-success" role="alert">
                 <strong>Complaint fixed by developer!</strong> Waiting for client's feedback on the solution.
               </div>
@@ -51,6 +53,7 @@ Projects - View | PMFM
              
              @endif
 
+             <br>
              <i><span>COMPLAINT STATUS: <b class="text-primary">{!!Helper::getComplaintStatus($complaints->status)!!}</b></span></i>
 
             <!--View Complaint Description-->
@@ -157,14 +160,14 @@ Projects - View | PMFM
             </div>
 
              <!--Feedbacks -->
-             <div class="form-group"> 
+             <div class="form-group" id="remark"> 
               <div class="row col-lg-12 border" style="margin: 5px; padding:10px">
                 <br>
                 <div class="col-lg-4 border">
                   <form action="/send-messages" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <br>
-                    <div class="text-primary"> <span class="material-icons">feedback</span> Feedbacks</div>
+                    <div class="text-primary"> <span class="material-icons">feedback</span> Remarks</div>
                     <br>
                     <label for="">Message</label>
                     <textarea class="form-control"  required placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>

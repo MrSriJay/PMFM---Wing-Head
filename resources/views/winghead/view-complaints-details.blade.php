@@ -34,7 +34,8 @@ Projects - View | PMFM
             </h3> 
         </div>
         <div class="card-body" >
-
+          <a href="#remark" class="btn btn-primary btn-sm "  data-toggle="" data-target="" >Remarks</a>
+          <a href="#assign_Dev" class="btn btn-primary btn-sm "  data-toggle="" data-target="" >Assigned Developers</a>
             @if($complaints->status == 3)
               <div class="alert alert-success" role="alert">
                 <strong>Complaint fixed by developer!</strong> Waiting for client's feedback on the solution.
@@ -55,6 +56,7 @@ Projects - View | PMFM
              
              @endif
 
+            <br>
             <i><span>COMPLAINT STATUS: <b class="text-primary">{!!Helper::getComplaintStatus($complaints->status)!!}</b></span></i>
 
             <!--View Complaint Description-->
@@ -165,7 +167,7 @@ Projects - View | PMFM
             <br>
             
             <!--Feedbacks -->
-            <div class="form-group"> 
+            <div class="form-group" id="remark"> 
               <div class="row col-lg-12 border" style="margin: 5px; padding:10px">
                 <br>
                 <div class="col-lg-4 border">
