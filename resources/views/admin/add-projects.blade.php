@@ -31,6 +31,18 @@ Add Projects | PMFM
                 <div class="col-md-12 py-3">
                 <form action="/admin/projects" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
+                    
+                        <!--Insert Project Number-->
+                        <div class="form-group py-4">
+                            <label for="recipient-name" class="col-form-label text-primary">Project Number</label>
+                            <input type="text" name ="number" id ="number" class="form-control @error('number') is-invalid @enderror"    required value="{{ old('number') }}">
+                            @error('number')
+                            <span style="color:red">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
                         <!--Insert Project Title-->
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Project Title</label>

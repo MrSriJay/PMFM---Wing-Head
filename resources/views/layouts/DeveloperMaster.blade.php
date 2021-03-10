@@ -82,7 +82,7 @@ The above copyright notice and this permission notice shall be included in all c
       <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
         <div class="container-fluid">
           <div class="navbar-wrapper">
-            <a class="navbar-brand" href="javascript:;"><i class="material-icons">account_balance</i> {!!Helper::getWingName(Auth::user()->wing_name)!!} Wing</a>
+            <a class="navbar-brand" href="javascript:;"><i class="material-icons">account_balance</i> {!!Helper::getWingName(Auth::user()->wing_name)!!}</a>
           </div>
           <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
             <span class="sr-only">Toggle navigation</span>
@@ -113,7 +113,11 @@ The above copyright notice and this permission notice shall be included in all c
             -->
               <li class="nav-item dropdown">
                 <a class="nav-link" href="javascript:;" id="navbarDropdownProfile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  {{ Auth::user()->rank}} {{ Auth::user()->first_name}} {{ Auth::user()->last_name}} <i class="material-icons">person</i>
+                  @if(Auth::user()->usertype!="Civil Personnel")
+                    {{ Auth::user()->first_name}} {{ Auth::user()->last_name}}<i class="material-icons">person</i>
+                  @else
+                    {{ Auth::user()->rank}} {{ Auth::user()->first_name}} {{ Auth::user()->last_name}} <i class="material-icons">person</i>
+                  @endif
                   <p class="d-lg-none d-md-block">
                     Account
                   </p>
