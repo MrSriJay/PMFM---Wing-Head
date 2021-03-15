@@ -34,9 +34,9 @@ class ProjectController extends Controller
 
     public function store(Request $request)
     {        
-       
         $validate = \Validator::make($request->all(), [
             'title' => ['required', 'string', 'max:255'],
+            'number' => ['required', 'string', 'max:255'],
             'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
             'startdate' => ['required'],
@@ -56,6 +56,7 @@ class ProjectController extends Controller
 
         $project = new Projects;
         $project->title = $request->input('title');
+        $project->pgt_number = $request->input('number');
         $project->description = $request->input('summary-ckeditor');
         $ranstring = rand(10,50);
 
@@ -134,6 +135,7 @@ class ProjectController extends Controller
 
         $project = Projects::find($id);
         $project->title = $request->input('title');
+        $project->pgt_number = $request->input('number');
         $project->description = $request->input('summary-ckeditor');
         $project->clientid = $request->input('clientid');
         $project->projectInchargeId = $request->input('supervisor');

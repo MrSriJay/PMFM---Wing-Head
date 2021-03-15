@@ -51,6 +51,18 @@ Projects - View | PMFM
                   </div>
               @endif
                 <div class="col-md-12">
+
+                        <!--Insert Project Number-->
+                        <div class="form-group py-4">
+                            <label for="recipient-name" class="col-form-label text-primary">Project Number</label>
+                            <input type="text" name ="number" readonly id ="number" class="form-control @error('number') is-invalid @enderror"  required  value="{!!$project->pgt_number!!}" >
+                            @error('number')
+                            <span style="color:red">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                        </div>
+
                          <!--View Description-->
                         <div class="form-group"> 
                             <label for="message-text" class="col-form-label text-primary">Project Description</label>
@@ -359,6 +371,8 @@ Projects - View | PMFM
     function toggleEdit() {    
      var i= document.getElementById("editext");
      if(i.innerHTML=="Edit"){
+        document.getElementById("number").readOnly = false;
+
          document.getElementById("title0").style.display = "none";
          document.getElementById("title1").style.display = "block";
 
@@ -382,6 +396,9 @@ Projects - View | PMFM
          i.innerHTML="Cancel"
      }
      else{
+         
+         document.getElementById("number").readOnly = true;
+
          document.getElementById("title0").style.display = "block";
          document.getElementById("title1").style.display = "none";
 

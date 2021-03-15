@@ -5,8 +5,6 @@
 Projects - View | PMFM
 @endsection 
 @section('styles')
-
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
@@ -54,8 +52,15 @@ Projects - View | PMFM
                 @endif
                 <div class="col-md-12">
                         
-                        <!--View Project Icon-->
-                        <div class="form-group float-right">                
+                         <!--Insert Project Number-->
+                         <div class="form-group py-4">
+                            <label for="recipient-name" class="col-form-label text-primary">Project Number</label>
+                            <input type="text" name ="number" readonly id ="number" class="form-control @error('number') is-invalid @enderror"  required  value="{!!$project->pgt_number!!}" >
+                            @error('number')
+                            <span style="color:red">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                         </div>
 
                          <!--View Description-->
@@ -370,7 +375,9 @@ Projects - View | PMFM
     function toggleEdit() {    
      var i= document.getElementById("editext");
      if(i.innerHTML=="Edit"){
-        document.getElementById("title0").style.display = "none";
+         document.getElementById("number").readOnly = false;
+
+         document.getElementById("title0").style.display = "none";
          document.getElementById("title1").style.display = "block";
 
          document.getElementById("dec0").style.display = "none";
@@ -394,6 +401,9 @@ Projects - View | PMFM
          i.innerHTML="Cancel"
      }
      else{
+
+         document.getElementById("number").readOnly = true;
+
          document.getElementById("title0").style.display = "block";
          document.getElementById("title1").style.display = "none";
 

@@ -31,6 +31,7 @@
                     </div>  
                     <div class="card-header"> 
                       <div class="col-md-12 col-sm-12">
+                      <span class="text-muted"> <b>Project Number:</b> {{$data->pgt_number}}</span>
                       <h3><a class="card-title text-primary font-weight-bold " href="/winghead/wings-projects/{{$data->id}}">{{$data->title}}</a></h3>
                       <span class="text-primary">Developed for {!!Helper::getClientName($data->clientid)!!}</span>
                       <br><br>
