@@ -47,7 +47,7 @@ The above copyright notice and this permission notice shall be included in all c
         Tip 2: you can also add an image using data-image tag
     -->
     <div class="logo"><a href="#" class="simple-text logo-normal text-primary font-weight-bold">
-      PMFM System | CRD
+      PMFM System | CDRD
      </a></div>
       <div class="sidebar-wrapper">
         <ul class="nav">

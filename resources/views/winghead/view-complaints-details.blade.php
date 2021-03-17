@@ -184,10 +184,10 @@ Projects - View | PMFM
                     <select id="sender_name" class="form-select" style="font-size:16px ; border: 1px sold grey" name="sender_name"  required>
                       <option value="" disabled selected  class="text-muted"> Select User</option>
                       @foreach ($complaint_developer as $data)
-                        <option value="{{$data->developer_id}}" >{!!Helper::getName($data->developer_id)!!}</option>
+                        <option value="{{$data->developer_id}}" >{!!Helper::getName($data->developer_id)!!}(Officer)</option>
                       @endforeach
-                        <option value="{{$complaints->client_id}}">{!!Helper::getClientName($complaints->client_id)!!}</option>
-                        <option value="all">Everyone</option>
+                        <option value="{{$complaints->client_id}}">{!!Helper::getClientName($complaints->client_id)!!}(Client)</option>
+                        <option value="all">Public</option>
                     </select>
 
                     <input type="hidden" value="{!!$complaints->id!!}" name="comp_id">
@@ -204,7 +204,11 @@ Projects - View | PMFM
                           <div class="text-success" style="font-size: 10px" >From <b>{!!Helper::getName($data->sender)!!} - <i class="text-muted">{!!Helper::getDesignationFromID($data->sender)!!}</i></b></div>
                           <div class="text-primary">{!!$data->message!!} </div>
                           <div class="text-success">
-                            <span style="font-size: 10px" class="float:left" >To <b>{!!Helper::getName($data->receiver)!!} - <i class="text-muted">{!!Helper::getDesignationFromID($data->receiver)!!}</i></b></span>
+                            @if($data->receiver!="all")
+                            <span style="font-size: 10px" class="float:left" >To <b>{!!Helper::getName($data->receiver)!!} - <i class="text-muted">{!!Helper::getDesignationFromID($data->receiver)!!}</b></span>
+                            @else
+                            <span style="font-size: 10px" class="float:left" >Public</span>
+                            @endif
                             <small style=" display:block ;margin-top:-10px; color:#bfbfbf" class="float-right"><i>Sent on {!!$data->created_at!!} </i></small>
                           </div>
                         </div>

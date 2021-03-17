@@ -98,7 +98,7 @@ class AssignDeveloperController extends Controller
                 
              ];
 
-            Mail::to(Helper::getEmailfromUserID($request->input('sender_name')))->send(new FeedNewMail());
+           // Mail::to(Helper::getEmailfromUserID($request->input('sender_name')))->send(new FeedNewMail());
             
             $message->save();
             return redirect()->back();

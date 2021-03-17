@@ -51,120 +51,109 @@
             <div class="content">
                 <div class="container-fluid">
                   <div class="row">
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                      <div class="card card-stats">
-                        <div class="card-header card-header-warning card-header-icon">
-                          <div class="card-icon">
-                            <i class="material-icons">content_copy</i>
-                          </div>
-                          <p class="card-category">Used Space</p>
-                          <h3 class="card-title">49/50
-                            <small>GB</small>
-                          </h3>
-                        </div>
-                        <div class="card-footer">
-                          <div class="stats">
-                            <i class="material-icons text-danger">warning</i>
-                            <a href="javascript:;">Get More Space...</a>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
                       <div class="card card-stats">
                         <div class="card-header card-header-success card-header-icon">
                           <div class="card-icon">
-                            <i class="material-icons">store</i>
+                            <i class="material-icons">content_copy</i>
                           </div>
-                          <p class="card-category">Revenue</p>
-                          <h3 class="card-title">$34,245</h3>
+                          <p class="card-category">Assigned Systems</p>
+                          <h3 class="card-title">{!!Helper::getcountProjects_client(Auth::user()->user_id)!!}</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">date_range</i> Last 24 Hours
+                            <i class="material-icons text-success">content_copy</i>
+                            <a href="/client/purchased-systems" class="text-dark">Systems</a>
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="col-lg-6 col-md-6 col-sm-6">
                       <div class="card card-stats">
                         <div class="card-header card-header-danger card-header-icon">
                           <div class="card-icon">
-                            <i class="material-icons">info_outline</i>
+                            <i class="material-icons">report_problem</i>
                           </div>
-                          <p class="card-category">Fixed Issues</p>
-                          <h3 class="card-title">75</h3>
+                          <p class="card-category">Pending Complaints</p>
+                          <h3 class="card-title">{!!Helper::getCountComplaint_client(Auth::user()->user_id)!!}</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">local_offer</i> Tracked from Github
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-lg-3 col-md-6 col-sm-6">
-                      <div class="card card-stats">
-                        <div class="card-header card-header-info card-header-icon">
-                          <div class="card-icon">
-                            <i class="fa fa-twitter"></i>
-                          </div>
-                          <p class="card-category">Followers</p>
-                          <h3 class="card-title">+245</h3>
-                        </div>
-                        <div class="card-footer">
-                          <div class="stats">
-                            <i class="material-icons">update</i> Just Updated
+                            <i class="material-icons text-danger">report_problem</i>
+                            <a href="/client/clients-complaints" class="text-dark">Complaints</a>
                           </div>
                         </div>
                       </div>
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <div class="card card-chart">
                         <div class="card-header card-header-success">
-                          <div class="ct-chart" id="dailySalesChart"></div>
                         </div>
-                        <div class="card-body">
-                          <h4 class="card-title">Daily Sales</h4>
-                          <p class="card-category">
-                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
-                        </div>
-                        <div class="card-footer">
-                          <div class="stats">
-                            <i class="material-icons">access_time</i> updated 4 minutes ago
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="card card-chart">
-                        <div class="card-header card-header-warning">
-                          <div class="ct-chart" id="websiteViewsChart"></div>
-                        </div>
-                        <div class="card-body">
-                          <h4 class="card-title">Email Subscriptions</h4>
-                          <p class="card-category">Last Campaign Performance</p>
-                        </div>
-                        <div class="card-footer">
-                          <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
-                          </div>
+                        <div class="card-body"> 
+                          <h4 class="card-title">Systems</h4>
+                          <table class="text-muted table "  style="font-size: 12px">
+                            <tr>
+                              <th><i class="material-icons text-success" >check_circle_outline</i></th>
+                              <th>Wokring Systems:</th>
+                              <th style="text-align: right"><b>{!!Helper::getSystemStatus(Auth::user()->user_id,1)!!}  </b></th>
+                            </tr>
+                            <tr>
+                              <th><i class="material-icons text-danger">highlight_off</i> </th>
+                              <th>Not Systems:</th>
+                              <th style="text-align: right"><b>{!!Helper::getSystemStatus(Auth::user()->user_id,0)!!} </b></th>
+                            </tr>
+                          </table>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-3">
                       <div class="card card-chart">
                         <div class="card-header card-header-danger">
-                          <div class="ct-chart" id="completedTasksChart"></div>
+                        </div>
+                        <div class="card-body"> 
+                          <h4 class="card-title">Complaint Status</h4>
+                          <table class="text-muted table" style="font-size: 12px">
+                            <tr>
+                              <th>DEVELOPER(S) NOT ASSIGNED</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay(Auth::user()->user_id,0)!!}  </b></th>
+                            </tr>
+                            <tr>
+                              <th>DEVELOPER(S) ASSIGNED</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay(Auth::user()->user_id,1)!!} </b></th>
+                            </tr>
+                            <tr>
+                              <th>SEEN BY DEVELOPER</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay(Auth::user()->user_id,2)!!} </b></th>
+                            </tr>
+                            <tr>
+                              <th>SOLUTION GIVEN BY DEVELOPER</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay(Auth::user()->user_id,3)!!} </b></th>
+                            </tr>
+                            <tr>
+                              <th>SOLUTION REJECTED</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay(Auth::user()->user_id,4)!!} </b></th>
+                            </tr>
+                            <tr>
+                              <th>SOLVED</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay(Auth::user()->user_id,5)!!} </b></th>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="card card-chart">
+                        <div class="card-header card-header-warning">
                         </div>
                         <div class="card-body">
-                          <h4 class="card-title">Completed Tasks</h4>
-                          <p class="card-category">Last Campaign Performance</p>
+                          <h4 class="card-title">Latest Message</h4>
+                          <p class="card-category">{!!Helper::getLatestMessage(Auth::user()->user_id)!!}</p>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            <i class="material-icons">person_pin</i> sent by {!!Helper::getName(Helper::getLatestMessage_By(Auth::user()->user_id))!!} 
                           </div>
                         </div>
                       </div>

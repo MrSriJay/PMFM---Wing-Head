@@ -60,8 +60,8 @@
                           <div class="card-icon">
                             <i class="material-icons">report_problem</i>
                           </div>
-                          <p class="card-category">Complaints</p>
-                          <h3 class="card-title">75</h3>
+                          <p class="card-category">New Complaints</p>
+                          <h3 class="card-title">{!!Helper::getCountComplaintsWinghead(Auth::user()->wing_name)!!}</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
@@ -77,8 +77,8 @@
                           <div class="card-icon">
                             <i class="material-icons">chat</i>
                           </div>
-                          <p class="card-category">Messages</p>
-                          <h3 class="card-title">+245</h3>
+                          <p class="card-category">New Messages</p>
+                          <h3 class="card-title">{!!Helper::getMessagesforWinghead(Auth::user()->user_id)!!}</h3>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
@@ -90,51 +90,36 @@
                     </div>
                   </div>
                   <div class="row">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="card card-chart">
-                        <div class="card-header card-header-success">
+                        <div class="card-header card-header-danger">
                           <div class="ct-chart" id="dailySalesChart"></div>
                         </div>
                         <div class="card-body">
-                          <h4 class="card-title">New Complaints</h4>
+                          <h4 class="card-title">Latest Complaint</h4>
                           <p class="card-category">
-                            <span class="text-success"><i class="fa fa-long-arrow-up"></i> 55% </span> increase in today sales.</p>
+                            <a href="/winghead/wings-complaints" style="color: rgb(122, 122, 122)">{!!Helper::getLatestComplaint_WingHead(Auth::user()->wing_name)!!}</a>
+                            </p>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">access_time</i> updated 4 minutes ago
+                            <i class="material-icons">access_time</i> added on {!!Helper::getLatestComplaintDate_WingHead(Auth::user()->wing_name)!!}
                           </div>
                         </div>
                       </div>
                     </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                       <div class="card card-chart">
                         <div class="card-header card-header-warning">
                           <div class="ct-chart" id="websiteViewsChart"></div>
                         </div>
                         <div class="card-body">
-                          <h4 class="card-title">Email Subscriptions</h4>
-                          <p class="card-category">Last Campaign Performance</p>
+                          <h4 class="card-title">Latest Message</h4>
+                          <p class="card-category">{!!Helper::getLatestMessage(Auth::user()->user_id)!!}</p>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="col-md-4">
-                      <div class="card card-chart">
-                        <div class="card-header card-header-danger">
-                          <div class="ct-chart" id="completedTasksChart"></div>
-                        </div>
-                        <div class="card-body">
-                          <h4 class="card-title">Completed Tasks</h4>
-                          <p class="card-category">Last Campaign Performance</p>
-                        </div>
-                        <div class="card-footer">
-                          <div class="stats">
-                            <i class="material-icons">access_time</i> campaign sent 2 days ago
+                            <i class="material-icons">person_pin</i> sent by {!!Helper::getName(Helper::getLatestMessage_By(Auth::user()->user_id))!!} 
                           </div>
                         </div>
                       </div>
