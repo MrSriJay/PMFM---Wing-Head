@@ -68,12 +68,6 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Complaints</p>
             </a>
           </li>
-          <li class="{{ Request::is('developer/wings-projects*') ? 'active' : '' }}">
-            <a class="nav-link" href="/developer/wings-projects">
-              <i class="material-icons">content_paste</i>
-              <p>Feedbacks</p>
-            </a>
-          </li>
         </ul>
       </div>
     </div>

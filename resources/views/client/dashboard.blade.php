@@ -101,7 +101,7 @@
                             </tr>
                             <tr>
                               <th><i class="material-icons text-danger">highlight_off</i> </th>
-                              <th>Not Systems:</th>
+                              <th>Fault Systems:</th>
                               <th style="text-align: right"><b>{!!Helper::getSystemStatus(Auth::user()->user_id,0)!!} </b></th>
                             </tr>
                           </table>

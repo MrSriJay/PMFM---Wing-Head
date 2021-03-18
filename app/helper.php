@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Projects;
 use App\Models\Complaints;
 use App\Models\Message;
+use App\Models\Complaint_developer;
 
 class Helper
 
@@ -311,12 +312,16 @@ class Helper
     public static function getLatestComplaint_WingHead($id){
         $data =Complaints::select("id","system_name")
         ->where('wing_id',$id)
-        ->first() ->get();
+        ->first();
 
         $output="";    
-        foreach($data as $row)
-        {
-            $output = $row->system_name;
+        if($data != null){
+           
+         $output = $data->system_name;
+           
+        }
+        else{
+         $output="No messages yet"; 
         }
     
         return $output;
@@ -326,12 +331,16 @@ class Helper
     public static function getLatestComplaintDate_WingHead($id){
         $data =Complaints::select("id","updated_at")
         ->where('wing_id',$id)
-        ->first() ->get();
-
+        ->first();
+    
         $output="";    
-        foreach($data as $row)
-        {
-            $output = $row->updated_at;
+        if($data != null){
+           
+         $output = $data->updated_at;
+           
+        }
+        else{
+         $output="No messages yet"; 
         }
     
         return $output;
@@ -417,6 +426,176 @@ class Helper
 
 
      //-----------------------------------
+
+
+     //-------------- Developer Dashboard ----------------------------------
+
+     public static function getLatestComplaint_Developer($id){
+        $data =Complaint_developer::select("complaint_id","developer_id")
+        ->where('developer_id',$id)
+        ->first();
+
+      
+        if($data != null){
+           
+            $comp_id = $data->complaint_id;
+            
+            $data2 =Complaints::select("id","system_name")
+            ->where('id',$comp_id)
+            ->first();
+        
+            $output="";    
+            if($data2 != null){
+            
+            $output = $data2->system_name;
+            
+            }
+            else{
+            $output="No messages yet"; 
+            }
+        }
+        else{
+
+            $output="No messages yet"; 
+        }
+        
+    
+        return $output;
+    
+
+    }
+
+    public static function getLatestComplaintDate_Developer($id){
+        $data =Complaint_developer::select("complaint_id","developer_id")
+        ->where('developer_id',$id)
+        ->first();
+
+      
+        if($data != null){
+           
+            $comp_id = $data->complaint_id;
+            
+            $data2 =Complaints::select("id","updated_at")
+            ->where('id',$comp_id)
+            ->first();
+        
+            $output="";    
+            if($data2 != null){
+            
+            $output = $data2->updated_at;
+            
+            }
+            else{
+            $output=" "; 
+            }
+        }
+        else{
+
+            $output=" "; 
+        }
+        
+    
+        return $output;
+    
+
+    }
+
+    public static function getCompalints($id){
+        $data =Complaint_developer::select("complaint_id")
+        ->where('developer_id', $id)
+         ->count();
+        return $data;
+    }
+
+
+    //-------------- Admin Dashboard -------------------
+
+    public static function getWingsCount(){
+        $data =Wing::select("id")
+         ->count();
+        return $data;
+    }
+
+    public static function getProjectsCount(){
+        $data =Projects::select("id")
+         ->count();
+        return $data;
+    }
+
+    public static function getOfficerCount(){
+        $data =User::select("user_id")
+        ->where('usertype','!=' ,'client')
+        ->count();
+        return $data;
+    }
+
+    public static function getClientCount(){
+        $data =Client::select("id")
+        ->count();
+        return $data;
+    }
+
+    public static function getComplaintCount(){
+        $data =Complaints::select("id")
+        ->count();
+        return $data;
+    }
+
+    public static function getLatestComplaint_Admin(){
+
+        $data =Complaints::select("id","system_name")
+        ->first();
+
+        $output="";    
+        if($data != null){
+           
+         $output = $data->system_name;
+           
+        }
+        else{
+         $output="No messages yet"; 
+        }
+    
+        return $output;
+    
+
+    }
+
+    public static function getLatestComplaintDate_Admin(){
+
+        $data =Complaints::select("id","updated_at")
+        ->first();
+
+        $output="";    
+        if($data != null){
+           
+         $output = $data->updated_at;
+           
+        }
+        else{
+         $output="No messages yet"; 
+        }
+    
+        return $output;
+    }
+
+    public static function getComplaintStatusDisplay_admin($status){
+
+        $data =Complaints::select("id")
+
+        ->where('status', $status) 
+         ->count();
+        return $data;
+    }
+
+    public static function getSystemStatus_admin($status){
+        $data =Projects::select("id")
+        ->where('status', $status) 
+         ->count();
+        return $data;
+    }
+
+
 
 }
    
