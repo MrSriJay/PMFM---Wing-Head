@@ -40,7 +40,6 @@
                     <div class="col-md-4">
                       <div class="card card-chart">
                         <div class="card-header card-header-danger">
-                          <div class="ct-chart" id="dailySalesChart"></div>
                         </div>
                         <div class="card-body">
                           <h4 class="card-title">Latest Complaint</h4>
@@ -58,7 +57,6 @@
                     <div class="col-md-4">
                       <div class="card card-chart">
                         <div class="card-header card-header-warning">
-                          <div class="ct-chart" id="websiteViewsChart"></div>
                         </div>
                         <div class="card-body">
                           <h4 class="card-title">Latest Message</h4>
