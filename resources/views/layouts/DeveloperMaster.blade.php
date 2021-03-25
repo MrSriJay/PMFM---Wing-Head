@@ -63,7 +63,7 @@ The above copyright notice and this permission notice shall be included in all c
             </a>
           </li>
           <li class="{{ Request::is('developer/developer-complaints*') ? 'active' : '' }}">
-            <a class="nav-link" href="developer/developer-complaints">
+            <a class="nav-link" href="/developer/developer-complaints">
               <i class="material-icons">report_problem</i>
               <p>Complaints</p>
             </a>

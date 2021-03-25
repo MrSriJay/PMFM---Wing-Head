@@ -4,6 +4,12 @@
     Complaints | CRD
 @endsection
 
+@section('styles')
+
+ <link href="https://cdn.datatables.net/1.10.23/css/jquery.dataTables.min.css" rel="stylesheet" />
+    
+@endsection
+
 @section('content')
     
   
@@ -22,11 +28,11 @@
             {{ session('status') }}
             </div>
         @endif
+        
         <div class="table-responsive">
-          <table id="tablewings" class="hover" style="width:100%">
+          <table id="tablewings" class="hover table-bordered" style="width:100%">
               <thead>
                   <tr>
-                  <th scope="col">Complaint ID</th>
                   <th scope="col">System Name</th>
                   <th scope="col">Date Subitted</th>
                   <th scope="col">Wing Name</th>
@@ -40,7 +46,6 @@
               @if(count($complaints)>0)
                 @foreach ($complaints as $data)
                   <tr>
-                    <th scope="row" >{{$data->id}}</th>
                     <th scope="row" > <a href="/winghead/wings-complaints/{{$data->id}}" @if($data->status == 3) class="text-warning" @endif >{{$data->system_name}}</a></th>
                     <th scope="row">{{$data->created_at}}</th>
                     <th scope="row">{!!Helper::getWingName($data->wing_id)!!}</th>
@@ -77,4 +82,26 @@
   </div>
 </div>
     
+@endsection
+
+@section('scripts')
+
+  <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
+  <script src="https://cdn.datatables.net/1.10.23/js/jquery.dataTables.min.js"></script>
+
+<script>
+$(document).ready(function() {
+    $('#tablewings').DataTable({
+
+    });
+
+} );
+
+$('#addWingModal').on('shown.bs.modal', function () {
+  $('#name').trigger('focus')
+})
+
+</script>
+
+
 @endsection

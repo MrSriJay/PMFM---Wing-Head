@@ -76,7 +76,6 @@ class ClientController extends Controller
                 'telephone' => $request->contact_no,
                 'email' => $request->email,
                 'usertype' => "client",
-                'wing_name' =>"client",      
                 'password' => Hash::make($request->password),
             ]);
             
@@ -125,7 +124,7 @@ class ClientController extends Controller
             $output = $row->email;
         }
 
-        $user = User::find($output);
+        $user = User::find($id);
         $user->delete();
 
         $clients = Client::find($id);

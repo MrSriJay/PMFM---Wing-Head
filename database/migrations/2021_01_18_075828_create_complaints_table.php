@@ -19,9 +19,10 @@ class CreateComplaintsTable extends Migration
             $table->longText('description')->nullable();
             $table->boolean('status')->default(0);
             $table->string('files')->nullable();
-            $table->longText('client_id');
-            $table->longText('project_id');
-            $table->longText('wing_id');
+            $table->unsignedBigInteger('client_id')->nullable();
+            $table->foreign('client_id')->references('id')->on('clients')->onDelete('set null');
+            $table->unsignedBigInteger('wing_id')->nullable();
+            $table->foreign('wing_id')->references('id')->on('wings')->onDelete('set null');
             $table->string('fault_type');
             $table->string('urgency_level');
             $table->timestamps();

@@ -65,8 +65,8 @@
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons text-danger">report_problem</i>
-                            <a href="/winghead/wings-users" class="text-dark">Complaints</a>
+                            <i class="material-icons text-danger">report_problem</i> <b style="font-weigth:bolder">{!!Helper::getCountOngiongComplaintsWinghead(Auth::user()->wing_name)!!} &nbsp; </b>
+                            <a href="/winghead/wings-complaints" class="text-dark"> Ongoing Complaints</a>
                           </div>
                         </div>
                       </div>
@@ -90,6 +90,28 @@
                     </div>
                   </div>
                   <div class="row">
+                    <div class="col-md-12">
+                      <div class="card card-chart">
+                        <div class="card-header card-header-success">
+                        </div>
+                        <div class="card-body"> 
+                          <h4 class="card-title">Systems</h4>
+                          <table class="text-muted table "  style="font-size: 12px">
+                            <tr>
+                              <th><i class="material-icons text-success" >check_circle_outline</i></th>
+                              <th>Wokring Systems:</th>
+                              <th style="text-align: right"><b>{!!Helper::getSystemStatus_Winghead(Auth::user()->user_id,1)!!}  </b></th>
+                            </tr>
+                            <tr>
+                              <th><i class="material-icons text-danger">highlight_off</i> </th>
+                              <th>Fault Systems:</th>
+                              <th style="text-align: right"><b>{!!Helper::getSystemStatus_Winghead(Auth::user()->user_id,0)!!} </b></th>
+                            </tr>
+                          </table>
+                        </div>
+                      </div>
+                    </div>
+                
                     <div class="col-md-6">
                       <div class="card card-chart">
                         <div class="card-header card-header-danger">
@@ -119,6 +141,41 @@
                           <div class="stats">
                             <i class="material-icons">person_pin</i> sent by {!!Helper::getName(Helper::getLatestMessage_By(Auth::user()->user_id))!!} 
                           </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-12">
+                      <div class="card card-chart">
+                        <div class="card-header card-header-danger">
+                        </div>
+                        <div class="card-body"> 
+                          <h4 class="card-title">Complaint Status</h4>
+                          <table class="text-muted table" style="font-size: 12px">
+                            <tr>
+                              <th>DEVELOPER(S) NOT ASSIGNED</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay_Winghead(Auth::user()->user_id,0)!!}  </b></th>
+                            </tr>
+                            <tr>
+                              <th>DEVELOPER(S) ASSIGNED</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay_Winghead(Auth::user()->user_id,1)!!} </b></th>
+                            </tr>
+                            <tr>
+                              <th>SEEN BY DEVELOPER</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay_Winghead(Auth::user()->user_id,2)!!} </b></th>
+                            </tr>
+                            <tr>
+                              <th>SOLUTION GIVEN BY DEVELOPER</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay_Winghead(Auth::user()->user_id,3)!!} </b></th>
+                            </tr>
+                            <tr>
+                              <th>SOLUTION REJECTED</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay_Winghead(Auth::user()->user_id,4)!!} </b></th>
+                            </tr>
+                            <tr>
+                              <th>SOLVED</th>
+                              <th style="text-align: right"><b>{!!Helper::getComplaintStatusDisplay_Winghead(Auth::user()->user_id,5)!!} </b></th>
+                            </tr>
+                          </table>
                         </div>
                       </div>
                     </div>

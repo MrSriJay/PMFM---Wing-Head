@@ -25,9 +25,12 @@ class UserComplaintController extends Controller
             ->orderBy('complaints.updated_at', 'DESC')
             ->get();*/
 
-       $complaints = Complaints::where('wing_id',Auth::user()->wing_name)
-       ->where('status',"!=","5")
-       ->orderBy('updated_at', 'DESC')->get();
+       $complaints = Complaints::join('projects', 'complaints.project_id', '=', 'projects.id')
+       ->select('complaints.id','complaints.system_name','complaints.description','complaints.status','complaints.files','complaints.client_id','complaints.wing_id','complaints.fault_type','urgency_level','complaints.created_at','complaints.updated_at','complaints.project_id')
+       ->where('projects.wingid',Auth::user()->wing_name)
+       ->where('complaints.status',"!=","5")
+
+       ->orderBy('complaints.updated_at', 'DESC')->get();
        return view('winghead.view-complaints')->with('complaints',$complaints);
     }
     public function create()

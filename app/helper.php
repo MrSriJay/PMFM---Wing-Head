@@ -34,6 +34,10 @@ class Helper
             $output = $row->wing_name;
         }
 
+        if($output == ""){
+            $output="NOT SET";
+        }
+
         return $output;
     }
 
@@ -295,12 +299,50 @@ class Helper
     }
 
     public static function getCountComplaintsWinghead($id){
-        $data =Complaints::select("id")
-        ->where('status', 0)
-        ->where('wing_id', $id)
+        $data =Complaints::join('projects', 'complaints.project_id', '=', 'projects.id')
+        ->select("complaints.id")
+        ->where('complaints.status', 0)
+        ->where('projects.wingid', $id)
         ->count();
         return $data;
     }
+
+    public static function getCountOngiongComplaintsWinghead($id){
+        $data =Complaints::join('projects', 'complaints.project_id', '=', 'projects.id')
+        ->select("complaints.id")
+        ->where('complaints.status','!=', 5)
+        ->where('projects.wingid', $id)
+        ->count();
+        return $data;
+    }
+    
+
+    public static function getSystemStatus_Winghead($id, $status){
+        $wing_name =User::select("wing_name")
+        ->where('user_id', $id)
+        ->first();
+
+        $data =Projects::select("id")
+        ->where('wingid', $wing_name->wing_name)
+        ->where('status', $status) 
+         ->count();
+
+        return $data;
+    }
+
+    public static function getComplaintStatusDisplay_Winghead($id, $status){
+
+        $wing_name =User::select("wing_name")
+        ->where('user_id', $id)
+        ->first();
+
+        $data =Complaints::join('projects', 'complaints.project_id', '=', 'projects.id')
+        ->where('projects.wingid', $wing_name->wing_name)
+        ->where('complaints.status', $status) 
+         ->count();
+        return $data;
+    }
+
 
     public static function getMessagesforWinghead($id){
         $data =Message::select("id")

@@ -34,7 +34,11 @@ class DeveloperComplaintController extends Controller
     {
         $message = Message::where('complaint_id',$id)-> orderBy('updated_at', 'DESC') -> get();
         $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
-        $complaints = complaints::findOrFail($id);
+        $complaints = complaints::join('projects', 'complaints.project_id', '=', 'projects.id')
+        ->select('complaints.id','complaints.system_name','complaints.description','complaints.status','complaints.files','complaints.client_id','projects.wingid','complaints.fault_type','urgency_level','complaints.created_at','complaints.updated_at','complaints.project_id')
+        ->where('complaints.id',$id)
+        ->first();
+       
         return view('developer.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
     }
 

@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     public function up()
     {
         Schema::create('users', function (Blueprint $table) {
+
             $table->string('user_id')->primary();
             $table->string('rank');
             $table->string('first_name');
@@ -22,11 +23,14 @@ class CreateUsersTable extends Migration
             $table->string('telephone');
             $table->string('email')->unique();
             $table->string('usertype')->nullable();
-            $table->string('wing_name');
+            $table->unsignedBigInteger('wing_name')->nullable();
+            $table->foreign('wing_name')->references('id')->on('wings')->onDelete('set null');
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
             $table->timestamps();
+           
+
         });
 
         DB::table('users')->insert([
@@ -37,7 +41,7 @@ class CreateUsersTable extends Migration
             'telephone' => 'admin',
             'email' => 'admin@gmail.com',
             'usertype' => 'admin',
-            'wing_name' => 'admin',
+            'wing_name' => '1',
             'password' => '$2y$12$UzPe.jHV.kpT4/KyRcPJ0e4RsESaT/WqwgTqTXuTOilrv7YA6bAZm'
         ]);
     }

@@ -118,7 +118,7 @@ Projects - View | PMFM
                         <option value="{{$data->developer_id}}" >{!!Helper::getName($data->developer_id)!!}(Officer)</option>
                       @endforeach
                         <option value="{{$complaints->client_id}}">{!!Helper::getClientName($complaints->client_id)!!}(Client)</option>
-                        <option value="{!!Helper::getWingHead($complaints->wing_id)!!}">{!!Helper::getName(Helper::getWingHead($complaints->wing_id))!!}(Winghead)</option>
+                        <option value="{!!Helper::getWingHead($complaints->wingid)!!}">{!!Helper::getName(Helper::getWingHead($complaints->wingid))!!}(Winghead)</option>
                         <option value="all">Public</option>
                     </select>
 

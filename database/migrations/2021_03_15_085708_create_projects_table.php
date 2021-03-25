@@ -20,10 +20,12 @@ class CreateProjectsTable extends Migration
             $table->longText('description');
             $table->string('files')->nullable();
             $table->string('project_icon')->nullable();
-            $table->longText('clientid');
+            $table->unsignedBigInteger('clientid')->nullable();
+            $table->foreign('clientid')->references('id')->on('clients')->onDelete('set null');
             $table->longText('projectInchargeId');
             $table->longText('developers')->nullable();
-            $table->longText('wingid');
+            $table->unsignedBigInteger('wingid')->nullable();
+            $table->foreign('wingid')->references('id')->on('wings')->onDelete('set null');
             $table->date('startdate');
             $table->date('enddate');
             $table->string('addedBy');

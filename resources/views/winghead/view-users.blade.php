@@ -27,7 +27,7 @@
             </div>
         @endif
         <div class="table-responsive">
-          <table id="tablewings" class="hover" style="width:100%">
+          <table id="tablewings" class="hover table-bordered" style="width:100%">
               <thead>
                   <tr>
                   <th scope="col">ID No.</th>
