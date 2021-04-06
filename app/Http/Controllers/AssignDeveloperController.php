@@ -7,7 +7,7 @@ use App\Models\Projects;
 use App\Models\Message;
 use App\Models\Complaints;
 use App\helper;
-use App\Models\Complaint_Developer;
+use App\Models\Complaint_developer;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\DeveloperAssignmentMail;
 use App\Mail\ComplaintStatusMail;
@@ -19,9 +19,9 @@ class AssignDeveloperController extends Controller
       
     public function addDeveloper(Request $request){
        
-        $data =Complaint_Developer::where('complaint_id', $request->input('compId'))->where('developer_id',$request->input('dev_name'))->first();
+        $data =Complaint_developer::where('complaint_id', $request->input('compId'))->where('developer_id',$request->input('dev_name'))->first();
         if ($data === null) {
-            $complaint_developer = new Complaint_Developer;
+            $complaint_developer = new Complaint_developer;
             $complaint_developer->complaint_id = $request->input('compId');
             $complaint_developer->developer_id = $request->input('dev_name');
             $complaint_developer->assigned_by = Auth::user()->user_id;
@@ -64,10 +64,10 @@ class AssignDeveloperController extends Controller
     }
     
     public function deleteDeveloper(Request $request){
-            $complaint_developer = complaint_developer::where('complaint_id', $request->input('comp_id'))->where('developer_id',$request->input('dev_id'));
+            $complaint_developer = Complaint_developer::where('complaint_id', $request->input('comp_id'))->where('developer_id',$request->input('dev_id'));
             $complaint_developer->delete();
             
-            $data =complaint_developer::where('complaint_id', $request->input('comp_id'))->first();
+            $data =Complaint_developer::where('complaint_id', $request->input('comp_id'))->first();
             if ($data === null) {
     
                 $complaints = Complaints::find($request->input('comp_id'));

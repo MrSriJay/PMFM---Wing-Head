@@ -8,7 +8,7 @@ use App\Models\Projects;
 use App\Models\Wing;
 use App\Models\User;
 use App\Models\Client;
-use App\Models\Complaint_Developer;
+use App\Models\Complaint_developer;
 
 use Illuminate\Support\Facades\Auth;
 class AutocompleteController extends Controller
@@ -288,7 +288,7 @@ class AutocompleteController extends Controller
 
         if($request->has('q')){
             $search = $request->q;
-            $data =Complaint_Developer::select("developer_id", "complaint_developers")
+            $data =Complaint_developer::select("developer_id", "complaint_developers")
                 ->where('title', 'LIKE', "%$search%")
                 ->where('clientid',Auth::user()->user_id)
             		->get();

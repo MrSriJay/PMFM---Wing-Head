@@ -13,7 +13,7 @@ use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Complaints;
 use App\helper;
-use App\Models\Complaint_Developer;
+use App\Models\Complaint_developer;
 use App\Models\Message;
 use App\Mail\ComplaintAddedNotifaction;
 use Illuminate\Support\Facades\Mail;
@@ -38,7 +38,7 @@ class ClientComplaintController extends Controller
     public function show($id)
     {
         $message = Message::where('complaint_id',$id)->orderBy('updated_at', 'DESC') -> get();
-        $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
+        $complaint_developer = Complaint_developer::where('complaint_id',$id)->get();
         $complaints = complaints::findOrFail($id);
         return view('client.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
     }

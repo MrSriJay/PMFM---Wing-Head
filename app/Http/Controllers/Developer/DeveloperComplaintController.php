@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\helper;
 use App\Models\Projects;
-use App\Models\Complaint_Developer;
+use App\Models\Complaint_developer;
 use App\Models\Message;
 use Illuminate\Support\Facades\Auth;
 use DB;
@@ -33,7 +33,7 @@ class DeveloperComplaintController extends Controller
     public function show($id)
     {
         $message = Message::where('complaint_id',$id)-> orderBy('updated_at', 'DESC') -> get();
-        $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
+        $complaint_developer = Complaint_developer::where('complaint_id',$id)->get();
         $complaints = complaints::join('projects', 'complaints.project_id', '=', 'projects.id')
         ->select('complaints.id','complaints.system_name','complaints.description','complaints.status','complaints.files','complaints.client_id','projects.wingid','complaints.fault_type','urgency_level','complaints.created_at','complaints.updated_at','complaints.project_id')
         ->where('complaints.id',$id)
@@ -52,7 +52,7 @@ class DeveloperComplaintController extends Controller
 
         $id = $request->input('comp_id');
         $message = Message::where('complaint_id',$id)->get();
-        $complaint_Developer = Complaint_Developer::where('complaint_id',$id)->get();
+        $complaint_Developer = Complaint_developer::where('complaint_id',$id)->get();
         $complaints = complaints::findOrFail($id);
 
         Helper::$status_message = [
