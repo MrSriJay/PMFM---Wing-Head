@@ -100,12 +100,12 @@
                             <tr>
                               <th><i class="material-icons text-success" >check_circle_outline</i></th>
                               <th>Wokring Systems:</th>
-                              <th style="text-align: right"><b>{!!Helper::getSystemStatus_Winghead(Auth::user()->user_id,1)!!}  </b></th>
+                              <th style="text-align: right"><b> </b></th>
                             </tr>
                             <tr>
                               <th><i class="material-icons text-danger">highlight_off</i> </th>
                               <th>Fault Systems:</th>
-                              <th style="text-align: right"><b>{!!Helper::getSystemStatus_Winghead(Auth::user()->user_id,0)!!} </b></th>
+                              <th style="text-align: right"><b> </b></th>
                             </tr>
                           </table>
                         </div>
