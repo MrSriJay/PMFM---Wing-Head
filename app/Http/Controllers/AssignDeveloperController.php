@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Projects;
 use App\Models\Message;
 use App\Models\Complaints;
-use App\helper;
+use App\Helper;
 use App\Models\Complaint_developer;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\DeveloperAssignmentMail;

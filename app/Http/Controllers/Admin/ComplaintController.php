@@ -12,7 +12,7 @@ use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Complaints;
-use App\helper;
+use App\Helper;
 use App\Models\Complaint_developer;
 use App\Models\Message;
 use App\Mail\ComplaintAddedNotifaction;

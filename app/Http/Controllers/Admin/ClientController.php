@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use App\Mail\AccountCreationMail;
 use Illuminate\Support\Facades\Mail;
-use App\helper;
+use App\Helper;
 
 class ClientController extends Controller
 {

@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 use App\Mail\AccountCreationMail;
 use Illuminate\Support\Facades\Mail;
-use App\helper;
+use App\Helper;
 
 class WingUserController extends Controller
 {
