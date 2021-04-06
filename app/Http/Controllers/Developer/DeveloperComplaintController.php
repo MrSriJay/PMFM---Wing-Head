@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Developer;
 use App\Models\Complaints;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\helper;
+use App\Helper;
 use App\Models\Projects;
 use App\Models\Complaint_developer;
 use App\Models\Message;
