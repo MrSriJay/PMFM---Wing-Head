@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Complaints;
 use Illuminate\Support\Facades\Auth;
-use App\helper;
+use App\Helper;
 use App\Models\Projects;
 use App\Models\Complaint_developer;
 use App\Models\Message;

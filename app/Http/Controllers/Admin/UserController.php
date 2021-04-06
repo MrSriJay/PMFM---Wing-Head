@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Mail\AccountCreationMail;
 use Illuminate\Support\Facades\Mail;
-use App\helper;
+use App\Helper;
 
 class UserController extends Controller
 {
