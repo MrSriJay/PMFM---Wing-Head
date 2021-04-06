@@ -65,7 +65,7 @@
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons text-danger">report_problem</i> <b style="font-weigth:bolder">{!!Helper::getCountOngiongComplaintsWinghead(Auth::user()->wing_name)!!} &nbsp; </b>
+                            <i class="material-icons text-danger">report_problem</i> <b style="font-weigth:bolder"> &nbsp; </b>
                             <a href="/winghead/wings-complaints" class="text-dark"> Ongoing Complaints</a>
                           </div>
                         </div>

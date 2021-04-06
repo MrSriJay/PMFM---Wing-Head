@@ -87,8 +87,6 @@ class ClientController extends Controller
                 'usertype' => $request->usertype,
                 'password' =>$request->password
              ];
-
-
             Mail::to($request->email)->send(new AccountCreationMail());
             return redirect('/admin/clients')->with('status', 'Client Added Successfully');
         }
