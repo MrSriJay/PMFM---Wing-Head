@@ -34,6 +34,7 @@
               <thead>
                   <tr>
                   <th scope="col">System Name</th>
+                  <th scope="col">Client Name</th>
                   <th scope="col">Date Subitted</th>
                   <th scope="col">Wing Name</th>
                   <th scope="col">Type of Fault</th>
@@ -47,6 +48,7 @@
                 @foreach ($complaints as $data)
                   <tr>
                     <th scope="row" > <a href="/winghead/wings-complaints/{{$data->id}}" @if($data->status == 3) class="text-warning" @endif >{{$data->system_name}}</a></th>
+                    <th scope="row">{!!Helper::getClientName($data->client_id) !!}</th>
                     <th scope="row">{{$data->created_at}}</th>
                     <th scope="row">{!!Helper::getWingName($data->wing_id)!!}</th>
                     <th scope="row">{{$data->fault_type}}</th>

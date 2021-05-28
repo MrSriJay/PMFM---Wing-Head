@@ -35,8 +35,8 @@ Add Projects | PMFM
                         <!--Insert Project Number-->
                         <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Project Number</label>
-                            <input type="text" name ="number" id ="number" class="form-control @error('number') is-invalid @enderror"    required value="{{ old('number') }}">
-                            @error('number')
+                            <input type="text" name ="pgt_number" id ="pgt_number" class="form-control @error('pgt_number') is-invalid @enderror"    required value="{{ old('pgt_number') }}">
+                            @error('pgt_number')
                             <span style="color:red">
                             <strong>{{ $message }}</strong>
                             </span>

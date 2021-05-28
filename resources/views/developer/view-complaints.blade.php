@@ -31,6 +31,7 @@
               <thead>
                   <tr>
                   <th scope="col">System Name</th>
+                  <th scope="col">Client Name</th>
                   <th scope="col">Date Subitted</th>
                   <th scope="col">Wing Name</th>
                   <th scope="col">Type of Fault</th>
@@ -50,6 +51,7 @@
                         <a href="/developer/developer-complaints/{{$data->complaint_id}}">{{$data->system_name}}</a>
                       @endif
                     </th>
+                    <th scope="row">{!!Helper::getClientName($data->client_id) !!}</th>
                     <th scope="row">{{$data->created_at}}</th>
                     <th scope="row">{!!Helper::getWingName($data->wing_id)!!}</th>
                     <th scope="row">{{$data->fault_type}}</th>

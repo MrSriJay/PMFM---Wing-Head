@@ -37,7 +37,7 @@ class WingProjectController extends Controller
        
         $validate = \Validator::make($request->all(), [
             'title' => ['required', 'string', 'max:255'],
-            'number' => ['required', 'string', 'max:255'],
+            'pgt_number' => ['required', 'string', 'max:255','unique:projects'],
             'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
             'startdate' => ['required'],
@@ -57,7 +57,7 @@ class WingProjectController extends Controller
 
         $project = new Projects;
         $project->title = $request->input('title');
-        $project->pgt_number = $request->input('number');
+        $project->pgt_number = $request->input('pgt_number');
         $project->description = $request->input('summary-ckeditor');
         $ranstring = rand(10,50);
 
@@ -124,6 +124,7 @@ class WingProjectController extends Controller
             'summary-ckeditor' => 'required',
             'startdate' => 'required',
             'enddate' => 'required',
+            'pgt_number' => ['required', 'string', 'max:255','unique:projects']
         ]);
 
         if( $validate->fails()){
@@ -135,7 +136,7 @@ class WingProjectController extends Controller
         $ranstring = rand(10,50);
 
         $project = Projects::find($id);
-        $project->pgt_number = $request->input('number');
+        $project->pgt_number = $request->input('pgt_number');
         $project->title = $request->input('title');
         $project->description = $request->input('summary-ckeditor');
         $project->clientid = $request->input('clientid');

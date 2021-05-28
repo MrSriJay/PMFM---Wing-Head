@@ -30,6 +30,7 @@
                   <tr>
                   <th scope="col">Complaint ID</th>
                   <th scope="col">System Name</th>
+                  <th scope="col">Client Name</th>
                   <th scope="col">Date Subitted</th>
                   <th scope="col">Wing Name</th>
                   <th scope="col">Type of Fault</th>
@@ -44,6 +45,7 @@
                   <tr>
                     <th scope="row">{{$data->id}}</th>
                     <th scope="row"><a @if($data->status == 3) class="text-success" @endif href="/admin/complaints/{{$data->id}}">{{$data->system_name}}</a></th>
+                    <th scope="row">{!!Helper::getClientName($data->client_id) !!}</th>
                     <th scope="row">{{$data->created_at}}</th>
                     <th scope="row">{!!Helper::getWingName($data->wing_id)!!}</th>
                     <th scope="row">{{$data->fault_type}}</th>
