@@ -213,7 +213,7 @@ Projects - View | PMFM
                         </div>
 
                         <!--View Uploaded Files-->
-                        <div id="morefiles" style="display: none">
+                        <div id="file" style="display: none">
                             <label for="recipient-name" class="col-form-label py-3 text-sm">Upload More File(s)</label>
                             <fieldset>   
 
@@ -409,7 +409,7 @@ Projects - View | PMFM
          document.getElementById("update").style.display = "inline";
          document.getElementById("delete").style.display = "inline";
          document.getElementById("edit").classList.add("btn-danger");
-         document.getElementById("morefiles").style.display = "block";
+         document.getElementById("file").style.display = "block";
          document.getElementById("downbtn").style.display = "none";
          
 
