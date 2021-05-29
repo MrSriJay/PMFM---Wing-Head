@@ -23,7 +23,7 @@ Projects - View | PMFM
         <div class="card">  
             <div class="card-header card-header-primary">
                 @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
-                <a  class="btn btn-primary float-right" style="margin:20px" id="edit" onclick="toggleEdit()" > <i class="material-icons">edit</i>Edit</a>
+                <a  class="btn btn-primary float-right" style="margin:20px" id="edit" onclick="toggleEdit()" ><i class="material-icons">edit</i>Edit</a>
                 @endif
                 <div style="display:none" id="editext">Edit</div >
                 <label for="recipient-name" class="col-form-label text-light" >Project Title</label>
@@ -64,7 +64,7 @@ Projects - View | PMFM
                         </div>
 
                          <!--View Project Icon-->
-                         <div id="morefiles"  class="py-4" style="display: none">
+                         <div id="pro_icon"  class="py-4" style="display: none" >
                             <label for="recipient-name" class="col-form-label text-primary">Project Icon</label>
                             <fieldset>
                             <div>
@@ -387,11 +387,11 @@ Projects - View | PMFM
 <script>
 
 
-    function toggleEdit() {    
+  function toggleEdit() {    
      var i= document.getElementById("editext");
      if(i.innerHTML=="Edit"){
          document.getElementById("pgt_number").readOnly = false;
-
+         document.getElementById("pro_icon").style.display = "block";
          document.getElementById("title0").style.display = "none";
          document.getElementById("title1").style.display = "block";
 
@@ -406,6 +406,8 @@ Projects - View | PMFM
          document.getElementById("startdate").readOnly = false;
          document.getElementById("enddate").readOnly = false;
 
+         
+      
          document.getElementById("update").style.display = "inline";
          document.getElementById("delete").style.display = "inline";
          document.getElementById("edit").classList.add("btn-danger");
@@ -418,6 +420,8 @@ Projects - View | PMFM
      else{
 
          document.getElementById("pgt_number").readOnly = true;
+
+         document.getElementById("pro_icon").style.display = "none";
 
          document.getElementById("title0").style.display = "block";
          document.getElementById("title1").style.display = "none";
@@ -438,7 +442,6 @@ Projects - View | PMFM
          document.getElementById("edit").classList.remove("btn-danger");
          document.getElementById("edit").classList.add("btn-primary");
 
-         document.getElementById("morefiles").style.display = "none";
          document.getElementById("downbtn").style.display = "inline";
 
          i.innerHTML="Edit"
