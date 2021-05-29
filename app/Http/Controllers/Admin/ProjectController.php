@@ -35,8 +35,8 @@ class ProjectController extends Controller
     public function store(Request $request)
     {        
         $validate = \Validator::make($request->all(), [
-            'title' => ['required', 'string', 'max:255'],
-            'pgt_number' => ['required', 'string', 'max:255','unique:projects'],
+            'title' => ['required', 'string', 'max:255','unique:projects,title'],
+            'pgt_number' => ['required', 'string', 'max:255','unique:projects,pgt_number'],
             'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
             'startdate' => ['required'],
@@ -146,7 +146,7 @@ class ProjectController extends Controller
         $project->developers = $request->input('developers');
         $path =$request->input('path');
 
-        // Upload Project Files
+        // Update Project Files
      
         if($path==NULL){
             if($request->hasFile('file')){
@@ -168,6 +168,13 @@ class ProjectController extends Controller
                     $file->storeAs('public/'.$path,$file_name);
                 }
             }
+        }
+
+        // Update Project Icon
+        if($request->hasFile('projecticon')){
+            $icon_name = $request->projecticon->getClientOriginalName();
+            $request->projecticon->storeAs('public/project_icons/',$icon_name);
+            $project->project_icon = $icon_name;
         }
            
         $project->save();

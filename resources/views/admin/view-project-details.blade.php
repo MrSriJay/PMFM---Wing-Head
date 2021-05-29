@@ -52,7 +52,7 @@ Projects - View | PMFM
                 @endif
                 <div class="col-md-12">
                         
-                         <!--Insert Project Number-->
+                         <!--View Project Number-->
                          <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Project Number</label>
                             <input type="text" name ="pgt_number" readonly id ="pgt_number" class="form-control @error('pgt_number') is-invalid @enderror"  required  value="{!!$project->pgt_number!!}" >
@@ -61,6 +61,21 @@ Projects - View | PMFM
                             <strong>{{ $message }}</strong>
                             </span>
                             @enderror
+                        </div>
+
+                         <!--View Project Icon-->
+                         <div id="morefiles"  class="py-4" style="display: none">
+                            <label for="recipient-name" class="col-form-label text-primary">Project Icon</label>
+                            <fieldset>
+                            <div>
+                            <input type="file" name ="projecticon" readonly id ="projecticon" class="form-control @error('projecticon') is-invalid @enderror"  required  value="{!!$project->project_icon!!}" >
+                            @error('projecticon')
+                            <span style="color:red">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
+                            </div>
+                            </fieldset>
                         </div>
 
                          <!--View Description-->
@@ -140,7 +155,7 @@ Projects - View | PMFM
                             @enderror
                         </div>
 
-                        <!--Insert wing-->
+                        <!--View wing-->
                         <div class="form-group  py-4">
                             <label for="message-text" class="col-form-label text-primary">Wing</label>
                             <select id="wing_name" disabled  class="livesearch form-control" name="wing_name" value="{{ old('wing_name') }}" style="width:99%;"  required>
@@ -197,7 +212,7 @@ Projects - View | PMFM
                             @endforeach                   
                         </div>
 
-                        <!--Upload Files-->
+                        <!--View Uploaded Files-->
                         <div id="morefiles" style="display: none">
                             <label for="recipient-name" class="col-form-label py-3 text-sm">Upload More File(s)</label>
                             <fieldset>   

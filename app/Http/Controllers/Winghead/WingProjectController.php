@@ -147,11 +147,8 @@ class WingProjectController extends Controller
         $project->developers = $request->input('developers');
         $path =$request->input('path');
 
-        // Upload Project Files
+        // Update Project Files
      
-            
-           
-
         if($path==NULL){
             if($request->hasFile('file')){
                 foreach($request->file as $file){
@@ -173,8 +170,14 @@ class WingProjectController extends Controller
                 }
             }
         }
-          
-        
+
+        // Update Project Icon
+        if($request->hasFile('projecticon')){
+            $icon_name = $request->projecticon->getClientOriginalName();
+            $request->projecticon->storeAs('public/project_icons/',$icon_name);
+            $project->project_icon = $icon_name;
+        }
+
         $project->save();
 
         return redirect()
