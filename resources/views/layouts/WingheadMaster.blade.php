@@ -79,6 +79,12 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Officers</p>
             </a>
           </li>
+          <li class="{{ Request::is('winghead/clients*') ? 'active' : '' }}">
+            <a class="nav-link" href="/winghead/clients">
+              <i class="material-icons">account_box</i>
+              <p>Clients</p>
+            </a>
+          </li>
         </ul>
       </div>
     </div>

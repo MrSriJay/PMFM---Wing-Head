@@ -12,6 +12,7 @@ use App\Http\Controllers\Admin\ComplaintController;
 use App\Http\Controllers\Winghead\WingProjectController;
 use App\Http\Controllers\Winghead\WingUserController;
 use App\Http\Controllers\Winghead\UserComplaintController;
+use App\Http\Controllers\Winghead\WingClientController;
 
 use App\Http\Controllers\Client\PurchasedSystemsController;
 use App\Http\Controllers\Client\ClientComplaintController;
@@ -90,6 +91,7 @@ Route::group(['middleware' => ['auth','winghead']],function() {
 Route::resource('winghead/wings-projects', WingProjectController::class);
 Route::resource('winghead/wings-users', WingUserController::class);
 Route::resource('winghead/wings-complaints', UserComplaintController::class);
+Route::resource('winghead/clients', WingClientController::class);
 
 Route::get('winghead/wings-projects-history/{id}', [WingProjectController::class, 'showCompalintHistory']);
 
