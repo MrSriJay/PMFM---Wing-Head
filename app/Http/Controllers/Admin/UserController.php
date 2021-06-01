@@ -69,6 +69,7 @@ class UserController extends Controller
                     'wing_name' =>$request->wing_name,      
                     'password' => Hash::make($request->password),
                 ]);
+<<<<<<< HEAD
 
                 Helper::$login_data = [
                     'first_name' => $request->first_name,
@@ -81,6 +82,8 @@ class UserController extends Controller
 
 
                 Mail::to($request->email)->send(new AccountCreationMail());
+=======
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                 return redirect('/admin/users')->with('status', 'User added successfully');
             }
 

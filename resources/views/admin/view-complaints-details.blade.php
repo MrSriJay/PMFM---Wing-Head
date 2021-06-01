@@ -46,8 +46,18 @@ Projects - View | PMFM
             @endif
 
             @if($complaints->status==0)
+<<<<<<< HEAD
                 <div class="alert alert-light alert-dismissible fade show text-danger" role="alert">
                     <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="admin/complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
+=======
+<<<<<<< Updated upstream
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><a href="#" class="alert-link"> Assign </a></strong>
+=======
+                <div class="alert alert-light alert-dismissible fade show text-danger" role="alert">
+                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="admin/complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
+>>>>>>> Stashed changes
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                 </div>
              @elseif($complaints->status==1)
              
@@ -99,6 +109,11 @@ Projects - View | PMFM
                 @endif
                 
             </div>
+<<<<<<< HEAD
+=======
+<<<<<<< Updated upstream
+=======
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
 
             <!--Assign Developers-->
             <div class="form-group" id="assign_Dev"> 
@@ -160,13 +175,18 @@ Projects - View | PMFM
             </div>
 
              <!--Feedbacks -->
+<<<<<<< HEAD
              <div class="form-group" id="remark"> 
+=======
+             <div class="form-group"> 
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
               <div class="row col-lg-12 border" style="margin: 5px; padding:10px">
                 <br>
                 <div class="col-lg-4 border">
                   <form action="/send-messages" method="POST" enctype="multipart/form-data">
                     {{ csrf_field() }}
                     <br>
+<<<<<<< HEAD
                     <div class="text-primary"> <span class="material-icons">feedback</span> Remarks</div>
                     <br>
                     <label for="">Message</label>
@@ -182,6 +202,22 @@ Projects - View | PMFM
                         <option value="{{$complaints->client_id}}">{!!Helper::getClientName($complaints->client_id)!!}(Client)</option>
                         <option value="{!!Helper::getWingHead($complaints->wing_id)!!}">{!!Helper::getName(Helper::getWingHead($complaints->wing_id))!!}(Winghead)</option>
                         <option value="all" class="text-warning">Public</option>
+=======
+                    <div class="text-primary"> <span class="material-icons">feedback</span> Feedbacks</div>
+                    <br>
+                    <label for="">Message</label>
+                    <textarea class="form-control"  placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
+                    <br>
+                    <label for="">To</label>
+
+                    <select id="sender_name" class="form-control" style="font-size:16px ; border: 1px sold grey" name="sender_name"  required>
+                      <option value="" disabled selected  class="text-muted"> Select User</option>
+                      @foreach ($complaint_developer as $data)
+                        <option value="{{$data->developer_id}}" >{!!Helper::getName($data->developer_id)!!}</option>
+                      @endforeach
+                        <option value="{{$complaints->client_id}}">{!!Helper::getClientName($complaints->client_id)!!}</option>
+                        <option value="all">Everyone</option>
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                     </select>
 
                     <input type="hidden" value="{!!$complaints->id!!}" name="comp_id">
@@ -196,6 +232,7 @@ Projects - View | PMFM
                   @foreach ($message as $data)
                     <div class="row bg-muted card" style="margin:10px">
                         <div class="card-body">
+<<<<<<< HEAD
                           <div class="text-success" style="font-size: 10px" >From <b>{!!Helper::getName($data->sender)!!} - <i class="text-muted">{!!Helper::getDesignationFromID($data->sender)!!}</b></div>
                           <div class="text-primary">{!!$data->message!!} </div>
                           <div class="text-success">
@@ -204,6 +241,12 @@ Projects - View | PMFM
                             @else
                             <span style="font-size: 10px" class="float:left" >Public</span>
                             @endif
+=======
+                          <div class="text-success" style="font-size: 10px" >From <b>{!!Helper::getName($data->sender)!!}</b></div>
+                          <div class="text-primary">{!!$data->message!!} </div>
+                          <div class="text-success">
+                            <span style="font-size: 10px" class="float:left" >To <b>{!!Helper::getName($data->receiver)!!}</b></span>
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                             <small style=" display:block ;margin-top:-10px; color:#bfbfbf" class="float-right"><i>Sent on {!!$data->created_at!!} </i></small>
                           </div>
                         </div>
@@ -216,6 +259,10 @@ Projects - View | PMFM
                 </div>
               </div>
             </div>
+<<<<<<< HEAD
+=======
+>>>>>>> Stashed changes
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
   
              <!--View Sender Details-->
 
@@ -235,7 +282,15 @@ Projects - View | PMFM
 
 <script type="text/javascript">
 
+<<<<<<< HEAD
 $('#dev_name').select2({
+=======
+<<<<<<< Updated upstream
+    $('#developer_name').select2({
+=======
+$('#dev_name').select2({
+>>>>>>> Stashed changes
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
         placeholder: 'Select Developer Name',
         ajax: {
             url: '/com-dev-admin',

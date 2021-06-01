@@ -23,12 +23,32 @@
                   <div class="row">
                     <div class="col-lg-3 col-md-6 col-sm-6">
                       <div class="card card-stats">
+                        <div class="card-header card-header-info card-header-icon">
+                          <div class="card-icon">
+                            <i class="material-icons">people</i>
+                          </div>
+                          <p class="card-category">Users</p>
+                          <h3 class="card-title">25</h3>
+                        </div>
+                        <div class="card-footer">
+                          <div class="stats">
+                            <i class="material-icons">update</i>Updated 2 minutes ago
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-lg-3 col-md-6 col-sm-6">
+                      <div class="card card-stats">
                         <div class="card-header card-header-warning card-header-icon">
                           <div class="card-icon">
                             <i class="material-icons">account_balance</i>
                           </div>
                           <p class="card-category">Wings</p>
+<<<<<<< HEAD
                           <h3 class="card-title">{!!Helper::getWingsCount()!!}
+=======
+                          <h3 class="card-title">10
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                           </h3>
                         </div>
                         <div class="card-footer">
@@ -45,8 +65,13 @@
                           <div class="card-icon">
                             <i class="material-icons">content_paste</i>
                           </div>
+<<<<<<< HEAD
                           <p class="card-category">Systems</p>
                           <h3 class="card-title">{!!Helper::getProjectsCount()!!}</h3>
+=======
+                          <p class="card-category">Projects</p>
+                          <h3 class="card-title">100</h3>
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                         </div>
                         <div class="card-footer">
                           <div class="stats">
@@ -60,10 +85,17 @@
                       <div class="card card-stats">
                         <div class="card-header card-header-info card-header-icon">
                           <div class="card-icon">
+<<<<<<< HEAD
                             <i class="material-icons">people</i>
                           </div>
                           <p class="card-category">Officers</p>
                           <h3 class="card-title">{!!Helper::getOfficerCount()!!}</h3>
+=======
+                            <i class="material-icons">report_problem</i>
+                          </div>
+                          <p class="card-category">Complaints</p>
+                          <h3 class="card-title">75</h3>
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                         </div>
                         <div class="card-footer">
                           <div class="stats">
@@ -72,6 +104,7 @@
                         </div>
                       </div>
                     </div>
+<<<<<<< HEAD
                     <div class="col-lg-3 col-md-6 col-sm-6">
                       <div class="card card-stats">
                         <div class="card-header card-header-primary card-header-icon">
@@ -89,6 +122,9 @@
                         </div>
                       </div>
                     </div>
+=======
+                    
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                   </div>
                   <div class="row">
                     <div class="col-md-12" id="systems">

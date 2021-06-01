@@ -36,15 +36,23 @@ class WingProjectController extends Controller
     {        
        
         $validate = \Validator::make($request->all(), [
+<<<<<<< HEAD:app/Http/Controllers/Winghead/WingProjectController.php
             'title' => ['required', 'string', 'max:255'],
             'pgt_number' => ['required', 'string', 'max:255','unique:projects'],
+=======
+            /*'title' => ['required', 'string', 'max:255'],
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727:app/Http/Controllers/Winghead/ProjectController.php
             'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
             'startdate' => ['required'],
             'wing_name' => ['required', 'string', 'max:255'],
             'clientid' => ['required', 'string', 'max:255'],
             'developers' => ['required', 'string', 'max:255'],
+<<<<<<< HEAD:app/Http/Controllers/Winghead/WingProjectController.php
             'enddate' => 'required',  
+=======
+            'enddate' => 'required',*/   
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727:app/Http/Controllers/Winghead/ProjectController.php
         ]);
 
         if( $validate->fails()){

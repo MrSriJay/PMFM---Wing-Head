@@ -32,7 +32,11 @@
                     
                    <div class="card-header">
                      <div class="col-md-12 col-sm-12">
+<<<<<<< HEAD
                        <h3><a class="card-title text-primary font-weight-bold " href="/client/purchased-systems/{{$data->id}}">{{$data->title}}</a></h3>
+=======
+                       <h3><a class="card-title text-primary font-weight-bold " href="admin/projects/{{$data->id}}">{{$data->title}}</a></h3>
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                        <small class="text-dark">Posted on {{$data->created_at}}</small>
                     </div>
                    </div>

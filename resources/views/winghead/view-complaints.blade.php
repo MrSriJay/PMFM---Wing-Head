@@ -66,7 +66,11 @@
                     <th scope="row"  class="text-primary" >{!!Helper::getComplaintStatus($data->status)!!}</th>
                     
                     <th scope="row">
+<<<<<<< HEAD
                      <a class="btn btn-secondary btn-sm mx-auto " href="/winghead/wings-complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+=======
+                     <a class="btn btn-secondary btn-sm mx-auto " href="winghead/wings-complaints/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                     </th>
 
                   </tr>

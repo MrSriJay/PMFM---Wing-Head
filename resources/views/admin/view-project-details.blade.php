@@ -52,6 +52,7 @@ Projects - View | PMFM
                 @endif
                 <div class="col-md-12">
                         
+<<<<<<< HEAD
                          <!--View Project Number-->
                          <div class="form-group py-4">
                             <label for="recipient-name" class="col-form-label text-primary">Project Number</label>
@@ -76,6 +77,10 @@ Projects - View | PMFM
                             @enderror
                             </div>
                             </fieldset>
+=======
+                        <!--View Project Icon-->
+                        <div class="form-group float-right">                
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
                         </div>
 
                          <!--View Description-->

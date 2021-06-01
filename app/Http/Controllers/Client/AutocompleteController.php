@@ -8,7 +8,11 @@ use App\Models\Projects;
 use App\Models\Wing;
 use App\Models\User;
 use App\Models\Client;
+<<<<<<< HEAD:app/Http/Controllers/Client/AutocompleteController.php
 use App\Models\Complaint_developer;
+=======
+use App\Models\Complaint_Developer;
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727:app/Http/Controllers/Client/AutocompleteprojectController.php
 
 use Illuminate\Support\Facades\Auth;
 class AutocompleteController extends Controller
@@ -189,6 +193,7 @@ class AutocompleteController extends Controller
      }
     }
 
+<<<<<<< HEAD:app/Http/Controllers/Client/AutocompleteController.php
       // Get Project Developers -- Project Insert
       function selectSearchDevelopersAdmin(Request $request)
       {
@@ -230,6 +235,38 @@ class AutocompleteController extends Controller
          echo $output;
         }
        
+=======
+<<<<<<< Updated upstream
+=======
+      // Get Project Developers -- Project Insert
+      function selectSearchDevelopersAdmin(Request $request)
+      {
+       if($request->get('query'))
+       {
+        $search = $request->get('query');
+        $data =User::select("user_id", "first_name", "last_name")
+        ->Where(function ($query) use ($search) {
+          $query->where('first_name', 'LIKE', "%$search%") 
+          ->orWhere('last_name', 'LIKE', "%$search%") ;
+        })
+        ->Where(function ($query){
+          $query->where('usertype', 'developer')
+          ->orWhere('usertype', 'officer')
+          ->orWhere('usertype', 'winghead');
+        })
+  
+        ->get();
+        $output = '<ul class="text-primary" style="display:block; position:relative; color:black; list-style-type: none;">';
+        foreach($data as $row)
+        {
+         $output .= '
+         <li class="border border-light bg-light"  style="list-style-type: none; padding:10px; margin:5px; cursor:pointer"><a>'.$row->first_name.' '.$row->last_name.'</a></li>
+         ';
+        }
+        $output .= '</ul>';
+        echo $output;
+       }
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727:app/Http/Controllers/Client/AutocompleteprojectController.php
       }
   
 
@@ -240,7 +277,11 @@ class AutocompleteController extends Controller
 
         if($request->has('q')){
             $search = $request->q;
+<<<<<<< HEAD:app/Http/Controllers/Client/AutocompleteController.php
             $data =User::select("user_id", "rank", "first_name", "last_name")
+=======
+            $data =User::select("user_id", "first_name", "last_name")
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727:app/Http/Controllers/Client/AutocompleteprojectController.php
             ->Where(function ($query) use ($search) {
               $query->where('first_name', 'LIKE', "%$search%") 
               ->orWhere('last_name', 'LIKE', "%$search%") ;
@@ -265,7 +306,11 @@ class AutocompleteController extends Controller
       
       if($request->has('q')){
         $search = $request->get('query');
+<<<<<<< HEAD:app/Http/Controllers/Client/AutocompleteController.php
        $data =User::select("user_id", "rank", "first_name", "last_name")
+=======
+       $data =User::select("user_id", "first_name", "last_name")
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727:app/Http/Controllers/Client/AutocompleteprojectController.php
        ->Where(function ($query) use ($search) {
          $query->where('first_name', 'LIKE', "%$search%") 
          ->orWhere('last_name', 'LIKE', "%$search%") ;
@@ -281,14 +326,22 @@ class AutocompleteController extends Controller
       return response()->json($data);
      }
 
+<<<<<<< HEAD:app/Http/Controllers/Client/AutocompleteController.php
     //project search Clients
+=======
+     //project search Clients
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727:app/Http/Controllers/Client/AutocompleteprojectController.php
     public function selectSearchAssignedDevs(Request $request)
     {
     	$data = [];
 
         if($request->has('q')){
             $search = $request->q;
+<<<<<<< HEAD:app/Http/Controllers/Client/AutocompleteController.php
             $data =Complaint_developer::select("developer_id", "complaint_developers")
+=======
+            $data =Complaint_Developer::select("developer_id", "complaint_developers")
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727:app/Http/Controllers/Client/AutocompleteprojectController.php
                 ->where('title', 'LIKE', "%$search%")
                 ->where('clientid',Auth::user()->user_id)
             		->get();
@@ -297,6 +350,10 @@ class AutocompleteController extends Controller
 
     }
 
+<<<<<<< HEAD:app/Http/Controllers/Client/AutocompleteController.php
+=======
+>>>>>>> Stashed changes
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727:app/Http/Controllers/Client/AutocompleteprojectController.php
     
   
 }

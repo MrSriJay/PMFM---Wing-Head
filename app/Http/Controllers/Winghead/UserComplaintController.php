@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Complaints;
 use Illuminate\Support\Facades\Auth;
+<<<<<<< HEAD
 use App\Helper;
 use App\Models\Projects;
 use App\Models\Complaint_developer;
@@ -14,6 +15,15 @@ use DB;
 use App\Mail\ComplaintAddedNotifaction;
 use Illuminate\Support\Facades\Mail;
 
+=======
+<<<<<<< Updated upstream
+=======
+use App\helper;
+use App\Models\Projects;
+use App\Models\Complaint_Developer;
+use App\Models\Message;
+>>>>>>> Stashed changes
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
 
 class UserComplaintController extends Controller
 {
@@ -104,8 +114,13 @@ class UserComplaintController extends Controller
 
    public function show($id)
    {
+<<<<<<< HEAD
        $complaint_developer = Complaint_developer::where('complaint_id',$id)->get();
        $message = Message::where('complaint_id',$id)->orderBy('updated_at', 'DESC') -> get();
+=======
+       $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
+       $message = Message::where('complaint_id',$id)->get();
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
        $complaints = complaints::findOrFail($id);
        return view('winghead.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
    }

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Projects;
 use App\Models\Message;
 use App\Models\Complaints;
+<<<<<<< HEAD
 use App\Helper;
 use App\Models\Complaint_developer;
 use Illuminate\Support\Facades\Auth;
@@ -13,15 +14,26 @@ use App\Mail\DeveloperAssignmentMail;
 use App\Mail\ComplaintStatusMail;
 use App\Mail\FeedNewMail;
 use Illuminate\Support\Facades\Mail;
+=======
+use App\helper;
+use App\Models\Complaint_Developer;
+use Illuminate\Support\Facades\Auth;
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
 
 class AssignDeveloperController extends Controller
 {
       
     public function addDeveloper(Request $request){
        
+<<<<<<< HEAD
         $data =Complaint_developer::where('complaint_id', $request->input('compId'))->where('developer_id',$request->input('dev_name'))->first();
         if ($data === null) {
             $complaint_developer = new Complaint_developer;
+=======
+        $data =Complaint_Developer::where('complaint_id', $request->input('compId'))->where('developer_id',$request->input('dev_name'))->first();
+        if ($data === null) {
+            $complaint_developer = new Complaint_Developer;
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
             $complaint_developer->complaint_id = $request->input('compId');
             $complaint_developer->developer_id = $request->input('dev_name');
             $complaint_developer->assigned_by = Auth::user()->user_id;
@@ -31,6 +43,7 @@ class AssignDeveloperController extends Controller
     
             $complaints ->save();
             $complaint_developer->save();
+<<<<<<< HEAD
 
             Helper::$dev_data = [
                 'system_name' => Helper::getprojectName($complaints->project_id),
@@ -53,6 +66,9 @@ class AssignDeveloperController extends Controller
              //Mail::to("podilali69@gmail.com")->send(new DeveloperAssignmentMail());
              //Mail::to("podilali69@gmail.com")->send(new ComplaintStatusMail());
 
+=======
+    
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
             return redirect()->back()->with('devstatus','Developer Assigned');
         }
         else{
@@ -61,6 +77,7 @@ class AssignDeveloperController extends Controller
             ->with('error', 'Developer already assigned');
         }
     
+<<<<<<< HEAD
     }
     
     public function deleteDeveloper(Request $request){
@@ -68,6 +85,17 @@ class AssignDeveloperController extends Controller
             $complaint_developer->delete();
             
             $data =Complaint_developer::where('complaint_id', $request->input('comp_id'))->first();
+=======
+        
+    
+    }
+    
+    public function deleteDeveloper(Request $request){
+            $complaint_developer = complaint_developer::where('complaint_id', $request->input('comp_id'))->where('developer_id',$request->input('dev_id'));
+            $complaint_developer->delete();
+            
+            $data =complaint_developer::where('complaint_id', $request->input('comp_id'))->first();
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
             if ($data === null) {
     
                 $complaints = Complaints::find($request->input('comp_id'));
@@ -90,6 +118,7 @@ class AssignDeveloperController extends Controller
             $message->receiver = $request->input('sender_name');
             $message->sender = Auth::user()->user_id;
             $message->complaint_id = $request->input('comp_id');
+<<<<<<< HEAD
 
             Helper::$feedback_message = [   
                 'sender' => Helper::getName(Auth::user()->user_id),
@@ -104,4 +133,11 @@ class AssignDeveloperController extends Controller
             return redirect()->back();
     }
 
+=======
+            
+            $message->save();
+            return redirect()->back();
+
+    }
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
 }

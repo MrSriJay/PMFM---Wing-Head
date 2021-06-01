@@ -12,19 +12,30 @@ use Illuminate\Support\Facades\Storage;
 use SebastianBergmann\CodeCoverage\Report\Xml\Project;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Complaints;
+<<<<<<< HEAD
 use App\Helper;
 use App\Models\Complaint_developer;
 use App\Models\Message;
 use App\Mail\ComplaintAddedNotifaction;
 use Illuminate\Support\Facades\Mail;
+=======
+use App\helper;
+use App\Models\Complaint_Developer;
+use App\Models\Message;
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
 
 class ComplaintController extends Controller
 {
 
     public function index()
     {
+<<<<<<< HEAD
 
        $complaints = Complaints::orderBy('updated_at', 'DESC')->get();
+=======
+       $complaints = Complaints::all();
+     
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
        return view('admin.view-complaints')->with('complaints',$complaints);
        
     }
@@ -37,8 +48,13 @@ class ComplaintController extends Controller
 
     public function show($id)
     {
+<<<<<<< HEAD
         $message = Message::where('complaint_id',$id)->orderBy('updated_at', 'DESC') -> get();
         $complaint_developer = Complaint_developer::where('complaint_id',$id)->get();
+=======
+        $message = Message::where('complaint_id',$id)->get();
+        $complaint_developer = Complaint_Developer::where('complaint_id',$id)->get();
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
         $complaints = complaints::findOrFail($id);
         return view('admin.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
     }
@@ -109,6 +125,9 @@ class ComplaintController extends Controller
       return redirect('admin/complaints')->with('status','Complaint Submitted Successfully!');
    }
    
+<<<<<<< HEAD
 
+=======
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
  
 }

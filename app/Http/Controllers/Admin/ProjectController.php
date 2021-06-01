@@ -35,15 +35,19 @@ class ProjectController extends Controller
     public function store(Request $request)
     {        
         $validate = \Validator::make($request->all(), [
+<<<<<<< HEAD
             'title' => ['required', 'string', 'max:255','unique:projects,title'],
             'pgt_number' => ['required', 'string', 'max:255','unique:projects,pgt_number'],
+=======
+           /* 'title' => ['required', 'string', 'max:255'],
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
             'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
             'startdate' => ['required'],
             'wing_name' => ['required', 'string', 'max:255'],
             'clientid' => ['required', 'string', 'max:255'],
             'developers' => ['required', 'string', 'max:255'],
-            'enddate' => 'required',
+            'enddate' => 'required',*/
         ]);
 
         if( $validate->fails()){

@@ -62,10 +62,35 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Dashboard</p>
             </a>
           </li>
+<<<<<<< HEAD
           <li class="{{ Request::is('developer/developer-complaints*') ? 'active' : '' }}">
             <a class="nav-link" href="/developer/developer-complaints">
               <i class="material-icons">report_problem</i>
               <p>Complaints</p>
+=======
+          <li class="{{ Request::is('developer/developer-projects*') ? 'active' : '' }}">
+            <a class="nav-link" href="/developer/developer-projects">
+              <i class="material-icons">content_paste</i>
+              <p>Projects Assigned</p>
+            </a>
+          </li>
+          <li class="{{ Request::is('developer/wings-users*') ? 'active' : '' }}">
+            <a class="nav-link" href="/developer/wings-users">
+              <i class="material-icons">content_copy</i>
+              <p>Projects Delivered</p>
+            </a>
+          </li>
+          <li class="{{ Request::is('developer/complaints*') ? 'active' : '' }}">
+            <a class="nav-link" href="/developer/complaints">
+              <i class="material-icons">report_problem</i>
+              <p>Complaints Assigned</p>
+            </a>
+          </li>
+          <li class="{{ Request::is('developer/wings-users*') ? 'active' : '' }}">
+            <a class="nav-link" href="/developer/wings-users">
+              <i class="material-icons">chat</i>
+              <p>Solution Feedbacks</p>
+>>>>>>> 311dc482ed3416e2a621ea3bd4c0d3610de5f727
             </a>
           </li>
         </ul>
