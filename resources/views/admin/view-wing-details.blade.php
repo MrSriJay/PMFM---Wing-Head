@@ -26,7 +26,9 @@
       <label for="recipient-name" class="col-form-label text-light">Wing Name</label>
           <h3 class="card-title">
              <strong id="o_name">{!!$wing->wing_name!!}</strong>
-             <input style="display: none" type="text" name ="organization_name" style="font-size: 50px" id ="organization_name" class="form-control text-light text-lg"  value="{{ old('organization_name',$wing->organization_name) }}"  placeholder="e.g. Mahela"  required value="">
+             <div id="wing_name_edit" class="col-lg-12" style="display: none">
+               <input id="organization_name" type="text" name ="organization_name" style="font-size: 50px" id ="organization_name" class="form-control text-light text-lg"  value="{{ old('organization_name',$wing->wing_name) }}"  placeholder="e.g. Mahela"  required value="">
+             </div>
           </h3> 
       </div>
       <div class="card-body"  >
@@ -100,29 +102,20 @@
    function toggleEdit() {    
     var i= document.getElementById("editext");
     if(i.innerHTML=="Edit"){
-        document.getElementById("wing_name").readOnly = false;
-        document.getElementById("address").readOnly = false;
-        document.getElementById("contact_no").readOnly = false;
-        document.getElementById("email").readOnly = false;
-        document.getElementById("update").style.display = "inline";
-        document.getElementById("delete").style.display = "inline";
-        document.getElementById("organization_name").style.display = "inline";
+        
+        document.getElementById("wing_name_edit").style.display = "inline";
         document.getElementById("o_name").style.display = "none";
         document.getElementById("edit").classList.add("btn-danger");
+
         i.innerHTML="Cancel"
     }
     else{
-        document.getElementById("wing_name").readOnly = true;
-        document.getElementById("first_name").readOnly = true;
-        document.getElementById("last_name").readOnly = true;
-        document.getElementById("telephone").readOnly = true;
-        document.getElementById("email").readOnly = true;
-        document.getElementById("update").style.display = "none";
-        document.getElementById("delete").style.display = "none";
-        document.getElementById("organization_name").style.display = "none";
-        document.getElementById("o_name").style.display = "line";
-        document.getElementById("edit").classList.remove("btn-danger");
+        document.getElementById("wing_name_edit").style.display = "none";
+        document.getElementById("o_name").style.display = "inline";
+
         document.getElementById("edit").classList.add("btn-primary");
+        document.getElementById("edit").classList.remove("btn-danger");
+
         i.innerHTML="Edit"
         i=0
     }
