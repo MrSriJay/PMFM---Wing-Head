@@ -1,7 +1,7 @@
 @extends('layouts.AdminMaster')
 
 @section('title')
-    Complaints | CRD
+    Users | CRD
 @endsection
 
 @section('styles')

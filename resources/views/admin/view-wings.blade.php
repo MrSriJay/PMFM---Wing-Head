@@ -1,7 +1,7 @@
 @extends('layouts.AdminMaster')
 
 @section('title')
-    Complaints | CRD
+    Wings | CRD
 @endsection
 @section('styles')
 
@@ -50,10 +50,9 @@
                     <th scope="row">{{$data->id}}</th>
                     <td><a href="#" >{{$data->wing_name}}</a></td>
                     @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
-                      <td>
-                        <button class="btn btn-success float-right" style="margin-left:10px" data-toggle="" data-target="#" type="button" style="width=100%"> <i class="material-icons">update</i> Update</a> 
-                        <button class="btn btn-danger float-right"  data-toggle="modal" data-target="#deleteModal" type="button" style="width=100%"> <i class="material-icons">delete</i> Delete</a> 
-                      </td>
+                        <th scope="row">
+                          <a class="btn btn-secondary btn-sm mx-auto " href="/admin/wing-details/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                         </th>
                     @endif
                   </tr>
 

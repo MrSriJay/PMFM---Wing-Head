@@ -1,7 +1,7 @@
 @extends('layouts.AdminMaster')
 
 @section('title')
-    Clients | CRD
+    Wings | CRD
 @endsection
 
 @section('styles')
@@ -20,61 +20,17 @@
       <div class="card-header card-header-primary"> 
       <a  class="btn btn-primary float-right" style="margin:20px" id="edit" onclick="toggleEdit()" > <i class="material-icons">edit</i>Edit</a>
       <div style="display:none" id="editext">Edit</div >
-        {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'clients.update', $clients->id ] ]) }}
+        {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'wings.update', $wing->id ] ]) }}
         {{ csrf_field() }}
           
-      <label for="recipient-name" class="col-form-label text-light">Client Name</label>
+      <label for="recipient-name" class="col-form-label text-light">Wing Name</label>
           <h3 class="card-title">
-             <strong id="o_name">{!!$clients->organization_name!!}</strong>
-             <input style="display: none" type="text" name ="organization_name" style="font-size: 50px" id ="organization_name" class="form-control text-light text-lg"  value="{{ old('organization_name',$clients->organization_name) }}"  placeholder="e.g. Mahela"  required value="">
+             <strong id="o_name">{!!$wing->wing_name!!}</strong>
+             <input style="display: none" type="text" name ="organization_name" style="font-size: 50px" id ="organization_name" class="form-control text-light text-lg"  value="{{ old('organization_name',$wing->organization_name) }}"  placeholder="e.g. Mahela"  required value="">
           </h3> 
       </div>
       <div class="card-body"  >
-      
-          <!--View Department Name-->
-          <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Department</label>
-              <input type="text" name ="department_name" id ="department_name" class="form-control @error('department_name') is-invalid @enderror" readonly  value="{{ old('department_name',$clients->department_name) }}"  placeholder="e.g. Mahela"  required value="">
-              @error('department_name')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-          </div>
-
-          <!--View Address-->
-          <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Address</label>
-              <input type="text" name ="address" id="address"  class="form-control @error('address') is-invalid @enderror" readonly  value="{{ old('address',$clients->address) }}"  placeholder="e.g. Perera"  required value="">
-              @error('address')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-          </div>
-
-           <!--View Contact No-->
-           <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Contact No</label>
-              <textarea type="text" name="contact_no" rows="4"  id="contact_no"  cols="10" class="form-control @error('contact_no') is-invalid @enderror" readonly required>{!!($clients->contact_no)!!}</textarea>
-              @error('contact_no')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-          </div>
-
-          <!--Insert Email-->
-          <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Email</label>
-              <input type="email" name ="email" id ="email" class="form-control @error('email') is-invalid @enderror" readonly value="{{ old('email',$clients->email) }} "  placeholder="e.g. mymail@gmail.com" required value="">
-              @error('email')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
-              </span>
-              @enderror
-          </div>
-
+  
           <!--Save and Cancel Buttons-->
           <div style="text-align:right" id="buttons"> 
              <button type="button" class="btn btn-danger" id="delete" style="display:none"  data-toggle="modal" data-target="#deleteModal">
@@ -120,7 +76,7 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title">Client Delete</h5>
+        <h5 class="modal-title">Delete Wing</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>
@@ -128,7 +84,7 @@
       <div class="modal-body">
         <p>Are you sure you want to delete this client?</p>
       </div> 
-      {{ Form::open([ 'method'  => 'delete', 'route' => [ 'clients.destroy', $clients->id ] ]) }}
+      {{ Form::open([ 'method'  => 'delete', 'route' => [ 'wings.destroy', $wing->id ] ]) }}
       <div class="modal-footer">
             <button type="submit" class="btn btn-success">Yes, Delete</button>
             {{ Form::close() }}
@@ -144,7 +100,7 @@
    function toggleEdit() {    
     var i= document.getElementById("editext");
     if(i.innerHTML=="Edit"){
-        document.getElementById("department_name").readOnly = false;
+        document.getElementById("wing_name").readOnly = false;
         document.getElementById("address").readOnly = false;
         document.getElementById("contact_no").readOnly = false;
         document.getElementById("email").readOnly = false;
@@ -156,7 +112,7 @@
         i.innerHTML="Cancel"
     }
     else{
-        document.getElementById("rank").readOnly = true;
+        document.getElementById("wing_name").readOnly = true;
         document.getElementById("first_name").readOnly = true;
         document.getElementById("last_name").readOnly = true;
         document.getElementById("telephone").readOnly = true;

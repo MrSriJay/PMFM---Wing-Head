@@ -62,7 +62,7 @@ Projects - View | PMFM
 
             @if($complaints->status==0)
                 <div class="alert alert-light alert-dismissible fade show text-danger" role="alert">
-                    <strong>Developer not assigned</strong> Please assign developer(s)<strong><br><a href="/admin/complaints/{!!$complaints->id!!}/#assign_Dev" class="alert-link text-danger"> Assign Now </a></strong>
+                    <strong>Developer(s) not yet assigned</strong> 
                 </div>
              @elseif($complaints->status==1)
              
@@ -114,9 +114,9 @@ Projects - View | PMFM
                 
             </div>
 
-            <!--Assign Developers-->
+            <!--Assigned Developers-->
             <div class="form-group" id="assign_Dev"> 
-              <label for="message-text" class="col-form-label text-primary">Assign Developers</label>
+              <label for="message-text" class="col-form-label text-primary">Assigned Developers</label>
               <br>
               <div class="row col-lg-12 border-secondary">
                 

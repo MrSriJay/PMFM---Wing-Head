@@ -1,8 +1,7 @@
 @extends('layouts.AdminMaster')
 
-
 @section('title')
-Projects - View | PMFM
+Complaint Details | PMFM
 @endsection 
 @section('styles')
 

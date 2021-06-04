@@ -36,8 +36,8 @@ class WingProjectController extends Controller
     {        
        
         $validate = \Validator::make($request->all(), [
-            'title' => ['required', 'string', 'max:255'],
-            'pgt_number' => ['required', 'string', 'max:255','unique:projects'],
+            'title' => ['required', 'string', 'max:255','unique:projects,title'],
+            'pgt_number' => ['required', 'string', 'max:255','unique:projects,pgt_number'],
             'projecticon' => 'image|nullable|max:1999',
             'summary-ckeditor' => 'required',
             'startdate' => ['required'],
@@ -45,7 +45,9 @@ class WingProjectController extends Controller
             'clientid' => ['required', 'string', 'max:255'],
             'developers' => ['required', 'string', 'max:255'],
             'enddate' => 'required',  
-        ]);
+        ],
+        ['pgt_number.unique' => 'Project number already exists',
+        'title.unique' => 'Project title already exists']);
 
         if( $validate->fails()){
             return redirect()
