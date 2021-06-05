@@ -25,7 +25,7 @@
       {{ csrf_field() }}
           <!--Insert id-->
           <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Militaray/National ID No</label>
+              <label for="recipient-name" class="col-form-label text-primary">Militaray / National ID No</label>
               <input type="text" name ="userid" class="form-control @error('userid') is-invalid @enderror " value="{{ old('userid') }}"  placeholder="e.g. 987781554V" required value="">
             
               @error('userid')
@@ -46,15 +46,9 @@
        
           <!--Insert rank-->
           <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Rank</label>
-              <input type="text" name ="rank" id ="rank"class="form-control @error('rank') is-invalid @enderror" value="{{ old('rank') }}"  placeholder="e.g. Major"  required value="">
+              <label for="recipient-name" class="col-form-label text-primary">Rank / Title</label>
+              <input type="text" name ="rank" id ="rank"class="form-control @error('rank') is-invalid @enderror" value="{{ old('rank') }}"  placeholder="e.g. Major / Mr"  required value="">
               <div class="">
-              <br>
-                <label class="form-check-label" for="defaultCheck1">
-                   Civil
-                </label>
-                <input class="" id="rankCheck" name="rankCheck" onclick="setRank()" type="checkbox" value="none" id="defaultCheck1">
-                
                </div>
               @error('rank')
               <span class="invalid-feedback" role="alert">

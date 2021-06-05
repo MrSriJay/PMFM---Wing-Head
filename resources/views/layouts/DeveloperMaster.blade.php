@@ -68,6 +68,12 @@ The above copyright notice and this permission notice shall be included in all c
               <p>Complaints</p>
             </a>
           </li>
+          <li class="{{ Request::is('developer/developer-messages*') ? 'active' : '' }}">
+              <a class="nav-link" href="#">
+                <i class="material-icons">chat</i>
+                <p>Messages</p>
+              </a>
+           </li>
         </ul>
       </div>
     </div>

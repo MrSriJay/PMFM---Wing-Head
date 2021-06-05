@@ -23,7 +23,7 @@
 
       <label for="recipient-name" class="col-form-label text-light">Militaray/National ID No</label>
           <h3 class="card-title">
-             <strong>{!!$user->user_id!!}</strong>
+             <strong>{!!$user->rank!!} {!!$user->first_name!!} {!!$user->last_name!!}</strong>
           </h3> 
       </div>
       <div class="card-body"  >
