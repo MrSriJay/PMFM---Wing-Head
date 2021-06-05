@@ -85,7 +85,7 @@
           <li class="{{ 'help/create' == request()->path() ? 'active' : '' }}">
               <a class="nav-link" href="/help/create">
                 <i class="material-icons">help</i>
-                <p>Help Messages</p>
+                <p>Messages</p>
               </a>
             </li>
           @endif

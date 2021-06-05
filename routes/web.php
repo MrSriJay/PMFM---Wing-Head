@@ -70,6 +70,7 @@ Route::group(['middleware' => ['auth','admin']],function() {
 
 Route::resource('admin/users', UserController::class);
 Route::resource('admin/wings', WingsController::class);
+Route::resource('admin/wing-details', WingsController::class);
 Route::resource('admin/projects', ProjectController::class);
 Route::resource('admin/clients', ClientController::class);
 Route::resource('admin/complaints',ComplaintController::class);

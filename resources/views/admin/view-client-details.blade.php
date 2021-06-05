@@ -26,7 +26,7 @@
       <label for="recipient-name" class="col-form-label text-light">Client Name</label>
           <h3 class="card-title">
              <strong id="o_name">{!!$clients->organization_name!!}</strong>
-             <input style="display: none" type="text" name ="organization_name" style="font-size: 50px" id ="organization_name" class="form-control text-light text-lg"  value="{{ old('department_name',$clients->organization_name) }}"  placeholder="e.g. Mahela"  required value="">
+             <input style="display: none" type="text" name ="organization_name" style="font-size: 50px" id ="organization_name" class="form-control text-light text-lg"  value="{{ old('organization_name',$clients->organization_name) }}"  placeholder="e.g. Mahela"  required value="">
           </h3> 
       </div>
       <div class="card-body"  >

@@ -1,7 +1,7 @@
 @extends('layouts.AdminMaster')
 
 @section('title')
-    Complaints | CRD
+    Officers | CRD
 @endsection
 
 @section('styles')
@@ -25,9 +25,9 @@
 
       <div style="display:none" id="editext">Edit</div >
 
-      <label for="recipient-name" class="col-form-label text-light">Militaray/National ID No</label>
+      <label for="recipient-name" class="col-form-label text-light">Officer's Name</label>
           <h3 class="card-title">
-             <strong id="u_id">{!!$user->user_id!!}</strong>
+             <strong id="u_id">{!!$user->rank!!} {!!$user->first_name!!} {!!$user->last_name!!}</strong>
           </h3> 
       </div>
       <div class="card-body"  >

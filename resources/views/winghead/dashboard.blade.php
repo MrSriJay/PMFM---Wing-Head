@@ -49,7 +49,7 @@
                         <div class="card-footer">
                           <div class="stats">
                             <i class="material-icons text-success">content_copy</i>
-                            <a href="/winghead/wings-users" class="text-dark">Projects</a>
+                            <a href="/winghead/wings-projects" class="text-dark">Projects</a>
                           </div>
                         </div>
                       </div>
@@ -77,13 +77,12 @@
                           <div class="card-icon">
                             <i class="material-icons">chat</i>
                           </div>
-                          <p class="card-category">New Messages</p>
-                          <h3 class="card-title">{!!Helper::getMessagesforWinghead(Auth::user()->user_id)!!}</h3>
+                          <p class="card-category">Latest Message</p><br>
+                          <div class="stats"><p class="card-title">{!!Helper::getLatestMessage(Auth::user()->user_id)!!}</p></div>
                         </div>
                         <div class="card-footer">
                           <div class="stats">
-                            <i class="material-icons text-warning">chat</i>
-                            <a href="/winghead/wings-projects" class="text-dark">Messages</a>
+                            <i class="material-icons">person_pin</i> sent by {!!Helper::getName(Helper::getLatestMessage_By(Auth::user()->user_id))!!} 
                           </div>
                         </div>
                       </div>

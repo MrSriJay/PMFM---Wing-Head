@@ -15,6 +15,12 @@ class WingsController extends Controller
        return view('admin.view-wings')->with('wing',$wing);
     }
 
+    public function show($id)
+    {
+        $wing = Wing::findOrFail($id);
+        return view('admin.view-wing-details')->with('wing', $wing);
+    }
+
     public function store(Request $request)
     {
     
@@ -36,7 +42,15 @@ class WingsController extends Controller
         }
        
     }
-    
+
+    public function update (Request $request, $id)
+    {
+
+
+        $wing->save();
+        return redirect('/admin/wings')->with('status','Wing Updated Successfully!');
+
+    }
 
     public function destroy($id)
     {

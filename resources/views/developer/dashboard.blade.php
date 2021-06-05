@@ -56,7 +56,10 @@
                     </div>
                     <div class="col-md-4">
                       <div class="card card-chart">
-                        <div class="card-header card-header-warning">
+                        <div class="card-header card-header-warning card-header-icon">
+                          <div class="card-icon">
+                            <i class="material-icons">chat</i>
+                          </div>
                         </div>
                         <div class="card-body">
                           <h4 class="card-title">Latest Message</h4>
