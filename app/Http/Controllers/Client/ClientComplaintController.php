@@ -127,7 +127,7 @@ class ClientComplaintController extends Controller
       $project->save();
       $complaints ->save();
 
-      return redirect('client/clients-complaints')->with('status','Complaint Fixed!, Please wait for client\'s feedback about the solution.');
+      return redirect('client/clients-complaints')->with('status','Complaint Fixed!, Thank you for the response.');
 
   }
 
