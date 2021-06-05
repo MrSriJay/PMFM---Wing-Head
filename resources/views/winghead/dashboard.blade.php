@@ -49,7 +49,7 @@
                         <div class="card-footer">
                           <div class="stats">
                             <i class="material-icons text-success">content_copy</i>
-                            <a href="/winghead/wings-users" class="text-dark">Projects</a>
+                            <a href="/winghead/wings-projects" class="text-dark">Projects</a>
                           </div>
                         </div>
                       </div>
@@ -83,7 +83,7 @@
                         <div class="card-footer">
                           <div class="stats">
                             <i class="material-icons text-warning">chat</i>
-                            <a href="/winghead/wings-projects" class="text-dark">Messages</a>
+                            <a href="#" class="text-dark">Messages</a>
                           </div>
                         </div>
                       </div>
