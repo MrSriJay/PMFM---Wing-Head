@@ -126,6 +126,11 @@ Projects - View | PMFM
                           <div class="row bg-muted">
                               <div class="col-lg-12">
                                 {!!Helper::getName($data->developer_id)!!}
+                                <div style="margin-top:5px ; margin-bottom:5px">
+                                  <small style=" display:block ;margin-top:-10px; color:#6b6b6b">📞 Contact No : {!!Helper::getDeveloperContact($data->developer_id)!!}</small>
+                                  <small style=" display:block ;margin-top:-10px; color:#6b6b6b">📧 Email: {!!Helper::getDeveloperEmail($data->developer_id)!!}</small>
+                                </div>
+                               
                                 <small style=" display:block ;margin-top:-10px; color:#bfbfbf" ><i>Assigned by {!!Helper::getName($data->assigned_by)!!} on {!!$data->created_at!!} </i></small>
                               </div>
                           </div> 

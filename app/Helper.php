@@ -284,6 +284,40 @@ class Helper
 
         return $output;
     }
+
+
+    public static function getDeveloperContact($id){
+        $data =User::select("telephone")
+        ->where('user_id', $id)->first();
+
+        $output = $data->telephone;
+
+        return $output;
+    }
+    
+
+    public static function getDeveloperEmail($id){
+        $data =User::select("email")
+        ->where('user_id', $id)->first();
+
+        $output = $data->email;
+
+        return $output;
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+ //---------------------------------------- Dashboard Section ----------------------------
+
   //  Winghead Dashboard------------------------
 
     public static function getcountOfficers($id){
@@ -636,6 +670,9 @@ class Helper
          ->count();
         return $data;
     }
+
+
+    
 
 
 
