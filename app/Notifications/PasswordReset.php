@@ -46,7 +46,7 @@ public function via($notifiable)
 public function toMail($notifiable)
 {
     return (new MailMessage)
-        ->from($address = 'podilali69@gmail.com', $name = 'Center Defence Research and Development | PMFM')
+        ->from($address = 'pmfm.cdrd@gmail.com', $name = 'Center Defence Research and Development | PMFM')
         ->subject(Lang::get('PMFM Reset Password Notification'))
         ->line('You are receiving this email because we received a password reset request for your account.') // Here are the lines you can safely override
         ->action('Reset Password', url('password/reset', $this->token))

@@ -28,6 +28,6 @@
     'into your web browser:',
    
 )
-<span class="break-all"><a href="http://127.0.0.1:8000/login">http://127.0.0.1:8000/login</a></span>
+<span class="break-all"><a href="http://pmfm.crd.lk/login">http://pmfm.crd.lk/login</a></span>
 
 @endcomponent
