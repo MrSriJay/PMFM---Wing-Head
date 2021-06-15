@@ -44,17 +44,10 @@ class DeveloperComplaintController extends Controller
 
     public function seenComplaint(Request $request){
 
-
-        $complaints = Complaints::find($request->input('comp_id'));
+        $id = $request->input('comp_id');
+        $complaints = Complaints::find($id);
         $complaints->status =2;
         
-        $complaints ->save();
-
-        $id = $request->input('comp_id');
-        $message = Message::where('complaint_id',$id)->get();
-        $complaint_Developer = Complaint_developer::where('complaint_id',$id)->get();
-        $complaints = complaints::findOrFail($id);
-
         Helper::$status_message = [
             'message' =>"The assigned developer/officer has viewed the complaint and currently working to resolve the issue with the application. Please await for further details",
             'client_name' =>  Helper::getClientName($complaints->client_id)
@@ -62,7 +55,9 @@ class DeveloperComplaintController extends Controller
         Mail::to(Helper::getEmailfromUserID($complaints->client_id))->send(new ComplaintStatusMail());
 
 
-        return view('developer.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_Developer)->with('message',$message);
+        $complaints ->save();
+
+        return redirect('/developer/developer-complaints/'.$id);
 
     }
 
@@ -72,7 +67,7 @@ class DeveloperComplaintController extends Controller
         $complaints->status =3;
         $complaints ->save();
         
-        Helper::$status_message = [
+     Helper::$status_message = [
             'message' =>"Your compalaint has been successfully fixed! Please vist the PMFM site to give a feedback.",
             'client_name' =>  Helper::getClientName($complaints->client_id)
          ];
