@@ -27,7 +27,7 @@ Please use the following user credentials to access our system<br><br>
     "If you’re having trouble, copy and paste the URL below\n".
     'into your web browser:',
    
-) <span class="break-all"><a href="http://127.0.0.1:8000/login">http://127.0.0.1:8000/login</a></span>
+) <span class="break-all"><a href="http://pmfm.crd.lk">http://pmfm.crd.lk/login</a></span>
 
 
 @endcomponent

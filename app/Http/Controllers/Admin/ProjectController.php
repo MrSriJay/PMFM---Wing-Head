@@ -126,7 +126,7 @@ class ProjectController extends Controller
             'summary-ckeditor' => 'required',
             'startdate' => 'required',
             'enddate' => 'required',
-            'pgt_number' => 'required'
+            'pgt_number' => 'required',
         ]);
 
         if( $validate->fails()){

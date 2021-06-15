@@ -30,7 +30,7 @@ class HelpMessageMail extends Mailable
      */
     public function build()
     {
-        return $this->markdown('email.helpMessage')->from($address = 'cdrd.pmfm@gmail.com', $name = 'Center for Defence Research and Development | PMFM')
+        return $this->markdown('email.helpMessage')->from($address = 'pmfm.cdrd@gmail.com', $name = 'Center for Defence Research and Development | PMFM')
         ->subject(Lang::get('PMFM | New Message' ));
     }
 }

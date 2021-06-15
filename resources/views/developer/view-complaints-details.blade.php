@@ -165,7 +165,7 @@ Projects - View | PMFM
 
              <!--Assign Developers-->
              <div class="form-group" id="assign_Dev"> 
-              <label for="message-text" class="col-form-label text-primary">Assign Developers</label>
+              <label for="message-text" class="col-form-label text-primary">Assigned Developers</label>
               <br>
               <div class="row col-lg-12 border-secondary">
                 
