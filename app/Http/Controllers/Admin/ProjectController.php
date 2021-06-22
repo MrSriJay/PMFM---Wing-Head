@@ -111,7 +111,7 @@ class ProjectController extends Controller
             $output = $row->files;
         }
 
-        Storage::deleteDirectory('public/'.$output); 
+        //Storage::deleteDirectory('public/'.$output); 
 
         $project->delete();
        

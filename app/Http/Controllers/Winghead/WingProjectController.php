@@ -111,8 +111,7 @@ class WingProjectController extends Controller
             $output = $row->files;
         }
 
-        Storage::deleteDirectory('public/'.$output); 
-
+        //Storage::deleteDirectory('public/'.$output); 
         $project->delete();
        
         return redirect('/winghead/wings-projects')->with('status','Project Deleted Successfully!');
