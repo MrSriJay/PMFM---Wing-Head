@@ -23,14 +23,26 @@
         {{ Form::open([ 'method'  => 'PATCH', 'route' => [ 'wings.update', $wing->id ] ]) }}
         {{ csrf_field() }}
           
-      <label for="recipient-name" class="col-form-label text-light">Wing Name</label>
+      <span class="text-light">Wing Name</span>
           <h3 class="card-title">
              <strong id="o_name">{!!$wing->wing_name!!}</strong>
              <div id="wing_name_edit" class="col-lg-12" style="display: none">
-               <input id="organization_name" type="text" name ="organization_name" style="font-size: 50px" id ="organization_name" class="form-control text-light text-lg"  value="{{ old('organization_name',$wing->wing_name) }}"  placeholder="e.g. Mahela"  required value="">
+               <input id="wing_name" type="text" name ="wing_name" style="font-size: 25px" id ="organization_name" class="form-control text-light text-lg"  value="{{ old('organization_name',$wing->wing_name) }}"  placeholder="e.g. Mahela"  required value="">
              </div>
           </h3> 
+          
       </div>
+      <!--Save and Cancel Buttons-->
+      <div style="text-align:right" class="col-lg-12" id="buttons"> 
+        <button type="button" class="btn btn-danger" id="delete" style="display:none"  data-toggle="modal" data-target="#deleteModal">
+           <span class="material-icons">delete_forever</span> Delete
+        </button>
+        <button type="button" class="btn btn-success" id="update" style="display:none" data-toggle="modal" data-target="#updatemodal">
+           <span class="material-icons">update</span> Update
+        </button>
+         
+     </div> 
+
       <div class="card-body"  >
   
           <!--Save and Cancel Buttons-->
@@ -106,6 +118,9 @@
         document.getElementById("wing_name_edit").style.display = "inline";
         document.getElementById("o_name").style.display = "none";
         document.getElementById("edit").classList.add("btn-danger");
+        document.getElementById("update").style.display = "inline";
+        document.getElementById("delete").style.display = "inline";
+
 
         i.innerHTML="Cancel"
     }
@@ -115,6 +130,8 @@
 
         document.getElementById("edit").classList.add("btn-primary");
         document.getElementById("edit").classList.remove("btn-danger");
+        document.getElementById("update").style.display = "none";
+        document.getElementById("delete").style.display = "none";
 
         i.innerHTML="Edit"
         i=0

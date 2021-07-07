@@ -46,15 +46,19 @@ class WingsController extends Controller
     public function update (Request $request, $id)
     {
 
+        $wing = Wing::findOrFail($id);
+        $wing->wing_name = $request->input('wing_name');
 
         $wing->save();
+
         return redirect('/admin/wings')->with('status','Wing Updated Successfully!');
 
     }
 
     public function destroy($id)
     {
-        $wing = wing::find($id);
+        
+        $wing = Wing::find($id);
         $wing->delete();
         return redirect('/admin/wings')->with('status','Wing Deleted Successfully!');
     }
