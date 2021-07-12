@@ -109,4 +109,25 @@ class UserComplaintController extends Controller
        $complaints = complaints::findOrFail($id);
        return view('winghead.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
    }
+
+   public function add($id)
+   {
+      $data =Projects::select("id","title")->where("id",$id)
+        ->first();
+
+        $idOpt="";    
+        $titleOpt="";    
+
+        if($data != null){
+           
+         $idOpt = $data->id;
+         $titleOpt = $data->title;
+           
+        }
+        
+
+      return view('winghead.add-project-complaint')->with('id',$idOpt)->with('title',$titleOpt);
+   }
+
+
 }

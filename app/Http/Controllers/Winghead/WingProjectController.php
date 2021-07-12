@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Winghead;
 
 use App\Models\Projects;
 use App\Models\Complaints;
+use App\Models\Wing;
+
 use League\Flysystem\File;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +20,8 @@ class WingProjectController extends Controller
     public function index()
     {
         $project = Projects::where('wingid',Auth::user()->wing_name)->orderBy('updated_at', 'DESC')->get();
-        return view('winghead.view-projects')->with('project', $project);
+        $wing = Wing::orderBy('wing_name', 'ASC')->get();
+        return view('winghead.view-projects')->with('project', $project)->with('wing', $wing);
     }
 
     public function show($id)

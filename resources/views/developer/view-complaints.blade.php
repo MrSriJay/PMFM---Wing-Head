@@ -32,7 +32,7 @@
                   <tr>
                   <th scope="col">System Name</th>
                   <th scope="col">Client Name</th>
-                  <th scope="col">Date Subitted</th>
+                  <th scope="col">Date Submitted</th>
                   <th scope="col">Wing Name</th>
                   <th scope="col">Type of Fault</th>
                   <th scope="col">Urgency Level</th>  

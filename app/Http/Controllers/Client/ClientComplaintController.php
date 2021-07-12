@@ -43,6 +43,7 @@ class ClientComplaintController extends Controller
         return view('client.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
     }
 
+    
     public function store(Request $request)
     {
       $validate = \Validator::make($request->all(), [
@@ -129,17 +130,37 @@ class ClientComplaintController extends Controller
 
       return redirect('client/clients-complaints')->with('status','Complaint Fixed!, Thank you for the response.');
 
-  }
+   }
 
-  public function solutionFalse(Request $request){
+   public function solutionFalse(Request $request){
 
-   $complaints = Complaints::find($request->input('comp_id'));
-   $complaints->status =4;
-   $complaints ->save();
+      $complaints = Complaints::find($request->input('comp_id'));
+      $complaints->status =4;
+      $complaints ->save();
 
-   return redirect()->back()->with('status','Solution Rejected!, Developer will be notified');
+      return redirect()->back()->with('status','Solution Rejected!, Developer will be notified');
 
-}
+   }
+
+   public function add($id)
+   {
+      $data =Projects::select("id","title")->where("id",$id)
+        ->first();
+
+        $idOpt="";    
+        $titleOpt="";    
+
+        if($data != null){
+           
+         $idOpt = $data->id;
+         $titleOpt = $data->title;
+           
+        }
+        
+
+      return view('client.add-project-complaint')->with('id',$idOpt)->with('title',$titleOpt);
+   }
+
 
 
 }

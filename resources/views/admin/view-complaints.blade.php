@@ -14,7 +14,7 @@
           @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
             <a href="/admin/complaints/create" class="btn btn-success float-right" style="margin:20px" data-toggle="" data-target="" ><i class="material-icons">add</i> Add New Complaint</a>
           @endif
-          <h2 class="card-title">Submitted Complaints</h2>
+          <h2 class="card-title">Complaint(s) History</h2>
           <p class="card-category">The Complaint details</p> 
       </div>
       <div class="card-body">
@@ -31,7 +31,7 @@
                   <th scope="col">Complaint ID</th>
                   <th scope="col">System Name</th>
                   <th scope="col">Client Name</th>
-                  <th scope="col">Date Subitted</th>
+                  <th scope="col">Date Submitted</th>
                   <th scope="col">Wing Name</th>
                   <th scope="col">Type of Fault</th>
                   <th scope="col">Urgency Level</th>

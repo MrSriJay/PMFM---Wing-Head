@@ -60,13 +60,13 @@
           <li class="{{ Request::is('admin/projects*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/projects">
               <i class="material-icons">content_paste</i>
-              <p>Projects</p>
+              <p>Products/Systems</p>
             </a>
           </li>
           <li class="{{ Request::is('admin/complaints*') ? 'active' : '' }}">
             <a class="nav-link" href="/admin/complaints">
               <i class="material-icons">library_books</i>
-              <p>Complaints</p>
+              <p>Complaint History</p>
             </a>
           </li>
           <li class="{{ Request::is('admin/wings*') ? 'active' : '' }}">
@@ -285,7 +285,7 @@
  <script src=" {{asset('/assets/js/core/jquery.min.js')}}"></script>
  <script src=" {{asset('/assets/js/core/popper.min.js')}}"></script>
  <script src=" {{asset('/assets/js/core/bootstrap-material-design.min.js')}}"></script>
- <script src=" {{asset('/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>
+ <!--  <script src=" {{asset('/assets/js/plugins/perfect-scrollbar.jquery.min.js')}}"></script>-->
  <script src="{{asset('assets/js/dataTables.min.js')}}"></script>
  <script src="{{asset('assets/js/dropzone.js')}}"></script>
  <!-- Plugin for the momentJs  -->

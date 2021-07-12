@@ -108,6 +108,26 @@ class ComplaintController extends Controller
 */
       return redirect('admin/complaints')->with('status','Complaint Submitted Successfully!');
    }
+
+
+   public function add($id)
+   {
+      $data =Projects::select("id","title")->where("id",$id)
+        ->first();
+
+        $idOpt="";    
+        $titleOpt="";    
+
+        if($data != null){
+           
+         $idOpt = $data->id;
+         $titleOpt = $data->title;
+           
+        }
+        
+
+      return view('admin.add-project-complaint')->with('id',$idOpt)->with('title',$titleOpt);
+   }
    
 
  

@@ -63,14 +63,14 @@ The above copyright notice and this permission notice shall be included in all c
           <li class="{{ Request::is('winghead/wings-projects*') ? 'active' : '' }}">
             <a class="nav-link" href="/winghead/wings-projects">
               <i class="material-icons">content_paste</i>
-              <p>Projects</p>
+              <p>Products/Systems</p>
             </a>
           </li>
           <li class="{{ Request::is('winghead/wings-complaints*') ? 'active' : '' }}">
 
             <a class="nav-link" href="/winghead/wings-complaints">
               <i class="material-icons">library_books</i>
-              <p>Complaints</p>
+              <p>Complaint History</p>
             </a>
           </li>
           <li class="{{ Request::is('winghead/wings-users*') ? 'active' : '' }}">

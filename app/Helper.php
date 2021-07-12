@@ -232,8 +232,8 @@ class Helper
             case '1': return "DEVELOPER(S) ASSIGNED"; break;
             case '2': return "SEEN BY DEVELOPER"; break;
             case '3': return "SOLUTION GIVEN BY DEVELOPER"; break;
-            case '4': return "SOLUTION REJECTED"; break;
-            case '5': return "SOLVED"; break;
+            case '4': return "COMPLAINT NOT SOLVED"; break;
+            case '5': return "COMPLAINT SOLVED"; break;
         }
         
     }

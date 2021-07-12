@@ -78,6 +78,7 @@ Route::resource('admin/complaints',ComplaintController::class);
 Route::get('admin/projects-history/{id}', [ProjectController::class, 'showCompalintHistory']);
 Route::post('/help-reply/{id}', [HelperController::class, 'sendReply']);
 
+Route::get('admin/complaints/add/{id}',[ComplaintController::class,'add']);
 });
 
 /*--------------------------------------------------------------------------------------------------------*/ 
@@ -96,6 +97,8 @@ Route::resource('winghead/clients', WingClientController::class);
 
 Route::get('winghead/wings-projects-history/{id}', [WingProjectController::class, 'showCompalintHistory']);
 
+Route::get('winghead/wings-complaints/add/{id}',[UserComplaintController::class,'add']);
+
 });
 
 /*--------------------------------------------------------------------------------------------------------*/ 
@@ -111,6 +114,9 @@ Route::resource('client/clients-complaints', ClientComplaintController::class);
 
 Route::post('developer/clients-solved',[ClientComplaintController::class, 'solutionOk']);
 Route::post('developer/clients-not-solved',[ClientComplaintController::class, 'solutionFalse']);
+
+Route::get('client/clients-complaints/add/{id}',[ClientComplaintController::class,'add']);
+Route::get('client/clients-complaints/projects-history/{id}', [PurchasedSystemsController::class, 'showCompalintHistory']);
 
 
 });

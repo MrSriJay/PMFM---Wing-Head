@@ -1,4 +1,4 @@
-@extends('layouts.ClientMaster')
+@extends('layouts.AdminMaster')
 
 @section('title')
     Complaints | CRD
@@ -23,24 +23,16 @@
           <h2 class="card-title">Add Compalint</h2> 
       </div>
       <div class="card-body">
-      <form action="/client/clients-complaints" method="POST" enctype="multipart/form-data">
-        {{ csrf_field() }}
+        <form action="/admin/complaints" method="POST" enctype="multipart/form-data">
+          {{ csrf_field() }}
                       <div class="form-group  py-4s">
-                          <label for="message-text" class="col-form-label text-primary">System Name</label>
-                          <select id="title" name="title" class="livesearch form-control"   style="width:99%;"  required>
-                            
-                          </select>
-                          <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
-                            Please Select System Name 
-                          </div>
-                      </div>   
-                    
-                      <!--Done Buttons-->
-                      <div style="text-align:right">
-                          <a class="btn btn-primary" id="doneBtn" onclick="viewNext()" style="color:white">Next</a>
-                      </div> 
+                          <label for="message-text" read class="col-form-label text-primary">System Name</label>
+                          <input type="text"  class="form-control" disabled value="{{$title}}" placeholder="sdasd"  required value="">
+                          <input type="hidden" id="title" name="title" value="{{$id}}">
+                    </div>   
 
-                    <div style="display:none" id="add_content">
+                    <div id="add_content">
+
                         <!--Insert Description-->
                         <div class="form-group py-4">
                             <label for="message-text" class="col-form-label text-primary">Complaint Description</label>
@@ -56,11 +48,11 @@
                         <div class="form-group">
                           <label for="recipient-name" class="col-form-label text-primary py-2">Type of Fault</label><br>
                           <label class="py-2">Select at least one option:</label><br>
-                          <input type="checkbox" id="hw_fault" class="icheck-danger" name="fault_type" value="Hardware Fault">
+                          <input type="radio" id="hw_fault" class="icheck-danger" name="fault_type" value="Hardware Fault">
                           <label for="hw_fault"> Hardware Fault</label><br>
-                          <input type="checkbox" id="sw_fault" class="icheck-danger" name="fault_type"  value="Software Fault">
+                          <input type="radio" id="sw_fault" class="icheck-danger" name="fault_type"  value="Software Fault">
                           <label for="sw_fault"> Software Fault</label><br>
-                          <input type="checkbox" id="other" class="icheck-danger" name="fault_type" value="Other">
+                          <input type="radio" id="other" class="icheck-danger" name="fault_type" value="Other">
                           <label for="other"> Other</label>
                           @error('fault_type')
                           <span class="invalid-feedback" role="alert">
@@ -124,27 +116,7 @@
               </div>
             </div>
           </div>
-<script type="text/javascript">
-    $('#title').select2({
-        placeholder: 'Select System Name',
-        ajax: {
-            url: '/projects-search-client',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.title,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    });
-</script>
+
 
 <script>
 var dropzone = new Dropzone('#demo-upload', {

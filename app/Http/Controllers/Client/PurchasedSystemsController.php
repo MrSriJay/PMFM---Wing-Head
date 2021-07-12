@@ -5,6 +5,7 @@ namespace App\Http\Controllers\client;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Complaints;
+use App\Models\Wing;
 use App\Models\Projects;
 use League\Flysystem\File;
 use Illuminate\Support\Facades\Session;
@@ -18,8 +19,9 @@ class PurchasedSystemsController extends Controller
 {
     public function index()
     {
-       $project =  Projects::where('clientid',Auth::user()->user_id)->get();
-       return view('client.purchased-systems')->with('project',$project);
+       $project =  Projects::where('clientid',Auth::user()->user_id)->orderBy('updated_at', 'DESC')->get();
+       $wing = Wing::orderBy('wing_name', 'ASC')->get();
+       return view('client.purchased-systems')->with('project',$project)->with('wing', $wing);
     }
 
     public function show($id)
@@ -28,5 +30,12 @@ class PurchasedSystemsController extends Controller
         $complaints = complaints::where('project_id',$id)->orderBy('updated_at', 'DESC')->get();
         return view('client.view-systems')->with('project', $project)->with('complaints', $complaints);
     }
+
+    public function showCompalintHistory($id)
+    {
+        $complaints = complaints::where('project_id',$id)->orderBy('updated_at', 'DESC')->get();
+        $proid= $id;
+        return view('client.view-complaint-history')->with('complaints', $complaints)->with('proid', $proid);
+    }  
 
 }
