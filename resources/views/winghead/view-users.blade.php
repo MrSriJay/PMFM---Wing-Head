@@ -78,7 +78,7 @@
 <script>
 $(document).ready(function() {
     $('#tablewings').DataTable({
-
+      "order": [[ 2, "asc" ]]
     });
 
 } );

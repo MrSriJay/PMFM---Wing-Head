@@ -36,7 +36,6 @@
           <table id="tablewings"  style="width:100%">
               <thead>
                   <tr>
-                  <th scope="col">ID</th>
                   <th scope="col">Name</th>
                   @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
                    <th scope="col"></th>
@@ -47,7 +46,6 @@
               @if(count($wing)>0)
                 @foreach ($wing as $data)
                   <tr>
-                    <th scope="row">{{$data->id}}</th>
                     <td><a href="#" >{{$data->wing_name}}</a></td>
                     @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
                         <th scope="row">
@@ -141,7 +139,7 @@
 <script>
 $(document).ready(function() {
     $('#tablewings').DataTable({
-
+      "order": [[ 0, "asc" ]]
     });
 
 } );

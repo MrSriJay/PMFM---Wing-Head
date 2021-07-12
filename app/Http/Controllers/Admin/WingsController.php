@@ -17,7 +17,7 @@ class WingsController extends Controller
 
     public function show($id)
     {
-        $wing = Wing::findOrFail($id);
+        $wing = Wing::orderBy('wing_name', 'ASC')->findOrFail($id);
         return view('admin.view-wing-details')->with('wing', $wing);
     }
 
