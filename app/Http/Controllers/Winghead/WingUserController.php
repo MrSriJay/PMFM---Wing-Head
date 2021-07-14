@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Mail\AccountCreationMail;
 use Illuminate\Support\Facades\Mail;
 use App\Helper;
+use App\Models\Wing;
 
 class WingUserController extends Controller
 {
@@ -90,7 +91,8 @@ class WingUserController extends Controller
     public function show($id){
 
         $user = User::findOrFail($id);
-        return view('winghead.view-user-details')->with('user', $user);
+        $wing = Wing::orderBy('wing_name', 'ASC')->get();
+        return view('winghead.view-user-details')->with('user', $user)->with('wing', $wing);
     }
 
 

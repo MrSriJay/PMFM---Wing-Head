@@ -104,8 +104,11 @@
           <!--View wing-->
           <div class="col-lg-6">
               <label for="message-text" class="col-form-label text-primary">Wing Name</label>
-              <select id="wing_name" class="livesearch form-control" name="wing_name" disabled readonly value="{{ old('wing_name') }}" style="width:99%;"  required>
-              <option value="{{ old('wing_name',$user->wing_name) }}" disable selected>{!!Helper::getWingName($user->wing_name)!!}</option>
+              <select id="wing_name" class=" form-control" name="wing_name" disabled readonly value="{{ old('wing_name') }}" style="width:99%;"  required>
+                <option value="{{ old('wing_name',$user->wing_name) }}" disable selected>{!!Helper::getWingName($user->wing_name)!!}</option>
+                @foreach ($wing as $data)
+                 <option value="{{$data->id}}">{{$data->wing_name}}</option>
+                @endforeach
               </select>
 
               <div class="alert alert-danger" id="required_meesage" style="display:none" role="alert">
@@ -176,28 +179,7 @@
   </div>
 </div>
 
-<script type="text/javascript">
-    $('#wing_name').select2({
-        placeholder: 'Select System Name',
-        ajax: {
-            url: '/wings-search',
-            dataType: 'json',
-            delay: 250,
-            processResults: function (data) {
-                return {
-                    results: $.map(data, function (item) {
-                        return {
-                            text: item.wing_name,
-                            id: item.id
-                        }
-                    })
-                };
-            },
-            cache: true
-        }
-    });
-    
-</script>
+
 
 <script>
 
