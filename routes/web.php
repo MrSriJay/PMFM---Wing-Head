@@ -29,6 +29,7 @@ use App\Http\Controllers\EditprofileController;
 
 use App\Http\Controllers\HelperController;  
 
+use App\Http\Controllers\Auth\LoginController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -43,6 +44,8 @@ use App\Http\Controllers\HelperController;
 Route::get('/', function () {
     return redirect('/login');
 });
+
+Route::post('/login_user', [LoginController::class, 'authenticate']);
 
 Auth::routes();
 
