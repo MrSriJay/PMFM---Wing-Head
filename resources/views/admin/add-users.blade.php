@@ -47,9 +47,12 @@
           <!--Insert rank-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Rank / Title</label>
-              <input type="text" name ="rank" id ="rank"class="form-control @error('rank') is-invalid @enderror" value="{{ old('rank') }}"  placeholder="e.g. Major / Mr"  required value="">
-              <div class="">
-               </div>
+              <select name ="rank" id ="rank" class="form-select  @error('rank') is-invalid @enderror"   value="{{ old('rank') }}"  aria-label="Default select example" required>
+                <option value="" disabled selected>Select your rank</option>
+                @foreach ($rank as $data)
+                  <option value="{{ $data->id }}" >{{ $data->rankname }}</option>
+                @endforeach
+              </select>
               @error('rank')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>

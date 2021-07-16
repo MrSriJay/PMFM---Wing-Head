@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Validator;
 use App\Mail\AccountCreationMail;
 use Illuminate\Support\Facades\Mail;
 use App\Helper;
+use App\Models\Ranks;
 
 class UserController extends Controller
 {
@@ -21,7 +22,8 @@ class UserController extends Controller
     }
     public function create()
     {
-       return view('admin.add-users');
+       $rank = Ranks::orderBy('rankname', 'ASC')->get();
+       return view('admin.add-users')->with('rank',$rank);
     }
 
     public function store(Request $request)

@@ -1,7 +1,7 @@
 @extends('layouts.AdminMaster')
 
 @section('title')
-    Wings | CRD
+    Ranks | CRD
 @endsection
 @section('styles')
 
@@ -17,9 +17,9 @@
     <div class="card">
       <div class="card-header card-header-primary"> 
            @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
-              <a href="" class="btn btn-success float-right" data-toggle="modal" data-target="#addWingModal"><i class="material-icons">add</i> Add Wing</a>
+              <a href="" class="btn btn-success float-right" data-toggle="modal" data-target="#addrankModal"><i class="material-icons">add</i> Add rank</a>
             @endif
-          <h2 class="card-title">Wings</h2>
+          <h2 class="card-title">Ranks</h2>
       </div>
       <div class="card-body">
       @if (session('status'))
@@ -33,7 +33,7 @@
           </div>
       @endif
       <div class="table-responsive">
-          <table id="tablewings"  style="width:100%">
+          <table id="tableranks"  style="width:100%">
               <thead>
                   <tr>
                   <th scope="col">Name</th>
@@ -43,13 +43,13 @@
                   </tr>
               </thead>
               <tbody>
-              @if(count($wing)>0)
-                @foreach ($wing as $data)
+              @if(count($rank)>0)
+                @foreach ($rank as $data)
                   <tr>
-                    <td><a href="#" >{{$data->wing_name}}</a></td>
+                    <td><a href="#" >{{$data->rankname}}</a></td>
                     @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
                         <th scope="row">
-                          <a class="btn btn-secondary btn-sm mx-auto " href="/admin/wings/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
+                          <a class="btn btn-secondary btn-sm mx-auto " href="/admin/ranks/{{$data->id}}"  style="width:100%">View More <span class="material-icons">chevron_right</span></a>
                          </th>
                     @endif
                   </tr>
@@ -65,9 +65,9 @@
                           </button>
                         </div>
                         <div class="modal-body">
-                          <p>Are you sure you want to delete the wing</p>
+                          <p>Are you sure you want to delete the rank</p>
                         </div> 
-                        {{ Form::open([ 'method'  => 'delete', 'route' => [ 'wings.destroy', $data->id ] ]) }}
+                        {{ Form::open([ 'method'  => 'delete', 'route' => [ 'ranks.destroy', $data->id ] ]) }}
                         <div class="modal-footer">
                               <button type="submit" class="btn btn-success">Yes, Delete</button>
                               {{ Form::close() }}
@@ -78,7 +78,7 @@
                   </div>
                  @endforeach
                 @else 
-                  <p>No Wings Found</p>
+                  <p>No ranks Found</p>
                 @endif
           </table>
           <br><br>
@@ -94,23 +94,23 @@
 <!-- DATA TABLE SCRIPTS -->
 
 
-<!--Add Wing Modal -->
-<div class="modal fade" id="addWingModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<!--Add rank Modal -->
+<div class="modal fade" id="addrankModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title text-primary" id="exampleModalLabel"> <i class="material-icons">add</i> Add Wing</h5>
+        <h5 class="modal-title text-primary" id="exampleModalLabel"> <i class="material-icons">add</i> Add Rank</h5>
         <a class="close" data-toggle="modal" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </a>
       </div>
       <div class="card-body">
-      <form action="/admin/wings" method="POST" enctype="multipart/form-data">
+      <form action="/admin/ranks" method="POST" enctype="multipart/form-data">
           {{ csrf_field() }}
-          <!--Insert Wing Name-->
+          <!--Insert rank Name-->
           <div class="form-group py-4">
-              <label for="recipient-name" class="col-form-label text-primary">Wing Name</label>
-              <input type="text" name ="name" class="form-control"  required value="" placeholder="Please Enter Wing Name">
+              <label for="recipient-name" class="col-form-label text-primary">Rank Name</label>
+              <input type="text" name ="name" class="form-control"  required value="" placeholder="Please Enter Rank Name">
               @error('title')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -119,7 +119,7 @@
           </div>
           <!--Save and Cancel Buttons-->
           <div style="width:100%">
-              <button type="submit" class="btn btn-success" style="width:100%">Add Wing</button>    
+              <button type="submit" class="btn btn-success" style="width:100%">Add rank</button>    
           </div> 
         
       </form>
@@ -138,13 +138,13 @@
 
 <script>
 $(document).ready(function() {
-    $('#tablewings').DataTable({
+    $('#tableranks').DataTable({
       "order": [[ 0, "asc" ]]
     });
 
 } );
 
-$('#addWingModal').on('shown.bs.modal', function () {
+$('#addrankModal').on('shown.bs.modal', function () {
   $('#name').trigger('focus')
 })
 

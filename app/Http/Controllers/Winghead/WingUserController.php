@@ -13,6 +13,8 @@ use App\Mail\AccountCreationMail;
 use Illuminate\Support\Facades\Mail;
 use App\Helper;
 use App\Models\Wing;
+use App\Models\Ranks;
+
 
 class WingUserController extends Controller
 {
@@ -23,7 +25,8 @@ class WingUserController extends Controller
     }
     public function create()
     {
-       return view('winghead.add-users');
+       $rank = Ranks::orderBy('rankname', 'ASC')->get();
+       return view('winghead.add-users')->with('rank',$rank);
     }
 
     public function store(Request $request)

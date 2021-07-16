@@ -14,7 +14,6 @@ use DB;
 use App\Mail\ComplaintAddedNotifaction;
 use Illuminate\Support\Facades\Mail;
 
-
 class UserComplaintController extends Controller
 {
     public function index()
@@ -35,6 +34,7 @@ class UserComplaintController extends Controller
     }
     public function create()
     {
+       
        return view('winghead.add-complaint');
     }
 

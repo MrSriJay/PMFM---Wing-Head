@@ -81,6 +81,12 @@
               <p>Clients</p>
             </a>
           </li>
+          <li class="{{ Request::is('admin/ranks*') ? 'active' : '' }}">
+            <a class="nav-link" href="/admin/ranks">
+              <i class="material-icons">insert_chart</i>
+              <p>Ranks</p>
+            </a>
+          </li>
           @if(Auth::user()->usertype == "admin" || Auth::user()->usertype=="hq")
           <li class="{{ 'help/create' == request()->path() ? 'active' : '' }}">
               <a class="nav-link" href="/help/create">

@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\WingsController;
+use App\Http\Controllers\Admin\RanksController;
 use App\Http\Controllers\Admin\ProjectController;
 use App\Http\Controllers\Admin\ClientController;
 use App\Http\Controllers\Admin\ComplaintController;
@@ -70,6 +71,7 @@ Route::group(['middleware' => ['auth','admin']],function() {
 
 Route::resource('admin/users', UserController::class);
 Route::resource('admin/wings', WingsController::class);
+Route::resource('admin/ranks', RanksController::class);
 Route::resource('admin/wing-details', WingsController::class);
 Route::resource('admin/projects', ProjectController::class);
 Route::resource('admin/clients', ClientController::class);
