@@ -95,7 +95,8 @@ class WingUserController extends Controller
 
         $user = User::findOrFail($id);
         $wing = Wing::orderBy('wing_name', 'ASC')->get();
-        return view('winghead.view-user-details')->with('user', $user)->with('wing', $wing);
+        $rank = Ranks::orderBy('rankname', 'ASC')->get();
+        return view('winghead.view-user-details')->with('user', $user)->with('wing', $wing)->with('rank',$rank);
     }
 
 

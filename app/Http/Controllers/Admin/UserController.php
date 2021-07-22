@@ -105,8 +105,10 @@ class UserController extends Controller
 
     public function show($id){
 
+
         $user = User::findOrFail($id);
-        return view('admin.view-user-details')->with('user', $user);
+        $rank = Ranks::orderBy('rankname', 'ASC')->get();
+        return view('admin.view-user-details')->with('user', $user)->with('rank',$rank);
     }
 
 

@@ -7,6 +7,7 @@ use App\Models\Client;
 use App\Models\Projects;
 use App\Models\Complaints;
 use App\Models\Message;
+use App\Models\Ranks;
 use App\Models\Complaint_developer;
 
 class Helper
@@ -32,6 +33,24 @@ class Helper
         foreach($data as $row)
         {
             $output = $row->wing_name;
+        }
+
+        if($output == ""){
+            $output="NOT SET";
+        }
+
+        return $output;
+    }
+
+    public static function getRankName($id){
+        $data =Ranks::select("rankname")
+        ->where('id', $id)
+            ->get();
+
+            $output="";    
+        foreach($data as $row)
+        {
+            $output = $row->rankname;
         }
 
         if($output == ""){

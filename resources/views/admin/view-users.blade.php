@@ -47,7 +47,7 @@
                 @foreach ($users as $data)
                   <tr>
                     <th scope="row">{{$data->user_id}}</th>
-                    <th scope="row">{{$data->rank}}</th>
+                    <th scope="row">{!!Helper::getRankName($data->rank)!!}</th>
                     <td scope="row">{{$data->first_name}} {{$data->last_name}}</td>
                     <th scope="row">{!!nl2br(e($data->telephone))!!}</th>
                     <th scope="row">{{$data->email}}</th>

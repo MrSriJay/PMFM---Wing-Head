@@ -27,7 +27,7 @@
 
       <label for="recipient-name" class="col-form-label text-light">Officer's Name</label>
           <h3 class="card-title">
-             <strong id="u_id">{!!$user->rank!!} {!!$user->first_name!!} {!!$user->last_name!!}</strong>
+             <strong id="u_id">{!!Helper::getRankName($user->rank)!!} {!!$user->first_name!!} {!!$user->last_name!!}</strong>
           </h3> 
       </div>
       <div class="card-body"  >
@@ -44,7 +44,13 @@
           <!--View rank-->
           <div class="col-lg-4">
               <label for="recipient-name" class="col-form-label text-primary">Rank</label>
-              <input type="text" name ="rank" id ="rank"  class="form-control @error('rank') is-invalid @enderror" readonly value="{{ old('rank',$user->rank) }} "  placeholder="e.g. Major" required value="">
+              <select name ="rank" id ="rank" class="form-select  @error('rank') is-invalid @enderror"  disabled  value="{{ old('rank') }}"  aria-label="Default select example" required>
+                <option value="{{ old('usertype',$user->rank) }}" disabled selected>{!!Helper::getRankName($user->rank)!!}</option>
+                
+                @foreach ($rank as $data)
+                  <option value="{{ $data->id }}" >{{ $data->rankname }}</option>
+                @endforeach
+              </select>
               @error('rank')
               <span class="invalid-feedback" role="alert">
               <strong>{{ $message }}</strong>
@@ -213,7 +219,7 @@
    function toggleEdit() {    
     var i= document.getElementById("editext");
     if(i.innerHTML=="Edit"){
-        document.getElementById("rank").readOnly = false;
+        document.getElementById("rank").disabled = false;
         document.getElementById("first_name").readOnly = false;
         document.getElementById("last_name").readOnly = false;
         document.getElementById("telephone").readOnly = false;
@@ -227,7 +233,7 @@
         i.innerHTML="Cancel"
     }
     else{
-        document.getElementById("rank").readOnly = true;
+        document.getElementById("rank").disabled = true;
         document.getElementById("first_name").readOnly = true;
         document.getElementById("last_name").readOnly = true;
         document.getElementById("telephone").readOnly = true;
