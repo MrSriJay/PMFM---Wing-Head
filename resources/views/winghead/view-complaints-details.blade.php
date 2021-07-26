@@ -36,7 +36,7 @@ Projects - View | PMFM
         <div class="card-body" >
           
           <div class="accordion" id="accordionExample" style="margin-top: -15px">
-            <div class="card">
+            <div class="">
               <div>
                 <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
                   Feedback

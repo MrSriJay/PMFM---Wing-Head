@@ -37,6 +37,142 @@ Projects - View | PMFM
             </h3> 
         </div>
         <div class="card-body" >
+          <div class="accordion" id="accordionExample" style="margin-top: -15px">
+            <div class="">
+              <div>
+                <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                  Feedback
+                </button>
+                <button class="btn btn-primary collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                  Assigned Developers
+                </button>
+                <button class="btn btn-success collapsed " type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseThree">
+                  Solutions
+                </button>
+              </div>
+              <div id="collapseOne" class="collapse" aria-labelledby="headingOne"  style="border: solid 1px #bfbfbf; "  data-parent="#accordionExample">
+                <div class="card-body">
+                    
+                  <!--Feedbacks -->
+                  <div class="form-group"> 
+                    <div class="row col-lg-12 border" style="margin: 5px; padding:10px">
+                      <br>
+                      <div class="col-lg-4 border">
+                        <form action="/send-messages" method="POST" enctype="multipart/form-data">
+                          {{ csrf_field() }}
+                          <br>
+                          <div class="text-primary"> <span class="material-icons">feedback</span> Feedbacks</div>
+                          <br>
+                          <label for="">Message</label>
+                          <textarea class="form-control"  required placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
+                          <br>
+                          <label for="">To</label>
+
+                          <select id="sender_name" class="form-select" style="font-size:16px ; border: 1px sold grey" name="sender_name"  required>
+                            <option value="" disabled selected  class="text-muted"> Select User</option>
+                            @foreach ($complaint_developer as $data)
+                              <option value="{{$data->developer_id}}" >{!!Helper::getName($data->developer_id)!!}(Officer)</option>
+                            @endforeach
+                              <option value="{{$complaints->client_id}}">{!!Helper::getClientName($complaints->client_id)!!}(Client)</option>
+                              <option value="{!!Helper::getWingHead($complaints->wingid)!!}">{!!Helper::getName(Helper::getWingHead($complaints->wingid))!!}(Winghead)</option>
+                              <option value="all">Public</option>
+                          </select>
+
+                          <input type="hidden" value="{!!$complaints->id!!}" name="comp_id">
+                          <div class="form-group">
+                            <input class="Backspace btn  btn-success text-light btn-sm" type="submit" style="width:100%" value="Send">
+                          </div>
+                        
+                        </form>
+                      </div>
+                      <div class="col-lg-8 border">
+                        @if(count($message)>0)
+                        @foreach ($message as $data)
+                          <div class="row bg-muted card" style="margin:10px">
+                              <div class="card-body">
+                                <div class="text-success" style="font-size: 10px" >From <b>{!!Helper::getName($data->sender)!!} - <i class="text-muted">{!!Helper::getDesignationFromID($data->sender)!!}</b></div>
+                                <div class="text-primary">{!!$data->message!!} </div>
+                                <div class="text-success">
+                                  @if($data->receiver!="all")
+                                  <span style="font-size: 10px" class="float:left" >To <b>{!!Helper::getName($data->receiver)!!} - <i class="text-muted">{!!Helper::getDesignationFromID($data->receiver)!!}</b></span>
+                                  @else
+                                  <span style="font-size: 10px" class="float:left" >Public</span>
+                                  @endif  
+                                  <small style=" display:block ;margin-top:-10px; color:#bfbfbf" class="float-right"><i>Sent on {!!$data->created_at!!} </i></small>
+                                </div>
+                              </div>
+                          </div> 
+                        @endforeach
+                        @else 
+                          <br>
+                          <p align-text="center">No feedbacks added</p>
+                        @endif
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+              <div id="collapseTwo" class="collapse" style="border: solid 1px #bfbfbf; " aria-labelledby="headingTwo" data-parent="#accordionExample">
+                <div class="card-body">
+                    
+                  <!--Assign Developers-->
+             <div class="form-group" id="assign_Dev"> 
+              <label for="message-text" class="col-form-label text-primary">Assigned Developers</label>
+              <br>
+              <div class="row col-lg-12 border-secondary">
+                
+                <div class="col-lg-8 border border-light" style="padding: 20px">
+                        @if(count($complaint_developer)>0)
+                        @foreach ($complaint_developer as $data)
+                          <div class="row bg-muted">
+                              <div class="col-lg-12">
+                                {!!Helper::getName($data->developer_id)!!}
+                                <small style=" display:block ;margin-top:-10px; color:#bfbfbf" ><i>Assigned by {!!Helper::getName($data->assigned_by)!!} on {!!$data->created_at!!} </i></small>
+                              </div>
+                          </div> 
+                        @endforeach
+                        @else 
+                          <p align-text="center">No developers assigned</p>
+                        @endif
+                </div>
+            </div>
+              
+            </div>
+                  
+                </div>
+              </div>
+              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" style="border: solid 1px #bfbfbf; " data-parent="#accordionExample">
+                <div class="card-body">
+
+                   <!--Solutions-->
+                  <div class="form-group" id="assign_Dev"> 
+                    <label for="message-text" class="col-form-label text-primary">Solutions</label>
+                    <br>
+                    <div class="row col-lg-12 border-secondary">
+                      <div class="col-lg-6 border border-light" style="padding: 5px">
+                          <form action="/developer/developer-complaint-solved" method="POST" enctype="multipart/form-data">
+                            {{ csrf_field() }}
+                            <input type="hidden" name="comp_id" value="{{$complaints->id}}">
+                            <span>Message</span>
+                            <input type="text" name="message" id="message" class="form-control" placeholder="Add a message">
+                            <button type="submit" class="btn btn-success  btn-block"><span class="material-icons">check_circle</span> Fixed</button>  
+                          </form>      
+                      </div>
+                      <div class="col-lg-6 border border-light" style="padding: 5px">
+                      </div>
+                  </div>
+
+
+
+
+                </div>
+              </div>
+
+
+            </div>
+           </div>
+           <br>
           @if (session('status'))
           <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Complaint Fixed!</strong> Waiting for client's feedback on the solution.
@@ -97,64 +233,7 @@ Projects - View | PMFM
               </div>
               <hr>
 
-             <!--Feedbacks -->
-             <div class="form-group"> 
-              <div class="row col-lg-12 border" style="margin: 5px; padding:10px">
-                <br>
-                <div class="col-lg-4 border">
-                  <form action="/send-messages" method="POST" enctype="multipart/form-data">
-                    {{ csrf_field() }}
-                    <br>
-                    <div class="text-primary"> <span class="material-icons">feedback</span> Feedbacks</div>
-                    <br>
-                    <label for="">Message</label>
-                    <textarea class="form-control"  required placeholder="Type message here" style="border: 1px sold" name="message" id="message" cols="30" rows="5"></textarea>
-                    <br>
-                    <label for="">To</label>
-
-                    <select id="sender_name" class="form-select" style="font-size:16px ; border: 1px sold grey" name="sender_name"  required>
-                      <option value="" disabled selected  class="text-muted"> Select User</option>
-                      @foreach ($complaint_developer as $data)
-                        <option value="{{$data->developer_id}}" >{!!Helper::getName($data->developer_id)!!}(Officer)</option>
-                      @endforeach
-                        <option value="{{$complaints->client_id}}">{!!Helper::getClientName($complaints->client_id)!!}(Client)</option>
-                        <option value="{!!Helper::getWingHead($complaints->wingid)!!}">{!!Helper::getName(Helper::getWingHead($complaints->wingid))!!}(Winghead)</option>
-                        <option value="all">Public</option>
-                    </select>
-
-                    <input type="hidden" value="{!!$complaints->id!!}" name="comp_id">
-                    <div class="form-group">
-                      <input class="Backspace btn  btn-success text-light btn-sm" type="submit" style="width:100%" value="Send">
-                    </div>
-                   
-                  </form>
-                </div>
-                <div class="col-lg-8 border">
-                  @if(count($message)>0)
-                  @foreach ($message as $data)
-                    <div class="row bg-muted card" style="margin:10px">
-                        <div class="card-body">
-                          <div class="text-success" style="font-size: 10px" >From <b>{!!Helper::getName($data->sender)!!} - <i class="text-muted">{!!Helper::getDesignationFromID($data->sender)!!}</b></div>
-                          <div class="text-primary">{!!$data->message!!} </div>
-                          <div class="text-success">
-                            @if($data->receiver!="all")
-                            <span style="font-size: 10px" class="float:left" >To <b>{!!Helper::getName($data->receiver)!!} - <i class="text-muted">{!!Helper::getDesignationFromID($data->receiver)!!}</b></span>
-                            @else
-                            <span style="font-size: 10px" class="float:left" >Public</span>
-                            @endif  
-                            <small style=" display:block ;margin-top:-10px; color:#bfbfbf" class="float-right"><i>Sent on {!!$data->created_at!!} </i></small>
-                          </div>
-                        </div>
-                    </div> 
-                  @endforeach
-                  @else 
-                    <br>
-                    <p align-text="center">No feedbacks added</p>
-                  @endif
-                </div>
-              </div>
-            </div>
-
+             
             <!--View Sender Details-->
             <div class="card border-success  col-lg-12" >
               <div class="card-header">Client Details</div>
@@ -163,29 +242,7 @@ Projects - View | PMFM
               </div>
             </div>
 
-             <!--Assign Developers-->
-             <div class="form-group" id="assign_Dev"> 
-              <label for="message-text" class="col-form-label text-primary">Assigned Developers</label>
-              <br>
-              <div class="row col-lg-12 border-secondary">
-                
-                <div class="col-lg-8 border border-light" style="padding: 20px">
-                        @if(count($complaint_developer)>0)
-                        @foreach ($complaint_developer as $data)
-                          <div class="row bg-muted">
-                              <div class="col-lg-12">
-                                {!!Helper::getName($data->developer_id)!!}
-                                <small style=" display:block ;margin-top:-10px; color:#bfbfbf" ><i>Assigned by {!!Helper::getName($data->assigned_by)!!} on {!!$data->created_at!!} </i></small>
-                              </div>
-                          </div> 
-                        @endforeach
-                        @else 
-                          <p align-text="center">No developers assigned</p>
-                        @endif
-                </div>
-            </div>
-              
-            </div>
+             
         </div> 
       </div>
     </div>

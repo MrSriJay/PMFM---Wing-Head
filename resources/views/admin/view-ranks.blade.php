@@ -110,10 +110,10 @@
           <!--Insert rank Name-->
           <div class="form-group py-4">
               <label for="recipient-name" class="col-form-label text-primary">Rank Name</label>
-              <input type="text" name ="name" class="form-control"  required value="" placeholder="Please Enter Rank Name">
+              <textarea type="text" name ="name" class="form-control"  required value="" placeholder="Please Enter Rank Name"></textarea>
               @error('title')
-              <span class="invalid-feedback" role="alert">
-              <strong>{{ $message }}</strong>
+                <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
               </span>
               @enderror
           </div>
