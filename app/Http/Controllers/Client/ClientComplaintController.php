@@ -15,6 +15,7 @@ use App\Models\Complaints;
 use App\Helper;
 use App\Models\Complaint_developer;
 use App\Models\Message;
+use App\Models\Fix_message;
 use App\Mail\ComplaintAddedNotifaction;
 use Illuminate\Support\Facades\Mail;
 
@@ -40,7 +41,10 @@ class ClientComplaintController extends Controller
         $message = Message::where('complaint_id',$id)->orderBy('updated_at', 'DESC') -> get();
         $complaint_developer = Complaint_developer::where('complaint_id',$id)->get();
         $complaints = complaints::findOrFail($id);
-        return view('client.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
+        $fix_message = Fix_message::where('complaint_id',$id)->get();
+
+
+        return view('client.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message)->with('fix_message',$fix_message);
     }
 
     

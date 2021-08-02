@@ -240,7 +240,8 @@ class AutocompleteController extends Controller
 
         if($request->has('q')){
             $search = $request->q;
-            $data =User::select("user_id", "rank", "first_name", "last_name")
+            $data =User::select("user_id", "rank", "first_name", "last_name","rankname")
+            ->join('ranks', 'users.rank', '=', 'ranks.id')
             ->Where(function ($query) use ($search) {
               $query->where('first_name', 'LIKE', "%$search%") 
               ->orWhere('last_name', 'LIKE', "%$search%") ;
@@ -265,7 +266,8 @@ class AutocompleteController extends Controller
       
       if($request->has('q')){
         $search = $request->get('query');
-       $data =User::select("user_id", "rank", "first_name", "last_name")
+       $data =User::select("user_id", "rank", "first_name", "last_name","rankname")
+       ->join('ranks', 'users.rank', '=', 'ranks.id')
        ->Where(function ($query) use ($search) {
          $query->where('first_name', 'LIKE', "%$search%") 
          ->orWhere('last_name', 'LIKE', "%$search%") ;

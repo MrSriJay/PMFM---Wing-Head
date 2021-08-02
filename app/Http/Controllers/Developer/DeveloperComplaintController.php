@@ -9,6 +9,7 @@ use App\Helper;
 use App\Models\Projects;
 use App\Models\Complaint_developer;
 use App\Models\Message;
+use App\Models\Fix_message;
 use Illuminate\Support\Facades\Auth;
 use DB;
 use Illuminate\Mail\Mailable;
@@ -16,6 +17,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Lang;
 use Illuminate\Support\Facades\Mail;
 use App\Mail\ComplaintStatusMail;
+use Illuminate\Support\Facades\Validator;
 
 class DeveloperComplaintController extends Controller
 {
@@ -38,8 +40,10 @@ class DeveloperComplaintController extends Controller
         ->select('complaints.id','complaints.system_name','complaints.description','complaints.status','complaints.files','complaints.client_id','projects.wingid','complaints.fault_type','urgency_level','complaints.created_at','complaints.updated_at','complaints.project_id')
         ->where('complaints.id',$id)
         ->first();
+        $fix_message = Fix_message::where('complaint_id',$id)->get();
+
        
-        return view('developer.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
+        return view('developer.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message)->with('fix_message',$fix_message);
     }
 
     public function seenComplaint(Request $request){
@@ -63,11 +67,39 @@ class DeveloperComplaintController extends Controller
 
     public function solutionGiven(Request $request){
 
+        
+
+
+        $validate = \Validator::make($request->all(), [
+            'message' => ['required', 'string', 'max:255'],
+            
+        ]);
+
+        
+        if( $validate->fails()){
+            return redirect()
+            ->back()
+            ->withErrors($validate)
+            ->withInput();
+        }
+
+        
+        $fixMessage_create = Fix_message::create([
+
+            'complaint_id' => $request->comp_id,
+            'developer_id' => $request->dev_id,
+            'message' => $request->message,
+
+        ]);
+
+        
+
         $complaints = Complaints::find($request->input('comp_id'));
         $complaints->status =3;
         $complaints ->save();
         
-     Helper::$status_message = [
+
+        Helper::$status_message = [
             'message' =>"Your compalaint has been successfully fixed! Please vist the PMFM site to give a feedback.",
             'client_name' =>  Helper::getClientName($complaints->client_id)
          ];

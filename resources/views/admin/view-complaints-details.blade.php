@@ -178,9 +178,24 @@ Complaint Details | PMFM
 
                 </div>
               </div>
+              <!-- Solution Section -->
               <div id="collapseThree" class="collapse" aria-labelledby="headingThree" style="border: solid 1px #bfbfbf; " data-parent="#accordionExample">
                 <div class="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  <div class="col-lg-12 border border-light" style="padding: 5px">
+                    @if(count($fix_message)>0)
+                    @foreach ($fix_message as $data)
+                      <div class="row bg-muted">
+                          <div class="col-lg-12">
+                            {{ $data->message }}
+                            <small style=" display:block ;margin-top:-10px; color:#bfbfbf" ><i>Solution added by {!!Helper::getName($data->developer_id)!!} on {!!$data->created_at!!} </i></small>
+                          </div>
+                      </div> 
+                    @endforeach
+                    @else 
+                      <p align-text="center">No developers assigned</p>
+                    @endif
+
+                  </div>
                 </div>
               </div>
             </div>

@@ -150,16 +150,37 @@ Projects - View | PMFM
                     <label for="message-text" class="col-form-label text-primary">Solutions</label>
                     <br>
                     <div class="row col-lg-12 border-secondary">
+                      @if($complaints->status == 2)
                       <div class="col-lg-6 border border-light" style="padding: 5px">
                           <form action="/developer/developer-complaint-solved" method="POST" enctype="multipart/form-data">
                             {{ csrf_field() }}
+                            <input type="hidden" name="dev_id" value="{{ Auth::user()->user_id }}">
                             <input type="hidden" name="comp_id" value="{{$complaints->id}}">
                             <span>Message</span>
-                            <input type="text" name="message" id="message" class="form-control" placeholder="Add a message">
+                            <input type="text" name="message" id="message" class="form-control  @error('message') is-invalid @enderror" placeholder="Add a message" required>
+                            @error('message')
+                            <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                            </span>
+                            @enderror
                             <button type="submit" class="btn btn-success  btn-block"><span class="material-icons">check_circle</span> Fixed</button>  
                           </form>      
                       </div>
+                    @endif
                       <div class="col-lg-6 border border-light" style="padding: 5px">
+                        @if(count($fix_message)>0)
+                        @foreach ($fix_message as $data)
+                          <div class="row bg-muted">
+                              <div class="col-lg-12">
+                                {{ $data->message }}
+                                <small style=" display:block ;margin-top:-10px; color:#bfbfbf" ><i>Solution added by {!!Helper::getName($data->developer_id)!!} on {!!$data->created_at!!} </i></small>
+                              </div>
+                          </div> 
+                        @endforeach
+                        @else 
+                          <p align-text="center">No developers assigned</p>
+                        @endif
+
                       </div>
                   </div>
 

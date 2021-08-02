@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Helper;
 use App\Models\Projects;
 use App\Models\Complaint_developer;
+use App\Models\Fix_message;
 use App\Models\Message;
 use DB;
 use App\Mail\ComplaintAddedNotifaction;
@@ -107,7 +108,10 @@ class UserComplaintController extends Controller
        $complaint_developer = Complaint_developer::where('complaint_id',$id)->get();
        $message = Message::where('complaint_id',$id)->orderBy('updated_at', 'DESC') -> get();
        $complaints = complaints::findOrFail($id);
-       return view('winghead.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message);
+       $fix_message = Fix_message::where('complaint_id',$id)->get();
+       
+       return view('winghead.view-complaints-details')->with('complaints', $complaints)->with('complaint_developer',$complaint_developer)->with('message',$message)->with('fix_message',$fix_message);
+      
    }
 
    public function add($id)

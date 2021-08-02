@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateComplaintDevelopersTable extends Migration
+class CreateFixMessagesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,11 @@ class CreateComplaintDevelopersTable extends Migration
      */
     public function up()
     {
-        Schema::create('complaint_developers', function (Blueprint $table) {
+        Schema::create('fix_messages', function (Blueprint $table) {
+            $table->id();
             $table->bigInteger('complaint_id');
             $table->string('developer_id');
-            $table->primary(['complaint_id', 'developer_id']);
-            $table->string('assigned_by');
-            $table->boolean('seen_status')->default(0);
+            $table->string('message');
             $table->timestamps();
         });
     }
@@ -30,6 +29,6 @@ class CreateComplaintDevelopersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('complaint_developers');
+        Schema::dropIfExists('fix_messages');
     }
 }

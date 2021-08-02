@@ -105,7 +105,8 @@ class Helper
     }
 
     public static function getName($id){
-        $data =User::select("first_name","rank","last_name","usertype")
+        $data =User::select("first_name","rank","last_name","usertype","rankname")
+        ->join('ranks', 'users.rank', '=', 'ranks.id')
         ->where('user_id',$id)
             ->get();
             $output="";    
@@ -124,7 +125,7 @@ class Helper
                 $user_rank="";
                 }
                 else{
-                $user_rank=$row->rank.". ";
+                $user_rank=$row->rankname.". ";
                 }
                 $output = $user_rank."".$row->first_name." ".$row->last_name;
             }
