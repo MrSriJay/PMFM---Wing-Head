@@ -171,7 +171,7 @@ Projects - View | PMFM
                                 </div> 
                               @endforeach
                               @else 
-                                <p align-text="center">No developers assigned</p>
+                                <p align-text="center">No fix messages yet</p>
                               @endif
                       </div>
                       @error('developers')
